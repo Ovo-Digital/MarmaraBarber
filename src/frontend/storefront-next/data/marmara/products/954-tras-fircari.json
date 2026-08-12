@@ -1,0 +1,65 @@
+{
+  "id": "8213061468385",
+  "title": "954 Traş Fırçarı",
+  "handle": "954-tras-fircari",
+  "descriptionHtml": "<p><strong>ÖZELLİKLER</strong></p>\n\n<p>Sentetik kıl, ahşap sap ve orta kısımdaki kauçuk kısım ile profesyonel kullanım içindir.<br>\nKesilmiş saçları temizlemek için mükemmel bir fırçadır.</p>\n\n<p><br>\nKıl uzunluğu: 85 mm<br>\nSap uzunluğu: 90 mm.<br>\nToplam uzunluk: 175 mm</p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Fırça",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840075165921",
+      "title": "Default Title",
+      "sku": "BNB-954",
+      "price": 384.0,
+      "compareAtPrice": 384.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743329886433",
+      "src": "/catalog/marmara/954-tras-fircari__41743329886433.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-ense-fircasi-954-4dcc-8.jpg?v=1712593990",
+      "alt": "954 Traş Fırçarı",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743329919201",
+      "src": "/catalog/marmara/954-tras-fircari__41743329919201.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/954-tras-fircari-0fd0-2.jpg?v=1712593990",
+      "alt": "954 Traş Fırçarı",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743329886433",
+    "src": "/catalog/marmara/954-tras-fircari__41743329886433.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-ense-fircasi-954-4dcc-8.jpg?v=1712593990",
+    "alt": "954 Traş Fırçarı",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 384.0,
+  "compareAtPrice": 384.0,
+  "available": true,
+  "publishedAt": "2024-01-11T19:56:00+03:00",
+  "createdAt": "2024-01-11T19:56:05+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,83 @@
+{
+  "id": "8213122285793",
+  "title": "Pomade Wax 100 ML",
+  "handle": "pomade-wax-100-ml",
+  "descriptionHtml": "<strong><br>\n<p>POMADE WAX</p>\n<br>\n<p>ÖZELLİKLER</p>\n</strong>\n\n<p>Marmara Berber Ağdaları tutuş gücünde sunduğu çeşitlilik ile kusursuz stili yaratmak için tasarlanmıştır.</p>\n\n<p>Güçlü tutuşa sahip mumlar keskin stiller için uygundur. Düşük tutuşlu ağdalar daha yumuşak ve doğal bir görünüm sağlar.</p>\n\n<p>TÜM GÜN YÜKSEK PARLAKLIK: Marmara Kuaför Pomadı, size güçlü bir tutuş ve parlak bir görünüm veren özenle seçilmiş bileşenlerle yapılır. İster kalın kısa saçlarınız, ister uzun dalgalı saçlarınız olsun, istediğiniz görünüme ulaşmanıza yardımcı olacak parlak şekillendirici pomatlara güvenebilirsiniz. Marmara Berber Pomadı; Kalın, kıvırcık, ince veya düz saç tiplerinde mükemmel sonuçlar verir. Ferah kokusu gün boyu size eşlik edecek. Marmara Kuaför Pomadı suda çözünür, bu nedenle kolayca yıkanabilir.</p>\n\n<p>Kolay Yıkanabilir</p>\n\n<p>Sıkı tutunmak</p>\n\n<p>Yüksek Parlaklık</p>\n \n\n<p><strong>NASIL KULLANILIR</strong></p>\n\n<p>Avuçlarınızın arasında ovun, az miktarda nemli veya kuru saça uygulayın ve istediğiniz gibi şekillendirin.</p>\n \n\n<p><strong>KOKU HİKAYESİ</strong></p>\n\n<p>Hafif esintisiyle gün boyu ferah hissetmenizi sağlayacak fresh bir koku.</p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924841230561",
+      "title": "Default Title",
+      "sku": "BW-100-PMD",
+      "price": 360.0,
+      "compareAtPrice": 360.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42474036003041",
+      "src": "/catalog/marmara/pomade-wax-100-ml__42474036003041.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/10.jpg?v=1718981577",
+      "alt": "Pomade Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    },
+    {
+      "id": "42474035970273",
+      "src": "/catalog/marmara/pomade-wax-100-ml__42474035970273.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/11.jpg?v=1718981577",
+      "alt": "Pomade Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 2
+    },
+    {
+      "id": "42474036068577",
+      "src": "/catalog/marmara/pomade-wax-100-ml__42474036068577.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/3_60d7fd16-c003-4d91-b4a1-6728e72a76e9.jpg?v=1718981577",
+      "alt": "Pomade Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 3
+    },
+    {
+      "id": "42474035937505",
+      "src": "/catalog/marmara/pomade-wax-100-ml__42474035937505.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/2_22e22bda-5010-45ed-b51f-2faa38ca7e5a.jpg?v=1718981577",
+      "alt": "Pomade Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 4
+    }
+  ],
+  "featuredImage": {
+    "id": "42474036003041",
+    "src": "/catalog/marmara/pomade-wax-100-ml__42474036003041.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/10.jpg?v=1718981577",
+    "alt": "Pomade Wax 100 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 360.0,
+  "compareAtPrice": 360.0,
+  "available": false,
+  "publishedAt": "2024-01-11T20:24:41+03:00",
+  "createdAt": "2024-01-11T20:24:55+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

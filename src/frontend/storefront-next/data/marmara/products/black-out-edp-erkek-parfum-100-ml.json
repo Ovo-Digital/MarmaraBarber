@@ -1,0 +1,56 @@
+{
+  "id": "8213094170849",
+  "title": "Black Out Edp Erkek Parfüm 100 ML",
+  "handle": "black-out-edp-erkek-parfum-100-ml",
+  "descriptionHtml": "<p><strong>BLACKOUT </strong></p>\n<p> </p>\n<p> </p>\n<p>KOKU HİKAYESİ</p>\n<p>Tatlılık ve baharat illüzyonları duyularınızı eğlendirecek. Güzel kokulu auranızla büyülenmelerine izin verin, sonsuza dek hatırlanacaksınız.</p>\n<p><br><br><br><br><br> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840209875169",
+      "title": "Default Title",
+      "sku": "BP-100-BLC",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488766464225",
+      "src": "/catalog/marmara/black-out-edp-erkek-parfum-100-ml__42488766464225.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1_a4bbb2bf-dc0a-41e7-8d66-b990a4c2bc97.jpg?v=1719130632",
+      "alt": "Black Out Edp Erkek Parfüm 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488766464225",
+    "src": "/catalog/marmara/black-out-edp-erkek-parfum-100-ml__42488766464225.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1_a4bbb2bf-dc0a-41e7-8d66-b990a4c2bc97.jpg?v=1719130632",
+    "alt": "Black Out Edp Erkek Parfüm 100 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 699.0,
+  "compareAtPrice": 455.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:11:35+03:00",
+  "createdAt": "2024-01-11T20:11:47+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

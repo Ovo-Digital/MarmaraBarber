@@ -1,0 +1,83 @@
+{
+  "id": "8213130412257",
+  "title": "No.1 Kolonya Pet 400 ml",
+  "handle": "no-1-kolonya-pet-400-ml",
+  "descriptionHtml": "<h2>No.1 Kolonya Pet 400 ml</h2>\n<p>Barber Kolonya benzersiz kokuları ve cilt tazeleyici formülü ile aurayı değiştirmek için tasarlanmıştır. Serinletici kokusuyla kendinizi temiz hissedeceksiniz. İçindekiler cildi kızarıklık, sivilce, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardandan korur. Bunun yanında Barber Kolonya cildin ihtiyacı olan nem ve canlanmaya katkı sağlar. Uzun süre etkilidir. Yüksek alkol, cildinizi temizler.</p>\n<p>* 400 ml</p>\n<p><strong>ÜST NOTALAR:</strong> Narenciye, Lotus Bahar Çiçeği</p>\n<p><strong>ORTA NOTALAR:</strong> Koyu Misk, Siyah Kuş Üzümü</p>\n<p><strong>ALT NOTALAR:</strong> Laurus Nobilis, Dünyevi Notlar</p>\n<p>Kalbinizden geçen Akdeniz esintisi ruhunuzla buluşuyor. Limon ve lavantanın sadeliğindeki ilk dokunuş sizi Akdenize çeker. Beyazın saflığındaki gül; yasemin ve müge ile harmanlanır. Derinlerdeki musk ve ambergrisin gücü, sizi Akdeniz’in rüzgarı gibi kuşatır. Sıcak bir haziran akşamı ve yanı başımızda duran lavantalar limon kokusunu bastırıyor. Ellerimi serinlemek için kullanırken yaseminin soylu edası ile gecenin içinden çıktığına şahit oluyorum. Akdenizde de zaten böyledir değil mi? Bir başka rüzgar etkiler seni..</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924849062113",
+      "title": "Default Title",
+      "sku": "BC-400-1",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825452490977",
+      "src": "/catalog/marmara/no-1-kolonya-pet-400-ml__41825452490977.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no-9-a10c-b53_142db745-6869-4b76-a6f5-4a3bf2423c45.jpg?v=1713107366",
+      "alt": "No.1 Kolonya Pet 400 ml",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825452523745",
+      "src": "/catalog/marmara/no-1-kolonya-pet-400-ml__41825452523745.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no.1-kolonya-cam-sise-400-ml-a92-44_902c0bf0-c6cb-498b-b4da-6d0b1bb5b427.jpg?v=1713107366",
+      "alt": "No.1 Kolonya Pet 400 ml",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41825452556513",
+      "src": "/catalog/marmara/no-1-kolonya-pet-400-ml__41825452556513.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no.1-kolonya-cam-sise-400-ml--2afed_83b6b5b6-05c0-4411-abdd-a91902a91c2b.jpg?v=1763709203",
+      "alt": "No.1 Kolonya Pet 400 ml",
+      "width": 792,
+      "height": 1188,
+      "position": 3
+    },
+    {
+      "id": "41825452589281",
+      "src": "/catalog/marmara/no-1-kolonya-pet-400-ml__41825452589281.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no-91b96b-baa_9018dd12-5a6a-49e6-bff9-e333730f396d.jpg?v=1713107366",
+      "alt": "No.1 Kolonya Pet 400 ml",
+      "width": 1200,
+      "height": 1800,
+      "position": 4
+    }
+  ],
+  "featuredImage": {
+    "id": "41825452490977",
+    "src": "/catalog/marmara/no-1-kolonya-pet-400-ml__41825452490977.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no-9-a10c-b53_142db745-6869-4b76-a6f5-4a3bf2423c45.jpg?v=1713107366",
+    "alt": "No.1 Kolonya Pet 400 ml",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 349.0,
+  "compareAtPrice": 166.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:29:51+03:00",
+  "createdAt": "2024-01-11T20:30:01+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

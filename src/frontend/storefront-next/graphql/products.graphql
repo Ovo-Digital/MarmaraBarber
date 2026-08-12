@@ -1,0 +1,17 @@
+query GetProducts($first: Int!, $after: String) {
+  products(first: $first, after: $after) {
+    edges {
+      node {
+        id
+        handle
+        title
+        description
+        availableForSale
+        featuredImage { url }
+        priceRange {
+          minVariantPrice { amount currencyCode }
+        }
+      }
+    }
+  }
+}

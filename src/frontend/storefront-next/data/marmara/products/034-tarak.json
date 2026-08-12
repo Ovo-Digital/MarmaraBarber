@@ -1,0 +1,65 @@
+{
+  "id": "8213063041249",
+  "title": "034 Tarak",
+  "handle": "034-tarak",
+  "descriptionHtml": "<p>ÖZELLİKLER</p>\n\n<p>Bu taraklar antistatik özelliğine sahip esnek, dayanıklı ve ısıya mukavim özel bir hammaddeden yapılmıştır. Şekillendirme tarağı olarak kullanılabilir.<br>\n </p>\n\n<p>ÖLÇÜLERİ</p>\n\n<p>Uzunluğu : 210 mm.</p>\n\n<p>Genişliği  : 70 mm.</p>\n\n<p>İnce Diş uzunluğu : 25 mm.</p>\n\n<p>Kalın Diş uzunluğu : 30 mm.</p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Fırça",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840078999777",
+      "title": "Default Title",
+      "sku": "BCMB-34",
+      "price": 186.0,
+      "compareAtPrice": 186.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743341322465",
+      "src": "/catalog/marmara/034-tarak__41743341322465.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-tarak-034-95-352.jpg?v=1712594071",
+      "alt": "034 Tarak",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743341355233",
+      "src": "/catalog/marmara/034-tarak__41743341355233.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/034-tarak-53156a.jpg?v=1712594071",
+      "alt": "034 Tarak",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743341322465",
+    "src": "/catalog/marmara/034-tarak__41743341322465.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-tarak-034-95-352.jpg?v=1712594071",
+    "alt": "034 Tarak",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 186.0,
+  "compareAtPrice": 186.0,
+  "available": true,
+  "publishedAt": "2024-01-11T19:56:39+03:00",
+  "createdAt": "2024-01-11T19:56:43+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

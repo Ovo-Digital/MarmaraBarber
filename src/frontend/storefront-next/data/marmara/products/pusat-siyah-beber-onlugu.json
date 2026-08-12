@@ -1,0 +1,76 @@
+{
+  "id": "8348851634401",
+  "title": "Pusat Siyah Beber Önlüğü",
+  "handle": "pusat-siyah-beber-onlugu",
+  "descriptionHtml": "<p><span style=\"color: #666666; font-family: source_sans_proregular, sans-serif; font-size: 14px; background-color: #ffffff;\">Marmara Barber Pusat ürünümüz sizlere tıraş esnasında tüm ürünlere ulaşarak daha hızlı tıraş yapmanızı sağlar.</span></p>",
+  "vendor": "Barber Marmara",
+  "productType": "Apron",
+  "tags": [
+    "pixa"
+  ],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924852895969",
+      "title": "Default Title",
+      "sku": "BA-SHI",
+      "price": 1590.0,
+      "compareAtPrice": 1590.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825461076193",
+      "src": "/catalog/marmara/pusat-siyah-beber-onlugu__41825461076193.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmara_apron_model_back.jpg?v=1713107490",
+      "alt": "Pusat Siyah Beber Önlüğü",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825461108961",
+      "src": "/catalog/marmara/pusat-siyah-beber-onlugu__41825461108961.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmara_apron_box.jpg?v=1713107490",
+      "alt": "Pusat Siyah Beber Önlüğü",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41825461141729",
+      "src": "/catalog/marmara/pusat-siyah-beber-onlugu__41825461141729.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmara_apron_model.jpg?v=1713107490",
+      "alt": "Pusat Siyah Beber Önlüğü",
+      "width": 1200,
+      "height": 1800,
+      "position": 3
+    }
+  ],
+  "featuredImage": {
+    "id": "41825461076193",
+    "src": "/catalog/marmara/pusat-siyah-beber-onlugu__41825461076193.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmara_apron_model_back.jpg?v=1713107490",
+    "alt": "Pusat Siyah Beber Önlüğü",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 1590.0,
+  "compareAtPrice": 1590.0,
+  "available": false,
+  "publishedAt": "2024-04-08T02:50:01+03:00",
+  "createdAt": "2024-04-08T02:50:08+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

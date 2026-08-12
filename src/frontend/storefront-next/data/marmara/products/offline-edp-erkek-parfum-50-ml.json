@@ -1,0 +1,56 @@
+{
+  "id": "8213100855521",
+  "title": "Offlıne Edp Erkek Parfüm 50 ML",
+  "handle": "offline-edp-erkek-parfum-50-ml",
+  "descriptionHtml": "<p><strong>NEVER QUIT</strong></p>\n<p> </p>\n<p> </p>\n<p>KOKU HİKAYESİ</p>\n<p>Sizi görmeden koklamalarına izin verin. Bu aromatik özün birkaç spreyi erkekliğinizi büyütür. </p>\n<p><br> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924827402465",
+      "title": "Default Title",
+      "sku": "BP-50-OFF",
+      "price": 395.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488762400993",
+      "src": "/catalog/marmara/offline-edp-erkek-parfum-50-ml__42488762400993.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/5_2f551a07-fa8d-4f56-9c3b-a5f9cc5fefd9.jpg?v=1719130544",
+      "alt": "Offlıne Edp Erkek Parfüm 50 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488762400993",
+    "src": "/catalog/marmara/offline-edp-erkek-parfum-50-ml__42488762400993.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/5_2f551a07-fa8d-4f56-9c3b-a5f9cc5fefd9.jpg?v=1719130544",
+    "alt": "Offlıne Edp Erkek Parfüm 50 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 395.0,
+  "compareAtPrice": 395.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:14:05+03:00",
+  "createdAt": "2024-01-11T20:14:14+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

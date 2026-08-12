@@ -1,0 +1,74 @@
+{
+  "id": "8213130739937",
+  "title": "No.2 Kolonya Pet 400 ml",
+  "handle": "no-2-kolonya-pet-400-ml",
+  "descriptionHtml": "<p><img alt=\"\" src=\"https://static.ticimax.cloud/42082/uploads/editoruploads/marmarabarber-image/no2dokme.jpg\" style=\"width: 200px; height: 83px;\"></p>\n\n<p>Barber Kolonya tıraştan hemen sonra benzersiz kokuları ve cilt tazeleyici formülü ile aurayı değiştirmek için tasarlanmıştır. Serinletici kokusuyla kendinizi temiz hissedeceksiniz. İçindekiler cildi kızarıklık, sivilce, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardandan korur. Bunun yanında Barber Kolonya cildin ihtiyacı olan nemi ve canlanmayı sağlar.Uzun süre etkilidir. Yüksek alkol, cildinizi temizler.</p>\n\n<p><br>\n* 400 ml</p>\n\n<p>ÜST NOTALAR<br>\nİtalyan Bergamot, Crabapple<br>\nORTA NOTALAR<br>\nTonka Fasulyesi, Taze Yeşiller Notları<br>\nALT NOTALAR<br>\nMistik Kaşmir, Meşe Yaprağı</p>\n\n<p>Güne Barber enerjisiyle başlamanın verdiği rahatlığı yaşayın. İlk buluşmanızda Bergamotun enerjisi lavantanın rahatlığıyla sizi şımartır . Gülün ve Geraniumun elma ile birleşen parlak etkisi sandal ağacı , tonka ve meşe kokusuyla ferahlığı size kalıcı kılar.<br>\nKıymetli bergamot ve sandal ağacı bileşimi, daha önce bulunmadığımız sade bir liman gibi bizi karşılar. Yenilikçi bir sinerji yaratan bu ikili ile meşe yosununu birleştirme fikri belki de güle olan saygımız ve sonsuz sevgimizdendir. Tutku ve özveri ile etki göstermeye devam eden bu kokunun imzası için sıraya girecek bir çok hayran var.</p>\n\n<p>Barber Kolonyası Tıraştan sonra cildi mükemmel bir şekilde rahatlatır. Yüzü suyla temizledikten sonra, Barber kolonyasını elinize dökün ve<br>\ncildinize nazikçe masaj yapın.</p>\n\n<p> </p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924849193185",
+      "title": "Default Title",
+      "sku": "BC-400-2",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825453375713",
+      "src": "/catalog/marmara/no-2-kolonya-pet-400-ml__41825453375713.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no.2-kolonya-cam-sise-400-ml-4f34-6_3ff52ad3-6928-41f6-a4e1-7c849a5931f8.jpg?v=1713107375",
+      "alt": "No.2 Kolonya Pet 400 ml",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825453408481",
+      "src": "/catalog/marmara/no-2-kolonya-pet-400-ml__41825453408481.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no.2-kolonya-cam-sise-400-ml-47-81f_13bd6876-dd23-4a4b-982b-5fdd1fef2ba6.jpg?v=1713107375",
+      "alt": "No.2 Kolonya Pet 400 ml",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41825453441249",
+      "src": "/catalog/marmara/no-2-kolonya-pet-400-ml__41825453441249.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no-1c-bafac71_fac9a309-79f3-4185-b5b5-a522075479f2.jpg?v=1713107376",
+      "alt": "No.2 Kolonya Pet 400 ml",
+      "width": 1200,
+      "height": 1800,
+      "position": 3
+    }
+  ],
+  "featuredImage": {
+    "id": "41825453375713",
+    "src": "/catalog/marmara/no-2-kolonya-pet-400-ml__41825453375713.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no.2-kolonya-cam-sise-400-ml-4f34-6_3ff52ad3-6928-41f6-a4e1-7c849a5931f8.jpg?v=1713107375",
+    "alt": "No.2 Kolonya Pet 400 ml",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 349.0,
+  "compareAtPrice": 166.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:30:02+03:00",
+  "createdAt": "2024-01-11T20:30:12+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "8213109145825",
+  "title": "No.4 Biotin Çift Fazlı Fön Suyu 500 ml",
+  "handle": "no-4-biotin-cift-fazli-fon-suyu-500-ml",
+  "descriptionHtml": "<p><strong>TWO PHASE BİOTİN NO.4 (FÖN SUYU)</strong></p>\n<p> </p>\n<p><strong>NE İŞE YARAR?</strong></p>\n<p>Tüm saç tipleri için formüle edilmiştir.</p>\n<p>Saçlarınıza parlaklık verir.</p>\n<p>Saçlarınızın kolayca taranmasını sağlar. </p>\n<p>Saç dökülmelerinin engellenmesine yardımcı olur.</p>\n<p>Saç tellerini güçlendirir.</p>\n<p> </p>\n<p><strong>NASIL KULLANILIR?</strong></p>\n<p>Kullanmadan önce çalkalayın.</p>\n<p>Nemli veya kuru saça uygulayın.</p>\n<p>Ürünü tarakla dağıtın.</p>\n<p>Günlük kullanıma uygundur.</p>\n<p>Durulama gerektirmez.</p>\n<p> </p>\n<p><strong>BİOTİN TWO PHASE AÇIKLAMASI</strong></p>\n<p>Marmara Barber Biotin literatürde H veya B7 vitamini olarak da bilinir. B vitamini kompleksi içerisindeki 8 vitaminden biridir. Saç sağlığını korumada oldukça önemli bir yere sahiptir.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Fön Suyu",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924832350433",
+      "title": "Default Title",
+      "sku": "BTPC-500-BIO",
+      "price": 600.0,
+      "compareAtPrice": 600.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488852480225",
+      "src": "/catalog/marmara/no-4-biotin-cift-fazli-fon-suyu-500-ml__42488852480225.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/4_78b3de5b-1873-4074-bcce-2be6616771e6.jpg?v=1719131648",
+      "alt": "No.4 Biotin Çift Fazlı Fön Suyu 500 ml",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488852480225",
+    "src": "/catalog/marmara/no-4-biotin-cift-fazli-fon-suyu-500-ml__42488852480225.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/4_78b3de5b-1873-4074-bcce-2be6616771e6.jpg?v=1719131648",
+    "alt": "No.4 Biotin Çift Fazlı Fön Suyu 500 ml",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 600.0,
+  "compareAtPrice": 600.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:17:29+03:00",
+  "createdAt": "2024-01-11T20:17:46+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

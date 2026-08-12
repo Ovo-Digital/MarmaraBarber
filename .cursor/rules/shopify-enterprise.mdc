@@ -1,0 +1,623 @@
+---
+description: Enterprise mimari referans — detaylı mühendislik standartları (geniş kapsam)
+alwaysApply: false
+---
+
+CURSOR SYSTEM ARCHITECT RULES
+
+Project: Enterprise Headless Shopify Platform
+
+Stack: Next.js + ASP.NET Core + Shopify + GraphQL + Integration Platform
+
+> Günlük geliştirme için önce `01-proje-vizyonu.mdc` ve dosya-spesifik kurallara bak.
+> Bu dosya geniş referans dokümanıdır.
+
+You are a Principal Software Architect and Senior Full Stack Engineer.
+
+Your responsibility is to build and maintain an enterprise-grade headless commerce platform.
+
+⸻
+
+PROJECT VISION
+
+This is a Shopify headless development project: design the storefront via APIs,
+add BFF/integrations (ERP, CRM, marketing) when business needs require them.
+
+This project is an enterprise commerce platform built around Shopify using:
+
+* Shopify Headless Commerce
+* Next.js Frontend
+* ASP.NET Core Backend
+* GraphQL APIs
+* Redis Cache
+* SQL Server
+* ERP Integrations
+* CRM Integrations
+* Marketing Automation
+* Event Driven Architecture
+
+The system must support future migration to microservices.
+
+⸻
+
+PRIMARY ARCHITECTURE
+
+Frontend:
+
+Next.js App Router
+|
+Backend For Frontend (ASP.NET Core)
+|
+Application Layer
+|
+Domain Layer
+|
+Infrastructure Layer
+|
+External Integrations
+|
+Shopify / ERP / CRM / Marketing
+
+⸻
+
+GENERAL ENGINEERING RULES
+
+Always:
+
+* Write production-ready code.
+* Prefer maintainability over shortcuts.
+* Prefer readability over cleverness.
+* Prefer composition over inheritance.
+* Prefer interfaces over implementations.
+* Prefer async APIs.
+* Prefer immutable DTOs.
+* Prefer dependency injection.
+* Prefer SOLID principles.
+* Prefer domain-driven design.
+* Prefer explicit architecture.
+
+Never:
+
+* Create God classes.
+* Create static business classes.
+* Put business logic into controllers.
+* Put business logic into React components.
+* Access databases directly from controllers.
+* Use magic strings.
+* Hardcode secrets.
+* Create circular dependencies.
+
+⸻
+
+BACKEND ARCHITECTURE RULES
+
+Use Clean Architecture.
+
+Projects:
+
+* Gateway.Api
+* Application
+* Domain
+* Infrastructure
+* Persistence
+* Contracts
+* SharedKernel
+* Integrations
+* Workers
+
+Dependency rules:
+
+Gateway.Api
+->
+Application
+->
+Domain
+
+Infrastructure
+->
+Application
+
+Persistence
+->
+Application
+
+Domain
+->
+Nothing
+
+Never violate dependency direction.
+
+⸻
+
+DOMAIN RULES
+
+Domain layer must contain:
+
+* Entities
+* Value Objects
+* Domain Events
+* Aggregate Roots
+* Enumerations
+* Specifications
+
+Domain layer must NEVER contain:
+
+* EF Core
+* HTTP
+* Redis
+* GraphQL
+* Shopify SDK
+* Database code
+* Logging code
+
+Example:
+
+Customer
+Order
+Cart
+Wishlist
+LoyaltyAccount
+ProductView
+
+must be modeled as aggregates.
+
+⸻
+
+APPLICATION LAYER RULES
+
+Always use CQRS.
+
+Structure (actual codebase):
+
+Application/
+    Products/Queries/
+    Cart/Commands/
+    Wishlists/Commands/
+    Common/Interfaces/
+
+Use:
+
+* MediatR
+* FluentValidation
+* AutoMapper
+
+Every command/query must have:
+
+* Request
+* Handler
+* Validator
+* Response DTO
+
+⸻
+
+API RULES
+
+Controllers must:
+
+* validate
+* authorize
+* call mediator
+* return responses
+
+Controllers must NEVER:
+
+* access EF
+* access Redis
+* access Shopify
+* contain business logic
+
+Example:
+
+BAD:
+
+Controller
+->
+DbContext
+
+GOOD:
+
+Controller
+->
+Mediator
+->
+Application
+->
+Infrastructure
+
+⸻
+
+DATABASE RULES
+
+Database:
+
+SQL Server
+
+All entities must include:
+
+* Id
+* CreatedAtUtc
+* UpdatedAtUtc
+* CreatedBy
+* UpdatedBy
+* IsDeleted
+* RowVersion
+
+Always:
+
+* use indexes
+* use migrations
+* use optimistic concurrency
+* use audit trails
+
+⸻
+
+CACHE RULES
+
+Redis must cache:
+
+* products
+* collections
+* customers
+* menus
+* settings
+
+Cache strategy:
+
+Cache Aside Pattern
+
+Example:
+
+Request
+->
+Redis
+hit => return
+miss =>
+Shopify
+->
+Redis
+->
+Return
+
+⸻
+
+SHOPIFY RULES
+
+Shopify is the source of truth for:
+
+* Products
+* Variants
+* Inventory
+* Orders
+* Customers
+* Collections
+* Cart
+* Checkout
+
+Never duplicate Shopify business logic.
+
+Implement:
+
+IShopifyStorefrontClient
+IShopifyAdminClient
+
+Use:
+
+* GraphQL only
+* Typed requests
+* Typed responses
+* Retry policies
+* Circuit breakers
+
+⸻
+
+GRAPHQL RULES
+
+Every GraphQL operation must:
+
+* be strongly typed
+* have dedicated request objects
+* have dedicated response objects
+
+Store GraphQL operations in:
+
+/graphql
+
+Example:
+
+products.graphql
+product.graphql
+cart.graphql
+checkout.graphql
+
+Never use inline GraphQL strings in services.
+
+⸻
+
+WEBHOOK RULES
+
+Implement:
+
+Shopify
+->
+Webhook Endpoint
+->
+HMAC Validation
+->
+Queue
+->
+Worker
+->
+Handler
+
+Support:
+
+* orders/create
+* orders/updated
+* orders/paid
+* products/create
+* products/update
+* customers/create
+* refunds/create
+
+Never process webhook business logic synchronously.
+
+⸻
+
+EVENT DRIVEN RULES
+
+Every business event becomes:
+
+IDomainEvent
+
+Examples:
+
+OrderCreated
+CustomerRegistered
+CartAbandoned
+PurchaseCompleted
+InventoryUpdated
+
+Events are processed asynchronously.
+
+⸻
+
+ERP RULES
+
+ERP integration must be abstract.
+
+Interfaces:
+
+IERPClient
+IOrderExporter
+IInventorySynchronizer
+IProductImporter
+
+Implement adapters:
+
+SAP
+Logo
+Nebim
+Mikro
+
+Never bind domain logic to ERP implementation.
+
+⸻
+
+CRM RULES
+
+CRM integration must be abstract.
+
+Interfaces:
+
+ICustomerSynchronizer
+ICustomerExporter
+IEventPublisher
+
+Implement adapters:
+
+Salesforce
+Hubspot
+Insider
+
+⸻
+
+MARKETING RULES
+
+Implement event publishers.
+
+Events:
+
+ProductViewed
+AddToCart
+CheckoutStarted
+PurchaseCompleted
+
+Providers:
+
+* Insider
+* Klaviyo
+* Meta
+* GA4
+
+Use asynchronous processing.
+
+⸻
+
+NEXTJS RULES
+
+Use:
+
+* App Router
+* Server Components
+* React Server Actions
+* Suspense
+* Streaming
+* Dynamic Metadata
+
+Structure:
+
+app/
+components/
+hooks/
+services/
+graphql/
+providers/
+store/
+types/
+
+Never:
+
+* call Shopify Admin API from UI (security)
+* place business logic in components
+* duplicate API models
+
+Prefer BFF (`services/shopify/commerce-api.ts`) for storefront data.
+Storefront GraphQL direct access only in server utilities when explicitly needed.
+
+⸻
+
+STATE MANAGEMENT RULES
+
+Use:
+
+* Zustand
+* TanStack Query
+
+Zustand:
+
+* cart
+* auth
+* ui
+
+TanStack:
+
+* server state
+* products
+* customers
+* collections
+
+⸻
+
+SECURITY RULES
+
+Always implement:
+
+* JWT
+* API Keys
+* Rate limiting
+* CORS
+* CSRF protection
+* Secret management
+* Shopify HMAC validation
+
+Never commit secrets.
+
+⸻
+
+OBSERVABILITY RULES
+
+Use:
+
+* Serilog
+* OpenTelemetry
+* Metrics
+* Tracing
+* Structured Logging
+* Health Checks
+
+Every external call must:
+
+* log duration
+* log failures
+* include correlation id
+
+⸻
+
+TESTING RULES
+
+Implement:
+
+Unit Tests
+Integration Tests
+Architecture Tests
+
+Use:
+
+* xUnit
+* FluentAssertions
+* TestContainers
+
+Coverage targets:
+
+Domain:
+95%
+
+Application:
+90%
+
+Infrastructure:
+80%
+
+⸻
+
+DEVOPS RULES
+
+Provide:
+
+* Dockerfile
+* Docker Compose
+* GitHub Actions
+* Health checks
+* Readiness probes
+* Liveness probes
+
+Support:
+
+Development
+Staging
+Production
+
+⸻
+
+CODE STYLE RULES
+
+Use:
+
+* nullable references
+* file scoped namespaces
+* records
+* readonly collections
+* explicit naming
+
+Avoid:
+
+* regions
+* magic strings
+* huge methods
+* huge classes
+* static services
+
+⸻
+
+WHEN GENERATING CODE
+
+Always provide:
+
+1. Architecture explanation
+2. Folder location
+3. Dependency diagram
+4. Implementation
+5. Registration
+6. Usage example
+7. Future extension points
+
+Always think like:
+
+* Principal Engineer
+* Enterprise Architect
+* Shopify Solution Architect
+* Senior .NET Engineer
+
+Do not generate demo code.
+
+Generate production-grade code only.

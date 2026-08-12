@@ -1,0 +1,65 @@
+{
+  "id": "8213060255969",
+  "title": "Siyah Soyun Bandı",
+  "handle": "beyaz-boyun-bandi",
+  "descriptionHtml": "<span style=\"font-size:18px;\">Barber Boyun Bandı Beyaz</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Boyun Bandı",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840074084577",
+      "title": "Default Title",
+      "sku": "BNS-B",
+      "price": 335.0,
+      "compareAtPrice": 335.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743326839009",
+      "src": "/catalog/marmara/beyaz-boyun-bandi__41743326839009.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-boyun-bandi-siyah-f162fc.jpg?v=1712593972",
+      "alt": "Siyah Soyun Bandı",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743326871777",
+      "src": "/catalog/marmara/beyaz-boyun-bandi__41743326871777.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/siyah-soyun-bandi-1-4910.jpg?v=1712593972",
+      "alt": "Siyah Soyun Bandı",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743326839009",
+    "src": "/catalog/marmara/beyaz-boyun-bandi__41743326839009.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-boyun-bandi-siyah-f162fc.jpg?v=1712593972",
+    "alt": "Siyah Soyun Bandı",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 335.0,
+  "compareAtPrice": 335.0,
+  "available": false,
+  "publishedAt": "2024-01-11T19:55:41+03:00",
+  "createdAt": "2024-01-11T19:55:47+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

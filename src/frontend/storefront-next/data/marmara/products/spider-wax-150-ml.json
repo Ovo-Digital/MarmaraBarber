@@ -1,0 +1,56 @@
+{
+  "id": "8213123956961",
+  "title": "Spıder Wax 150 ML",
+  "handle": "spider-wax-150-ml",
+  "descriptionHtml": "<p><strong>SPIDER WAX</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLERİ</p>\n<p>Marmara Berber Ağdaları tutuş gücünde sunduğu çeşitlilik ile kusursuz stili yaratmak için tasarlanmıştır. Tutuş gücü yüksek olan ağdalar keskin stiller için uygundur. Düşük tutuşlu ağdalar daha yumuşak ve doğal bir görünüm sağlar.</p>\n<p>Marmara Kuaför Örümcek Ağda saçlarınıza bakımlı ve parlak bir görünüm sağlayan özel formülü sayesinde örümcek ağı etkisine sahiptir. Bu özel ürün ile saçınızda kalıntı bırakmadan gün boyu kalıcı en güzel saç modellerini yaratırken güçlü ve esnek tutuşun keyfine varacaksınız. Gün boyu güçlü ve esnek saç görünümünüz ile tarzınızı yansıtır.</p>\n<p>Uygulaması kolaydır ve saça hacim ve şekil verir. Yanında; su bazlı yapısı ile saçtan kolayca temizlenir ve en inatçı tüylerde bile etkilidir.</p>\n<p>Hafif tutuş</p>\n<p>Kolayca yıkanır </p>\n<p>yüksek parlaklık</p>\n<p> </p>\n<p><strong>NASIL KULLANILABİLİR</strong></p>\n<p>Avuçlarınızın arasında ovun, az miktarda nemli veya kuru saça uygulayın ve istediğiniz gibi şekillendirin.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Canlandırıcı üst notalar taze bir başlangıç yaratırken, kokunun kalbi sıcak kişniş, rahatlatıcı lavanta, vadi zambağı ve yasemin bileşimini tamamlıyor.</p>\n<p><br> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924842541281",
+      "title": "Default Title",
+      "sku": "BW-150-SPI",
+      "price": 270.0,
+      "compareAtPrice": 270.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488727666913",
+      "src": "/catalog/marmara/spider-wax-150-ml__42488727666913.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmaraa_150.252.jpg?v=1719129991",
+      "alt": "Spıder Wax 150 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488727666913",
+    "src": "/catalog/marmara/spider-wax-150-ml__42488727666913.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmaraa_150.252.jpg?v=1719129991",
+    "alt": "Spıder Wax 150 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 270.0,
+  "compareAtPrice": 270.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:25:43+03:00",
+  "createdAt": "2024-01-11T20:26:00+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

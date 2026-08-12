@@ -1,0 +1,83 @@
+{
+  "id": "8213122679009",
+  "title": "Space Wax 100 ML",
+  "handle": "space-wax-100-ml",
+  "descriptionHtml": "<p><strong>SPACE WAX</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLER</p>\n<p>Marmara Berber Ağdaları tutuş gücünde sunduğu çeşitlilik ile kusursuz stili yaratmak için tasarlanmıştır.</p>\n<p>Güçlü tutuşa sahip mumlar keskin stiller için uygundur. Düşük tutuşlu ağdalar daha yumuşak ve doğal bir görünüm sağlar.</p>\n<p>TÜM GÜN ULTRA GÜÇLÜ TUTUŞ: Marmara Kuaför Salonu, saçınızın ihtiyacı olan güçlü tutuşu sağlayan özenle seçilmiş bileşenlerin karışımıyla yapılmış süper yüksek tutuşlu ağdadır. Gün boyu görünümünü koruyan, şekilli ve modern saç modelleri yapmanızı sağlar. Size doğal bir görünüm vermek için kil ve yağların eşsiz ve sağlıklı bir karışımı kullanılmıştır. Gün boyu güvenle kullanabilirsiniz. İster gür kısa saçlarınız, ister uzun dalgalı saçlarınız olsun, istediğiniz görünüme kavuşmanız için Marmara Kuaför Uzay Ağdasına güvenebilirsiniz.</p>\n<p>Kolay Yıkanabilir</p>\n<p>Doğal Kaplama</p>\n<p>Mat </p>\n<p> </p>\n<p><strong>NASIL KULLANILIR</strong></p>\n<p>Avuçlarınızın arasında ovun, az miktarda nemli veya kuru saça uygulayın ve istediğiniz gibi şekillendirin. </p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Kokusunu aldığınız ilk andan itibaren kendinizi bir lezzet şöleninde hissedeceksiniz.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924841492705",
+      "title": "Default Title",
+      "sku": "BW-100-SPC",
+      "price": 399.0,
+      "compareAtPrice": 399.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488734580961",
+      "src": "/catalog/marmara/space-wax-100-ml__42488734580961.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/7.jpg?v=1719130097",
+      "alt": "Space Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    },
+    {
+      "id": "42488734646497",
+      "src": "/catalog/marmara/space-wax-100-ml__42488734646497.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/6.jpg?v=1719130097",
+      "alt": "Space Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 2
+    },
+    {
+      "id": "42488734613729",
+      "src": "/catalog/marmara/space-wax-100-ml__42488734613729.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/2_293d922b-999a-4609-894d-1d834b635e8c.jpg?v=1719130097",
+      "alt": "Space Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 3
+    },
+    {
+      "id": "42488734548193",
+      "src": "/catalog/marmara/space-wax-100-ml__42488734548193.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/3_09613724-915f-4af6-9263-737a08b90a85.jpg?v=1719130097",
+      "alt": "Space Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 4
+    }
+  ],
+  "featuredImage": {
+    "id": "42488734580961",
+    "src": "/catalog/marmara/space-wax-100-ml__42488734580961.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/7.jpg?v=1719130097",
+    "alt": "Space Wax 100 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 399.0,
+  "compareAtPrice": 399.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:24:57+03:00",
+  "createdAt": "2024-01-11T20:25:10+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

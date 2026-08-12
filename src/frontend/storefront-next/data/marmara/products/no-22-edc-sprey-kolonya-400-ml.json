@@ -1,0 +1,56 @@
+{
+  "id": "8213074346209",
+  "title": "No. 22 EDC Sprey Kolonya 400 ML",
+  "handle": "no-22-edc-sprey-kolonya-400-ml",
+  "descriptionHtml": "<p><strong>GRAFFITI SPRAY NO.22 </strong></p>\n<p> </p>\n<p>ÖZELLİKLER</p>\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Barber Cologne cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Sizi duygu ve ilham dolu, olağanüstü keşiflerle dolu gizemli bir yolculuğa çıkarıyor. Canlı, taze greyfurt, mandalina, su notaları ve dumanlı guaiac ağacının baştan çıkarıcı notaları.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840130380001",
+      "title": "Default Title",
+      "sku": "BC-400-22-S",
+      "price": 369.0,
+      "compareAtPrice": 178.6,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42489004359905",
+      "src": "/catalog/marmara/no-22-edc-sprey-kolonya-400-ml__42489004359905.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/22_5d42a12e-2de9-4f0b-a989-276120088e60.jpg?v=1719134401",
+      "alt": "No. 22 EDC Sprey Kolonya 400 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42489004359905",
+    "src": "/catalog/marmara/no-22-edc-sprey-kolonya-400-ml__42489004359905.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/22_5d42a12e-2de9-4f0b-a989-276120088e60.jpg?v=1719134401",
+    "alt": "No. 22 EDC Sprey Kolonya 400 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 369.0,
+  "compareAtPrice": 178.6,
+  "available": true,
+  "publishedAt": "2024-01-11T20:02:24+03:00",
+  "createdAt": "2024-01-11T20:02:40+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "8894706909409",
+  "title": "Marmara 150 ml OKYANUS KOLONYA",
+  "handle": "marmara-150-ml-okyanus-kolonyasi",
+  "descriptionHtml": "<pre class=\"tw-data-text tw-text-large tw-ta\" data-placeholder=\"Çeviri\" id=\"tw-target-text\" data-ved=\"2ahUKEwi7jr6C47uMAxWjgf0HHTyKPYEQ3ewLegQICBAV\" dir=\"ltr\" aria-label=\"Çevrilmiş metin: ÖZELLİKLER\nMalzeme: Şeffaf ve hafif PET (Polietilen Tereftalat) plastik.\nŞeffaflık: İçeriğin görünürlüğünü sağlar.\nKapak: Şekli sızdırmaz bir kapaktır.\nDayanıklılık: Darbeye dayanıklı, hafif.\nSıcaklık Direnci: Yüksek sıcaklıklara dayanıklı değildir.\nGeri Dönüşüm: Geri dönüştürülebilir.\nNASIL KULLANILIR\nEl Temizliği: Avuç içlerinize sıkarak ellerinizi ovalayın.\nKişisel Tazeleme: Vücudunuzun istediğiniz bölgelerine püskürtün.\nYüzey Temizliği: Temiz bir bez veya pamuğa püskürtün ve yüzeyi silin.\nDikkat: Gözlerden ve açık alevlerden uzak tutun.\nKOKU HİKAYESİ\nDenizin sakin cazibesinden ilham alan ferahlatıcı karışım. Taze narenciye notalarını aromatik bitki ipuçlarıyla birleştirerek güneşli bir günde serin bir esintinin özünü çağrıştırır. KOKU VE NOTLAR\nÜst Notalar: Meyveli Narenciye Elma, Limon, Portakal\nOrta Notalar: Çiçeksi Aromatik Gül, Aromatik\nTemel Notalar: Miskli Odunsu Misk, Vetiver\nML: 150 ML\nADET: 16\nBOYUT: X\nPALET: 192 KUTU\nBRÜT AĞIRLIK: X\nÜRÜN BARKODU: 8691541004521\nKUTU BARKODU: 8691541004538\"><span class=\"Y2IQFc\" lang=\"tr\">ÖZELLİKLER\nMalzeme: Şeffaf ve hafif PET (Polietilen Tereftalat) plastik.\nŞeffaflık: İçeriğin görünürlüğünü sağlar.\nKapak: Şekli sızdırmaz bir kapaktır.\nDayanıklılık: Darbeye dayanıklı, hafif.\nSıcaklık Direnci: Yüksek sıcaklıklara dayanıklı değildir.\nGeri Dönüşüm: Geri dönüştürülebilir.\nNASIL KULLANILIR\nEl Temizliği: Avuç içlerinize sıkarak ellerinizi ovalayın.\nKişisel Tazeleme: Vücudunuzun istediğiniz bölgelerine püskürtün.\nYüzey Temizliği: Temiz bir bez veya pamuğa püskürtün ve yüzeyi silin.\nDikkat: Gözlerden ve açık alevlerden uzak tutun.\nKOKU HİKAYESİ\nDenizin sakin cazibesinden ilham alan ferahlatıcı karışım. Taze narenciye notalarını aromatik bitki ipuçlarıyla birleştirerek güneşli bir günde serin bir esintinin özünü çağrıştırır. KOKU VE NOTLAR\nÜst Notalar: Meyveli Narenciye Elma, Limon, Portakal\nOrta Notalar: Çiçeksi Aromatik Gül, Aromatik\nTemel Notalar: Miskli Odunsu Misk, Vetiver</span></pre>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "46308467540193",
+      "title": "Default Title",
+      "sku": "MA-150-OKY-S",
+      "price": 90.0,
+      "compareAtPrice": null,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "45059428221153",
+      "src": "/catalog/marmara/marmara-150-ml-okyanus-kolonyasi__45059428221153.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/150mlokyanuskolonyasi.jpg?v=1743680398",
+      "alt": "Marmara 150 ml OKYANUS KOLONYA",
+      "width": 1500,
+      "height": 1500,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "45059428221153",
+    "src": "/catalog/marmara/marmara-150-ml-okyanus-kolonyasi__45059428221153.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/150mlokyanuskolonyasi.jpg?v=1743680398",
+    "alt": "Marmara 150 ml OKYANUS KOLONYA",
+    "width": 1500,
+    "height": 1500,
+    "position": 1
+  },
+  "price": 90.0,
+  "compareAtPrice": null,
+  "available": true,
+  "publishedAt": "2025-04-03T14:40:54+03:00",
+  "createdAt": "2025-04-03T14:40:54+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

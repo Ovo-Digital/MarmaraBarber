@@ -1,0 +1,67 @@
+{
+  "id": "8213060550881",
+  "title": "Siyah Soyun Bandı",
+  "handle": "siyah-soyun-bandi",
+  "descriptionHtml": "<p><strong>ÖZELLİKLER</strong></p>\n\n<p>Barber Boyun Bandı %100 saf doğal odun hamuru malzemesinden üretilmiştir.<br>\n<br>\nHerhangi bir kimyasal bileşim içermez ve çevreyi korur. Yüksek mukavemetli ve su geçirmez, yumuşak, çift taraflı esnek ve rahattır.<br>\n<br>\nTemiz, hijyenik, tek kullanımlıktır ve cilde zarar vermez. Çapraz enfeksiyonu önleyebilir, kesinlikle boyun koruma ve kuaförlük için ideal profesyonel ürünlerdir.<br>\n<br>\nMalzeme esnektir, çift taraflıdır. Siyah renkli yüksek kaliteli yapıştırıcıya sahiptir.<br>\n<br>\nYumuşak, çok emici bir dokudan yapılmıştır.<br>\n<br>\nMüşterinin boynuna rahatça oturacak şekilde esner, temiz ve korumalı tutar.</p>\n",
+  "vendor": "Marmara Barber",
+  "productType": "Ürünler > Aksesuar > Boyun Bandı",
+  "tags": [
+    "mens hat example"
+  ],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44396153602273",
+      "title": "Default Title",
+      "sku": "BNS-B",
+      "price": 4200.0,
+      "compareAtPrice": null,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41083617804513",
+      "src": "/catalog/marmara/siyah-soyun-bandi__41083617804513.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/products/siyah-soyun-bandi-1-4910.jpg?v=1710618757",
+      "alt": "Siyah Soyun Bandı",
+      "width": 1200,
+      "height": 1200,
+      "position": 1
+    },
+    {
+      "id": "41083617837281",
+      "src": "/catalog/marmara/siyah-soyun-bandi__41083617837281.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/products/barber-boyun-bandi-siyah-f162fc.jpg?v=1710618760",
+      "alt": "Siyah Soyun Bandı",
+      "width": 1200,
+      "height": 1200,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41083617804513",
+    "src": "/catalog/marmara/siyah-soyun-bandi__41083617804513.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/products/siyah-soyun-bandi-1-4910.jpg?v=1710618757",
+    "alt": "Siyah Soyun Bandı",
+    "width": 1200,
+    "height": 1200,
+    "position": 1
+  },
+  "price": 4200.0,
+  "compareAtPrice": null,
+  "available": true,
+  "publishedAt": "2024-01-11T19:55:47+03:00",
+  "createdAt": "2024-01-11T19:55:52+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

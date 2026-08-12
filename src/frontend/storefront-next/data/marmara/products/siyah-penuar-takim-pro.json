@@ -1,0 +1,65 @@
+{
+  "id": "8213107638497",
+  "title": "Siyah Penuar Takım Pro",
+  "handle": "siyah-penuar-takim-pro",
+  "descriptionHtml": "<span style=\"font-size:16px;\">Barber Penuar Takım Pro Siyah</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Penuar",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924831564001",
+      "title": "Default Title",
+      "sku": "BCP-PROB",
+      "price": 849.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825411301601",
+      "src": "/catalog/marmara/siyah-penuar-takim-pro__41825411301601.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-takim-pro-siyah-4-4ddc_60905910-7a76-493c-80c0-bd171f6d14c1.jpg?v=1713106656",
+      "alt": "Siyah Penuar Takım Pro",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825411334369",
+      "src": "/catalog/marmara/siyah-penuar-takim-pro__41825411334369.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/siyah-penuar-takim-pro-d5eec2_7692c178-bad0-4a54-81cf-41ac09bb8e5d.jpg?v=1713106656",
+      "alt": "Siyah Penuar Takım Pro",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825411301601",
+    "src": "/catalog/marmara/siyah-penuar-takim-pro__41825411301601.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-takim-pro-siyah-4-4ddc_60905910-7a76-493c-80c0-bd171f6d14c1.jpg?v=1713106656",
+    "alt": "Siyah Penuar Takım Pro",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 849.0,
+  "compareAtPrice": 632.4,
+  "available": false,
+  "publishedAt": "2024-01-11T20:16:58+03:00",
+  "createdAt": "2024-01-11T20:17:04+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

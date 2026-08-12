@@ -1,0 +1,56 @@
+{
+  "id": "8213112324321",
+  "title": "Keratin Şampuan, Arındırıcı, Besleyici Pompalı, 1150 ML",
+  "handle": "keratin-sampuan-arindirici-besleyici-pompali-1150-ml",
+  "descriptionHtml": "<p><strong>SHAMPOO KERATIN 1150ML</strong></p>\n<p> </p>\n<p><strong>ÖZELLİKLER </strong></p>\n<p>Erkekler için saç bakımı erkeklerde saç kaybını azaltır. Kuru kafa derisiyle mücadele eder ve kaşıntıyı önler. Kafa derisi bakımı ile saç derisini yatıştırıcı şampuan, kuaför bakım ürünleri nemlendiricidir.</p>\n<p>Güzel ve bakımlı saçlar için keratin yağlı saç bakım ürünleri. Yeni çekiciliği yaşayın. Erkekler için sakal şampuanı olarak da idealdir. Kaşıntıyı önler ve kuru hasar görmüş sakalları yumuşak ve parlak hale getirir.</p>\n<p>Tehlikeli tuzlar ve silikon içermez. Saçlarınız ilk kullanımdan itibaren yumuşak ve yumuşak olur ve harika bir parlaklık kazanır. Erkek saçını temizler, parlaklığı geri getirir. Yıpranmış saçlar, kırılgan saçlar, kırılgan saçlar ve yıpranmış boyalı saçlar için uygundur.</p>\n<p>Kuru ve yıpranmış saçlara karşı bukle şampuanı. Önemli ölçüde daha fazla zıplama gücü, esneklik ve çekici tanım elde edersiniz - her türlü bukle için mükemmel bakım!</p>\n<p>Profesyonel bakım: Barber Marmarra pompalı kuaför şampuanı saçlarınız söz konusu olduğunda her yerde kullanılabilir. Zengin içerikli içerik maddeleri saçı içten güçlendirir, yumuşak bakım yapar ve kurumaya karşı korur.</p>\n<p><br> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Şampuan",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924834021601",
+      "title": "Default Title",
+      "sku": "BS-1150-KRT",
+      "price": 499.0,
+      "compareAtPrice": 320.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488813420769",
+      "src": "/catalog/marmara/keratin-sampuan-arindirici-besleyici-pompali-1150-ml__42488813420769.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/cool.133.jpg?v=1719131227",
+      "alt": "Keratin Şampuan, Arındırıcı, Besleyici Pompalı, 1150 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488813420769",
+    "src": "/catalog/marmara/keratin-sampuan-arindirici-besleyici-pompali-1150-ml__42488813420769.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/cool.133.jpg?v=1719131227",
+    "alt": "Keratin Şampuan, Arındırıcı, Besleyici Pompalı, 1150 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 499.0,
+  "compareAtPrice": 320.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:18:48+03:00",
+  "createdAt": "2024-01-11T20:19:05+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

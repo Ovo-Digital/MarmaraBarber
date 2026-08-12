@@ -1,0 +1,74 @@
+{
+  "id": "8832543260897",
+  "title": "JRL-2020T-G FreshFade 2020T Trimmer Gold",
+  "handle": "jrl-2020t-g-freshfade-2020t-trimmer-gold",
+  "descriptionHtml": "<p><span>JRL-2020T-G FreshFade 2020T Trimmer Gold</span></p>",
+  "vendor": "Marmara Barber",
+  "productType": "",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "46089473622241",
+      "title": "Default Title",
+      "sku": "",
+      "price": 10000.0,
+      "compareAtPrice": 8500.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "44329801941217",
+      "src": "/catalog/marmara/jrl-2020t-g-freshfade-2020t-trimmer-gold__44329801941217.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/JRL-2020T-G-1.jpg?v=1737471476",
+      "alt": "JRL-2020T-G FreshFade 2020T Trimmer Gold",
+      "width": 1250,
+      "height": 1667,
+      "position": 1
+    },
+    {
+      "id": "44329803317473",
+      "src": "/catalog/marmara/jrl-2020t-g-freshfade-2020t-trimmer-gold__44329803317473.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/JRL-2020T-G-2.jpg?v=1737471492",
+      "alt": "JRL-2020T-G FreshFade 2020T Trimmer Gold",
+      "width": 1250,
+      "height": 1667,
+      "position": 2
+    },
+    {
+      "id": "44329804202209",
+      "src": "/catalog/marmara/jrl-2020t-g-freshfade-2020t-trimmer-gold__44329804202209.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/JRL-2020T-G-3.jpg?v=1737471499",
+      "alt": "JRL-2020T-G FreshFade 2020T Trimmer Gold",
+      "width": 906,
+      "height": 1422,
+      "position": 3
+    }
+  ],
+  "featuredImage": {
+    "id": "44329801941217",
+    "src": "/catalog/marmara/jrl-2020t-g-freshfade-2020t-trimmer-gold__44329801941217.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/JRL-2020T-G-1.jpg?v=1737471476",
+    "alt": "JRL-2020T-G FreshFade 2020T Trimmer Gold",
+    "width": 1250,
+    "height": 1667,
+    "position": 1
+  },
+  "price": 10000.0,
+  "compareAtPrice": 8500.0,
+  "available": true,
+  "publishedAt": "2025-01-21T17:42:55+03:00",
+  "createdAt": "2025-01-21T17:42:55+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

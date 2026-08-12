@@ -1,0 +1,58 @@
+{
+  "id": "8672477806817",
+  "title": "Kakao Yağı 35 gr",
+  "handle": "kakao-yagi-35-gr",
+  "descriptionHtml": "",
+  "vendor": "Marmara",
+  "productType": "Cilt Bakımı",
+  "tags": [
+    "pixa"
+  ],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "45581445005537",
+      "title": "Default Title",
+      "sku": "MKY-35",
+      "price": 105.96,
+      "compareAtPrice": 105.96,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42922755490017",
+      "src": "/catalog/marmara/kakao-yagi-35-gr__42922755490017.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/MARMARA_20KAKAO_20YAG_CC_86I_2035GR.jpg?v=1722669720",
+      "alt": "Kakao Yağı 35 gr",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42922755490017",
+    "src": "/catalog/marmara/kakao-yagi-35-gr__42922755490017.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/MARMARA_20KAKAO_20YAG_CC_86I_2035GR.jpg?v=1722669720",
+    "alt": "Kakao Yağı 35 gr",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 105.96,
+  "compareAtPrice": 105.96,
+  "available": false,
+  "publishedAt": "2024-08-03T10:21:58+03:00",
+  "createdAt": "2024-08-03T10:22:00+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

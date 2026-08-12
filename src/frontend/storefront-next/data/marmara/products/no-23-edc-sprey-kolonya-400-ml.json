@@ -1,0 +1,56 @@
+{
+  "id": "8213074772193",
+  "title": "No. 23 EDC Sprey Kolonya 400 ML",
+  "handle": "no-23-edc-sprey-kolonya-400-ml",
+  "descriptionHtml": "<p><strong>GRAFFITI SPRAY NO.23</strong></p>\n<p> </p>\n<p>ÖZELLİKLER</p>\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Barber Cologne cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n<p>  </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Bu kokunun yıldızı hiç şüphesiz meyvelerdir. Ahududu, armut, kuş üzümü ve şeftali ile başlar. Parfüm notalarının merkezinde gün boyu cildinizde parlayacak vadi zambağı ve kediotu bulunur. Temel notalarda vanilya ve sandal ağacı güçlü bir kompozisyon oluşturur. Neşeli ve keyifli.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840132772065",
+      "title": "Default Title",
+      "sku": "BC-400-23-S",
+      "price": 369.0,
+      "compareAtPrice": 178.6,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42489003147489",
+      "src": "/catalog/marmara/no-23-edc-sprey-kolonya-400-ml__42489003147489.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/23_12d68523-6935-4d8b-a21b-75d763b22f4b.jpg?v=1719134385",
+      "alt": "No. 23 EDC Sprey Kolonya 400 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42489003147489",
+    "src": "/catalog/marmara/no-23-edc-sprey-kolonya-400-ml__42489003147489.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/23_12d68523-6935-4d8b-a21b-75d763b22f4b.jpg?v=1719134385",
+    "alt": "No. 23 EDC Sprey Kolonya 400 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 369.0,
+  "compareAtPrice": 178.6,
+  "available": true,
+  "publishedAt": "2024-01-11T20:02:42+03:00",
+  "createdAt": "2024-01-11T20:02:56+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

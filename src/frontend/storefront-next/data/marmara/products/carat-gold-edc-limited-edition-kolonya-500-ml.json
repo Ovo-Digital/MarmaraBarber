@@ -1,0 +1,74 @@
+{
+  "id": "8213132148961",
+  "title": "Carat Gold EDC Limited Edition Kolonya 500 ML",
+  "handle": "carat-gold-edc-limited-edition-kolonya-500-ml",
+  "descriptionHtml": "<p>Carat Gold EDC Limited Edition Kolonya 500 ML</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924851126497",
+      "title": "Default Title",
+      "sku": "BC-500-BGLD-B",
+      "price": 1490.0,
+      "compareAtPrice": 510.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825456390369",
+      "src": "/catalog/marmara/carat-gold-edc-limited-edition-kolonya-500-ml__41825456390369.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/carat-gold-edc-limited-edition-kolonya-e-41c5_172ae4b9-4d27-4a27-a30e-9239b5970892.jpg?v=1713107422",
+      "alt": "Carat Gold EDC Limited Edition Kolonya 500 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825456423137",
+      "src": "/catalog/marmara/carat-gold-edc-limited-edition-kolonya-500-ml__41825456423137.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/carat-gold-edc-limited-edition-kolonya-3b2576_e4986bce-9ced-4bdc-ba4d-25ca47478223.jpg?v=1713107422",
+      "alt": "Carat Gold EDC Limited Edition Kolonya 500 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41825456455905",
+      "src": "/catalog/marmara/carat-gold-edc-limited-edition-kolonya-500-ml__41825456455905.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/carat-gold-edc-limited-edition-kolonya-5-9f22_0149908e-360d-496e-947e-8ad60bc79dda.jpg?v=1713107422",
+      "alt": "Carat Gold EDC Limited Edition Kolonya 500 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 3
+    }
+  ],
+  "featuredImage": {
+    "id": "41825456390369",
+    "src": "/catalog/marmara/carat-gold-edc-limited-edition-kolonya-500-ml__41825456390369.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/carat-gold-edc-limited-edition-kolonya-e-41c5_172ae4b9-4d27-4a27-a30e-9239b5970892.jpg?v=1713107422",
+    "alt": "Carat Gold EDC Limited Edition Kolonya 500 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 1490.0,
+  "compareAtPrice": 510.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:30:53+03:00",
+  "createdAt": "2024-01-11T20:31:02+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

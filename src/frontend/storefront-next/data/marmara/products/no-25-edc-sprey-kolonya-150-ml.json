@@ -1,0 +1,56 @@
+{
+  "id": "8213067432161",
+  "title": "No.25 EDC Sprey Kolonya 150 ML",
+  "handle": "no-25-edc-sprey-kolonya-150-ml",
+  "descriptionHtml": "<p><strong>GRAFFITI SPRAY NO.25</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLER</p>\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Barber Cologne cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Sizi hemen etkisi altına alacak genç ve dinamik bir koku. Temiz, canlandırıcı ve canlandırıcı notalara sahiptir.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840096628961",
+      "title": "Default Title",
+      "sku": "BC-150-25-S",
+      "price": 199.9,
+      "compareAtPrice": 112.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488983519457",
+      "src": "/catalog/marmara/no-25-edc-sprey-kolonya-150-ml__42488983519457.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/25_1a2462fa-e712-40e2-8eda-6cd841fd304a.jpg?v=1719134134",
+      "alt": "No.25 EDC Sprey Kolonya 150 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488983519457",
+    "src": "/catalog/marmara/no-25-edc-sprey-kolonya-150-ml__42488983519457.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/25_1a2462fa-e712-40e2-8eda-6cd841fd304a.jpg?v=1719134134",
+    "alt": "No.25 EDC Sprey Kolonya 150 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 199.9,
+  "compareAtPrice": 112.0,
+  "available": true,
+  "publishedAt": "2024-01-11T19:58:06+03:00",
+  "createdAt": "2024-01-11T19:58:20+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

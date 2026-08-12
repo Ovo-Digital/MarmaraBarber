@@ -1,0 +1,92 @@
+{
+  "id": "8213072576737",
+  "title": "No.4 EDC Kolonya Cam Şişe 250 ML",
+  "handle": "no-4-edc-kolonya-cam-sise-250-ml",
+  "descriptionHtml": "<p><strong>CLASSIC COLOGNE NO.4</strong></p>\n<strong></strong>\n\n<p> </p>\n<strong>\n<p>ÖZELLİKLERİ</p>\n</strong>\n\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Berber Kolonyası cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n \n\n<p><strong>KOKU HİKAYESİ</strong></p>\n\n<p>Eşsiz ve aynı zamanda çekici.</p>\n\n<p>Sakinleştirici aromatik notalar ve bergamot, mandalina, greyfurt ve lavanta gibi narenciye notalarının yarattığı bir enerji patlamasıyla açılır. Baharatlı notalar, kokunun kalbine sıcaklık verir. Alt notalarda kehribar, tonka fasulyesi ve vanilya bu sıcaklığı destekleyen bir kompozisyon oluşturuyor.</p>\n\n<p>Berber Kolonyası Tıraştan sonra cildi mükemmel bir şekilde yatıştırır. Yüzünüzü su ile temizledikten sonra ellerinize Barber kolonyasını dökün ve cildinize nazikçe masaj yapın.</p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840118354145",
+      "title": "Default Title",
+      "sku": "BC-250-4",
+      "price": 149.0,
+      "compareAtPrice": 149.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743401255137",
+      "src": "/catalog/marmara/no-4-edc-kolonya-cam-sise-250-ml__41743401255137.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.4-cam-43056.jpg?v=1712594526",
+      "alt": "No.4 EDC Kolonya Cam Şişe 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743401287905",
+      "src": "/catalog/marmara/no-4-edc-kolonya-cam-sise-250-ml__41743401287905.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.4-cam--a7f6.jpg?v=1712594526",
+      "alt": "No.4 EDC Kolonya Cam Şişe 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41743401320673",
+      "src": "/catalog/marmara/no-4-edc-kolonya-cam-sise-250-ml__41743401320673.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.4-cam--4ab2.jpg?v=1712594526",
+      "alt": "No.4 EDC Kolonya Cam Şişe 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 3
+    },
+    {
+      "id": "41743401353441",
+      "src": "/catalog/marmara/no-4-edc-kolonya-cam-sise-250-ml__41743401353441.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.4-cam-2b93-4.jpg?v=1712594526",
+      "alt": "No.4 EDC Kolonya Cam Şişe 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 4
+    },
+    {
+      "id": "41743401386209",
+      "src": "/catalog/marmara/no-4-edc-kolonya-cam-sise-250-ml__41743401386209.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no-e-b47e-a9f.jpg?v=1712594526",
+      "alt": "No.4 EDC Kolonya Cam Şişe 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 5
+    }
+  ],
+  "featuredImage": {
+    "id": "41743401255137",
+    "src": "/catalog/marmara/no-4-edc-kolonya-cam-sise-250-ml__41743401255137.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.4-cam-43056.jpg?v=1712594526",
+    "alt": "No.4 EDC Kolonya Cam Şişe 250 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 149.0,
+  "compareAtPrice": 149.0,
+  "available": false,
+  "publishedAt": "2024-01-11T20:00:43+03:00",
+  "createdAt": "2024-01-11T20:00:58+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

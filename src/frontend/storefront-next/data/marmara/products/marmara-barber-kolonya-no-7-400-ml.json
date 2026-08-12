@@ -1,0 +1,58 @@
+{
+  "id": "8301035913441",
+  "title": "Marmara Barber Kolonya No 7 400 ML",
+  "handle": "marmara-barber-kolonya-no-7-400-ml",
+  "descriptionHtml": "<p>Marmara Barber Kolonya No 7 400 ML</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [
+    "pixa"
+  ],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924852207841",
+      "title": "Default Title",
+      "sku": "BC-400-7",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825459077345",
+      "src": "/catalog/marmara/marmara-barber-kolonya-no-7-400-ml__41825459077345.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/8691541009267_06d19c02-8292-4801-a4bf-d32588d07094.jpg?v=1713107462",
+      "alt": "Marmara Barber Kolonya No 7 400 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "41825459077345",
+    "src": "/catalog/marmara/marmara-barber-kolonya-no-7-400-ml__41825459077345.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/8691541009267_06d19c02-8292-4801-a4bf-d32588d07094.jpg?v=1713107462",
+    "alt": "Marmara Barber Kolonya No 7 400 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 349.0,
+  "compareAtPrice": 166.0,
+  "available": true,
+  "publishedAt": "2024-03-18T15:32:58+03:00",
+  "createdAt": "2024-03-18T15:33:01+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

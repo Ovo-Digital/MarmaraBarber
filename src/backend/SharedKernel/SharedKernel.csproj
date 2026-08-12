@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>HeadlessCommerce.SharedKernel</RootNamespace>
+    <AssemblyName>HeadlessCommerce.SharedKernel</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+  </ItemGroup>
+</Project>

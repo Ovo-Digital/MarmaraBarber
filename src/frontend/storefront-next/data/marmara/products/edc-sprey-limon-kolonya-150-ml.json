@@ -1,0 +1,65 @@
+{
+  "id": "8213063794913",
+  "title": "EDC Sprey Limon Kolonya 150 ML",
+  "handle": "edc-sprey-limon-kolonya-150-ml",
+  "descriptionHtml": "<p><strong>LEMON 5LT - 150ML</strong></p>\n\n<p>BARBER MARMARA Eau de Cologne Limon Sprey 1 x 150 ml - Kuaför Barbier Aftershave Sprey | Limon Kokusu</p>\n\n<p> </p>\n\n<p> </p>\n<strong>\n<p>ÖZELLİKLERİ</p>\n</strong>\n\n<p>Islak tıraştan sonra serinletir, temizler ve cildi dezenfekte eder. Cilt kızarıklığını önler, tıraş yanıkları böylece yüzdeki tıraş sivilcelerini de önler. Tüm cilt tipleri ve günlük cilt bakımı için uygundur</p>\n\n<p>İster tıraştan sonra ister yolda olduğunuz uzun bir günden sonra Eau de Cologne Duru koku serisi ferahlatıcı, canlandırıcı, canlandırıcı ve uyarıcı etki eder.</p>\n\n<p> </p>\n\n<p><strong>KOKU</strong></p>\n\n<p>Meyveli taze limon | Kokulu su sivilcelere karşı da kullanılabilir.</p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840081916129",
+      "title": "Default Title",
+      "sku": "BC-150-LMN",
+      "price": 103.0,
+      "compareAtPrice": 103.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743349448929",
+      "src": "/catalog/marmara/edc-sprey-limon-kolonya-150-ml__41743349448929.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-150-ml-limon-sprey-50abd4.jpg?v=1712594133",
+      "alt": "EDC Sprey Limon Kolonya 150 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743349481697",
+      "src": "/catalog/marmara/edc-sprey-limon-kolonya-150-ml__41743349481697.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/edc-sprey-limon-kolonya-150-ml-0-571e.jpg?v=1712594133",
+      "alt": "EDC Sprey Limon Kolonya 150 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743349448929",
+    "src": "/catalog/marmara/edc-sprey-limon-kolonya-150-ml__41743349448929.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-150-ml-limon-sprey-50abd4.jpg?v=1712594133",
+    "alt": "EDC Sprey Limon Kolonya 150 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 103.0,
+  "compareAtPrice": 103.0,
+  "available": true,
+  "publishedAt": "2024-01-11T19:57:00+03:00",
+  "createdAt": "2024-01-11T19:57:05+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

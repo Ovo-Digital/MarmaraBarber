@@ -1,0 +1,56 @@
+{
+  "id": "8213110587617",
+  "title": "Keratin Saç Bakım Kremi, Arındırıcı, Besleyici, Nemlendirici, Pompalı, 1150 ML",
+  "handle": "keratin-sac-bakim-kremi-arindirici-besleyici-nemlendirici-pompali-1150-ml",
+  "descriptionHtml": "<p><strong>HAİR CONDITIONER 1150ML</strong></p>\n<p>  </p>\n<p><strong>ÖZELLİKLER</strong></p>\n<p>Erkekler için saç bakımı erkeklerde saç kaybını azaltır. Kuru kafa derisiyle mücadele eder ve kaşıntıyı önler. Kafa derisi bakımı ile saç derisini yatıştırıcı şampuan, kuaför bakım ürünleri nemlendiricidir.</p>\n<p>Güzel ve bakımlı saçlar için keratin yağlı saç bakım ürünleri. Yeni çekiciliği yaşayın. Erkekler için sakal kremi olarak da idealdir. Kaşıntıyı önler ve kuru hasar görmüş sakalları yumuşak ve parlak hale getirir.</p>\n<p>Tehlikeli tuzlar ve silikon içermez. Saçlarınız ilk kullanımdan itibaren yumuşak ve yumuşak olur ve harika bir parlaklık kazanır. Erkek saçını temizler, parlaklığı geri getirir. Yıpranmış saçlar, kırılgan saçlar, kırılgan saçlar ve yıpranmış boyalı saçlar için uygundur.</p>\n<p>Kuru ve yıpranmış saçlara karşı bukle kürü. Önemli ölçüde daha fazla zıplama gücü, esneklik ve çekici tanım elde edersiniz - her türlü bukle için mükemmel bakım!</p>\n<p>Profesyonel bakım: Barber Marmarara pompalı kuaför saç kremi, saçlarınız söz konusu olduğunda her yerde kullanılabilir. Zengin içerikli içerik maddeleri saçı içten güçlendirir, yumuşak bakım yapar ve kurumaya karşı korur.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Kremi",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924833399009",
+      "title": "Default Title",
+      "sku": "BHC-1150-KRT",
+      "price": 599.0,
+      "compareAtPrice": 405.6,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488815747297",
+      "src": "/catalog/marmara/keratin-sac-bakim-kremi-arindirici-besleyici-nemlendirici-pompali-1150-ml__42488815747297.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/cool.131.jpg?v=1719131250",
+      "alt": "Keratin Saç Bakım Kremi, Arındırıcı, Besleyici, Nemlendirici, Pompalı, 1150 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488815747297",
+    "src": "/catalog/marmara/keratin-sac-bakim-kremi-arindirici-besleyici-nemlendirici-pompali-1150-ml__42488815747297.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/cool.131.jpg?v=1719131250",
+    "alt": "Keratin Saç Bakım Kremi, Arındırıcı, Besleyici, Nemlendirici, Pompalı, 1150 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 599.0,
+  "compareAtPrice": 405.6,
+  "available": true,
+  "publishedAt": "2024-01-11T20:18:15+03:00",
+  "createdAt": "2024-01-11T20:18:30+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

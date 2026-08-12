@@ -1,0 +1,74 @@
+{
+  "id": "8213121171681",
+  "title": "Clay Wax 100 ML",
+  "handle": "clay-wax-100-ml",
+  "descriptionHtml": "<p><strong>CLAY WAX</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLER</p>\n<p> </p>\n<p>Marmara Berber Ağdaları tutuş gücünde sunduğu çeşitlilik ile kusursuz stili yaratmak için tasarlanmıştır.</p>\n<p>Güçlü tutuşa sahip mumlar keskin stiller için uygundur. Düşük tutuşlu ağdalar daha yumuşak ve doğal bir görünüm sağlar.</p>\n<p>TÜM GÜN ULTRA GÜÇLÜ KOLU: Marmara Kuaför Kili Ağda, saçınızın ihtiyacı olan güçlü tutuşu sağlayan özenle seçilmiş bileşenlerin bir karışımı ile yapılır. Gün boyu görünümünü koruyan sert, şekilli ve modern saç modelleri yapmanızı sağlar. Ultra güçlü bir tutuş ve düşük parlaklıkta bir yüzey sağlamak için tasarlanmıştır. Gün boyu güvenle kullanabileceğiniz doğal görünümlü bir ağda oluşturmak için kil, mumlar ve yağların eşsiz ve sağlıklı bir karışımı kullanılır. İster gür kısa saçlarınız, ister uzun dalgalı saçlarınız olsun, istediğiniz görünüme kavuşmanız için Marmara Kuaför Kili Ağda'ya güvenebilirsiniz.</p>\n<p>Hafif tutuş</p>\n<p>Kolayca yıkanır</p>\n<p>Mat</p>\n<p>Doğal Kaplama</p>\n<p>Nasıl kullanılır</p>\n<p>Avuçlarınızın arasında ovun, az miktarda nemli veya kuru saça uygulayın ve istediğiniz gibi şekillendirin.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ </strong></p>\n<p>Özgürlük ruhu!</p>\n<p>Eşsiz kokusuyla günün her anında ferahlık.</p>\n<p>Fesleğen, kimyon ve lavanta karışımı ile güçlendirilmiştir.</p>\n<p>Akılda kalıcı ve tutkulu tonlarla genç ve dinamik!</p>\n<p> </p>\n<p>Meyveli notalara yumuşak bir dokunuş yaparken, vanilya ve karamel ile dengelenmiş taban notaları ile sıcak ve samimi bir koku yaratıyor.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924840509665",
+      "title": "Default Title",
+      "sku": "BW-100-CLY",
+      "price": 360.0,
+      "compareAtPrice": 360.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42473990357217",
+      "src": "/catalog/marmara/clay-wax-100-ml__42473990357217.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/8.jpg?v=1718981085",
+      "alt": "Clay Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    },
+    {
+      "id": "42473991733473",
+      "src": "/catalog/marmara/clay-wax-100-ml__42473991733473.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1.jpg?v=1718981097",
+      "alt": "Clay Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 2
+    },
+    {
+      "id": "42473991766241",
+      "src": "/catalog/marmara/clay-wax-100-ml__42473991766241.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/3.jpg?v=1718981097",
+      "alt": "Clay Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 3
+    }
+  ],
+  "featuredImage": {
+    "id": "42473990357217",
+    "src": "/catalog/marmara/clay-wax-100-ml__42473990357217.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/8.jpg?v=1718981085",
+    "alt": "Clay Wax 100 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 360.0,
+  "compareAtPrice": 360.0,
+  "available": false,
+  "publishedAt": "2024-01-11T20:24:06+03:00",
+  "createdAt": "2024-01-11T20:24:23+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

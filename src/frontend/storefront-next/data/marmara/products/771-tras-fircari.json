@@ -1,0 +1,65 @@
+{
+  "id": "8213063532769",
+  "title": "771 Traş Fırçarı",
+  "handle": "771-tras-fircari",
+  "descriptionHtml": "<p><span style=\"font-size:16px;\">Tamamen el yapımıdır ve dünyanın en iyi yapıştırıcıları ile bir araya getirilmiştir.<br>\nDoğal ve sentetik kıl plastik gövdeleri ile profesyonel ve kişisel kullanım içindir.</span></p>\n\n<p> </p>\n<span style=\"font-size:16px;\">\n<p>Kıl uzunluğu : 60 mm<br>\nSap uzunluğu: 65 mm.<br>\nToplam uzunluk: 125 mm.</p>\n</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Fırça",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840080244961",
+      "title": "Default Title",
+      "sku": "BSB-771",
+      "price": 330.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743347384545",
+      "src": "/catalog/marmara/771-tras-fircari__41743347384545.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-tiras-fircasi-771-d1e-45.jpg?v=1712594115",
+      "alt": "771 Traş Fırçarı",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743347417313",
+      "src": "/catalog/marmara/771-tras-fircari__41743347417313.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/771-tras-fircari--0501c.jpg?v=1712594115",
+      "alt": "771 Traş Fırçarı",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743347384545",
+    "src": "/catalog/marmara/771-tras-fircari__41743347384545.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-tiras-fircasi-771-d1e-45.jpg?v=1712594115",
+    "alt": "771 Traş Fırçarı",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 330.0,
+  "compareAtPrice": 330.0,
+  "available": true,
+  "publishedAt": "2024-01-11T19:56:56+03:00",
+  "createdAt": "2024-01-11T19:56:59+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

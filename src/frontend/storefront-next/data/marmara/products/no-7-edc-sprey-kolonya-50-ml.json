@@ -1,0 +1,56 @@
+{
+  "id": "8213083390177",
+  "title": "No.7 EDC Sprey Kolonya 50 ML",
+  "handle": "no-7-edc-sprey-kolonya-50-ml",
+  "descriptionHtml": "<p><strong>CLASSIC COLOGNE NO.7</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLERİ</p>\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Barber Cologne cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n<p>  </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Bu kesinlikle harika bir koku! Kompozisyon, taze menekşe yaprağı ve bergamot notalarıyla açılır. Ardından yeşil meyvemsi açılış, yerini kalbin baharatlı notalarına bırakıyor: Pimento, tarçın ve siyah çay. Odunsu ve zarif menekşe, onu zeytin ağacı odunu, yaprakları, misk ve mürden oluşan tabana bağlar.</p>\n<p>Barber Cologne, tıraştan sonra cildi mükemmel bir şekilde yatıştırır. Yüzünüzü su ile temizledikten sonra ellerinize Barber kolonyasını dökün ve cildinize nazikçe masaj yapın.</p>\n<p> </p>\n<p> </p>\n<p> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840174584033",
+      "title": "Default Title",
+      "sku": "BC-50-7-S",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42489065963745",
+      "src": "/catalog/marmara/no-7-edc-sprey-kolonya-50-ml__42489065963745.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/7_45d4ef58-9e73-4251-9656-04b9837cf598.jpg?v=1719134954",
+      "alt": "No.7 EDC Sprey Kolonya 50 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42489065963745",
+    "src": "/catalog/marmara/no-7-edc-sprey-kolonya-50-ml__42489065963745.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/7_45d4ef58-9e73-4251-9656-04b9837cf598.jpg?v=1719134954",
+    "alt": "No.7 EDC Sprey Kolonya 50 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 149.9,
+  "compareAtPrice": 81.4,
+  "available": true,
+  "publishedAt": "2024-01-11T20:07:27+03:00",
+  "createdAt": "2024-01-11T20:07:43+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,323 @@
+@import "tailwindcss";
+
+/* Slick Gorilla typography — WhatFont: Geist + Owners Medium + Owners Narrow Black */
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Owners";
+  src: url("/fonts/Owners-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* Owners Narrow Black — mapped as weight 800 (site CSS aynı mapping) */
+@font-face {
+  font-family: "Owners";
+  src: url("/fonts/OwnersNarrow-Black.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Owners Narrow Black";
+  src: url("/fonts/OwnersNarrow-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --sg-red: #e10600;
+  --sg-black: #000000;
+  --sg-ink: #111111;
+  --sg-white: #ffffff;
+  --sg-off: #f3f3f3;
+  --sg-muted: #555555;
+  --sg-border: #e5e5e5;
+
+  --font-geist: "Geist", Arial, Helvetica, sans-serif;
+  --font-owners: "Owners", Arial, Helvetica, sans-serif;
+  --font-owners-black: "Owners Narrow Black", "Owners", Arial, Helvetica, sans-serif;
+
+  /* Slick-like type scale */
+  --text-body: 15px;
+  --text-nav: 20px;
+  --text-promo: 13px;
+  --text-button: 13px;
+  --text-product: 14px;
+  --text-price: 16px;
+  --text-subhead: 16px;
+  --text-section: clamp(1.75rem, 1.2rem + 1.5vw, 2.25rem);
+  --text-display: clamp(3.25rem, 2rem + 5vw, 5.5rem);
+  --text-collection: clamp(2.5rem, 1.5rem + 3vw, 3.75rem);
+
+  --sg-nav-tracking: 0;
+  --sg-button-tracking: 0.06em;
+  --sg-display-tracking: -0.01em;
+  --sg-container: 90rem;
+  --sg-gutter: 1.5rem;
+  /* Slick header ~100px+; promo ~1/3 of that */
+  --sg-header-h: 6.5rem;
+  --sg-promo-h: 2.75rem;
+}
+
+@theme inline {
+  --color-sg-red: var(--sg-red);
+  --color-sg-black: var(--sg-black);
+  --color-sg-white: var(--sg-white);
+  --color-sg-off: var(--sg-off);
+  --font-sans: var(--font-geist);
+  --font-heading: var(--font-owners);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  background: var(--sg-white);
+  color: var(--sg-black);
+  font-family: var(--font-geist);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Display / hero — Owners Narrow Black */
+.sg-heading,
+.sg-display {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  letter-spacing: var(--sg-display-tracking);
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+.sg-display {
+  font-size: var(--text-display);
+}
+
+.sg-heading {
+  font-size: var(--text-collection);
+}
+
+.sg-section-title {
+  font-family: var(--font-owners-black);
+  font-size: var(--text-section);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--sg-black);
+  line-height: 1;
+}
+
+/* Nav / UI — Owners Medium (genel UI) */
+.sg-nav,
+.sg-ui {
+  font-family: var(--font-owners);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.sg-nav-bold {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+/* Header menü — WhatFont Slick: Owners Narrow Black 20px / 34px / 0 tracking */
+.sg-header-link {
+  font-family: var(--font-owners-black);
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 34px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.sg-promo-text {
+  font-family: var(--font-owners-black);
+  font-size: var(--text-promo);
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.sg-container {
+  width: 100%;
+  max-width: var(--sg-container);
+  margin-inline: auto;
+  padding-inline: var(--sg-gutter);
+}
+
+.sg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 1.75rem;
+  background: var(--sg-black);
+  color: var(--sg-white);
+  font-family: var(--font-owners);
+  font-size: var(--text-button);
+  font-weight: 800;
+  letter-spacing: var(--sg-button-tracking);
+  text-transform: uppercase;
+  border: 1px solid var(--sg-black);
+  border-radius: 0;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.sg-btn:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.sg-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.sg-btn-red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 2rem;
+  background: var(--sg-red);
+  color: var(--sg-white);
+  font-family: var(--font-owners);
+  font-size: var(--text-button);
+  font-weight: 800;
+  letter-spacing: var(--sg-button-tracking);
+  text-transform: uppercase;
+  border: 1px solid var(--sg-red);
+  border-radius: 0;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.sg-btn-red:hover {
+  opacity: 0.9;
+}
+
+.sg-product-title {
+  font-family: var(--font-owners);
+  font-size: var(--text-product);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.sg-price {
+  font-family: var(--font-owners);
+  font-size: var(--text-price);
+  font-weight: 800;
+}
+
+.sg-star {
+  font-family: var(--font-geist);
+  color: var(--sg-black);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.sg-body {
+  font-family: var(--font-geist);
+  font-weight: 400;
+  font-size: var(--text-body);
+  line-height: 1.55;
+}
+
+.sg-subhead {
+  font-family: var(--font-owners);
+  font-weight: 500;
+  font-size: var(--text-subhead);
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.4;
+}
+
+@keyframes sg-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.sg-marquee {
+  animation: sg-marquee 45s linear infinite;
+}
+
+.sg-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Slick contact form inputs */
+.sg-contact-input {
+  display: block;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  padding: 0.75rem 1rem;
+  font-size: 14px;
+  color: #000;
+  outline: none;
+}
+
+.sg-contact-input::placeholder {
+  color: #b0b0b0;
+}
+
+.sg-contact-input:focus {
+  border-color: #999;
+}

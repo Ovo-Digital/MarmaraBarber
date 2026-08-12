@@ -1,0 +1,67 @@
+{
+  "id": "8348851470561",
+  "title": "Beyaz Boyun Bandı",
+  "handle": "beyaz-boyun-bandi-1",
+  "descriptionHtml": "<p><span style=\"font-size: 18px;\">Barber Boyun Bandı Beyaz</span></p>",
+  "vendor": "Barber Marmara",
+  "productType": "Boyun Bandı",
+  "tags": [
+    "pixa"
+  ],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840073953505",
+      "title": "Default Title",
+      "sku": "BNS",
+      "price": 267.0,
+      "compareAtPrice": 267.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743325954273",
+      "src": "/catalog/marmara/beyaz-boyun-bandi-1__41743325954273.png",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/beyaz-soyun-bandi-3-b7a5_d953dc40-f610-4f59-b4de-f19021411f0e.png?v=1712593965",
+      "alt": "Beyaz Boyun Bandı",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743325987041",
+      "src": "/catalog/marmara/beyaz-boyun-bandi-1__41743325987041.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/beyaz-boyun-bandi-494a1e_8e0ea1a5-75e0-4f4c-a96d-c7b77bd7bbe2.jpg?v=1712593965",
+      "alt": "Beyaz Boyun Bandı",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743325954273",
+    "src": "/catalog/marmara/beyaz-boyun-bandi-1__41743325954273.png",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/beyaz-soyun-bandi-3-b7a5_d953dc40-f610-4f59-b4de-f19021411f0e.png?v=1712593965",
+    "alt": "Beyaz Boyun Bandı",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 267.0,
+  "compareAtPrice": 267.0,
+  "available": true,
+  "publishedAt": "2024-04-08T02:49:54+03:00",
+  "createdAt": "2024-04-08T02:49:59+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

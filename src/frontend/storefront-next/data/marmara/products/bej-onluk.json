@@ -1,0 +1,65 @@
+{
+  "id": "8213059797217",
+  "title": "Bej Önlük",
+  "handle": "bej-onluk",
+  "descriptionHtml": "<span style=\"font-size:18px;\">Barber Önlük Bej</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Apron",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840073396449",
+      "title": "Default Title",
+      "sku": "BA-BEI",
+      "price": 1550.0,
+      "compareAtPrice": 1550.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743324709089",
+      "src": "/catalog/marmara/bej-onluk__41743324709089.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-onluk-bej--42b7.jpg?v=1712593957",
+      "alt": "Bej Önlük",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743324741857",
+      "src": "/catalog/marmara/bej-onluk__41743324741857.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/bej-onluk-4c26-9.jpg?v=1712593957",
+      "alt": "Bej Önlük",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743324709089",
+    "src": "/catalog/marmara/bej-onluk__41743324709089.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-onluk-bej--42b7.jpg?v=1712593957",
+    "alt": "Bej Önlük",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 1550.0,
+  "compareAtPrice": 1550.0,
+  "available": true,
+  "publishedAt": "2024-01-11T19:55:36+03:00",
+  "createdAt": "2024-01-11T19:55:40+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

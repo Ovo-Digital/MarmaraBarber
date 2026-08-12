@@ -1,0 +1,74 @@
+{
+  "id": "8213132738785",
+  "title": "Diamond EDC Limited Edition Pırlanta Cam Kolonya 500 ML",
+  "handle": "diamond-edc-limited-edition-pirlanta-cam-kolonya-500-ml",
+  "descriptionHtml": "<p>Diamond EDC Limited Edition Pırlanta Cam Kolonya 500 ML</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924851716321",
+      "title": "Default Title",
+      "sku": "BC-500-DMN",
+      "price": 2999.0,
+      "compareAtPrice": 2999.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825457668321",
+      "src": "/catalog/marmara/diamond-edc-limited-edition-pirlanta-cam-kolonya-500-ml__41825457668321.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/diamond-edc-limited-edition-pirlanta-c-266b60_534bd12a-38c3-425d-8317-72d81cf7cf65.jpg?v=1713107439",
+      "alt": "Diamond EDC Limited Edition Pırlanta Cam Kolonya 500 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825457701089",
+      "src": "/catalog/marmara/diamond-edc-limited-edition-pirlanta-cam-kolonya-500-ml__41825457701089.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/diamond-edc-limited-edition-pirlanta-c-10227a_b2b748ed-4ee5-4ac6-bd30-a1e8883e0845.jpg?v=1713107439",
+      "alt": "Diamond EDC Limited Edition Pırlanta Cam Kolonya 500 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41825457733857",
+      "src": "/catalog/marmara/diamond-edc-limited-edition-pirlanta-cam-kolonya-500-ml__41825457733857.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/diamond-edc-limited-edition-pirlanta-c-76-452_b75a2d4b-f2c6-4763-b9f8-2f0097412c41.jpg?v=1713107439",
+      "alt": "Diamond EDC Limited Edition Pırlanta Cam Kolonya 500 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 3
+    }
+  ],
+  "featuredImage": {
+    "id": "41825457668321",
+    "src": "/catalog/marmara/diamond-edc-limited-edition-pirlanta-cam-kolonya-500-ml__41825457668321.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/diamond-edc-limited-edition-pirlanta-c-266b60_534bd12a-38c3-425d-8317-72d81cf7cf65.jpg?v=1713107439",
+    "alt": "Diamond EDC Limited Edition Pırlanta Cam Kolonya 500 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 2999.0,
+  "compareAtPrice": 2999.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:31:10+03:00",
+  "createdAt": "2024-01-11T20:31:19+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "8213102854369",
+  "title": "Off The Record Edp Erkek Parfüm 100 ML",
+  "handle": "off-the-record-edp-erkek-parfum-100-ml",
+  "descriptionHtml": "<p><strong>OFF THE RECORD</strong></p>\n<p> </p>\n<p> </p>\n<p>KOKU HİKAYESİ </p>\n<p>Kehribar ve baharatların değerli dokunuşları, içinizdeki karizmayı ortaya çıkaracak. Kalabalığın içinde öne çıkmak ve çekim gücünüzü artırmak istiyorsanız, bu parfüm ömür boyu yol arkadaşınız olacak.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924828647649",
+      "title": "Default Title",
+      "sku": "BP-100-OTR",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488785338593",
+      "src": "/catalog/marmara/off-the-record-edp-erkek-parfum-100-ml__42488785338593.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/8_15baef91-a2d3-41b2-a8af-4fae400fce3d.jpg?v=1719130930",
+      "alt": "Off The Record Edp Erkek Parfüm 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488785338593",
+    "src": "/catalog/marmara/off-the-record-edp-erkek-parfum-100-ml__42488785338593.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/8_15baef91-a2d3-41b2-a8af-4fae400fce3d.jpg?v=1719130930",
+    "alt": "Off The Record Edp Erkek Parfüm 100 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 699.0,
+  "compareAtPrice": 455.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:14:52+03:00",
+  "createdAt": "2024-01-11T20:15:03+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

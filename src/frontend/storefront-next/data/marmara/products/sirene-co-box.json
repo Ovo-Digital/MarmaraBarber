@@ -1,0 +1,56 @@
+{
+  "id": "8566418669793",
+  "title": "Sirene Co-Box",
+  "handle": "sirene-co-box",
+  "descriptionHtml": "",
+  "vendor": "Marmara Barber",
+  "productType": "",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "45318503629025",
+      "title": "Default Title",
+      "sku": "250",
+      "price": 575.0,
+      "compareAtPrice": null,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42342158205153",
+      "src": "/catalog/marmara/sirene-co-box__42342158205153.png",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/829be60a-57a5-422b-a5b0-6a400d4e7592.png?v=1717483009",
+      "alt": "Sirene Co-Box",
+      "width": 1152,
+      "height": 2048,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42342158205153",
+    "src": "/catalog/marmara/sirene-co-box__42342158205153.png",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/829be60a-57a5-422b-a5b0-6a400d4e7592.png?v=1717483009",
+    "alt": "Sirene Co-Box",
+    "width": 1152,
+    "height": 2048,
+    "position": 1
+  },
+  "price": 575.0,
+  "compareAtPrice": null,
+  "available": false,
+  "publishedAt": "2024-06-04T09:37:00+03:00",
+  "createdAt": "2024-06-04T09:37:00+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

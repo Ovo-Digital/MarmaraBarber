@@ -1,0 +1,65 @@
+{
+  "id": "8213089714401",
+  "title": "No.1 EDC Kolonya 50 ML",
+  "handle": "no-1-edc-kolonya-50-ml",
+  "descriptionHtml": "<p><img alt=\"\" src=\"https://static.ticimax.cloud/42082/uploads/editoruploads/marmarabarber-image/no1dokme.jpg\" style=\"width: 200px; height: 83px;\"></p>  <p>Barber Kolonya tıraştan hemen sonra benzersiz kokuları ve cilt tazeleyici formülü ile aurayı değiştirmek için tasarlanmıştır. Serinletici kokusuyla kendinizi temiz hissedeceksiniz. İçindekiler cildi kızarıklık, sivilce, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardandan korur. Bunun yanında Barber Kolonya cildin ihtiyacı olan nemi ve canlanmayı sağlar.Uzun süre etkilidir. Yüksek alkol, cildinizi temizler.</p>  <p>* 50 ml<br> <br> ÜST NOTALAR<br> Narenciye, Lotus Bahar Çiçeği<br> ORTA NOTALAR<br> Koyu Misk, Siyah Kuş Üzümü<br> ALT NOTALAR<br> Laurus Nobilis, Dünyevi Notlar<br> <br> <br> Kalbinizden geçen Akdeniz esintisi ruhunuzla buluşuyor. Limon ve lavantanın sadeliğindeki ilk dokunuş sizi Akdenize çeker . Beyazın saflığındaki gül ; yasemin ve müge ile harmanlanır. Derinlerdeki musk ve ambergrisin gücü , sizi Akdeniz’in rüzgarı gibi kuşatır .<br> Sıcak bir haziran akşamı ve yanı başımızda duran lavantalar limon kokusunu bastırıyor. Ellerimi serinlemek için kullanırken yaseminin soylu edası ile gecenin içinden çıktığına şahit oluyorum. Akdenizde de zaten böyledir değil mi? Bir başka rüzgar etkiler seni..<br> <br> Barber Kolonyası Tıraştan sonra cildi mükemmel bir şekilde rahatlatır. Yüzü suyla temizledikten sonra, Barber kolonyasını elinize dökün ve<br> cildinize nazikçe masaj yapın.</p>  <p> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840196669665",
+      "title": "Default Title",
+      "sku": "BC-50-1",
+      "price": 149.9,
+      "compareAtPrice": 65.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743550677217",
+      "src": "/catalog/marmara/no-1-edc-kolonya-50-ml__41743550677217.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya50-ml-no.1-4942-a.jpg?v=1712595474",
+      "alt": "No.1 EDC Kolonya 50 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743550709985",
+      "src": "/catalog/marmara/no-1-edc-kolonya-50-ml__41743550709985.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no-ab22b933f8.jpg?v=1712595474",
+      "alt": "No.1 EDC Kolonya 50 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743550677217",
+    "src": "/catalog/marmara/no-1-edc-kolonya-50-ml__41743550677217.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya50-ml-no.1-4942-a.jpg?v=1712595474",
+    "alt": "No.1 EDC Kolonya 50 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 149.9,
+  "compareAtPrice": 65.0,
+  "available": false,
+  "publishedAt": "2024-01-11T20:10:13+03:00",
+  "createdAt": "2024-01-11T20:10:19+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

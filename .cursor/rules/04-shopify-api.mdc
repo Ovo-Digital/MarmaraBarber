@@ -1,0 +1,57 @@
+---
+description: Shopify Storefront/Admin GraphQL, webhook ve cache kuralları
+globs: "{src/backend/Integrations/Shopify/**,src/backend/Gateway.Api/Controllers/ShopifyWebhookController.cs,src/backend/Workers/Webhooks/**,src/frontend/storefront-next/graphql/**,src/frontend/storefront-next/services/shopify/**}"
+alwaysApply: false
+---
+
+# Shopify API Kuralları
+
+## API seçimi
+
+| İhtiyaç | API | Client |
+|---------|-----|--------|
+| Vitrin, cart, search | Storefront GraphQL | `IShopifyStorefrontClient` |
+| Sipariş, müşteri, stok, metafield | Admin GraphQL | `IShopifyAdminClient` |
+| Olay tetikleme (sipariş oluştu vb.) | Webhooks | `ShopifyWebhookController` |
+
+## Source of truth
+
+Shopify'da kalan veriler: ürün, varyant, fiyat, envanter, sipariş, müşteri (Shopify tarafı), cart, checkout.
+
+BFF/SQL'de kalan veriler: wishlist, recently viewed, sync job, webhook/integration log, audit.
+
+## GraphQL
+
+- Operasyonlar: `Integrations/Shopify/GraphQL/GraphQlRequestBuilder.cs` içindeki `StorefrontQueries` / `AdminQueries`
+- Frontend referans: `storefront-next/graphql/*.graphql`
+- API version: `SHOPIFY_API_VERSION` (env), varsayılan `2025-01`
+- Retry: Polly — client'larda tanımlı; handler'da tekrar ekleme
+
+## Cart & Checkout
+
+1. `CreateCartAsync` → cart id + `checkoutUrl`
+2. `AddCartLinesAsync` / `RemoveCartLinesAsync`
+3. Ödeme: kullanıcıyı `checkoutUrl` ile Shopify hosted checkout'a yönlendir
+
+## Webhook
+
+- HMAC: `X-Shopify-Hmac-Sha256` — `IWebhookValidator`
+- Desteklenen topic'ler: `orders/create`, `orders/updated`, `orders/paid`, `products/create`, `products/update`, `customers/create`, `refunds/create`
+- Handler kaydı: `Workers/DependencyInjection.cs`
+
+## Cache (Redis)
+
+- Product: `product:{handle}` — webhook `products/update` gelince invalidate et
+- Cart: write-through, kısa TTL
+- Cache key'ler: `Contracts/Caching/CacheKeys.cs`
+
+## Ortam değişkenleri
+
+```
+SHOPIFY_STORE_URL
+SHOPIFY_STOREFRONT_TOKEN
+SHOPIFY_ADMIN_TOKEN
+SHOPIFY_WEBHOOK_SECRET
+```
+
+Token'ları asla commit etme; `.env` kullan.

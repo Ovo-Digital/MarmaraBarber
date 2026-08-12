@@ -1,0 +1,65 @@
+{
+  "id": "8213106589921",
+  "title": "Pembe Penuar",
+  "handle": "pembe-penuar",
+  "descriptionHtml": "<span style=\"font-size:16px;\">Barber Penuar Pembe Şimşek</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Penuar",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924830843105",
+      "title": "Default Title",
+      "sku": "BCP-PT",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825409892577",
+      "src": "/catalog/marmara/pembe-penuar__41825409892577.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-pembe-simsek-a6fb3a_7562ce79-b7fd-4023-9aa4-ba05e2e4f067.jpg?v=1713106629",
+      "alt": "Pembe Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825409925345",
+      "src": "/catalog/marmara/pembe-penuar__41825409925345.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/pembe-penuar-113-b3_9aa91d50-b18e-4f6e-bd01-493de3f18ef4.jpg?v=1713106629",
+      "alt": "Pembe Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825409892577",
+    "src": "/catalog/marmara/pembe-penuar__41825409892577.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-pembe-simsek-a6fb3a_7562ce79-b7fd-4023-9aa4-ba05e2e4f067.jpg?v=1713106629",
+    "alt": "Pembe Penuar",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 799.0,
+  "compareAtPrice": 632.4,
+  "available": false,
+  "publishedAt": "2024-01-11T20:16:25+03:00",
+  "createdAt": "2024-01-11T20:16:31+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

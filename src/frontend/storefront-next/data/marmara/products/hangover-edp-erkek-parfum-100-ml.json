@@ -1,0 +1,56 @@
+{
+  "id": "8213101904097",
+  "title": "Hangover Edp Erkek Parfüm 100 ML",
+  "handle": "hangover-edp-erkek-parfum-100-ml",
+  "descriptionHtml": "<p><strong>HANGOVER</strong></p>\n<p> </p>\n<p> </p>\n<p>KOKU HİKAYESİ</p>\n<p>Şeftali kırmızı, misk mavi, bu parfüm tatlı ve siz de öylesiniz! Bu meyve kokteylinin yardımıyla cesur kişiliğinizi güpegündüz ortaya çıkarın. Yeterince sabırlıysanız, kat kat vanilya ve misk ruhunuzun yumuşaklığını ortaya çıkaracaktır. </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924827762913",
+      "title": "Default Title",
+      "sku": "BP-100-HNG",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488770167009",
+      "src": "/catalog/marmara/hangover-edp-erkek-parfum-100-ml__42488770167009.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/10_87625f86-785c-4c57-9c03-cc4fe949438f.jpg?v=1719130717",
+      "alt": "Hangover Edp Erkek Parfüm 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488770167009",
+    "src": "/catalog/marmara/hangover-edp-erkek-parfum-100-ml__42488770167009.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/10_87625f86-785c-4c57-9c03-cc4fe949438f.jpg?v=1719130717",
+    "alt": "Hangover Edp Erkek Parfüm 100 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 699.0,
+  "compareAtPrice": 455.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:14:28+03:00",
+  "createdAt": "2024-01-11T20:14:41+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

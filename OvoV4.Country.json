@@ -1,0 +1,747 @@
+[{
+  "_id": "62c429c251342972d4078269",
+  "UserFields": [],
+  "Name": "Türkiye",
+  "AllowsBilling": true,
+  "AllowsShipping": true,
+  "TwoLetterIsoCode": "TR",
+  "ThreeLetterIsoCode": "TUR",
+  "NumericIsoCode": 792,
+  "SubjectToVat": false,
+  "Published": true,
+  "DisplayOrder": 100,
+  "LimitedToStores": false,
+  "Stores": [],
+  "Locales": [],
+  "StateProvinces": [
+    {
+      "_id": "65804dfc2f17eaa3c623e24f",
+      "Name": "Adana",
+      "Abbreviation": "TR.AK/TR.01",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804dfd2f17eaa3c623e64a",
+      "Name": "Adıyaman",
+      "Abbreviation": "TR.GDA/TR.02",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e062f17eaa3c623eae0",
+      "Name": "Afyonkarahisar",
+      "Abbreviation": "TR.EG/TR.03",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e142f17eaa3c623ef54",
+      "Name": "Ağrı",
+      "Abbreviation": "TR.DA/TR.04",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e142f17eaa3c623f32d",
+      "Name": "Aydın",
+      "Abbreviation": "TR.EG/TR.09",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e152f17eaa3c623f5e1",
+      "Name": "Balıkesir",
+      "Abbreviation": "TR.MR/TR.10",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e172f17eaa3c623fa66",
+      "Name": "Bartın",
+      "Abbreviation": "TR.KR/TR.74",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e172f17eaa3c623fe6d",
+      "Name": "Aksaray",
+      "Abbreviation": "TR.IC/TR.68",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e172f17eaa3c6240018",
+      "Name": "Amasya",
+      "Abbreviation": "TR.KR/TR.05",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e182f17eaa3c62402e1",
+      "Name": "Batman",
+      "Abbreviation": "TR.GDA/TR.72",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e182f17eaa3c62405cc",
+      "Name": "Ankara",
+      "Abbreviation": "TR.IC/TR.06",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e192f17eaa3c6240b80",
+      "Name": "Bingöl",
+      "Abbreviation": "TR.DA/TR.12",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e1a2f17eaa3c6240fc9",
+      "Name": "Antalya",
+      "Abbreviation": "TR.AK/TR.07",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e1b2f17eaa3c6241372",
+      "Name": "Bolu",
+      "Abbreviation": "TR.KR/TR.14",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e1d2f17eaa3c62419d8",
+      "Name": "Çankırı",
+      "Abbreviation": "TR.IC/TR.18",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e1e2f17eaa3c6241c58",
+      "Name": "Çorum",
+      "Abbreviation": "TR.KR/TR.19",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e1f2f17eaa3c6242227",
+      "Name": "Bitlis",
+      "Abbreviation": "TR.DA/TR.13",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e1f2f17eaa3c624251f",
+      "Name": "Artvin",
+      "Abbreviation": "TR.KR/TR.08",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e202f17eaa3c6242c51",
+      "Name": "Denizli",
+      "Abbreviation": "TR.EG/TR.20",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e212f17eaa3c6242ed1",
+      "Name": "Bayburt",
+      "Abbreviation": "TR.KR/TR.69",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e212f17eaa3c6242fc3",
+      "Name": "Bilecik",
+      "Abbreviation": "TR.MR/TR.11",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e222f17eaa3c6243137",
+      "Name": "Bursa",
+      "Abbreviation": "TR.MR/TR.16",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e232f17eaa3c6243579",
+      "Name": "Diyarbakır",
+      "Abbreviation": "TR.GDA/TR.21",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e232f17eaa3c62439a4",
+      "Name": "Elazığ",
+      "Abbreviation": "TR.DA/TR.23",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e242f17eaa3c6243f5b",
+      "Name": "Çanakkale",
+      "Abbreviation": "TR.MR/TR.17",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e252f17eaa3c62442f6",
+      "Name": "Erzincan",
+      "Abbreviation": "TR.DA/TR.24",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e252f17eaa3c62446ec",
+      "Name": "Düzce",
+      "Abbreviation": "TR.KR/TR.81",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e262f17eaa3c62449a4",
+      "Name": "Edirne",
+      "Abbreviation": "TR.MR/TR.22",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e262f17eaa3c6244b1e",
+      "Name": "Giresun",
+      "Abbreviation": "TR.KR/TR.28",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e282f17eaa3c62455a9",
+      "Name": "Erzurum",
+      "Abbreviation": "TR.DA/TR.25",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e292f17eaa3c6245a62",
+      "Name": "Eskişehir",
+      "Abbreviation": "TR.IC/TR.26",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e2a2f17eaa3c6245c8f",
+      "Name": "Gaziantep",
+      "Abbreviation": "TR.GDA/TR.27",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e2a2f17eaa3c6245fab",
+      "Name": "Ardahan",
+      "Abbreviation": "TR.DA/TR.75",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e2b2f17eaa3c624610d",
+      "Name": "İstanbul",
+      "Abbreviation": "TR.MR/TR.34",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e2d2f17eaa3c6246504",
+      "Name": "İzmir",
+      "Abbreviation": "TR.EG/TR.35",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e2e2f17eaa3c6246a3f",
+      "Name": "Burdur",
+      "Abbreviation": "TR.AK/TR.15",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e2f2f17eaa3c6246c3e",
+      "Name": "Hatay",
+      "Abbreviation": "TR.AK/TR.31",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e302f17eaa3c6246ea1",
+      "Name": "Gümüşhane",
+      "Abbreviation": "TR.KR/TR.29",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e302f17eaa3c62472f2",
+      "Name": "Iğdır",
+      "Abbreviation": "TR.DA/TR.76",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e312f17eaa3c62473eb",
+      "Name": "Isparta",
+      "Abbreviation": "TR.AK/TR.32",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e312f17eaa3c6247638",
+      "Name": "Kahramanmaraş",
+      "Abbreviation": "TR.AK/TR.46",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e322f17eaa3c6247910",
+      "Name": "Karabük",
+      "Abbreviation": "TR.KR/TR.78",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e332f17eaa3c6247d63",
+      "Name": "Kastamonu",
+      "Abbreviation": "TR.KR/TR.37",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e352f17eaa3c6248e4d",
+      "Name": "Kırşehir",
+      "Abbreviation": "TR.IC/TR.40",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e352f17eaa3c6248ffb",
+      "Name": "Kilis",
+      "Abbreviation": "TR.GDA/TR.79",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e362f17eaa3c624912c",
+      "Name": "Kocaeli",
+      "Abbreviation": "TR.MR/TR.41",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e362f17eaa3c6249321",
+      "Name": "Kars",
+      "Abbreviation": "TR.DA/TR.36",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e372f17eaa3c624952e",
+      "Name": "Konya",
+      "Abbreviation": "TR.IC/TR.42",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e382f17eaa3c62499d6",
+      "Name": "Kütahya",
+      "Abbreviation": "TR.EG/TR.43",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e392f17eaa3c6249d88",
+      "Name": "Kayseri",
+      "Abbreviation": "TR.IC/TR.38",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e3a2f17eaa3c624a067",
+      "Name": "Mersin",
+      "Abbreviation": "TR.AK/TR.33",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e3b2f17eaa3c624a3a0",
+      "Name": "Muğla",
+      "Abbreviation": "TR.EG/TR.48",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e3b2f17eaa3c624a5e7",
+      "Name": "Nevşehir",
+      "Abbreviation": "TR.IC/TR.50",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e3c2f17eaa3c624a770",
+      "Name": "Niğde",
+      "Abbreviation": "TR.IC/TR.51",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e3c2f17eaa3c624a8f4",
+      "Name": "Ordu",
+      "Abbreviation": "TR.KR/TR.52",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e3d2f17eaa3c624ac0e",
+      "Name": "Manisa",
+      "Abbreviation": "TR.EG/TR.45",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e3e2f17eaa3c624b065",
+      "Name": "Rize",
+      "Abbreviation": "TR.KR/TR.53",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e3f2f17eaa3c624b5c5",
+      "Name": "Sakarya",
+      "Abbreviation": "TR.MR/TR.54",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e402f17eaa3c624b877",
+      "Name": "Samsun",
+      "Abbreviation": "TR.KR/TR.55",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e412f17eaa3c624bd73",
+      "Name": "Sinop",
+      "Abbreviation": "TR.KR/TR.57",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e422f17eaa3c624c546",
+      "Name": "Sivas",
+      "Abbreviation": "TR.IC/TR.58",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e432f17eaa3c624ce5f",
+      "Name": "Şanlıurfa",
+      "Abbreviation": "TR.GDA/TR.63",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e442f17eaa3c624d411",
+      "Name": "Hakkari",
+      "Abbreviation": "TR.DA/TR.30",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e442f17eaa3c624d5cc",
+      "Name": "Zonguldak",
+      "Abbreviation": "TR.KR/TR.67",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e452f17eaa3c624dbc9",
+      "Name": "Trabzon",
+      "Abbreviation": "TR.KR/TR.61",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e462f17eaa3c624dea2",
+      "Name": "Tekirdağ",
+      "Abbreviation": "TR.MR/TR.59",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e462f17eaa3c624e02b",
+      "Name": "Tunceli",
+      "Abbreviation": "TR.DA/TR.62",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e472f17eaa3c624e42e",
+      "Name": "Tokat",
+      "Abbreviation": "TR.KR/TR.60",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e482f17eaa3c624e9e3",
+      "Name": "Karaman",
+      "Abbreviation": "TR.IC/TR.70",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e482f17eaa3c624eb90",
+      "Name": "Uşak",
+      "Abbreviation": "TR.EG/TR.64",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e492f17eaa3c624ee4b",
+      "Name": "Van",
+      "Abbreviation": "TR.DA/TR.65",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e4a2f17eaa3c624f10f",
+      "Name": "Yalova",
+      "Abbreviation": "TR.MR/TR.77",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e4a2f17eaa3c624f182",
+      "Name": "Yozgat",
+      "Abbreviation": "TR.IC/TR.66",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e4b2f17eaa3c624f4da",
+      "Name": "Malatya",
+      "Abbreviation": "TR.DA/TR.44",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e4c2f17eaa3c624f7b9",
+      "Name": "Osmaniye",
+      "Abbreviation": "TR.AK/TR.80",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e4c2f17eaa3c624fa1b",
+      "Name": "Kırıkkale",
+      "Abbreviation": "TR.IC/TR.71",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e4d2f17eaa3c624fb82",
+      "Name": "Kırklareli",
+      "Abbreviation": "TR.MR/TR.39",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e4d2f17eaa3c624fcb6",
+      "Name": "Mardin",
+      "Abbreviation": "TR.GDA/TR.47",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e4e2f17eaa3c624ff83",
+      "Name": "Muş",
+      "Abbreviation": "TR.DA/TR.49",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e4e2f17eaa3c625023a",
+      "Name": "Siirt",
+      "Abbreviation": "TR.GDA/TR.56",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    },
+    {
+      "_id": "65804e4e2f17eaa3c6250446",
+      "Name": "Şırnak",
+      "Abbreviation": "TR.GDA/TR.73",
+      "Published": true,
+      "Geolocation": null,
+      "DisplayOrder": 0,
+      "Locales": []
+    }
+  ]
+}]

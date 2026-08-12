@@ -1,0 +1,51 @@
+---
+description: ERP, CRM, Marketing entegrasyon adapter kuralları
+globs: "src/backend/Integrations/{ERP,CRM,Marketing}/**"
+alwaysApply: false
+---
+
+# Entegrasyon Katmanı Kuralları
+
+Entegrasyonlar **ihtiyaç oldukça** eklenir; core storefront Shopify + BFF ile çalışır.
+
+## Pattern
+
+1. Interface → `Contracts/Integrations/{ERP|CRM|Marketing}/`
+2. Adapter (stub veya gerçek HTTP) → `Integrations/{ERP|CRM|Marketing}/Adapters/`
+3. DI kaydı → `Integrations/*/DependencyInjection.cs`
+4. Tetikleyici → webhook handler veya `Workers/Sync/*Worker`
+
+## ERP
+
+- `IERPClient`, `IOrderExporter`, `IProductImporter`, `IInventorySynchronizer`
+- Adapter'lar: Nebim (tam), SAP/Logo/Mikro (order export stub)
+- Provider seçimi: `ERP_PROVIDER` env
+
+## CRM
+
+- `ICustomerExporter`, `ICustomerSynchronizer`, `IEventPublisher`
+- Adapter'lar: Hubspot, Salesforce, Insider
+- `customers/create` webhook → CRM export
+
+## Marketing
+
+- `IMarketingEventPublisher`, `IMarketingEventDispatcher`
+- Olaylar: `ProductViewed`, `AddToCart`, `CheckoutStarted`, `PurchaseCompleted`
+- Publisher'lar: Klaviyo, Insider, GA4, Meta Pixel (fan-out dispatcher)
+
+## Yeni entegrasyon ekleme
+
+```
+1. Contracts'a interface + DTO
+2. Adapters/{Vendor}Client.cs — ProviderName property
+3. DependencyInjection switch/env ile kayıt
+4. Worker veya webhook handler'dan çağır
+5. IntegrationLog ile süre/hata logla
+6. docs/07 veya docs/08 güncelle
+```
+
+## Yasaklar
+
+- Application/Domain içinde vendor-specific SDK veya URL
+- Controller'dan doğrudan ERP/CRM çağrısı
+- Senkron webhook içinde uzun HTTP zinciri (queue/worker kullan)

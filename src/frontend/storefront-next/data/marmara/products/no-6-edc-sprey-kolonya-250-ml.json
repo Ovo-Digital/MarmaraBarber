@@ -1,0 +1,92 @@
+{
+  "id": "8213073297633",
+  "title": "No.6 EDC Sprey Kolonya 250 ML",
+  "handle": "no-6-edc-sprey-kolonya-250-ml",
+  "descriptionHtml": "<p><strong>CLASSIC COLOGNE NO.6</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLERİ</p>\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Barber Cologne cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Eşsiz ve taze bir koku. Tarlalardan gelen taze lavanta başlangıcı ile kendinden emin, tutkulu bir doku sağlar.</p>\n<p>Barber Cologne, tıraştan sonra cildi mükemmel bir şekilde yatıştırır. Yüzünüzü su ile temizledikten sonra ellerinize Barber kolonyasını dökün ve cildinize nazikçe masaj yapın.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840123007201",
+      "title": "Default Title",
+      "sku": "BC-250-6-S",
+      "price": 299.0,
+      "compareAtPrice": 146.2,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743409021153",
+      "src": "/catalog/marmara/no-6-edc-sprey-kolonya-250-ml__41743409021153.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.6-sprey-2-fe51.jpg?v=1712594599",
+      "alt": "No.6 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743409053921",
+      "src": "/catalog/marmara/no-6-edc-sprey-kolonya-250-ml__41743409053921.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.6-sprey-74-a5c.jpg?v=1712594599",
+      "alt": "No.6 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41743409086689",
+      "src": "/catalog/marmara/no-6-edc-sprey-kolonya-250-ml__41743409086689.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.6-sprey-7-840b.jpg?v=1712594599",
+      "alt": "No.6 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 3
+    },
+    {
+      "id": "41743409119457",
+      "src": "/catalog/marmara/no-6-edc-sprey-kolonya-250-ml__41743409119457.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.6-sprey-42fd-8.jpg?v=1712594599",
+      "alt": "No.6 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 4
+    },
+    {
+      "id": "41743409152225",
+      "src": "/catalog/marmara/no-6-edc-sprey-kolonya-250-ml__41743409152225.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no-ac9fca05-0.jpg?v=1712594599",
+      "alt": "No.6 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 5
+    }
+  ],
+  "featuredImage": {
+    "id": "41743409021153",
+    "src": "/catalog/marmara/no-6-edc-sprey-kolonya-250-ml__41743409021153.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.6-sprey-2-fe51.jpg?v=1712594599",
+    "alt": "No.6 EDC Sprey Kolonya 250 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 299.0,
+  "compareAtPrice": 146.2,
+  "available": true,
+  "publishedAt": "2024-01-11T20:01:33+03:00",
+  "createdAt": "2024-01-11T20:01:47+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

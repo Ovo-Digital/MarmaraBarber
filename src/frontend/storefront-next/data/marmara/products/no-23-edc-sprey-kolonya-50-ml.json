@@ -1,0 +1,56 @@
+{
+  "id": "8213078606049",
+  "title": "No.23 EDC Sprey Kolonya 50 ML",
+  "handle": "no-23-edc-sprey-kolonya-50-ml",
+  "descriptionHtml": "<p><strong>GRAFFITI SPRAY NO.23</strong></p>\n<p> </p>\n<p>ÖZELLİKLER</p>\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Barber Cologne cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Bu kokunun yıldızı hiç şüphesiz meyvelerdir. Ahududu, armut, kuş üzümü ve şeftali ile başlar. Parfüm notalarının merkezinde gün boyu cildinizde parlayacak vadi zambağı ve kediotu bulunur. Temel notalarda vanilya ve sandal ağacı güçlü bir kompozisyon oluşturur. Neşeli ve keyifli.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840155611361",
+      "title": "Default Title",
+      "sku": "BC-50-23-S",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488966086881",
+      "src": "/catalog/marmara/no-23-edc-sprey-kolonya-50-ml__42488966086881.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/23.jpg?v=1719133780",
+      "alt": "No.23 EDC Sprey Kolonya 50 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488966086881",
+    "src": "/catalog/marmara/no-23-edc-sprey-kolonya-50-ml__42488966086881.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/23.jpg?v=1719133780",
+    "alt": "No.23 EDC Sprey Kolonya 50 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 149.9,
+  "compareAtPrice": 81.4,
+  "available": true,
+  "publishedAt": "2024-01-11T20:05:13+03:00",
+  "createdAt": "2024-01-11T20:05:28+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

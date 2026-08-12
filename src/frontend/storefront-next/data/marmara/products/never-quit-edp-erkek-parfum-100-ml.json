@@ -1,0 +1,56 @@
+{
+  "id": "8213102264545",
+  "title": "Never Quıt Edp Erkek Parfüm 100 ML",
+  "handle": "never-quit-edp-erkek-parfum-100-ml",
+  "descriptionHtml": "<p><strong>NEVER QUIT </strong></p>\n<p> </p>\n<p> </p>\n<p>KOKU HİKAYESİ</p>\n<p>Sizi görmeden koklamalarına izin verin. Bu aromatik özün birkaç spreyi erkekliğinizi büyütür. </p>\n<p><br> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924828025057",
+      "title": "Default Title",
+      "sku": "BP-100-NQ",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488779407585",
+      "src": "/catalog/marmara/never-quit-edp-erkek-parfum-100-ml__42488779407585.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/5_dc3e1f0a-7028-488c-b182-ecfd7bb21af6.jpg?v=1719130864",
+      "alt": "Never Quıt Edp Erkek Parfüm 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488779407585",
+    "src": "/catalog/marmara/never-quit-edp-erkek-parfum-100-ml__42488779407585.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/5_dc3e1f0a-7028-488c-b182-ecfd7bb21af6.jpg?v=1719130864",
+    "alt": "Never Quıt Edp Erkek Parfüm 100 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 699.0,
+  "compareAtPrice": 455.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:14:42+03:00",
+  "createdAt": "2024-01-11T20:14:51+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "8213116354785",
+  "title": "Gum Aqua Wax 150 ML",
+  "handle": "gum-aqua-wax-150-ml",
+  "descriptionHtml": "<p><strong>GUM WAX</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLERİ</p>\n<p>Marmara Berber Ağdaları tutuş gücünde sunduğu çeşitlilik ile kusursuz stili yaratmak için tasarlanmıştır.</p>\n<p>Güçlü tutuşa sahip mumlar keskin stiller için uygundur. Düşük tutuşlu ağdalar daha yumuşak ve doğal bir görünüm sağlar.</p>\n<p>Marmara Barber Aqua Ağda, diğer ağdalara göre hacim, parlaklık ve güçlü tutuş sağlayan, tekrar uygulanabilen bir ağdadır. Daha hacimli saçlar ve mükemmel tutuş istiyorsanız Marmara Barber Aqua Waxes serisi tam size göre. Her saç tipinde yüksek parlaklık ve kontrol sağlar.</p>\n<p>Uygulaması kolaydır ve saça hacim ve şekil verir. Yanında; Su bazlı yapısı ile saçtan kolayca temizlenir ve en inatçı tüylerde bile etkilidir.</p>\n<p>Güçlü Kavrama</p>\n<p>Kolayca Yıkanır</p>\n<p>Yüksek Parlaklık </p>\n<p> </p>\n<p><strong>NASIL KULLANILABİLİR</strong></p>\n<p>Avuçlarınızın arasında ovun, az miktarda nemli veya kuru saça uygulayın ve istediğiniz gibi şekillendirin.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Muz ve narenciye notalarının zengin uyumu sizi cesur ve cesaretlendirecek, özgür ve enerjik hissetmenizi sağlayacaktır. Tatlı meyvelerin dansı dip notalara dansını aktarırken sizi adeta pastaneye götürecek. Dikkat çekmek ve dikkat çekmek için tasarlanan bu kokunun üst notası muz ve akdeniz turunçgilleri; orta notalar tropikal ananas, sulu armut ve meyveli ayvadır; Alt nota ise yerini tatlı ve iştah açıcı çikolata ve vanilya nüanslarına bırakıyor. Akdeniz insanını yansıtan bu koku başınızı döndürecek!</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924837265633",
+      "title": "Default Title",
+      "sku": "BW-150-GUM",
+      "price": 499.0,
+      "compareAtPrice": 250.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42473983738081",
+      "src": "/catalog/marmara/gum-aqua-wax-150-ml__42473983738081.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmaraa_150.248.jpg?v=1718981018",
+      "alt": "Gum Aqua Wax 150 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42473983738081",
+    "src": "/catalog/marmara/gum-aqua-wax-150-ml__42473983738081.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmaraa_150.248.jpg?v=1718981018",
+    "alt": "Gum Aqua Wax 150 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 499.0,
+  "compareAtPrice": 250.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:21:15+03:00",
+  "createdAt": "2024-01-11T20:21:29+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "8213104328929",
+  "title": "Obsessed Edp Erkek Parfüm 50 ML",
+  "handle": "obsessed-edp-erkek-parfum-50-ml",
+  "descriptionHtml": "<p><strong>OBSESSED</strong></p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ </strong></p>\n<p>Üst notalarda limon ve greyfurt ile taze bir narenciye patlaması, vetiver ve irisin çiçeksi-odunsu keskinliği ile uyumludur. Amber ve tonka fasulyesinin kokuya kattığı maskülen dokunuş, son derece erkeksi ve güçlü! </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924829434081",
+      "title": "Default Title",
+      "sku": "BP-50-OBS",
+      "price": 599.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488756633825",
+      "src": "/catalog/marmara/obsessed-edp-erkek-parfum-50-ml__42488756633825.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/6_00e0f406-b871-4bd4-9a9c-e24af65a8073.jpg?v=1719130439",
+      "alt": "Obsessed Edp Erkek Parfüm 50 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488756633825",
+    "src": "/catalog/marmara/obsessed-edp-erkek-parfum-50-ml__42488756633825.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/6_00e0f406-b871-4bd4-9a9c-e24af65a8073.jpg?v=1719130439",
+    "alt": "Obsessed Edp Erkek Parfüm 50 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 599.0,
+  "compareAtPrice": 395.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:15:30+03:00",
+  "createdAt": "2024-01-11T20:15:41+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

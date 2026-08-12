@@ -1,0 +1,56 @@
+{
+  "id": "8213098889441",
+  "title": "Game Changer Edp Erkek Parfüm 50 ML",
+  "handle": "game-changer-edp-erkek-parfum-50-ml",
+  "descriptionHtml": "<p><strong>GAME CHANGER</strong></p>\n<p> </p>\n<p> </p>\n<p>KOKU HİKAYESİ </p>\n<p>Geleneksel ud notalarının aksine, modern bir şekilde yorumlanan odunsu notalar sayesinde farklılaşıyorsunuz. Rafine gül notasının kokuya kattığı lüks dokunuş, pembe biberin sıcak dokunuşu ile akıllara iz bırakacak bir tasarıma dönüşüyor.</p>\n<p><br> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924825960673",
+      "title": "Default Title",
+      "sku": "BP-50-GC",
+      "price": 599.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488746967265",
+      "src": "/catalog/marmara/game-changer-edp-erkek-parfum-50-ml__42488746967265.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/3_5899c409-aa11-41ea-8e28-7bc0425a30c3.jpg?v=1719130272",
+      "alt": "Game Changer Edp Erkek Parfüm 50 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488746967265",
+    "src": "/catalog/marmara/game-changer-edp-erkek-parfum-50-ml__42488746967265.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/3_5899c409-aa11-41ea-8e28-7bc0425a30c3.jpg?v=1719130272",
+    "alt": "Game Changer Edp Erkek Parfüm 50 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 599.0,
+  "compareAtPrice": 395.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:13:20+03:00",
+  "createdAt": "2024-01-11T20:13:29+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

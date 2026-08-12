@@ -1,0 +1,56 @@
+{
+  "id": "8213097349345",
+  "title": "Offlıne Edp Erkek Parfüm 100 ML",
+  "handle": "offline-edp-erkek-parfum-100-ml",
+  "descriptionHtml": "<p><strong>OFFLINE </strong></p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Cüretkar, özgür, başkaldıran, denizler kadar özgür ruhlu erkeklerin kokusu. Lavanta ve nane ile oluşturulmuş fujer ve oryantal bu koku yumuşak kalpli asi erkeklere yönelik. </p>\n<p><br> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924825075937",
+      "title": "Default Title",
+      "sku": "BP-100-OFF",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488787960033",
+      "src": "/catalog/marmara/offline-edp-erkek-parfum-100-ml__42488787960033.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/7_e6dfa8c9-55ef-41cb-a38e-04b7a0b3b7d1.jpg?v=1719130961",
+      "alt": "Offlıne Edp Erkek Parfüm 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488787960033",
+    "src": "/catalog/marmara/offline-edp-erkek-parfum-100-ml__42488787960033.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/7_e6dfa8c9-55ef-41cb-a38e-04b7a0b3b7d1.jpg?v=1719130961",
+    "alt": "Offlıne Edp Erkek Parfüm 100 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 699.0,
+  "compareAtPrice": 455.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:12:41+03:00",
+  "createdAt": "2024-01-11T20:12:54+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

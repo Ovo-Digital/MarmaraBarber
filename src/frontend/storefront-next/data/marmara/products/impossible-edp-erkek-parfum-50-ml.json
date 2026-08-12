@@ -1,0 +1,56 @@
+{
+  "id": "8213099348193",
+  "title": "Impossıble Edp Erkek Parfüm 50 ML",
+  "handle": "impossible-edp-erkek-parfum-50-ml",
+  "descriptionHtml": "<p><strong>IMPOSSIBLE</strong></p>\n<p> </p>\n<p> </p>\n<p>KOKU HİKAYESİ</p>\n<p>Lezzetli ve patlayıcı; bu iksir çilek reçeli kadar sulu ve elektrik kıvılcımı kadar parlak. Dikkatli kullanın veya başkalarını kıskandıracak kadar cesur olun.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924826157281",
+      "title": "Default Title",
+      "sku": "BP-50-IMP",
+      "price": 395.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488753062113",
+      "src": "/catalog/marmara/impossible-edp-erkek-parfum-50-ml__42488753062113.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/2_b91c2ac6-2b36-4365-aeef-0b45a40699b7.jpg?v=1719130369",
+      "alt": "Impossıble Edp Erkek Parfüm 50 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488753062113",
+    "src": "/catalog/marmara/impossible-edp-erkek-parfum-50-ml__42488753062113.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/2_b91c2ac6-2b36-4365-aeef-0b45a40699b7.jpg?v=1719130369",
+    "alt": "Impossıble Edp Erkek Parfüm 50 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 395.0,
+  "compareAtPrice": 395.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:13:30+03:00",
+  "createdAt": "2024-01-11T20:13:41+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

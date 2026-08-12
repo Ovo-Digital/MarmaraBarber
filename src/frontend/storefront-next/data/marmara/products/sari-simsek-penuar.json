@@ -1,0 +1,65 @@
+{
+  "id": "8213106852065",
+  "title": "Sarı Şimşek Penuar",
+  "handle": "sari-simsek-penuar",
+  "descriptionHtml": "<span style=\"font-size:16px;\">Barber Penuar Sarı Şimşek</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Penuar",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924831039713",
+      "title": "Default Title",
+      "sku": "BCP–YT",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825410154721",
+      "src": "/catalog/marmara/sari-simsek-penuar__41825410154721.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-sari-simsek-40e6-a_4899c237-d7b8-454f-9eb5-63313adc0507.jpg?v=1713106636",
+      "alt": "Sarı Şimşek Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825410187489",
+      "src": "/catalog/marmara/sari-simsek-penuar__41825410187489.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/sari-simsek-penuar-4d4214_a5f943c3-190e-4c51-ad30-30f601389567.jpg?v=1713106636",
+      "alt": "Sarı Şimşek Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825410154721",
+    "src": "/catalog/marmara/sari-simsek-penuar__41825410154721.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-sari-simsek-40e6-a_4899c237-d7b8-454f-9eb5-63313adc0507.jpg?v=1713106636",
+    "alt": "Sarı Şimşek Penuar",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 799.0,
+  "compareAtPrice": 632.4,
+  "available": true,
+  "publishedAt": "2024-01-11T20:16:33+03:00",
+  "createdAt": "2024-01-11T20:16:41+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

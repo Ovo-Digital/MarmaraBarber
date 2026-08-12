@@ -1,0 +1,65 @@
+{
+  "id": "8213104656609",
+  "title": "Funky Renkli Penuar",
+  "handle": "funky-renkli-penuar",
+  "descriptionHtml": "<span style=\"font-size:16px;\">Barber Penuar Funky Renkli</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Penuar",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924829565153",
+      "title": "Default Title",
+      "sku": "BCP–FNK",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825407500513",
+      "src": "/catalog/marmara/funky-renkli-penuar__41825407500513.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-funky-renkli-41-a23_d6a085d9-dafb-4a6b-a432-32495e233b2a.jpg?v=1713106585",
+      "alt": "Funky Renkli Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825407533281",
+      "src": "/catalog/marmara/funky-renkli-penuar__41825407533281.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/funky-renkli-penuar-4031-a_18515c08-e501-4cde-92f6-22ad37ca6d2a.jpg?v=1713106585",
+      "alt": "Funky Renkli Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825407500513",
+    "src": "/catalog/marmara/funky-renkli-penuar__41825407500513.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-funky-renkli-41-a23_d6a085d9-dafb-4a6b-a432-32495e233b2a.jpg?v=1713106585",
+    "alt": "Funky Renkli Penuar",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 799.0,
+  "compareAtPrice": 632.4,
+  "available": true,
+  "publishedAt": "2024-01-11T20:15:42+03:00",
+  "createdAt": "2024-01-11T20:15:47+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

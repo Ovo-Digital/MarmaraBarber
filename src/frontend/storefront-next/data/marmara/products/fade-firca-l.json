@@ -1,0 +1,58 @@
+{
+  "id": "8348851699937",
+  "title": "Fade Fırça L",
+  "handle": "fade-firca-l",
+  "descriptionHtml": "<p><span id=\"docs-internal-guid-d24ed010-7fff-1810-a552-5377ee50fb91\"><span style=\"font-size: 13.5pt; font-family: Arial, sans-serif; color: #888888; background-color: #ffffff; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; vertical-align: baseline; white-space-collapse: preserve;\">Professional Fade Brush Temizleme Fırçası Fade \"L\". Sıfır kesim saç şekilleri için tasarlanmıştır. Yumuşak ve sık, naylon kıl yapısına sahiptir. Kıl yapısı ısıya dayanıklıdır. </span></span></p>",
+  "vendor": "Barber Marmara",
+  "productType": "Aksesuar",
+  "tags": [
+    "pixa"
+  ],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924852961505",
+      "title": "Default Title",
+      "sku": "BFB-L",
+      "price": 214.8,
+      "compareAtPrice": 214.8,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825461371105",
+      "src": "/catalog/marmara/fade-firca-l__41825461371105.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/Fade_25201.jpg?v=1713107494",
+      "alt": "Fade Fırça L",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "41825461371105",
+    "src": "/catalog/marmara/fade-firca-l__41825461371105.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/Fade_25201.jpg?v=1713107494",
+    "alt": "Fade Fırça L",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 214.8,
+  "compareAtPrice": 214.8,
+  "available": true,
+  "publishedAt": "2024-04-08T02:50:10+03:00",
+  "createdAt": "2024-04-08T02:50:12+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

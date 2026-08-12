@@ -1,0 +1,83 @@
+{
+  "id": "8213121794273",
+  "title": "Paste Wax 100 ML",
+  "handle": "paste-wax-100-ml",
+  "descriptionHtml": "<p><strong>PASTE WAX</strong></p>\n<strong>\n<p> </p>\n</strong>\n\n<p> </p>\n<strong>\n<p>ÖZELLİKLER</p>\n</strong>\n\n<p>Marmara Berber Ağdaları tutuş gücünde sunduğu çeşitlilik ile kusursuz stili yaratmak için tasarlanmıştır.</p>\n\n<p>Güçlü tutuşa sahip mumlar keskin stiller için uygundur. Düşük tutuşlu ağdalar daha yumuşak ve doğal bir görünüm sağlar.</p>\n\n<p>DOĞALLIĞIN KUSURSUZLUĞU: Marmara Kuaför Macunu, daha az tutuş sağlayan, doğal, kullanımı ve saç üzerinde dağılması kolay, özenle seçilmiş bileşenlerin karışımından yapılmıştır. Yumuşak bir bitiş ile doku, hacim ve parlaklık kontrolü sağlar. Marmara Kuaför Macun Ağdası tüm saç tipleri ve uzunlukları için uygundur.</p>\n\n<p>Kolay Yıkanabilir</p>\n\n<p>Doğal Kaplama</p>\n\n<p>Yumuşak kavrama</p>\n \n\n<p><strong>NASIL KULLANILIR</strong></p>\n\n<p>Avuçlarınızın arasında ovun, az miktarda nemli veya kuru saça uygulayın ve istediğiniz gibi şekillendirin.</p>\n \n\n<p><strong>KOKU HİKAYESİ</strong></p>\n\n<p>Aromatik ve eşsiz kokusu ile</p>\n\n<p>Akdeniz rüzgarı, sıcak ve ferahlatıcı</p>\n\n<p>esintiyi hissedecek.</p>\n\n<p>Yumuşak açılış notalarıyla sıra dışı bir yolculuk.</p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924840935649",
+      "title": "Default Title",
+      "sku": "BW-100-PST",
+      "price": 360.0,
+      "compareAtPrice": 360.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42474002579681",
+      "src": "/catalog/marmara/paste-wax-100-ml__42474002579681.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/9.jpg?v=1718981234",
+      "alt": "Paste Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    },
+    {
+      "id": "42474002677985",
+      "src": "/catalog/marmara/paste-wax-100-ml__42474002677985.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/5.jpg?v=1718981234",
+      "alt": "Paste Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 2
+    },
+    {
+      "id": "42474002612449",
+      "src": "/catalog/marmara/paste-wax-100-ml__42474002612449.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/3_c70c504e-1d0d-4e74-b1a7-08a28e9502ca.jpg?v=1718981234",
+      "alt": "Paste Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 3
+    },
+    {
+      "id": "42474002645217",
+      "src": "/catalog/marmara/paste-wax-100-ml__42474002645217.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/2_b5e10393-4747-4dd9-ab0a-6f4b772ad061.jpg?v=1718981234",
+      "alt": "Paste Wax 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 4
+    }
+  ],
+  "featuredImage": {
+    "id": "42474002579681",
+    "src": "/catalog/marmara/paste-wax-100-ml__42474002579681.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/9.jpg?v=1718981234",
+    "alt": "Paste Wax 100 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 360.0,
+  "compareAtPrice": 360.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:24:24+03:00",
+  "createdAt": "2024-01-11T20:24:40+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

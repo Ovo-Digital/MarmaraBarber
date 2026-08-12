@@ -1,0 +1,65 @@
+{
+  "id": "8213060976865",
+  "title": "564 Traş Fırçarı",
+  "handle": "564-tras-fircari",
+  "descriptionHtml": "<p><strong>ÖZELLİKLER</strong></p>\n\n<p>Hem nostaljik hem de klasik bir üründür.Tıraş sonrası cilde yapışan tüyleri temizlemeye yardımcı olur.</p>\n\n<p>Sentetik kıl , ahşap sap kısmı ile profesyonel kullanım içindir. Kesilen saçların temizlenmesi için mükemmel bir fırçadır.</p>\n\n<p><br>\nKıl uzunluğu: 60 mm.</p>\n\n<p>Sap uzunluğu  : 100 mm.</p>\n\n<p>Toplam uzunluk : 160 mm.</p>\n\n<p> </p>\n\n<p> </p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Fırça",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840074772705",
+      "title": "Default Title",
+      "sku": "BNB-564",
+      "price": 330.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743328346337",
+      "src": "/catalog/marmara/564-tras-fircari__41743328346337.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-ense-fircasi-564-566f7c.jpg?v=1712593981",
+      "alt": "564 Traş Fırçarı",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743328379105",
+      "src": "/catalog/marmara/564-tras-fircari__41743328379105.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/564-tras-fircari-06f3-4.jpg?v=1712593981",
+      "alt": "564 Traş Fırçarı",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743328346337",
+    "src": "/catalog/marmara/564-tras-fircari__41743328346337.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-ense-fircasi-564-566f7c.jpg?v=1712593981",
+    "alt": "564 Traş Fırçarı",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 330.0,
+  "compareAtPrice": 330.0,
+  "available": true,
+  "publishedAt": "2024-01-11T19:55:53+03:00",
+  "createdAt": "2024-01-11T19:55:59+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

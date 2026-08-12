@@ -1,0 +1,92 @@
+{
+  "id": "8213070872801",
+  "title": "No.2 EDC Sprey Kolonya 250 ML",
+  "handle": "no-2-edc-sprey-kolonya-250-ml",
+  "descriptionHtml": "<p> </p>\n\n<p><strong>CLASSIC COLOGNE NO.2</strong></p>\n<strong></strong>\n\n<p> </p>\n<strong>\n<p>ÖZELLİKLERİ</p>\n</strong>\n\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Barber Cologne cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n<strong><br>\n<p>KOKU HİKAYESİ</p>\n</strong>\n\n<p>Güne Barber enerjisiyle başlamanın rahatlığını yaşayın. İlk buluşmanızda Bergamot'un enerjisi, lavantanın rahatlığıyla sizi şımartacak. Gül ve Sardunya'nın elma ile birleşen parlak etkisi, sandal ağacı, tonka ve meşe kokularıyla ferahlığı kalıcı kılıyor.</p>\n\n<p>Bergamot ve sandal ağacının nadide birleşimi, bizi daha önce hiç bulunmadığımız bir liman limanı gibi karşılıyor. Meşe yosunu ile yenilikçi bir sinerji oluşturan bu ikisini bir araya getirme fikri belki de güle duyduğumuz saygı ve bitmeyen sevgiden kaynaklanıyor. Tutkuyla ve özveriyle ses getirmeye devam eden bu kokunun imzası için sıraya girecek pek çok hayran var.</p>\n\n<p>Barber Cologne, tıraştan sonra cildi mükemmel bir şekilde yatıştırır. Yüzünüzü su ile temizledikten sonra ellerinize Barber kolonyasını dökün ve cildinize nazikçe masaj yapın.</p>\n \n\n<p> </p>\n\n<p> </p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840112390369",
+      "title": "Default Title",
+      "sku": "BC-250-2-S",
+      "price": 299.0,
+      "compareAtPrice": 146.2,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743391686881",
+      "src": "/catalog/marmara/no-2-edc-sprey-kolonya-250-ml__41743391686881.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.2-sprey-e815-4.jpg?v=1712594438",
+      "alt": "No.2 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743391719649",
+      "src": "/catalog/marmara/no-2-edc-sprey-kolonya-250-ml__41743391719649.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.2-sprey-d845d0.jpg?v=1712594438",
+      "alt": "No.2 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41743391752417",
+      "src": "/catalog/marmara/no-2-edc-sprey-kolonya-250-ml__41743391752417.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.2-sprey-06f-40.jpg?v=1712594438",
+      "alt": "No.2 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 3
+    },
+    {
+      "id": "41743391785185",
+      "src": "/catalog/marmara/no-2-edc-sprey-kolonya-250-ml__41743391785185.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.2-sprey-a-3fa4.jpg?v=1712594438",
+      "alt": "No.2 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 4
+    },
+    {
+      "id": "41743391817953",
+      "src": "/catalog/marmara/no-2-edc-sprey-kolonya-250-ml__41743391817953.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no.2-edc-sprey-kolonya-250-ml-0-15c1.jpg?v=1712594438",
+      "alt": "No.2 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 5
+    }
+  ],
+  "featuredImage": {
+    "id": "41743391686881",
+    "src": "/catalog/marmara/no-2-edc-sprey-kolonya-250-ml__41743391686881.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.2-sprey-e815-4.jpg?v=1712594438",
+    "alt": "No.2 EDC Sprey Kolonya 250 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 299.0,
+  "compareAtPrice": 146.2,
+  "available": true,
+  "publishedAt": "2024-01-11T19:59:54+03:00",
+  "createdAt": "2024-01-11T20:00:08+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

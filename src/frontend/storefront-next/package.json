@@ -1,0 +1,43 @@
+{
+  "name": "marmara-barber",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build:address-data": "node ../../../scripts/build-tr-address-data.mjs",
+    "scrape:marmara": "node ../../../scripts/scrape-marmara-catalog.mjs",
+    "prebuild": "npm run build:address-data",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.66.0",
+    "framer-motion": "^12.43.0",
+    "graphql": "^16.10.0",
+    "graphql-request": "^7.1.2",
+    "next": "^15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^15.2.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "@emnapi/core": "1.11.3",
+    "@emnapi/runtime": "1.11.3",
+    "@emnapi/wasi-threads": "1.2.3"
+  }
+}

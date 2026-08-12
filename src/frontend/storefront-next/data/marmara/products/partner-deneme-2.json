@@ -1,0 +1,40 @@
+{
+  "id": "8603828453601",
+  "title": "Partner Deneme",
+  "handle": "partner-deneme-2",
+  "descriptionHtml": "<p>Partner Paket</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Paketler",
+  "tags": [
+    "pixa"
+  ],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "45410339684577",
+      "title": "Default Title",
+      "sku": "",
+      "price": 0.0,
+      "compareAtPrice": null,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [],
+  "featuredImage": null,
+  "price": 0.0,
+  "compareAtPrice": null,
+  "available": true,
+  "publishedAt": "2024-06-23T20:01:34+03:00",
+  "createdAt": "2024-06-23T20:01:35+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

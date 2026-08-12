@@ -1,0 +1,56 @@
+{
+  "id": "8213118746849",
+  "title": "No.33 Saç Jölesi 250 ML",
+  "handle": "no-33-sac-jolesi-250-ml",
+  "descriptionHtml": "<p><strong>HAIR GEL NO.33 250ML</strong></p>\n<p> </p>\n<p> </p>\n<p>Açıklamalar</p>\n<p>Etkileyici bir görünüm için hacim ve dokunuş verir. Uzun süreli tutuş sağlar. Kolay taranır ve kalıntı bırakmaz.</p>\n<p> </p>\n<p><strong>Nasıl Kullanılır</strong></p>\n<p>Elinize alın ve doğrudan kuru saçınıza uygulayın. Hızlı kuruyan formül ise saçınıza sabitlemeden hızlıca uygulanır. Dağınık saçlar için ürünü ıslak saça uygulayın ve kurumasını bekleyin.</p>\n<p><br> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924838609121",
+      "title": "Default Title",
+      "sku": "BHG-250-33",
+      "price": 399.0,
+      "compareAtPrice": 211.2,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488869880033",
+      "src": "/catalog/marmara/no-33-sac-jolesi-250-ml__42488869880033.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/25033.jpg?v=1719131853",
+      "alt": "No.33 Saç Jölesi 250 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488869880033",
+    "src": "/catalog/marmara/no-33-sac-jolesi-250-ml__42488869880033.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/25033.jpg?v=1719131853",
+    "alt": "No.33 Saç Jölesi 250 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 399.0,
+  "compareAtPrice": 211.2,
+  "available": true,
+  "publishedAt": "2024-01-11T20:22:36+03:00",
+  "createdAt": "2024-01-11T20:22:52+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

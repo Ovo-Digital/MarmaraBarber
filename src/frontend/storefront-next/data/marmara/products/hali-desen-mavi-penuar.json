@@ -1,0 +1,65 @@
+{
+  "id": "8213105377505",
+  "title": "Halı Desen Mavi Penuar",
+  "handle": "hali-desen-mavi-penuar",
+  "descriptionHtml": "<span style=\"font-size:16px;\">Barber Penuar Halı Desen Mavi </span>",
+  "vendor": "Barber Marmara",
+  "productType": "Penuar",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924829892833",
+      "title": "Default Title",
+      "sku": "BCP-FCB",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825408352481",
+      "src": "/catalog/marmara/hali-desen-mavi-penuar__41825408352481.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-hali-desen-mavi--8-4d89_9b5f764c-6024-4506-b37e-16e982c9c2a0.jpg?v=1713106601",
+      "alt": "Halı Desen Mavi Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825408385249",
+      "src": "/catalog/marmara/hali-desen-mavi-penuar__41825408385249.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/hali-desen-mavi-penuar-7d9813_e032dda5-cde2-411c-85d3-70711330662f.jpg?v=1713106601",
+      "alt": "Halı Desen Mavi Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825408352481",
+    "src": "/catalog/marmara/hali-desen-mavi-penuar__41825408352481.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-hali-desen-mavi--8-4d89_9b5f764c-6024-4506-b37e-16e982c9c2a0.jpg?v=1713106601",
+    "alt": "Halı Desen Mavi Penuar",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 799.0,
+  "compareAtPrice": 632.4,
+  "available": false,
+  "publishedAt": "2024-01-11T20:15:56+03:00",
+  "createdAt": "2024-01-11T20:16:02+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: marmara-barber-bff
+    runtime: docker
+    dockerfilePath: docker/Dockerfile.backend
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ASPNETCORE_URLS
+        value: http://+:8080
+      - key: SHOPIFY_STORE_URL
+        sync: false
+      - key: SHOPIFY_STOREFRONT_TOKEN
+        sync: false
+      - key: SHOPIFY_ADMIN_TOKEN
+        sync: false
+      - key: JWT_SIGNING_KEY
+        generateValue: true
+      - key: SQL_CONNECTION
+        sync: false
+      - key: REDIS_CONNECTION
+        sync: false

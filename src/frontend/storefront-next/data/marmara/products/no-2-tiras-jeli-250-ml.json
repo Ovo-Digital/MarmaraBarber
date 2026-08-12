@@ -1,0 +1,56 @@
+{
+  "id": "8213127364833",
+  "title": "No.2 Tıraş Jeli 250 ML",
+  "handle": "no-2-tiras-jeli-250-ml",
+  "descriptionHtml": "<p><strong>SHAVING GEL 250ML NO.2 </strong></p>\n<p> </p>\n<p><strong>ÖZELLİKLER</strong> </p>\n<p>Daha fazla tıraş konforu için tıraş rutininizi Barber Tıraş Jeli ile yükseltin.</p>\n<p>Köpük yapmayan şeffaf formülü kolay görünürlük sağlar. Bu sayede tıraş makinenizin bıçaklarının nereye gittiğini görebilirsiniz. Berber Tıraş jeli,</p>\n<p>Tıraş kremlerine göre daha az kullanımla daha hızlı ve hassas tıraş sağlar. berber</p>\n<p>Tıraş jeli, bıçak ile cildiniz arasında koruyucu bir tabaka oluşturarak cildi kesiklerden ve jilet yanıklarından korur.</p>\n<p> </p>\n<p><strong>NASIL KULLANILIR</strong></p>\n<p>Avucunuza az miktarda jel alın. Sakalınıza masaj yaparak yayın.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Güne Barber enerjisiyle başlamanın rahatlığını yaşayın. İlk buluşmanızda Bergamot'un enerjisi, lavantanın rahatlığıyla sizi şımartacak.</p>\n<p>Gül ve Sardunya'nın elma ile birleşen parlak etkisi, sandal ağacı, tonka ve meşe kokularıyla ferahlığı kalıcı kılıyor.</p>\n<p>Bergamot ve sandal ağacının nadide birleşimi, bizi daha önce hiç bulunmadığımız bir liman limanı gibi karşılıyor.</p>\n<p>Meşe yosunu ile yenilikçi bir sinerji oluşturan bu ikisini bir araya getirme fikri belki de güle duyduğumuz saygı ve bitmeyen sevgiden kaynaklanıyor.</p>\n<p>Tutkuyla ve özveriyle ses getirmeye devam eden bu kokunun imzası için sıraya girecek pek çok hayran var.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Tıraş Jeli",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924845785313",
+      "title": "Default Title",
+      "sku": "BSG-250-2",
+      "price": 399.0,
+      "compareAtPrice": 250.8,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488917065953",
+      "src": "/catalog/marmara/no-2-tiras-jeli-250-ml__42488917065953.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/2_9ad6036b-4275-4315-aceb-d244d2a2fdab.jpg?v=1719132544",
+      "alt": "No.2 Tıraş Jeli 250 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488917065953",
+    "src": "/catalog/marmara/no-2-tiras-jeli-250-ml__42488917065953.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/2_9ad6036b-4275-4315-aceb-d244d2a2fdab.jpg?v=1719132544",
+    "alt": "No.2 Tıraş Jeli 250 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 399.0,
+  "compareAtPrice": 250.8,
+  "available": true,
+  "publishedAt": "2024-01-11T20:27:53+03:00",
+  "createdAt": "2024-01-11T20:28:08+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

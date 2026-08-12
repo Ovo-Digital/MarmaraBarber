@@ -1,0 +1,56 @@
+{
+  "id": "8213120811233",
+  "title": "Powder Toz Wax 20 Gr",
+  "handle": "barbertoz-wax-20-gr",
+  "descriptionHtml": "<p><strong>POWDER WAX 20 GR</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLER</p>\n<p>Barber Powder Wax erkekler ve kadınlar için birinci sınıf bir saç şekillendirme ürünüdür. Eşsiz pudramızın dokusu, \"saçınızı yapmayı\" gerçek bir şekillendirme deneyimi haline getiren özel bir formüle göre geliştirilmiştir.</p>\n<p>Tüy kadar hafif pullardan oluşan Volume Powder, saç pudrası sayesinde havluyla nemi alınmış, kuru veya fönlenmiş saçlarınıza narin ve ekonomik bir şekilde dağıtabilirsiniz. Barber Powder Wax, klasik mat pudranın özel özelliğine sahiptir, bu sadece saçınız için özellikle \"zıplayan\" bir hacim yaratmakla kalmaz, aynı zamanda kuru şampuana benzer şekilde yağlı saçın yağ içeriğini gözle görülür ve belirgin bir şekilde azaltır. </p>\n<p>Tabii ki, Barber Powder Wax açık renkli saçlar, bölünmüş saçlar, dağınık saçlar, gözenekli saçlar, kalın saçlar, ince saçlar, kırılgan saçlar, kırılgan saçlar ve normal saçlar için son derece uygundur. Bunun nedeni, saçın kurumaması ve saç çizgisinden saç uçlarına kadar kalıcı olarak nem ile aşılanması için tasarlanmış hacim verici tozun doğasıdır.</p>\n<p>Bu, saç stilinizin \"nemli\" görünmeden her zaman taze ve pürüzsüz görünmesini sağlar. Çünkü saçınızı şekillendirirken minik toz pullar saçınızda eriyerek saçın sağlıklı ve canlı görünmesi ve erkeklerde saç dökülmesini azaltmak için gerekli olan nemi sağlar.</p>\n<p>Barber Toz Ağda, tüm saç tiplerine ve uzunluklarına doğal ve mat bir görünüm kazandıran hacim ve doku sağlar.</p>\n<p>Bu hacim verici pudra tekrar kullanılabilir, bu da onu günlük bir şekillendirici pudra yapar.</p>\n<p>Saçınıza beyaz iz veya yağlı kalıntı bırakmadan doku, hacim veya kontrol katmak istiyorsanız bu ürün tam size göre.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924840247521",
+      "title": "Default Title",
+      "sku": "BW-20-PWDR",
+      "price": 399.0,
+      "compareAtPrice": 270.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488740118753",
+      "src": "/catalog/marmara/barbertoz-wax-20-gr__42488740118753.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1_8dfade8b-3b06-4963-aa77-95262aa092ea.jpg?v=1719130168",
+      "alt": "Powder Toz Wax 20 Gr",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488740118753",
+    "src": "/catalog/marmara/barbertoz-wax-20-gr__42488740118753.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1_8dfade8b-3b06-4963-aa77-95262aa092ea.jpg?v=1719130168",
+    "alt": "Powder Toz Wax 20 Gr",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 399.0,
+  "compareAtPrice": 270.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:23:55+03:00",
+  "createdAt": "2024-01-11T20:24:05+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

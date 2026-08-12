@@ -1,0 +1,65 @@
+{
+  "id": "8213063237857",
+  "title": "037 Tarak",
+  "handle": "037-tarak",
+  "descriptionHtml": "<p><strong>ÖZELLİKLER</strong></p>\n\n<p>Saçı pürüzsüz, parlak ve statik bırakmayan iyonik bir kaplamaya sahiptirler.</p>\n\n<p>Isıya dayanıklı malzeme saç kurutma makinesi ile kullanım için mükemmeldir.</p>\n\n<p>Ayrıca saç kesme veya şekillendirme sırasında uçuşan ve kıvırcık saçların önlenmesine yardımcı olur.</p>\n\n<p>Bu saç tarağı nereye giderseniz gidin yanınızda götürün</p>\n\n<p>Isıya ve kimyasallara dayanıklı malzeme</p>\n\n<p>Hafif, dayanıklı,</p>\n\n<p>Saçta kolayca kayar</p>\n\n<p>Profesyonel kuaför ve berber kalitesi</p>\n\n<p>Hafif karbondan yapılmıştır</p>\n\n<p>Renk: Siyah</p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Fırça",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840079884513",
+      "title": "Default Title",
+      "sku": "BCMB-37",
+      "price": 186.0,
+      "compareAtPrice": 186.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743343812833",
+      "src": "/catalog/marmara/037-tarak__41743343812833.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-tarak-037-8d-99c.jpg?v=1712594089",
+      "alt": "037 Tarak",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743343845601",
+      "src": "/catalog/marmara/037-tarak__41743343845601.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/037-tarak-e41c-4.jpg?v=1712594089",
+      "alt": "037 Tarak",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743343812833",
+    "src": "/catalog/marmara/037-tarak__41743343812833.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-tarak-037-8d-99c.jpg?v=1712594089",
+    "alt": "037 Tarak",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 186.0,
+  "compareAtPrice": 186.0,
+  "available": true,
+  "publishedAt": "2024-01-11T19:56:44+03:00",
+  "createdAt": "2024-01-11T19:56:49+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

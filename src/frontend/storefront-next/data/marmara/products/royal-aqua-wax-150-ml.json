@@ -1,0 +1,56 @@
+{
+  "id": "8213116846305",
+  "title": "Royal Aqua Wax 150 ML",
+  "handle": "royal-aqua-wax-150-ml",
+  "descriptionHtml": "<p><strong>ROYAL WAX</strong></p>\n<strong></strong>\n\n<p> </p>\n<strong>\n<p>ÖZELLİKLERİ</p>\n</strong>\n\n<p>Marmara Berber Ağdaları tutuş gücünde sunduğu çeşitlilik ile kusursuz stili yaratmak için tasarlanmıştır. Tutuş gücü yüksek olan ağdalar keskin stiller için uygundur. Düşük tutuşlu ağdalar daha yumuşak ve doğal bir görünüm sağlar.Marmara Barber Aqua Ağda diğer ağdalara göre hacim, parlaklık ve güçlü tutuş sağlayan tekrar uygulanabilen bir ağdadır. Daha hacimli saçlar ve mükemmel tutuş istiyorsanız Marmara Barber Aqua Waxes serisi tam size göre. Her saç tipinde yüksek parlaklık ve kontrol sağlar.</p>\n\n<p>Güçlü Kavrama</p>\n\n<p>Kolayca Yıkanır</p>\n\n<p>Yüksek Parlaklık</p>\n \n\n<p><strong>NASIL KULLANILABİLİR</strong></p>\n\n<p>Avuçlarınızın arasında ovun, az miktarda nemli veya kuru saça uygulayın ve istediğiniz gibi şekillendirin.</p>\n \n\n<p><strong>KOKU HİKAYESİ</strong></p>\n\n<p>Ferahlatıcı ve keyifli narenciye notaları, gurme notalarla etkileyici ve lezzetli bir kombinasyonda buluşuyor.</p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924837495009",
+      "title": "Default Title",
+      "sku": "BW-150-RYL",
+      "price": 499.0,
+      "compareAtPrice": 250.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42474053075169",
+      "src": "/catalog/marmara/royal-aqua-wax-150-ml__42474053075169.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmaraa_150.247.jpg?v=1718981760",
+      "alt": "Royal Aqua Wax 150 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42474053075169",
+    "src": "/catalog/marmara/royal-aqua-wax-150-ml__42474053075169.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmaraa_150.247.jpg?v=1718981760",
+    "alt": "Royal Aqua Wax 150 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 499.0,
+  "compareAtPrice": 250.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:21:30+03:00",
+  "createdAt": "2024-01-11T20:21:45+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "8213120450785",
+  "title": "Monster Saç Spreyi 750 ML",
+  "handle": "monster-sac-spreyi-750-ml",
+  "descriptionHtml": "<p><strong>MONSTER HOLD HAIR SPRAY</strong></p>\n<p> </p>\n<p>Monster Hold Ultra Strong 750 ml Saç Spreyi Berberler için özel tasarlanmış formülasyonu ile saç şeklinizi sabitlemenizde hayatınızı kolaylaştırıyor.</p>\n<p>Ultra güçlü tutuşu ile her mevsimde saç şeklinizi korur. İçeriğindeki bileşenler sayesinde saçlarınıza canlılık ve parlaklık verir.</p>\n<p>Saçı kurutmadan, yapış yapış bir his bırakmadan hacimli görünüm verir.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924840083681",
+      "title": "Default Title",
+      "sku": "BHS-750-M",
+      "price": 649.0,
+      "compareAtPrice": 420.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488879513825",
+      "src": "/catalog/marmara/monster-sac-spreyi-750-ml__42488879513825.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/monster.jpg?v=1719131978",
+      "alt": "Monster Saç Spreyi 750 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488879513825",
+    "src": "/catalog/marmara/monster-sac-spreyi-750-ml__42488879513825.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/monster.jpg?v=1719131978",
+    "alt": "Monster Saç Spreyi 750 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 649.0,
+  "compareAtPrice": 420.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:23:44+03:00",
+  "createdAt": "2024-01-11T20:23:54+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

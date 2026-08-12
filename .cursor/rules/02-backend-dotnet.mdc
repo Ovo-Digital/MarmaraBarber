@@ -1,0 +1,55 @@
+---
+description: ASP.NET Core Clean Architecture, CQRS ve katman kuralları
+globs: src/backend/**/*.cs
+alwaysApply: false
+---
+
+# Backend (.NET) Kuralları
+
+## Katman bağımlılıkları (ihlal etme)
+
+```
+Gateway.Api → Application → Domain
+Infrastructure → Application, Contracts, Integrations/*
+Persistence → Application, Domain
+Domain → SharedKernel only
+```
+
+## Yeni use-case ekleme sırası
+
+1. `Contracts/` — DTO veya integration interface (gerekirse)
+2. `Application/{Feature}/Commands|Queries/` — request, handler, validator
+3. `Domain/` — yalnızca uygulama-özel entity/event gerekiyorsa
+4. `Persistence/` — repository + EF configuration
+5. `Gateway.Api/Controllers/` — ince controller, sadece `ISender.Send`
+6. `DependencyInjection.cs` — ilgili katmanda kayıt
+
+## Controller kuralları
+
+```csharp
+// ✅ DOĞRU
+var result = await mediator.Send(new GetProductByHandleQuery(handle), ct);
+
+// ❌ YANLIŞ — controller içinde DbContext, HttpClient, Shopify client
+```
+
+## Domain
+
+- Audit alanları: `CreatedAtUtc`, `UpdatedAtUtc`, `IsDeleted`, `RowVersion`
+- Shopify GID'leri string olarak sakla; domain'de `ShopifyGid` value object kullanılabilir
+- EF, HTTP, Redis, GraphQL **Domain'de yasak**
+
+## Shopify client kullanımı
+
+- Storefront işlemleri → `IShopifyStorefrontClient` (Application handler içinde)
+- Admin işlemleri → `IShopifyAdminClient`
+- GraphQL sorguları → `Integrations/Shopify/GraphQL/` (inline string ekleme)
+
+## Webhook / Worker
+
+- Webhook handler'lar senkron ağır iş yapmaz; queue + `Workers` devralır
+- Her harici çağrı `IntegrationLog` veya `WebhookLog` ile izlenebilir olmalı
+
+## Result pattern
+
+Beklenen hatalar için exception fırlatma; `Result<T>` + `Error.NotFound` / `Error.Validation` kullan.

@@ -1,0 +1,65 @@
+{
+  "id": "8213062615265",
+  "title": "032 Tarak",
+  "handle": "032-tarak",
+  "descriptionHtml": "<span style=\"font-size:18px;\">Barber Tarak 032</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Fırça",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840076935393",
+      "title": "Default Title",
+      "sku": "BCMB-32",
+      "price": 186.0,
+      "compareAtPrice": 186.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743337226465",
+      "src": "/catalog/marmara/032-tarak__41743337226465.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-tarak-032-4-4ab1.jpg?v=1712594042",
+      "alt": "032 Tarak",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743337259233",
+      "src": "/catalog/marmara/032-tarak__41743337259233.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/032-tarak-4-0b7f.jpg?v=1712594042",
+      "alt": "032 Tarak",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743337226465",
+    "src": "/catalog/marmara/032-tarak__41743337226465.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-tarak-032-4-4ab1.jpg?v=1712594042",
+    "alt": "032 Tarak",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 186.0,
+  "compareAtPrice": 186.0,
+  "available": true,
+  "publishedAt": "2024-01-11T19:56:28+03:00",
+  "createdAt": "2024-01-11T19:56:33+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

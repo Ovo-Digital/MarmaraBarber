@@ -1,0 +1,83 @@
+{
+  "id": "8213075624161",
+  "title": "7 Mix Set EDC Sprey Kolonya 50 ML",
+  "handle": "7-mix-set-edc-sprey-kolonya-50-ml",
+  "descriptionHtml": "<span style=\"font-size:18px;\">Barber Kolonya 50 ML 7 Mıx Set Sprey</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840139522273",
+      "title": "Default Title",
+      "sku": "BC-50 - MIX 7 - S",
+      "price": 699.0,
+      "compareAtPrice": 328.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743433760993",
+      "src": "/catalog/marmara/7-mix-set-edc-sprey-kolonya-50-ml__41743433760993.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/7li2.jpg?v=1712594786",
+      "alt": "7 Mix Set EDC Sprey Kolonya 50 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743433793761",
+      "src": "/catalog/marmara/7-mix-set-edc-sprey-kolonya-50-ml__41743433793761.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/7-mix-set-edc-sprey-kolonya-50-ml-e-9e54.jpg?v=1712594786",
+      "alt": "7 Mix Set EDC Sprey Kolonya 50 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41743433826529",
+      "src": "/catalog/marmara/7-mix-set-edc-sprey-kolonya-50-ml__41743433826529.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-50-ml-7-mix-set-sprey-41-92b.jpg?v=1712594786",
+      "alt": "7 Mix Set EDC Sprey Kolonya 50 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 3
+    },
+    {
+      "id": "41743433892065",
+      "src": "/catalog/marmara/7-mix-set-edc-sprey-kolonya-50-ml__41743433892065.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/7li1.jpg?v=1712594786",
+      "alt": "7 Mix Set EDC Sprey Kolonya 50 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 4
+    }
+  ],
+  "featuredImage": {
+    "id": "41743433760993",
+    "src": "/catalog/marmara/7-mix-set-edc-sprey-kolonya-50-ml__41743433760993.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/7li2.jpg?v=1712594786",
+    "alt": "7 Mix Set EDC Sprey Kolonya 50 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 699.0,
+  "compareAtPrice": 328.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:03:38+03:00",
+  "createdAt": "2024-01-11T20:03:45+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "8213085520097",
+  "title": "Dragon EDC Premium Kolonya Cam Şişe 500 ML",
+  "handle": "dragon-edc-premium-kolonya-cam-sise-500-ml",
+  "descriptionHtml": "<p><span style=\"font-size: 18px;\">Barber Kolonya 500 ML Dragon Cam </span></p>",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840181825761",
+      "title": "Default Title",
+      "sku": "BC-500 - DRG",
+      "price": 999.0,
+      "compareAtPrice": 726.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488934334689",
+      "src": "/catalog/marmara/dragon-edc-premium-kolonya-cam-sise-500-ml__42488934334689.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmara_premium_cologne5.340.jpg?v=1719132977",
+      "alt": "Dragon EDC Premium Kolonya Cam Şişe 500 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488934334689",
+    "src": "/catalog/marmara/dragon-edc-premium-kolonya-cam-sise-500-ml__42488934334689.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmara_premium_cologne5.340.jpg?v=1719132977",
+    "alt": "Dragon EDC Premium Kolonya Cam Şişe 500 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 999.0,
+  "compareAtPrice": 726.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:08:28+03:00",
+  "createdAt": "2024-01-11T20:08:36+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

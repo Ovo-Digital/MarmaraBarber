@@ -1,0 +1,57 @@
+---
+description: Next.js storefront, BFF iletişimi ve UI katman kuralları
+globs: src/frontend/storefront-next/**/*
+alwaysApply: false
+---
+
+# Storefront (Next.js) Kuralları
+
+## Amaç
+
+Shopify verisini BFF üzerinden sunan headless vitrin. Ticari mantık burada değil, sunum ve UX burada.
+
+## Klasör sorumlulukları
+
+| Klasör | Kullanım |
+|--------|----------|
+| `app/` | Route'lar, metadata, Server Components |
+| `components/` | UI; client yalnızca etkileşim gerektiğinde |
+| `services/shopify/` | BFF HTTP client (`commerce-api.ts`) |
+| `graphql/` | Referans GraphQL dosyaları (Shopify Storefront) |
+| `store/` | Zustand — cart, wishlist, UI state |
+| `hooks/` | Client-side reusable hooks |
+| `providers/` | TanStack Query vb. |
+| `types/` | Paylaşılan TypeScript tipleri |
+
+## Veri çekme
+
+```typescript
+// ✅ Server Component — BFF üzerinden
+const products = await getProducts();
+
+// ✅ Client — TanStack Query + BFF
+useQuery({ queryKey: ["search", q], queryFn: () => searchProducts(q) });
+
+// ❌ UI component içinde doğrudan Shopify token ile fetch
+```
+
+## Server vs Client
+
+- Liste/detay sayfaları: **Server Component** + `Suspense` + skeleton
+- Sepet, mini cart, arama input: **Client Component**
+- Checkout: Shopify `checkoutUrl` redirect — hosted checkout
+
+## State
+
+- **Zustand:** cart id, mini cart açık/kapalı, local wishlist
+- **TanStack Query:** server state, mutation (add to cart)
+- Shopify cart id `localStorage` persist (`headless-cart`)
+
+## Stil
+
+- Tailwind CSS; mevcut layout (`Header`, `Footer`, `ProductCard`) ile tutarlı kal
+- Yeni sayfa eklerken `export const dynamic = "force-dynamic"` — BFF'e bağlı sayfalar için
+
+## SEO
+
+- `generateMetadata` ile ürün/koleksiyon sayfalarında dinamik metadata

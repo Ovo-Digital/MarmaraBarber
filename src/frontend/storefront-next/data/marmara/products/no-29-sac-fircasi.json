@@ -1,0 +1,65 @@
+{
+  "id": "8213062320353",
+  "title": "No.29 Saç Fırçası",
+  "handle": "no-29-sac-fircasi",
+  "descriptionHtml": "<p>Barber Saç Fırça No.29</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Fırça",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840075985121",
+      "title": "Default Title",
+      "sku": "BHB-29",
+      "price": 196.8,
+      "compareAtPrice": 196.8,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743334899937",
+      "src": "/catalog/marmara/no-29-sac-fircasi__41743334899937.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no.29-sac-fircasi-6-c594.jpg?v=1712594024",
+      "alt": "No.29 Saç Fırçası",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743334932705",
+      "src": "/catalog/marmara/no-29-sac-fircasi__41743334932705.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no-69374a-083.jpg?v=1712594024",
+      "alt": "No.29 Saç Fırçası",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743334899937",
+    "src": "/catalog/marmara/no-29-sac-fircasi__41743334899937.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no.29-sac-fircasi-6-c594.jpg?v=1712594024",
+    "alt": "No.29 Saç Fırçası",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 196.8,
+  "compareAtPrice": 196.8,
+  "available": true,
+  "publishedAt": "2024-01-11T19:56:22+03:00",
+  "createdAt": "2024-01-11T19:56:27+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

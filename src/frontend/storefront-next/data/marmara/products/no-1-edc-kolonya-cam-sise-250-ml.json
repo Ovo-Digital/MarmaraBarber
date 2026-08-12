@@ -1,0 +1,92 @@
+{
+  "id": "8213069463777",
+  "title": "No.1 EDC Kolonya Cam Şişe 250 ML",
+  "handle": "no-1-edc-kolonya-cam-sise-250-ml",
+  "descriptionHtml": "<p>\n</p><p><strong>CLASSIC COLOGNE NO.1</strong></p>\n<strong></strong>\n\n<p> </p>\n<strong>\n<p>ÖZELLİKLERİ</p>\n</strong>\n\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Barber Cologne cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n \n\n<p><strong>KOKU HİKAYESİ</strong></p>\n\n<p>Kalbinizden geçen Akdeniz esintisi ruhunuzla buluşuyor. Limon ve lavantanın sadeliğine ilk dokunuş sizi Akdeniz'e çekiyor. Beyazın saflığında gül; yasemin ve vadi zambağı ile harmanlanır. Misk ve amberin derinlerdeki gücü Akdeniz rüzgarı gibi sarar sizi.</p>\n\n<p>Ilık bir haziran akşamı ve yanımızda duran lavantalar limon kokusunu bastırıyor. Serinlemek için ellerimi kullanırken yaseminlerin asil havasıyla gecenin içinden çıktığına şahit oluyorum. Akdeniz'de de öyle değil mi? Başka bir rüzgar seni etkiler..</p>\n\n<p>Barber Cologne, tıraştan sonra cildi mükemmel bir şekilde yatıştırır. Yüzünüzü su ile temizledikten sonra ellerinize Barber kolonyasını dökün ve cildinize nazikçe masaj yapın.</p>\n<br>\n \n\n<p> </p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840107409633",
+      "title": "Default Title",
+      "sku": "BC-250-1",
+      "price": 149.0,
+      "compareAtPrice": 135.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743382446305",
+      "src": "/catalog/marmara/no-1-edc-kolonya-cam-sise-250-ml__41743382446305.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.1-cam-8b-bfe.jpg?v=1712594368",
+      "alt": "No.1 EDC Kolonya Cam Şişe 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743382479073",
+      "src": "/catalog/marmara/no-1-edc-kolonya-cam-sise-250-ml__41743382479073.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.1-cam--fe31.jpg?v=1712594368",
+      "alt": "No.1 EDC Kolonya Cam Şişe 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41743382511841",
+      "src": "/catalog/marmara/no-1-edc-kolonya-cam-sise-250-ml__41743382511841.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.1-cam-dce07.jpg?v=1712594368",
+      "alt": "No.1 EDC Kolonya Cam Şişe 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 3
+    },
+    {
+      "id": "41743382544609",
+      "src": "/catalog/marmara/no-1-edc-kolonya-cam-sise-250-ml__41743382544609.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.1-cam--437e.jpg?v=1712594368",
+      "alt": "No.1 EDC Kolonya Cam Şişe 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 4
+    },
+    {
+      "id": "41743382577377",
+      "src": "/catalog/marmara/no-1-edc-kolonya-cam-sise-250-ml__41743382577377.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no-c3d-8378-4.jpg?v=1712594368",
+      "alt": "No.1 EDC Kolonya Cam Şişe 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 5
+    }
+  ],
+  "featuredImage": {
+    "id": "41743382446305",
+    "src": "/catalog/marmara/no-1-edc-kolonya-cam-sise-250-ml__41743382446305.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.1-cam-8b-bfe.jpg?v=1712594368",
+    "alt": "No.1 EDC Kolonya Cam Şişe 250 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 149.0,
+  "compareAtPrice": 135.0,
+  "available": false,
+  "publishedAt": "2024-01-11T19:59:09+03:00",
+  "createdAt": "2024-01-11T19:59:22+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

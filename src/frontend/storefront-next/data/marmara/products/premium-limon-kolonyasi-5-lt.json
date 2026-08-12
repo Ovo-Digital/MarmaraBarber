@@ -1,0 +1,65 @@
+{
+  "id": "8213130117345",
+  "title": "Premium Limon Kolonyası 5 LT",
+  "handle": "premium-limon-kolonyasi-5-lt",
+  "descriptionHtml": "<h2>Premium Limon Kolonyası 5 LT</h2>\n<p>Limon Kokusu Islak tıraştan sonra serinletir, temizler ve cildi dezenfekte eder. Cilt kızarıklığını önler, tıraş yanıkları böylece yüzdeki tıraş sivilcelerini de önler. Tüm cilt tipleri ve günlük cilt bakımı için uygundur.</p>\n<p>İster tıraştan sonra ister yolda olduğunuz uzun bir günden sonra ferahlatıcı, canlandırıcı, canlandırıcı ve uyarıcı etki eder.</p>\n<p><strong>Koku</strong>: Meyveli taze limon | Kokulu su sivilcelere karşı da kullanılabilir.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924848570593",
+      "title": "Default Title",
+      "sku": "BC-5-LMN",
+      "price": 1290.0,
+      "compareAtPrice": 942.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825452032225",
+      "src": "/catalog/marmara/premium-limon-kolonyasi-5-lt__41825452032225.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/edc-premium-kolonya-5-lt-eb4-46_e63bf3b6-bf58-4139-9bf6-19cf7fa8740d.jpg?v=1713107355",
+      "alt": "Premium Limon Kolonyası 5 LT",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825452064993",
+      "src": "/catalog/marmara/premium-limon-kolonyasi-5-lt__41825452064993.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/premium-limon-kolonyasi-5-lt-6a64f4_01c998fa-44b0-4ba7-8219-13f17ae3bfb8.jpg?v=1713107355",
+      "alt": "Premium Limon Kolonyası 5 LT",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825452032225",
+    "src": "/catalog/marmara/premium-limon-kolonyasi-5-lt__41825452032225.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/edc-premium-kolonya-5-lt-eb4-46_e63bf3b6-bf58-4139-9bf6-19cf7fa8740d.jpg?v=1713107355",
+    "alt": "Premium Limon Kolonyası 5 LT",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 1290.0,
+  "compareAtPrice": 942.0,
+  "available": false,
+  "publishedAt": "2024-01-11T20:29:45+03:00",
+  "createdAt": "2024-01-11T20:29:50+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

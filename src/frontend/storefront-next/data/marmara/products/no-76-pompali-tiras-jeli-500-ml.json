@@ -1,0 +1,56 @@
+{
+  "id": "8213128741089",
+  "title": "No.76 Pompalı Tıraş Jeli 500 ML",
+  "handle": "no-76-pompali-tiras-jeli-500-ml",
+  "descriptionHtml": "<p><strong>SHAVING GEL NO.76 </strong><strong style=\"font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; font-size: 0.875rem;\">500 ML</strong></p>\n<p> </p>\n<p><strong>ÖZELLİKLERİ</strong></p>\n<p>Sakalınızı köpürtme işleminden önce yumuşatmak için kullanılır. Tıraş jeli masaj yapılarak   sürüldüğünden yoğun ve kremsi bir yapıya dönüşür. Kremsi yapıya dönüşen jel, sakalınızı hızla yumuşatarak, köpürtme işleminden sonra tıraş bıçağının kolayca kaymasını sağlar ve böylece cildin tahriş olmasını engeller.</p>\n<p> </p>\n<p><strong>NASIL KULLANILIR</strong></p>\n<p>Avucunuza fındık büyüklüğünde jeli alın. Sakalın üzerine masaj yaparak sürün. Ardındandan köpürterek tıraşı tamamlayabili</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Tıraş Jeli",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924846801121",
+      "title": "Default Title",
+      "sku": "BSG-500-76",
+      "price": 499.0,
+      "compareAtPrice": 279.6,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488919064801",
+      "src": "/catalog/marmara/no-76-pompali-tiras-jeli-500-ml__42488919064801.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/50076.jpg?v=1719132592",
+      "alt": "No.76 Pompalı Tıraş Jeli 500 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488919064801",
+    "src": "/catalog/marmara/no-76-pompali-tiras-jeli-500-ml__42488919064801.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/50076.jpg?v=1719132592",
+    "alt": "No.76 Pompalı Tıraş Jeli 500 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 499.0,
+  "compareAtPrice": 279.6,
+  "available": true,
+  "publishedAt": "2024-01-11T20:28:42+03:00",
+  "createdAt": "2024-01-11T20:28:58+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

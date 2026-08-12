@@ -1,0 +1,56 @@
+{
+  "id": "8894709596385",
+  "title": "Marmara 150 ml AMBER KOLONYA",
+  "handle": "marmara-150-ml-amber-kolonya",
+  "descriptionHtml": "<pre class=\"tw-data-text tw-text-large tw-ta\" data-placeholder=\"Çeviri\" id=\"tw-target-text\" data-ved=\"2ahUKEwi7jr6C47uMAxWjgf0HHTyKPYEQ3ewLegQICBAV\" dir=\"ltr\" aria-label=\"Çevrilmiş metin: ÖZELLİKLER\nMalzeme: Şeffaf ve hafif PET (Polietilen Tereftalat) plastik.\nŞeffaflık: İçeriğin görünürlüğünü sağlar.\nKapak: Şekli sızdırmaz bir kapaktır.\nDayanıklılık: Darbeye dayanıklı, hafiftir.\nSıcaklık Direnci: Yüksek sıcaklıklara dayanıklı değildir.\nGeri Dönüşüm: Geri dönüştürülebilir.\nNASIL KULLANILIR\nEl Temizliği: Avuç içlerinize sıkarak ellerinizi ovalayın.\nKişisel Tazeleme: Vücudunuzun istediğiniz bölgelerine püskürtün.\nYüzey Temizliği: Temiz bir bez veya pamuğa püskürtün ve yüzeyi silin.\nDikkat: Gözlerden ve açık alevlerden uzak tutun.\nKOKU HİKAYESİ\nAmber, çiçeksi notalarla harmanlanmış zengin, reçineli amber notalarına sahip sıcak ve büyüleyici bir kokudur. KOKU VE NOTLAR\nÜst Notalar: Yeşil Narenciye Baharatı, Mandalina, Limon, Tarçın\nOrta Notalar: Yasemin, Gül, Zambak, Portakal Çiçeği, Hanımeli, Leylak, Süsen\nTemel Notalar: Amberli Tatlı Odunsu Misk Vanilya, Tonka Fasulyesi, Amber Notaları, Sedir Ağacı Virginia, Sandal Ağacı, Kremsi, Tozlu, Çiçeksi Miskler\nML : 150 ML\nADET : 16\nBOYUT : X \nPALET : 192 KUTU\nBRÜT AĞIRLIK : X\nÜRÜN BARKODU : 8691541004385 \nKUTU BARKODU : 8691541004392\"><span class=\"Y2IQFc\" lang=\"tr\">ÖZELLİKLER\nMalzeme: Şeffaf ve hafif PET (Polietilen Tereftalat) plastik.\nŞeffaflık: İçeriğin görünürlüğünü sağlar.\nKapak: Şekli sızdırmaz bir kapaktır.\nDayanıklılık: Darbeye dayanıklı, hafiftir.\nSıcaklık Direnci: Yüksek sıcaklıklara dayanıklı değildir.\nGeri Dönüşüm: Geri dönüştürülebilir.\nNASIL KULLANILIR\nEl Temizliği: Avuç içlerinize sıkarak ellerinizi ovalayın.\nKişisel Tazeleme: Vücudunuzun istediğiniz bölgelerine püskürtün.\nYüzey Temizliği: Temiz bir bez veya pamuğa püskürtün ve yüzeyi silin.\nDikkat: Gözlerden ve açık alevlerden uzak tutun.\nKOKU HİKAYESİ\nAmber, çiçeksi notalarla harmanlanmış zengin, reçineli amber notalarına sahip sıcak ve büyüleyici bir kokudur. KOKU VE NOTLAR\nÜst Notalar: Yeşil Narenciye Baharatı, Mandalina, Limon, Tarçın\nOrta Notalar: Yasemin, Gül, Zambak, Portakal Çiçeği, Hanımeli, Leylak, Süsen\nTemel Notalar: Amberli Tatlı Odunsu Misk Vanilya, Tonka Fasulyesi, Amber Notaları, Sedir Ağacı Virginia, Sandal Ağacı, Kremsi, Tozlu, Çiçeksi Miskler</span></pre>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "46308472291553",
+      "title": "Default Title",
+      "sku": "MA-150-AMB-S",
+      "price": 90.0,
+      "compareAtPrice": null,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "45059467018465",
+      "src": "/catalog/marmara/marmara-150-ml-amber-kolonya__45059467018465.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/150mlamber.jpg?v=1743680765",
+      "alt": "Marmara 150 ml AMBER KOLONYA",
+      "width": 1500,
+      "height": 1500,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "45059467018465",
+    "src": "/catalog/marmara/marmara-150-ml-amber-kolonya__45059467018465.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/150mlamber.jpg?v=1743680765",
+    "alt": "Marmara 150 ml AMBER KOLONYA",
+    "width": 1500,
+    "height": 1500,
+    "position": 1
+  },
+  "price": 90.0,
+  "compareAtPrice": null,
+  "available": true,
+  "publishedAt": "2025-04-03T14:46:37+03:00",
+  "createdAt": "2025-04-03T14:46:37+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

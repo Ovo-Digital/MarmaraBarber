@@ -1,0 +1,56 @@
+{
+  "id": "8213118451937",
+  "title": "Deniz Tuzlu Poseıdon Sprey 200 ML",
+  "handle": "deniz-tuzlu-poseidon-sprey-200-ml",
+  "descriptionHtml": "<p>Barber Deniz Tuzlu 200 ML Poseıdon Sprey</p>\n<p> </p>\n<p><strong>DENİZ TUZU SPREY ÜRÜN ÖZELLİKLERİ</strong></p>\n<p style=\"line-height: 1.295; margin-bottom: 11px;\"><span style=\"font-size: 11pt; font-variant: normal; white-space: pre-wrap;\"><span style=\"font-family: Calibri,sans-serif;\"><span style=\"color: #000000;\"><span style=\"font-weight: 400;\"><span style=\"font-style: normal;\"><span style=\"text-decoration: none;\">İçeriğindeki Aloe Vera ve Keratin Komplex etkisiyle saçın nemlenmesine yardımcı olur. Barber Deniz Tuzu Saç Spreyi saçınızın kolayca sekil kazanmasını saglar ve elektriklenmesini önler. Her saç tipi için uygun olup, denizden yeni çıkmış gibi dogal ve belirgin dalgalara sahip olmanızı sağlar. Saçlarınızın mat, ekstra hacimli ve dolgun görünmesine yardımcı olur.</span></span></span></span></span></span></p>\n<p style=\"line-height: 1.295; margin-bottom: 11px;\"><span style=\"font-size: 11pt; font-variant: normal; white-space: pre-wrap;\"><span style=\"font-family: Calibri,sans-serif;\"><span style=\"color: #000000;\"><span style=\"font-weight: 400;\"><span style=\"font-style: normal;\"><span style=\"text-decoration: none;\"> </span></span></span></span></span></span></p>\n<p style=\"line-height: 1.295; margin-bottom: 11px;\"><strong>KULLANIMI</strong></p>\n<p style=\"line-height: 1.295; margin-bottom: 11px;\"><span style=\"font-size: 11pt; font-variant: normal; white-space: pre-wrap;\"><span style=\"font-family: Calibri,sans-serif;\"><span style=\"color: #000000;\"><span style=\"font-weight: 400;\"><span style=\"font-style: normal;\"><span style=\"text-decoration: none;\">Nemli ya da kuru saçınıza esit bir şekilde uygulayın, doğal ve dağınık dalgalı saçlar yaratmak için ellerinizle kıvırarak şekil verin. Saça ekstra hacimli bir görünüm katmak için; nemli saçın diplerine uygulayıp saçı kurutun. Barber Deniz Tuzu Saç Spreyi günlük kullanıma uygundur. </span></span></span></span></span></span></p>\n<p style=\"line-height: 1.295; text-align: right; margin-bottom: 11px;\"><span style=\"font-size: 11pt; font-variant: normal; white-space: pre-wrap;\"><span style=\"font-family: Calibri,sans-serif;\"><span style=\"color: #000000;\"><span style=\"font-weight: 400;\"><span style=\"font-style: normal;\"><span style=\"text-decoration: none;\">.</span></span></span></span></span></span></p>\n<p> </p>\n<p> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924838248673",
+      "title": "Default Title",
+      "sku": "BSS-200- PS",
+      "price": 449.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488874434785",
+      "src": "/catalog/marmara/deniz-tuzlu-poseidon-sprey-200-ml__42488874434785.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1_02fa452f-e6ce-4d62-a4f5-f7dd37900dfe.jpg?v=1719131907",
+      "alt": "Deniz Tuzlu Poseıdon Sprey 200 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488874434785",
+    "src": "/catalog/marmara/deniz-tuzlu-poseidon-sprey-200-ml__42488874434785.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1_02fa452f-e6ce-4d62-a4f5-f7dd37900dfe.jpg?v=1719131907",
+    "alt": "Deniz Tuzlu Poseıdon Sprey 200 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 449.0,
+  "compareAtPrice": 330.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:22:23+03:00",
+  "createdAt": "2024-01-11T20:22:35+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "8213062123745",
+  "title": "BarberFade Fırça S",
+  "handle": "barberfade-firca-s",
+  "descriptionHtml": "<span style=\"font-size:18px;\">Barber Fade Fırça S</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Fırça",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840075591905",
+      "title": "Default Title",
+      "sku": "BFB-S",
+      "price": 196.8,
+      "compareAtPrice": 196.8,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743331918049",
+      "src": "/catalog/marmara/barberfade-firca-s__41743331918049.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-fade-firca-s-4895bd.jpg?v=1712594005",
+      "alt": "BarberFade Fırça S",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743331950817",
+      "src": "/catalog/marmara/barberfade-firca-s__41743331950817.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barberfade-firca-s--6e376.jpg?v=1712594005",
+      "alt": "BarberFade Fırça S",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743331918049",
+    "src": "/catalog/marmara/barberfade-firca-s__41743331918049.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-fade-firca-s-4895bd.jpg?v=1712594005",
+    "alt": "BarberFade Fırça S",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 196.8,
+  "compareAtPrice": 196.8,
+  "available": true,
+  "publishedAt": "2024-01-11T19:56:12+03:00",
+  "createdAt": "2024-01-11T19:56:21+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

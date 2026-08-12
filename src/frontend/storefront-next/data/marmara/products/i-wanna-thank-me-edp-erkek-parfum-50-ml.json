@@ -1,0 +1,56 @@
+{
+  "id": "8213103771873",
+  "title": "I Wanna Thank Me Edp Erkek Parfüm 50 ML",
+  "handle": "i-wanna-thank-me-edp-erkek-parfum-50-ml",
+  "descriptionHtml": "<p><strong><br></strong></p>\n<p>I WANNA THANK ME  </p>\n<p><strong><br></strong></p>\n<p>KOKU HİKAYESİ </p>\n<p>Taze bir çiçek esintisi, kabarık bir misk bulutu ve güneş kadar parlak bir tutam kehribar. Gizemli kokun herkesin aklında olacak ve adın herkesin ağzında yazılacak.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924829171937",
+      "title": "Default Title",
+      "sku": "BP-50-IWT",
+      "price": 395.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488750637281",
+      "src": "/catalog/marmara/i-wanna-thank-me-edp-erkek-parfum-50-ml__42488750637281.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/10_97a15578-d1ad-4c8a-a053-3b4a9d5c02e5.jpg?v=1719130322",
+      "alt": "I Wanna Thank Me Edp Erkek Parfüm 50 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488750637281",
+    "src": "/catalog/marmara/i-wanna-thank-me-edp-erkek-parfum-50-ml__42488750637281.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/10_97a15578-d1ad-4c8a-a053-3b4a9d5c02e5.jpg?v=1719130322",
+    "alt": "I Wanna Thank Me Edp Erkek Parfüm 50 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 395.0,
+  "compareAtPrice": 395.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:15:16+03:00",
+  "createdAt": "2024-01-11T20:15:29+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

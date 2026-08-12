@@ -1,0 +1,92 @@
+{
+  "id": "8213071954145",
+  "title": "No.3 EDC Sprey Kolonya 250 ML",
+  "handle": "no-3-edc-sprey-kolonya-250-ml",
+  "descriptionHtml": "<p><strong>CLASSIC COLOGNE NO.3</strong></p>\n<strong></strong>\n\n<p> </p>\n<strong>\n<p>ÖZELLİKLERİ</p>\n</strong>\n\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Barber Cologne cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n \n\n<p><strong>KOKU HİKAYESİ</strong></p>\n\n<p>Size çok tanıdık gelecek klasik bir koku. Aşık olacağınız romatizmal bitkiler ve narenciye notalarıyla açılıyor ve baharatlarla devam ediyor.</p>\n\n<p>Sandal ağacı, deri, kehribar, meşe yosunu, vetiver ve sedir ile güçlü bir bitiş sağlar. Bu koku ile kendinizi rahat, şık ve zarif hissedeceksiniz.</p>\n\n<p>Barber Cologne, tıraştan sonra cildi mükemmel bir şekilde yatıştırır. Yüzünüzü su ile temizledikten sonra ellerinize Barber kolonyasını dökün ve cildinize nazikçe masaj yapın.</p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840116551905",
+      "title": "Default Title",
+      "sku": "BC-250-3-S",
+      "price": 299.0,
+      "compareAtPrice": 146.2,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743398273249",
+      "src": "/catalog/marmara/no-3-edc-sprey-kolonya-250-ml__41743398273249.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.3-sprey--6f8d.jpg?v=1712594497",
+      "alt": "No.3 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743398306017",
+      "src": "/catalog/marmara/no-3-edc-sprey-kolonya-250-ml__41743398306017.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.3-sprey-8bbf-4.jpg?v=1712594497",
+      "alt": "No.3 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    },
+    {
+      "id": "41743398338785",
+      "src": "/catalog/marmara/no-3-edc-sprey-kolonya-250-ml__41743398338785.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.3-sprey-b038-0.jpg?v=1712594498",
+      "alt": "No.3 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 3
+    },
+    {
+      "id": "41743398371553",
+      "src": "/catalog/marmara/no-3-edc-sprey-kolonya-250-ml__41743398371553.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.3-sprey-dcf-ae.jpg?v=1712594498",
+      "alt": "No.3 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 4
+    },
+    {
+      "id": "41743398404321",
+      "src": "/catalog/marmara/no-3-edc-sprey-kolonya-250-ml__41743398404321.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/no-24-f582-40.jpg?v=1712594498",
+      "alt": "No.3 EDC Sprey Kolonya 250 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 5
+    }
+  ],
+  "featuredImage": {
+    "id": "41743398273249",
+    "src": "/catalog/marmara/no-3-edc-sprey-kolonya-250-ml__41743398273249.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-250-ml-no.3-sprey--6f8d.jpg?v=1712594497",
+    "alt": "No.3 EDC Sprey Kolonya 250 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 299.0,
+  "compareAtPrice": 146.2,
+  "available": false,
+  "publishedAt": "2024-01-11T20:00:28+03:00",
+  "createdAt": "2024-01-11T20:00:41+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

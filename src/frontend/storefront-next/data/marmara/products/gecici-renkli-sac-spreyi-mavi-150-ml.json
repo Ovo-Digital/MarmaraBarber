@@ -1,0 +1,56 @@
+{
+  "id": "8213114519777",
+  "title": "Geçici Renkli Saç Spreyi Mavi 150 ML",
+  "handle": "gecici-renkli-sac-spreyi-mavi-150-ml",
+  "descriptionHtml": "<p><strong>HAIR COLOR SPRAY 150ML</strong></p>\n<p> </p>\n<p>SNOW WHITE - CRAZY PINK - FANTASTIC GREEN - COSMOS BLUE</p>\n<p>MONSTER PURPLE - HERO RED-  FAMOUS GOLD - FUTURE SILVER</p>\n<p> </p>\n<p><strong>ÖZELLİKLER</strong></p>\n<p>Marmara Barber Boyalı Saç Spreyi, saçın doğal yapısını bozmadan geçici olarak renklendirmeyi amaçlar.</p>\n<p>Dilediğiniz zaman fark edilir bir görüntü değişikliği imkanı sunar. Hızlı ve kolay bir şekilde uygulanır.</p>\n<p>Kuruduktan sonra bulaşmaz. Tüm saç renkleri ile uyumludur. Şampuan ile yıkanarak saçtan kolayca çıkarılır. Günlük kullanım için idealdir.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Boyası",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924835365089",
+      "title": "Default Title",
+      "sku": "BCS-150-BLU",
+      "price": 349.0,
+      "compareAtPrice": 199.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488901501153",
+      "src": "/catalog/marmara/gecici-renkli-sac-spreyi-mavi-150-ml__42488901501153.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/color_spray.295.jpg?v=1719132254",
+      "alt": "Geçici Renkli Saç Spreyi Mavi 150 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488901501153",
+    "src": "/catalog/marmara/gecici-renkli-sac-spreyi-mavi-150-ml__42488901501153.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/color_spray.295.jpg?v=1719132254",
+    "alt": "Geçici Renkli Saç Spreyi Mavi 150 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 349.0,
+  "compareAtPrice": 199.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:20:01+03:00",
+  "createdAt": "2024-01-11T20:20:14+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

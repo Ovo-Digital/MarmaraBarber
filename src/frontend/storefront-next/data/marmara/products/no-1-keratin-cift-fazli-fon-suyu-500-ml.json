@@ -1,0 +1,56 @@
+{
+  "id": "8213110063329",
+  "title": "No.1 Keratin Çift Fazlı Fön Suyu 500 ml",
+  "handle": "no-1-keratin-cift-fazli-fon-suyu-500-ml",
+  "descriptionHtml": "<p><strong>TWO PHASE KERATİN NO.1 (FÖN SUYU)</strong></p>\n<p> </p>\n<p><strong>NE İŞE YARAR?  </strong></p>\n<p>Saçlarınıza parlak ve canlı bir görünüm kazandırır.<br>Saçları yumuşatır ve hacim verir.<br>Isı ile şekillendirme işleminde saç yapısını korumayı hedefler.<br>Saçlarınızın kolayca taranmasını sağlar. Saç dökülmelerinin engellenmesine yardımcı olur. Saç tellerini güçlendirir. </p>\n<p> </p>\n<p><strong>NASIL KULLANILIR?  </strong></p>\n<p>Kullanmadan önce çalkalayın.<br>Nemli veya ekstra parlaklık için kuru saça uygulayın. Ürünü tarakla dağıtın.<br>Günlük kullanıma uygundur.<br>Durulama gerektirmez. </p>\n<p> </p>\n<p><strong>KERATİN TWO PHASE AÇIKLAMASI</strong></p>\n<p>Marmara Barber Keratin, saçtaki dış tabakanın yeniden yapılanmasına yardımcı olan bir proteindir. Marmara Barber keratin çift faz kondisyoner, çok yıpranmış ve aşırı işlem görmüş saçlar için formüle edilmiş bir fön sütüdür.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Fön Suyu",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924833005793",
+      "title": "Default Title",
+      "sku": "BTPC-500-KER",
+      "price": 600.0,
+      "compareAtPrice": 600.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488858444001",
+      "src": "/catalog/marmara/no-1-keratin-cift-fazli-fon-suyu-500-ml__42488858444001.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1_dbc261f6-df5b-4e20-9971-e9a72ccdc92f.jpg?v=1719131717",
+      "alt": "No.1 Keratin Çift Fazlı Fön Suyu 500 ml",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488858444001",
+    "src": "/catalog/marmara/no-1-keratin-cift-fazli-fon-suyu-500-ml__42488858444001.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1_dbc261f6-df5b-4e20-9971-e9a72ccdc92f.jpg?v=1719131717",
+    "alt": "No.1 Keratin Çift Fazlı Fön Suyu 500 ml",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 600.0,
+  "compareAtPrice": 600.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:18:01+03:00",
+  "createdAt": "2024-01-11T20:18:14+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

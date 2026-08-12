@@ -1,0 +1,56 @@
+{
+  "id": "8213109571809",
+  "title": "No.2 Kolajen Çift Fazlı Fön Suyu 500 ml",
+  "handle": "no-2-kolajen-cift-fazli-fon-suyu-500-ml",
+  "descriptionHtml": "<p><strong>TWO PHASE COLOGEN NO.2 (FÖN SUYU)</strong></p>\n<p> </p>\n<p><strong>NE İŞE YARAR? </strong></p>\n<p>Saçlarınıza parlaklık verir.<br>Saçlarınızın kolayca taranmasını sağlar.<br>Nemlendirir ve pürüzsüz görünüme destek olur.<br>Saç tellerini güçlendirir. <br>Isı gerektiren işlemlerde saçı korumaya yardımcı olur. </p>\n<p> </p>\n<p><strong>NASIL KULLANILIR? </strong></p>\n<div>\n<table>\n<colgroup> <col> </colgroup>\n<tbody>\n<tr>\n<td>\n<p>Kullanmadan önce çalkalayın.</p>\n<p>Nemli veya ekstra parlaklık için kuru saça uygulayın.</p>\n<p>Ürünü tarakla dağıtın.</p>\n<p>Günlük kullanıma uygundur.</p>\n<p>Durulama gerektirmez.</p>\n</td>\n</tr>\n</tbody>\n</table>\n</div>\n<p> </p>\n<p><strong>COLOGEN TWO PHASE AÇIKLAMASI</strong></p>\n<p>Marmara Barber Kolajen, bağ dokularını oluşturan ana yapısal proteinlerden biridir.  Kolajen içerikli çift fazlı fön suyu, saçın kolay taranmasına ve yumuşak forma kavuşmasına yardımcı olur.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Fön Suyu",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924832743649",
+      "title": "Default Title",
+      "sku": "BTPC-500-COL",
+      "price": 600.0,
+      "compareAtPrice": 600.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488857034977",
+      "src": "/catalog/marmara/no-2-kolajen-cift-fazli-fon-suyu-500-ml__42488857034977.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/2_7ebadccb-bb5f-4fc4-905f-a5ab2d5d1589.jpg?v=1719131698",
+      "alt": "No.2 Kolajen Çift Fazlı Fön Suyu 500 ml",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488857034977",
+    "src": "/catalog/marmara/no-2-kolajen-cift-fazli-fon-suyu-500-ml__42488857034977.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/2_7ebadccb-bb5f-4fc4-905f-a5ab2d5d1589.jpg?v=1719131698",
+    "alt": "No.2 Kolajen Çift Fazlı Fön Suyu 500 ml",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 600.0,
+  "compareAtPrice": 600.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:17:47+03:00",
+  "createdAt": "2024-01-11T20:18:00+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

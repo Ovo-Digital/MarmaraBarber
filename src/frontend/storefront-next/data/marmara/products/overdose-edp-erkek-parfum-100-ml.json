@@ -1,0 +1,56 @@
+{
+  "id": "8213097873633",
+  "title": "Overdose Edp Erkek Parfüm 100 ML",
+  "handle": "overdose-edp-erkek-parfum-100-ml",
+  "descriptionHtml": "<p><strong>OVERDOSE</strong></p>\n<p> </p>\n<p> </p>\n<p>KOKU HİKAYESİ</p>\n<p>Açılış nerolive bergamot, ahududu ile ısıtılarak tatlı ve yumuşak yapılıyor. İçinizi ısıtacak gül, yasemin ve portakal çiçeği notalarının bir araya gelmesiyle hafif bir duygusallık kazanıyor. Sahip olduğunuz en değerli mutluluk...  </p>\n<p><br> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Parfüm",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924825272545",
+      "title": "Default Title",
+      "sku": "BP-100-OVR",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488790417633",
+      "src": "/catalog/marmara/overdose-edp-erkek-parfum-100-ml__42488790417633.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/9_51eaae53-120f-422e-a713-cbb321212087.jpg?v=1719130990",
+      "alt": "Overdose Edp Erkek Parfüm 100 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488790417633",
+    "src": "/catalog/marmara/overdose-edp-erkek-parfum-100-ml__42488790417633.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/9_51eaae53-120f-422e-a713-cbb321212087.jpg?v=1719130990",
+    "alt": "Overdose Edp Erkek Parfüm 100 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 699.0,
+  "compareAtPrice": 455.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:12:55+03:00",
+  "createdAt": "2024-01-11T20:13:07+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

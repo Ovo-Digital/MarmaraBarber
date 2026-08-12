@@ -1,0 +1,56 @@
+{
+  "id": "8213065302241",
+  "title": "No.22 EDC Sprey Kolonya 150 ML",
+  "handle": "no-22-edc-sprey-kolonya-150-ml",
+  "descriptionHtml": "<p><strong>GRAFFITI SPRAY NO.22</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLER</p>\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Barber Cologne cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Sizi duygu ve ilham dolu, olağanüstü keşiflerle dolu gizemli bir yolculuğa çıkarıyor. Canlı, taze greyfurt, mandalina, su notaları ve dumanlı guaiac ağacının baştan çıkarıcı notaları.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840084504801",
+      "title": "Default Title",
+      "sku": "BC-150-22-S",
+      "price": 199.9,
+      "compareAtPrice": 112.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488978768097",
+      "src": "/catalog/marmara/no-22-edc-sprey-kolonya-150-ml__42488978768097.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/22_21f8b096-7739-42e5-986b-22453be24c63.jpg?v=1719134054",
+      "alt": "No.22 EDC Sprey Kolonya 150 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488978768097",
+    "src": "/catalog/marmara/no-22-edc-sprey-kolonya-150-ml__42488978768097.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/22_21f8b096-7739-42e5-986b-22453be24c63.jpg?v=1719134054",
+    "alt": "No.22 EDC Sprey Kolonya 150 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 199.9,
+  "compareAtPrice": 112.0,
+  "available": true,
+  "publishedAt": "2024-01-11T19:57:20+03:00",
+  "createdAt": "2024-01-11T19:57:36+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

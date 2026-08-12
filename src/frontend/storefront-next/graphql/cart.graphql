@@ -1,0 +1,33 @@
+mutation CartCreate {
+  cartCreate {
+    cart {
+      id
+      checkoutUrl
+      cost { totalAmount { amount currencyCode } }
+    }
+  }
+}
+
+mutation CartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+  cartLinesAdd(cartId: $cartId, lines: $lines) {
+    cart {
+      id
+      checkoutUrl
+      lines(first: 50) {
+        edges {
+          node {
+            id
+            quantity
+            merchandise {
+              ... on ProductVariant {
+                id
+                title
+                price { amount currencyCode }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

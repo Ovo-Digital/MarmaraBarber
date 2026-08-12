@@ -1,0 +1,38 @@
+{
+  "id": "8781658030305",
+  "title": "nakliye bedeli",
+  "handle": "nakliye-bedeli",
+  "descriptionHtml": "",
+  "vendor": "Marmara Barber",
+  "productType": "",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "45920285819105",
+      "title": "Default Title",
+      "sku": "",
+      "price": 2500.0,
+      "compareAtPrice": null,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [],
+  "featuredImage": null,
+  "price": 2500.0,
+  "compareAtPrice": null,
+  "available": true,
+  "publishedAt": "2024-11-19T13:18:30+03:00",
+  "createdAt": "2024-11-19T13:18:30+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

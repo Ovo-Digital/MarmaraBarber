@@ -1,0 +1,56 @@
+{
+  "id": "8213115699425",
+  "title": "Geçici Say Boyası Koyu Kahverengi 125 ML",
+  "handle": "gecici-say-boyasi-koyu-kahverengi-125-ml",
+  "descriptionHtml": "<p><strong>TEMPORARY SPRAY </strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLERİ - AÇIKLAMASI</p>\n<p>Erkeklerin saç problemlerine yönelik olarak özel olarak tasarlanmıştır. Oksidan karışımına gerek duymadan direkt uygulanır.</p>\n<p>Beyaz saçların görünümünü azaltıp doğal renk yansımaları katan renklendirici gölge boyasıdır. -Oluşan yeni saç rengi, doğal saç rengiyle uyumludur. Açık renk ve boya kullanılmamış saçlarda da uygulanabilir.</p>\n<p>Saçlar tazelenmiş ve yenilenmiş bir görünüm kazanır.</p>\n<p>3 ila 4 Şampuanlama sonrası etkileri yavaş yavaş kaybolur.</p>\n<p>Amonyak ve Peroksit içermez. Saça zarar vermez saçın doğal yapısını bozmaz.</p>\n<p>Saç dökülmesine neden olmaz.</p>\n<p>Saçta istenmeyen sıcak tonlara ve küllü yansımalara yer vermez. Saçın doğal rengine yakın, mükemmel natural sonuçlar elde etmenizi sağlar.</p>\n<p>Sakal ve Bıyık kullanımına uygundur. Daha gür ve dolgun sakal görünümü için profesyonel yardım alabilirsiniz. </p>\n<p> </p>\n<p><strong>NASIL KULLANILIR</strong></p>\n<p>Kullanım: Ürünü kuru ve temiz saça uygulayınız. Saçta istediğiniz etkiye göre bölgesel olarak veya tümüne uygulayabilirsiniz.</p>\n<p>Hafif renk elde etmek için 5 dakika koyu ve yoğun bir renk için 10 dk. Uygulayın. Daha yoğun bir renk için uygulamayı 20 dakikaya kadar uzatabilirsiniz.</p>\n<p>Bekleme sonrası saçınızı berrak su akana kadar durulayın. Saçı şampuanlamaya gerek yoktur. Sakal ve Bıyıkta gölge oluşturmak için çizgi halinde uygulayın ve fırça yardımı ile dağıtın. </p>\n<p> </p>\n<p>      </p>\n<p> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Boyası",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924836708577",
+      "title": "Default Title",
+      "sku": "BTC-125-DB",
+      "price": 310.0,
+      "compareAtPrice": 310.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488829837537",
+      "src": "/catalog/marmara/gecici-say-boyasi-koyu-kahverengi-125-ml__42488829837537.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1_96c3ea69-97ff-40c5-af9c-2d239cf2b814.jpg?v=1719131396",
+      "alt": "Geçici Say Boyası Koyu Kahverengi 125 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488829837537",
+    "src": "/catalog/marmara/gecici-say-boyasi-koyu-kahverengi-125-ml__42488829837537.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1_96c3ea69-97ff-40c5-af9c-2d239cf2b814.jpg?v=1719131396",
+    "alt": "Geçici Say Boyası Koyu Kahverengi 125 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 310.0,
+  "compareAtPrice": 310.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:20:56+03:00",
+  "createdAt": "2024-01-11T20:21:04+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "8213081522401",
+  "title": "No.4 EDC Sprey Kolonya 50 ML",
+  "handle": "no-4-edc-sprey-kolonya-50-ml",
+  "descriptionHtml": "<p><strong>CLASSIC COLOGNE NO.4</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLERİ</p>\n<p>Barber Cologne, eşsiz kokuları ve cildi tazeleyen formülü ile tıraştan hemen sonra aurayı değiştirmek için tasarlanmıştır. Ferahlatıcı kokusuyla kendinizi temiz hissedeceksiniz. Bileşenler cildi kızarıklık, akne, kuruluk, iltihaplanma gibi rahatsızlıklardan ve hasarlardan korur. Ayrıca Berber Kolonyası cildin ihtiyacı olan nemi ve canlanmayı sağlar. Uzun süre etkilidir. Yüksek alkol cildinizi temizler.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Eşsiz ve aynı zamanda çekici.</p>\n<p>Sakinleştirici aromatik notalar ve bergamot, mandalina, greyfurt ve lavanta gibi narenciye notalarının yarattığı bir enerji patlamasıyla açılır. Baharatlı notalar, kokunun kalbine sıcaklık verir. Alt notalarda kehribar, tonka fasulyesi ve vanilya bu sıcaklığı destekleyen bir kompozisyon oluşturuyor.</p>\n<p>Berber Kolonyası Tıraştan sonra cildi mükemmel bir şekilde yatıştırır. Yüzünüzü su ile temizledikten sonra ellerinize Barber kolonyasını dökün ve cildinize nazikçe masaj yapın.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Sprey Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840167801057",
+      "title": "Default Title",
+      "sku": "BC-50-4-S",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42489058656481",
+      "src": "/catalog/marmara/no-4-edc-sprey-kolonya-50-ml__42489058656481.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/4_8f7e5a13-6004-46ef-9664-9f6966ec064a.jpg?v=1719134844",
+      "alt": "No.4 EDC Sprey Kolonya 50 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42489058656481",
+    "src": "/catalog/marmara/no-4-edc-sprey-kolonya-50-ml__42489058656481.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/4_8f7e5a13-6004-46ef-9664-9f6966ec064a.jpg?v=1719134844",
+    "alt": "No.4 EDC Sprey Kolonya 50 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 149.9,
+  "compareAtPrice": 81.4,
+  "available": true,
+  "publishedAt": "2024-01-11T20:06:38+03:00",
+  "createdAt": "2024-01-11T20:06:53+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

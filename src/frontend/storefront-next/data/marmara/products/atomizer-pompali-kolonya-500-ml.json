@@ -1,0 +1,65 @@
+{
+  "id": "8213107835105",
+  "title": "Atomizer Pompalı Kolonya 500 ML",
+  "handle": "atomizer-pompali-kolonya-500-ml",
+  "descriptionHtml": "<p>Barber Kolonya 500 ML Pompa - Atomizer</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Pompa",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924831727841",
+      "title": "Default Title",
+      "sku": "BP-500",
+      "price": 599.0,
+      "compareAtPrice": 402.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825411858657",
+      "src": "/catalog/marmara/atomizer-pompali-kolonya-500-ml__41825411858657.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-500-ml-pompa-atomizer-4a-8e7_5d474d54-e75f-4c6f-a708-c64973163b2a.jpg?v=1713106663",
+      "alt": "Atomizer Pompalı Kolonya 500 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825411891425",
+      "src": "/catalog/marmara/atomizer-pompali-kolonya-500-ml__41825411891425.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/atomizer-pompali-kolonya-500-ml-eae-48_ddc9cc61-f59b-4688-8400-53d0c636d602.jpg?v=1713106663",
+      "alt": "Atomizer Pompalı Kolonya 500 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825411858657",
+    "src": "/catalog/marmara/atomizer-pompali-kolonya-500-ml__41825411858657.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-kolonya-500-ml-pompa-atomizer-4a-8e7_5d474d54-e75f-4c6f-a708-c64973163b2a.jpg?v=1713106663",
+    "alt": "Atomizer Pompalı Kolonya 500 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 599.0,
+  "compareAtPrice": 402.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:17:06+03:00",
+  "createdAt": "2024-01-11T20:17:11+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

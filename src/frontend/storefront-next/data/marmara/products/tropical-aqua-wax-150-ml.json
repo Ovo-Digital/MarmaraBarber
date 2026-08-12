@@ -1,0 +1,56 @@
+{
+  "id": "8213118025953",
+  "title": "Tropıcal Aqua Wax 150 ML",
+  "handle": "tropical-aqua-wax-150-ml",
+  "descriptionHtml": "<p><strong>TROPICAL WAX </strong></p>\n<p> </p>\n<p><strong>ÖZELLİKLERİ </strong></p>\n<p>Marmara Berber Ağdaları tutuş gücünde sunduğu çeşitlilik ile kusursuz stili yaratmak için tasarlanmıştır.</p>\n<p>Güçlü tutuşa sahip mumlar keskin stiller için uygundur. Düşük tutuşlu ağdalar daha yumuşak ve doğal bir görünüm sağlar.</p>\n<p>Marmara Barber Aqua Ağda, diğer ağdalara göre hacim, parlaklık ve güçlü tutuş sağlayan, tekrar uygulanabilen bir ağdadır. Daha hacimli saçlar ve mükemmel tutuş istiyorsanız Marmara Barber Aqua Waxes serisi tam size göre. Her saç tipinde yüksek parlaklık ve kontrol sağlar.</p>\n<p>Güçlü Kavrama</p>\n<p>Kolayca Yıkanır</p>\n<p>Yüksek Parlaklık</p>\n<p> </p>\n<p><strong>NASIL KULLANILIR</strong></p>\n<p>Avuçlarınızın arasında ovun, az miktarda nemli veya kuru saça uygulayın ve istediğiniz gibi şekillendirin.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Kokunun kalbinde baharatların sıcak dünyası kremalı hindistan cevizi ve tatlı şeftali ile buluşuyor. Vanilya, benzoin, labdanum ve tonka fasulyesinin etkileyici notaları, derin ve sofistike bir kompozisyon yaratır.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924838019297",
+      "title": "Default Title",
+      "sku": "BW-150-TRO",
+      "price": 499.0,
+      "compareAtPrice": 250.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488841142497",
+      "src": "/catalog/marmara/tropical-aqua-wax-150-ml__42488841142497.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/Basliksiz-1.jpg?v=1719131510",
+      "alt": "Tropıcal Aqua Wax 150 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488841142497",
+    "src": "/catalog/marmara/tropical-aqua-wax-150-ml__42488841142497.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/Basliksiz-1.jpg?v=1719131510",
+    "alt": "Tropıcal Aqua Wax 150 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 499.0,
+  "compareAtPrice": 250.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:22:05+03:00",
+  "createdAt": "2024-01-11T20:22:21+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,65 @@
+{
+  "id": "8213107114209",
+  "title": "Super Sonıc Purple Penuar",
+  "handle": "super-sonic-purple-penuar",
+  "descriptionHtml": "<span style=\"font-size:16px;\">Barber Penuar Super Sonıc Purple</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Penuar",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924831203553",
+      "title": "Default Title",
+      "sku": "BCP–SSP",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825410482401",
+      "src": "/catalog/marmara/super-sonic-purple-penuar__41825410482401.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-super-sonic-purple-29c-3d_a6c83dd4-5bfb-4e72-84e9-da425101b270.jpg?v=1713106643",
+      "alt": "Super Sonıc Purple Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825410515169",
+      "src": "/catalog/marmara/super-sonic-purple-penuar__41825410515169.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/super-sonic-purple-penuar-891958_a0af3739-88ce-4b77-961e-893acce49834.jpg?v=1713106643",
+      "alt": "Super Sonıc Purple Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825410482401",
+    "src": "/catalog/marmara/super-sonic-purple-penuar__41825410482401.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-super-sonic-purple-29c-3d_a6c83dd4-5bfb-4e72-84e9-da425101b270.jpg?v=1713106643",
+    "alt": "Super Sonıc Purple Penuar",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 799.0,
+  "compareAtPrice": 632.4,
+  "available": false,
+  "publishedAt": "2024-01-11T20:16:43+03:00",
+  "createdAt": "2024-01-11T20:16:49+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

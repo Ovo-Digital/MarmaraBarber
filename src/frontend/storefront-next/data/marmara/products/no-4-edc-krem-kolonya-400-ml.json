@@ -1,0 +1,56 @@
+{
+  "id": "8213093515489",
+  "title": "No.4 EDC Krem Kolonya 400 ML",
+  "handle": "no-4-edc-krem-kolonya-400-ml",
+  "descriptionHtml": "<p><strong>KREM KOLONYA NO.4</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLER</p>\n<p>Tıraştan sonra cilde Barber Krem Kolonya sürülür. Pürüzsüz formülasyonumuz, kesiklerden kaynaklanan enfeksiyonu önlemek ve cilt tahrişini azaltmak için antiseptik içerir.</p>\n<p>Barber Krem Kolonyası, farklı tercihlere hitap eden çeşitleri ile cildin bakıma ihtiyacı olduğunda yanınızda. Bulunduğu ortama mükemmel bir koku vermenin yanı sıra cilde tam bir ferahlık sağlar.</p>\n<p> </p>\n<p><strong>NASIL KULLANILIR </strong></p>\n<p>Barber Cream Cologne, tıraştan sonra cildi mükemmel bir şekilde yatıştırır. Yüzü su ile temizledikten sonra elinize Barber krem kolonyasını dökün. Son olarak cildinize nazikçe masaj yapın.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Eşsiz ve aynı zamanda çekici.</p>\n<p>Sakinleştirici aromatik notalar ve bergamot, mandalina, greyfurt ve lavanta gibi narenciye notalarının yarattığı bir enerji patlamasıyla açılır. Baharatlı notalar, kokunun kalbine sıcaklık verir. Alt notalarda kehribar, tonka fasulyesi ve vanilya bu sıcaklığı destekleyen bir kompozisyon oluşturuyor.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Krem Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840206401761",
+      "title": "Default Title",
+      "sku": "BCC-400-4",
+      "price": 499.0,
+      "compareAtPrice": 312.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488801427681",
+      "src": "/catalog/marmara/no-4-edc-krem-kolonya-400-ml__42488801427681.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/4_52975a80-c3f2-49ee-8134-0266c7c082a4.jpg?v=1719131107",
+      "alt": "No.4 EDC Krem Kolonya 400 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488801427681",
+    "src": "/catalog/marmara/no-4-edc-krem-kolonya-400-ml__42488801427681.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/4_52975a80-c3f2-49ee-8134-0266c7c082a4.jpg?v=1719131107",
+    "alt": "No.4 EDC Krem Kolonya 400 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 499.0,
+  "compareAtPrice": 312.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:11:21+03:00",
+  "createdAt": "2024-01-11T20:11:34+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

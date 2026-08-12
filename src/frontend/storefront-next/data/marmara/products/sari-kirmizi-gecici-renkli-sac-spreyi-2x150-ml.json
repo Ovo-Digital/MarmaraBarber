@@ -1,0 +1,65 @@
+{
+  "id": "8213132411105",
+  "title": "Sarı Kırmızı Geçici Renkli Saç Spreyi 2x150 ML",
+  "handle": "sari-kirmizi-gecici-renkli-sac-spreyi-2x150-ml",
+  "descriptionHtml": "<p>Sarı Kırmızı Geçici Renkli Saç Spreyi 2x150 ML</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Boyası",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924851388641",
+      "title": "Default Title",
+      "sku": "1905300520231",
+      "price": 299.0,
+      "compareAtPrice": 299.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825456685281",
+      "src": "/catalog/marmara/sari-kirmizi-gecici-renkli-sac-spreyi-2x150-ml__41825456685281.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/sari-kirmizi-gecici-renkli-sac-spreyi--4c-8b5_e2d86f4d-ab33-47e9-9fff-4bb1fe38e59c.jpg?v=1713107429",
+      "alt": "Sarı Kırmızı Geçici Renkli Saç Spreyi 2x150 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825456718049",
+      "src": "/catalog/marmara/sari-kirmizi-gecici-renkli-sac-spreyi-2x150-ml__41825456718049.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/sari-kirmizi-gecici-renkli-sac-spreyi--1-a25a_f16db308-ec18-4241-87f6-38483c69853e.jpg?v=1713107429",
+      "alt": "Sarı Kırmızı Geçici Renkli Saç Spreyi 2x150 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825456685281",
+    "src": "/catalog/marmara/sari-kirmizi-gecici-renkli-sac-spreyi-2x150-ml__41825456685281.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/sari-kirmizi-gecici-renkli-sac-spreyi--4c-8b5_e2d86f4d-ab33-47e9-9fff-4bb1fe38e59c.jpg?v=1713107429",
+    "alt": "Sarı Kırmızı Geçici Renkli Saç Spreyi 2x150 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 299.0,
+  "compareAtPrice": 299.0,
+  "available": false,
+  "publishedAt": "2024-01-11T20:31:03+03:00",
+  "createdAt": "2024-01-11T20:31:09+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "8213133000929",
+  "title": "Co Box - MEGASARAY",
+  "handle": "co-box-megasaray",
+  "descriptionHtml": "",
+  "vendor": "Barber Marmara",
+  "productType": "Apron",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924851945697",
+      "title": "Default Title",
+      "sku": "cobox-megasaray",
+      "price": 749.0,
+      "compareAtPrice": 749.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825458159841",
+      "src": "/catalog/marmara/co-box-megasaray__41825458159841.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/co-box-megasaray-4c77-9_ca255a13-1b11-425e-8675-13ef6b915520.jpg?v=1713107448",
+      "alt": "Co Box - MEGASARAY",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "41825458159841",
+    "src": "/catalog/marmara/co-box-megasaray__41825458159841.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/co-box-megasaray-4c77-9_ca255a13-1b11-425e-8675-13ef6b915520.jpg?v=1713107448",
+    "alt": "Co Box - MEGASARAY",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 749.0,
+  "compareAtPrice": 749.0,
+  "available": false,
+  "publishedAt": "2024-01-11T20:31:24+03:00",
+  "createdAt": "2024-01-11T20:31:27+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

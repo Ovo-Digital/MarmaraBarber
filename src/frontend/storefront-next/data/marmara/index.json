@@ -1,0 +1,2255 @@
+{
+  "source": "https://marmarabarber.com",
+  "scrapedAt": "2026-08-01T12:09:32.014586+00:00",
+  "stats": {
+    "products": 199,
+    "collections": 32,
+    "imagesLocal": 328,
+    "imagesTotal": 328,
+    "availableProducts": 159,
+    "productTypes": {
+      "Sprey Kolonya": 37,
+      "Dökme Kolonya": 41,
+      "(boş)": 4,
+      "Fön Suyu": 5,
+      "Sakal Bakım": 1,
+      "Sakal Şampuanı": 1,
+      "Sakal Şekillendirici": 1,
+      "Sakal Yağı": 2,
+      "Saç Şekillendirici": 20,
+      "Cilt Bakımı": 1,
+      "Paketler": 4,
+      "Aksesuar": 1,
+      "Apron": 4,
+      "Boyun Bandı": 2,
+      "Saç Boyası": 11,
+      "Tıraş Jeli": 13,
+      "Şampuan": 2,
+      "Saç Kremi": 1,
+      "Pompa": 1,
+      "Penuar": 11,
+      "Parfüm": 20,
+      "Krem Kolonya": 4,
+      "Fırça": 11,
+      "Ürünler > Aksesuar > Boyun Bandı": 1
+    }
+  },
+  "products": [
+    {
+      "handle": "marmara-150-ml-amber-kolonya",
+      "title": "Marmara 150 ml AMBER KOLONYA",
+      "productType": "Sprey Kolonya",
+      "price": 90.0,
+      "compareAtPrice": null,
+      "available": true,
+      "image": "/catalog/marmara/marmara-150-ml-amber-kolonya__45059467018465.jpg",
+      "tags": []
+    },
+    {
+      "handle": "marmara-yesil-cay-150-ml-sprey-yesil-cay-kolonyasi",
+      "title": "Marmara  150 ml sprey YEŞİL ÇAY KOLONYA",
+      "productType": "Sprey Kolonya",
+      "price": 90.0,
+      "compareAtPrice": 90.0,
+      "available": true,
+      "image": "/catalog/marmara/marmara-yesil-cay-150-ml-sprey-yesil-cay-kolonyasi__45059441950945.jpg",
+      "tags": []
+    },
+    {
+      "handle": "marmara-150-ml-okyanus-kolonyasi",
+      "title": "Marmara 150 ml OKYANUS KOLONYA",
+      "productType": "Sprey Kolonya",
+      "price": 90.0,
+      "compareAtPrice": null,
+      "available": true,
+      "image": "/catalog/marmara/marmara-150-ml-okyanus-kolonyasi__45059428221153.jpg",
+      "tags": []
+    },
+    {
+      "handle": "marmara-150-ml-kiraz-cicegi-kolonyasi",
+      "title": "Marmara 150 ml KİRAZ ÇİÇEĞİ KOLONYA",
+      "productType": "Sprey Kolonya",
+      "price": 90.0,
+      "compareAtPrice": null,
+      "available": true,
+      "image": "/catalog/marmara/marmara-150-ml-kiraz-cicegi-kolonyasi__45059403219169.jpg",
+      "tags": []
+    },
+    {
+      "handle": "marmara-150-ml-limon-sprey-kolonya",
+      "title": "Marmara 150 ml LİMON KOLONYA",
+      "productType": "Sprey Kolonya",
+      "price": 90.0,
+      "compareAtPrice": null,
+      "available": true,
+      "image": "/catalog/marmara/marmara-150-ml-limon-sprey-kolonya__45059383165153.jpg",
+      "tags": []
+    },
+    {
+      "handle": "marmara-klasik-limon-kolonyasi-80-derece-pompali-pet-1-lt",
+      "title": "Marmara Klasik Limon Kolonyası 80 Derece Pompalı Pet 1 LT",
+      "productType": "Dökme Kolonya",
+      "price": 269.0,
+      "compareAtPrice": 269.0,
+      "available": false,
+      "image": "/catalog/marmara/marmara-klasik-limon-kolonyasi-80-derece-pompali-pet-1-lt__45059338436833.webp",
+      "tags": []
+    },
+    {
+      "handle": "marmara-kolonya-pet-pompali-1-lt-kiraz-cicegi",
+      "title": "Marmara Kolonya Pet Pompalı 1 Lt Kiraz Çiçeği",
+      "productType": "Dökme Kolonya",
+      "price": 269.0,
+      "compareAtPrice": 269.0,
+      "available": false,
+      "image": "/catalog/marmara/marmara-kolonya-pet-pompali-1-lt-kiraz-cicegi__45059332931809.webp",
+      "tags": []
+    },
+    {
+      "handle": "marmara-kolonya-pompali-pet-1-lt-okyanus",
+      "title": "Marmara Kolonya Pompalı Pet 1 Lt Okyanus",
+      "productType": "Dökme Kolonya",
+      "price": 269.0,
+      "compareAtPrice": 269.0,
+      "available": true,
+      "image": "/catalog/marmara/marmara-kolonya-pompali-pet-1-lt-okyanus__45059312517345.webp",
+      "tags": []
+    },
+    {
+      "handle": "jrl-2020t-g-freshfade-2020t-trimmer-gold",
+      "title": "JRL-2020T-G FreshFade 2020T Trimmer Gold",
+      "productType": "",
+      "price": 10000.0,
+      "compareAtPrice": 8500.0,
+      "available": true,
+      "image": "/catalog/marmara/jrl-2020t-g-freshfade-2020t-trimmer-gold__44329801941217.jpg",
+      "tags": []
+    },
+    {
+      "handle": "jrl-2020c-g-freshfade-2020c-clipper-gold",
+      "title": "JRL-2020C-G FreshFade 2020C Clipper Gold",
+      "productType": "",
+      "price": 12000.0,
+      "compareAtPrice": 10500.0,
+      "available": false,
+      "image": "/catalog/marmara/jrl-2020c-g-freshfade-2020c-clipper-gold__44329792274657.jpg",
+      "tags": []
+    },
+    {
+      "handle": "nakliye-bedeli",
+      "title": "nakliye bedeli",
+      "productType": "",
+      "price": 2500.0,
+      "compareAtPrice": null,
+      "available": true,
+      "image": null,
+      "tags": []
+    },
+    {
+      "handle": "no-1-keratin-cift-fazli-fon-suyu-400-ml",
+      "title": "No.1 Keratin Çift Fazlı Fön Suyu 400 ml",
+      "productType": "Fön Suyu",
+      "price": 450.0,
+      "compareAtPrice": 450.0,
+      "available": true,
+      "image": "/catalog/marmara/no-1-keratin-cift-fazli-fon-suyu-400-ml__43750663815393.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "sakal-bakim-seti-tutun-ve-vanilyali",
+      "title": "Sakal Bakım Seti Tütün ve Vanilyalı",
+      "productType": "Sakal Bakım",
+      "price": 799.0,
+      "compareAtPrice": 564.0,
+      "available": true,
+      "image": "/catalog/marmara/sakal-bakim-seti-tutun-ve-vanilyali__43315182567649.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "sakal-bakim-sampuani-tutun-ve-vanilyali-100-ml",
+      "title": "Sakal Bakım Şampuanı Tütün ve Vanilyalı 100 ML",
+      "productType": "Sakal Şampuanı",
+      "price": 299.0,
+      "compareAtPrice": 144.0,
+      "available": true,
+      "image": "/catalog/marmara/sakal-bakim-sampuani-tutun-ve-vanilyali-100-ml__43315180798177.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "sakal-sekillendirici-wax-tutun-ve-vanilyali-50-ml",
+      "title": "Sakal Şekillendirici Wax Tütün ve Vanilyalı 50 ML",
+      "productType": "Sakal Şekillendirici",
+      "price": 449.0,
+      "compareAtPrice": 265.0,
+      "available": true,
+      "image": "/catalog/marmara/sakal-sekillendirici-wax-tutun-ve-vanilyali-50-ml__43218716131553.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "sakal-bakim-yagi-tutun-ve-vanilyali-50-ml",
+      "title": "Sakal Bakım Yağı Tütün ve Vanilyalı 50 ML",
+      "productType": "Sakal Yağı",
+      "price": 235.0,
+      "compareAtPrice": 235.0,
+      "available": true,
+      "image": "/catalog/marmara/sakal-bakim-yagi-tutun-ve-vanilyali-50-ml__43218715115745.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "caramel-wax-150-ml",
+      "title": "Caramel Wax 150 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 270.0,
+      "compareAtPrice": 270.0,
+      "available": true,
+      "image": "/catalog/marmara/caramel-wax-150-ml__43143035420897.png",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "kakao-yagi-35-gr",
+      "title": "Kakao Yağı 35 gr",
+      "productType": "Cilt Bakımı",
+      "price": 105.96,
+      "compareAtPrice": 105.96,
+      "available": false,
+      "image": "/catalog/marmara/kakao-yagi-35-gr__42922755490017.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "partner-deneme-2",
+      "title": "Partner Deneme",
+      "productType": "Paketler",
+      "price": 0.0,
+      "compareAtPrice": null,
+      "available": true,
+      "image": null,
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "sirene-co-box",
+      "title": "Sirene Co-Box",
+      "productType": "",
+      "price": 575.0,
+      "compareAtPrice": null,
+      "available": false,
+      "image": "/catalog/marmara/sirene-co-box__42342158205153.png",
+      "tags": []
+    },
+    {
+      "handle": "fade-firca-l",
+      "title": "Fade Fırça L",
+      "productType": "Aksesuar",
+      "price": 214.8,
+      "compareAtPrice": 214.8,
+      "available": true,
+      "image": "/catalog/marmara/fade-firca-l__41825461371105.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "pusat-siyah-beber-onlugu",
+      "title": "Pusat Siyah Beber Önlüğü",
+      "productType": "Apron",
+      "price": 1590.0,
+      "compareAtPrice": 1590.0,
+      "available": false,
+      "image": "/catalog/marmara/pusat-siyah-beber-onlugu__41825461076193.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "beyaz-boyun-bandi-1",
+      "title": "Beyaz Boyun Bandı",
+      "productType": "Boyun Bandı",
+      "price": 267.0,
+      "compareAtPrice": 267.0,
+      "available": true,
+      "image": "/catalog/marmara/beyaz-boyun-bandi-1__41743325954273.png",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "marmara-barber-kolonya-no-6-400-ml",
+      "title": "Marmara Barber Kolonya No 6 400 ML",
+      "productType": "Dökme Kolonya",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "image": "/catalog/marmara/marmara-barber-kolonya-no-6-400-ml__41825460256993.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "marmara-barber-kolonya-no-4-400-ml",
+      "title": "Marmara Barber Kolonya No 4 400 ML",
+      "productType": "Dökme Kolonya",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "image": "/catalog/marmara/marmara-barber-kolonya-no-4-400-ml__41825459994849.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "marmara-barber-kolonya-no-5-400-ml",
+      "title": "Marmara Barber Kolonya No 5 400 ML",
+      "productType": "Dökme Kolonya",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "image": "/catalog/marmara/marmara-barber-kolonya-no-5-400-ml__41825459339489.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "marmara-barber-kolonya-no-7-400-ml",
+      "title": "Marmara Barber Kolonya No 7 400 ML",
+      "productType": "Dökme Kolonya",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "image": "/catalog/marmara/marmara-barber-kolonya-no-7-400-ml__41825459077345.jpg",
+      "tags": [
+        "pixa"
+      ]
+    },
+    {
+      "handle": "overdose-paket",
+      "title": "Overdose Paket",
+      "productType": "Paketler",
+      "price": 7699.0,
+      "compareAtPrice": 7699.0,
+      "available": false,
+      "image": "/catalog/marmara/overdose-paket__42472428306657.png",
+      "tags": []
+    },
+    {
+      "handle": "partner-paket",
+      "title": "Partner Paket",
+      "productType": "Paketler",
+      "price": 14499.0,
+      "compareAtPrice": 20000.0,
+      "available": false,
+      "image": "/catalog/marmara/partner-paket__42484385743073.png",
+      "tags": []
+    },
+    {
+      "handle": "co-box-megasaray",
+      "title": "Co Box - MEGASARAY",
+      "productType": "Apron",
+      "price": 749.0,
+      "compareAtPrice": 749.0,
+      "available": false,
+      "image": "/catalog/marmara/co-box-megasaray__41825458159841.jpg",
+      "tags": []
+    },
+    {
+      "handle": "co-box-megasaray2",
+      "title": "Co Box - MEGASARAY2",
+      "productType": "Apron",
+      "price": 749.0,
+      "compareAtPrice": 749.0,
+      "available": false,
+      "image": "/catalog/marmara/co-box-megasaray2__41825457963233.jpg",
+      "tags": []
+    },
+    {
+      "handle": "diamond-edc-limited-edition-pirlanta-cam-kolonya-500-ml",
+      "title": "Diamond EDC Limited Edition Pırlanta Cam Kolonya 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 2999.0,
+      "compareAtPrice": 2999.0,
+      "available": true,
+      "image": "/catalog/marmara/diamond-edc-limited-edition-pirlanta-cam-kolonya-500-ml__41825457668321.jpg",
+      "tags": []
+    },
+    {
+      "handle": "sari-kirmizi-gecici-renkli-sac-spreyi-2x150-ml",
+      "title": "Sarı Kırmızı Geçici Renkli Saç Spreyi 2x150 ML",
+      "productType": "Saç Boyası",
+      "price": 299.0,
+      "compareAtPrice": 299.0,
+      "available": false,
+      "image": "/catalog/marmara/sari-kirmizi-gecici-renkli-sac-spreyi-2x150-ml__41825456685281.jpg",
+      "tags": []
+    },
+    {
+      "handle": "carat-gold-edc-limited-edition-kolonya-500-ml",
+      "title": "Carat Gold EDC Limited Edition Kolonya 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 1490.0,
+      "compareAtPrice": 510.0,
+      "available": true,
+      "image": "/catalog/marmara/carat-gold-edc-limited-edition-kolonya-500-ml__41825456390369.jpg",
+      "tags": []
+    },
+    {
+      "handle": "klasik-6li-mix-set-edc-kolonya-50-ml",
+      "title": "Klasik 6'lı Mix Set EDC Kolonya 50 ml",
+      "productType": "Dökme Kolonya",
+      "price": 230.0,
+      "compareAtPrice": 230.0,
+      "available": false,
+      "image": "/catalog/marmara/klasik-6li-mix-set-edc-kolonya-50-ml__41825455407329.jpg",
+      "tags": []
+    },
+    {
+      "handle": "hangover-paket",
+      "title": "Hangover Paket",
+      "productType": "Paketler",
+      "price": 2799.0,
+      "compareAtPrice": 2799.0,
+      "available": false,
+      "image": "/catalog/marmara/hangover-paket__42472448327905.png",
+      "tags": []
+    },
+    {
+      "handle": "no-3-kolonya-pet-400-ml",
+      "title": "No.3 Kolonya Pet 400 ml",
+      "productType": "Dökme Kolonya",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "image": "/catalog/marmara/no-3-kolonya-pet-400-ml__41825453998305.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-2-kolonya-pet-400-ml",
+      "title": "No.2 Kolonya Pet 400 ml",
+      "productType": "Dökme Kolonya",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "image": "/catalog/marmara/no-2-kolonya-pet-400-ml__41825453375713.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-1-kolonya-pet-400-ml",
+      "title": "No.1 Kolonya Pet 400 ml",
+      "productType": "Dökme Kolonya",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "image": "/catalog/marmara/no-1-kolonya-pet-400-ml__41825452490977.jpg",
+      "tags": []
+    },
+    {
+      "handle": "premium-limon-kolonyasi-5-lt",
+      "title": "Premium Limon Kolonyası 5 LT",
+      "productType": "Dökme Kolonya",
+      "price": 1290.0,
+      "compareAtPrice": 942.0,
+      "available": false,
+      "image": "/catalog/marmara/premium-limon-kolonyasi-5-lt__41825452032225.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-79-pompali-tiras-jeli-500-ml",
+      "title": "No.79 Pompalı Tıraş Jeli 500 ML",
+      "productType": "Tıraş Jeli",
+      "price": 499.0,
+      "compareAtPrice": 279.6,
+      "available": true,
+      "image": "/catalog/marmara/no-79-pompali-tiras-jeli-500-ml__42488927486177.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-78-pompali-tiras-jeli-500-ml",
+      "title": "No.78 Pompalı Tıraş Jeli 500 ML",
+      "productType": "Tıraş Jeli",
+      "price": 499.0,
+      "compareAtPrice": 279.6,
+      "available": true,
+      "image": "/catalog/marmara/no-78-pompali-tiras-jeli-500-ml__42488925290721.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-77-pompali-tiras-jeli-500-ml",
+      "title": "No.77 Pompalı Tıraş Jeli 500 ML",
+      "productType": "Tıraş Jeli",
+      "price": 499.0,
+      "compareAtPrice": 279.6,
+      "available": true,
+      "image": "/catalog/marmara/no-77-pompali-tiras-jeli-500-ml__42488922603745.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-76-pompali-tiras-jeli-500-ml",
+      "title": "No.76 Pompalı Tıraş Jeli 500 ML",
+      "productType": "Tıraş Jeli",
+      "price": 499.0,
+      "compareAtPrice": 279.6,
+      "available": true,
+      "image": "/catalog/marmara/no-76-pompali-tiras-jeli-500-ml__42488919064801.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-4-tiras-jeli-250-ml",
+      "title": "No.4 Tıraş Jeli 250 ML",
+      "productType": "Tıraş Jeli",
+      "price": 399.0,
+      "compareAtPrice": 250.8,
+      "available": true,
+      "image": "/catalog/marmara/no-4-tiras-jeli-250-ml__42488915820769.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-3-tiras-jeli-250-ml",
+      "title": "No.3 Tıraş Jeli 250 ML",
+      "productType": "Tıraş Jeli",
+      "price": 399.0,
+      "compareAtPrice": 250.8,
+      "available": true,
+      "image": "/catalog/marmara/no-3-tiras-jeli-250-ml__42488914510049.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-2-tiras-jeli-250-ml",
+      "title": "No.2 Tıraş Jeli 250 ML",
+      "productType": "Tıraş Jeli",
+      "price": 399.0,
+      "compareAtPrice": 250.8,
+      "available": true,
+      "image": "/catalog/marmara/no-2-tiras-jeli-250-ml__42488917065953.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-1-tiras-jeli-250-ml",
+      "title": "No.1 Tıraş Jeli 250 ML",
+      "productType": "Tıraş Jeli",
+      "price": 399.0,
+      "compareAtPrice": 250.8,
+      "available": true,
+      "image": "/catalog/marmara/no-1-tiras-jeli-250-ml__42488911167713.jpg",
+      "tags": []
+    },
+    {
+      "handle": "silver-pompali-tiras-jeli-1000-ml",
+      "title": "Silver Pompalı Tıraş Jeli 1000 ML",
+      "productType": "Tıraş Jeli",
+      "price": 267.14,
+      "compareAtPrice": 267.14,
+      "available": true,
+      "image": "/catalog/marmara/silver-pompali-tiras-jeli-1000-ml__42488905531617.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-79-pompali-tiras-jeli-1000-ml",
+      "title": "No.79 Pompalı Tıraş Jeli 1000 ML",
+      "productType": "Tıraş Jeli",
+      "price": 330.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "image": "/catalog/marmara/no-79-pompali-tiras-jeli-1000-ml__42488928272609.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-78-pompali-tiras-jeli-1000-ml",
+      "title": "No.78 Pompalı Tıraş Jeli 1000 ML",
+      "productType": "Tıraş Jeli",
+      "price": 330.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "image": "/catalog/marmara/no-78-pompali-tiras-jeli-1000-ml__42488923488481.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-77-pompali-tiras-jeli-1000-ml",
+      "title": "No.77 Pompalı Tıraş Jeli 1000 ML",
+      "productType": "Tıraş Jeli",
+      "price": 330.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "image": "/catalog/marmara/no-77-pompali-tiras-jeli-1000-ml__42488920932577.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-76-pompali-tiras-jeli-1000-ml",
+      "title": "No.76 Pompalı Tıraş Jeli 1000 ML",
+      "productType": "Tıraş Jeli",
+      "price": 330.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "image": "/catalog/marmara/no-76-pompali-tiras-jeli-1000-ml__42488917983457.jpg",
+      "tags": []
+    },
+    {
+      "handle": "sakal-bakim-yagi-sandal-agaci-guclendirici-onarici-30-ml",
+      "title": "Sakal Bakım Yağı, Sandal Ağacı, Güçlendirici, Onarıcı, 30 ML",
+      "productType": "Sakal Yağı",
+      "price": 499.0,
+      "compareAtPrice": 312.0,
+      "available": true,
+      "image": "/catalog/marmara/sakal-bakim-yagi-sandal-agaci-guclendirici-onarici-30-ml__42488823480545.jpg",
+      "tags": []
+    },
+    {
+      "handle": "spider-wax-150-ml",
+      "title": "Spıder Wax 150 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 270.0,
+      "compareAtPrice": 270.0,
+      "available": true,
+      "image": "/catalog/marmara/spider-wax-150-ml__42488727666913.jpg",
+      "tags": []
+    },
+    {
+      "handle": "matte-wax-150-ml",
+      "title": "Matte Wax 150 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 499.0,
+      "compareAtPrice": 270.0,
+      "available": true,
+      "image": "/catalog/marmara/matte-wax-150-ml__42473997009121.jpg",
+      "tags": []
+    },
+    {
+      "handle": "cream-wax-150-ml",
+      "title": "Cream Wax 150 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 270.0,
+      "compareAtPrice": 270.0,
+      "available": true,
+      "image": "/catalog/marmara/cream-wax-150-ml__42473976234209.jpg",
+      "tags": []
+    },
+    {
+      "handle": "space-wax-100-ml",
+      "title": "Space Wax 100 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 399.0,
+      "compareAtPrice": 399.0,
+      "available": true,
+      "image": "/catalog/marmara/space-wax-100-ml__42488734580961.jpg",
+      "tags": []
+    },
+    {
+      "handle": "pomade-wax-100-ml",
+      "title": "Pomade Wax 100 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 360.0,
+      "compareAtPrice": 360.0,
+      "available": false,
+      "image": "/catalog/marmara/pomade-wax-100-ml__42474036003041.jpg",
+      "tags": []
+    },
+    {
+      "handle": "paste-wax-100-ml",
+      "title": "Paste Wax 100 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 360.0,
+      "compareAtPrice": 360.0,
+      "available": true,
+      "image": "/catalog/marmara/paste-wax-100-ml__42474002579681.jpg",
+      "tags": []
+    },
+    {
+      "handle": "clay-wax-100-ml",
+      "title": "Clay Wax 100 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 360.0,
+      "compareAtPrice": 360.0,
+      "available": false,
+      "image": "/catalog/marmara/clay-wax-100-ml__42473990357217.jpg",
+      "tags": []
+    },
+    {
+      "handle": "barbertoz-wax-20-gr",
+      "title": "Powder Toz Wax 20 Gr",
+      "productType": "Saç Şekillendirici",
+      "price": 399.0,
+      "compareAtPrice": 270.0,
+      "available": true,
+      "image": "/catalog/marmara/barbertoz-wax-20-gr__42488740118753.jpg",
+      "tags": []
+    },
+    {
+      "handle": "monster-sac-spreyi-750-ml",
+      "title": "Monster Saç Spreyi 750 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 649.0,
+      "compareAtPrice": 420.0,
+      "available": true,
+      "image": "/catalog/marmara/monster-sac-spreyi-750-ml__42488879513825.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-16-sac-spreyi-400-ml",
+      "title": "No.16 Saç Spreyi 400 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 599.0,
+      "compareAtPrice": 340.0,
+      "available": true,
+      "image": "/catalog/marmara/no-16-sac-spreyi-400-ml__42488877777121.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-34-sac-jolesi-500-ml",
+      "title": "No.34 Saç Jölesi 500 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 449.0,
+      "compareAtPrice": 312.0,
+      "available": true,
+      "image": "/catalog/marmara/no-34-sac-jolesi-500-ml__42488863359201.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-33-sac-jolesi-500-ml",
+      "title": "No.33 Saç Jölesi 500 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 449.0,
+      "compareAtPrice": 312.0,
+      "available": true,
+      "image": "/catalog/marmara/no-33-sac-jolesi-500-ml__42488867651809.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-34-sac-jolesi-250-ml",
+      "title": "No.34 Saç Jölesi 250 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 399.0,
+      "compareAtPrice": 211.2,
+      "available": true,
+      "image": "/catalog/marmara/no-34-sac-jolesi-250-ml__42488865816801.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-33-sac-jolesi-250-ml",
+      "title": "No.33 Saç Jölesi 250 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 399.0,
+      "compareAtPrice": 211.2,
+      "available": true,
+      "image": "/catalog/marmara/no-33-sac-jolesi-250-ml__42488869880033.jpg",
+      "tags": []
+    },
+    {
+      "handle": "deniz-tuzlu-poseidon-sprey-200-ml",
+      "title": "Deniz Tuzlu Poseıdon Sprey 200 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 449.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "image": "/catalog/marmara/deniz-tuzlu-poseidon-sprey-200-ml__42488874434785.jpg",
+      "tags": []
+    },
+    {
+      "handle": "tropical-aqua-wax-150-ml",
+      "title": "Tropıcal Aqua Wax 150 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 499.0,
+      "compareAtPrice": 250.0,
+      "available": true,
+      "image": "/catalog/marmara/tropical-aqua-wax-150-ml__42488841142497.jpg",
+      "tags": []
+    },
+    {
+      "handle": "tampa-tobacco-aqua-wax-150-ml",
+      "title": "Tampa Tobacco Aqua Wax 150 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 499.0,
+      "compareAtPrice": 250.0,
+      "available": true,
+      "image": "/catalog/marmara/tampa-tobacco-aqua-wax-150-ml__42488731238625.jpg",
+      "tags": []
+    },
+    {
+      "handle": "royal-aqua-wax-150-ml",
+      "title": "Royal Aqua Wax 150 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 499.0,
+      "compareAtPrice": 250.0,
+      "available": true,
+      "image": "/catalog/marmara/royal-aqua-wax-150-ml__42474053075169.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gum-aqua-wax-150-ml",
+      "title": "Gum Aqua Wax 150 ML",
+      "productType": "Saç Şekillendirici",
+      "price": 499.0,
+      "compareAtPrice": 250.0,
+      "available": true,
+      "image": "/catalog/marmara/gum-aqua-wax-150-ml__42473983738081.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gecici-say-boyasi-siyah-125-ml",
+      "title": "Geçici Say Boyası Siyah 125 ML",
+      "productType": "Saç Boyası",
+      "price": 499.0,
+      "compareAtPrice": 310.0,
+      "available": true,
+      "image": "/catalog/marmara/gecici-say-boyasi-siyah-125-ml__42488827478241.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gecici-say-boyasi-koyu-kahverengi-125-ml",
+      "title": "Geçici Say Boyası Koyu Kahverengi 125 ML",
+      "productType": "Saç Boyası",
+      "price": 310.0,
+      "compareAtPrice": 310.0,
+      "available": true,
+      "image": "/catalog/marmara/gecici-say-boyasi-koyu-kahverengi-125-ml__42488829837537.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gecici-renkli-sac-spreyi-yesil-150-ml",
+      "title": "Geçici Renkli Saç Spreyi Yeşil 150 ML",
+      "productType": "Saç Boyası",
+      "price": 349.0,
+      "compareAtPrice": 199.0,
+      "available": true,
+      "image": "/catalog/marmara/gecici-renkli-sac-spreyi-yesil-150-ml__42488888525025.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gecici-renkli-sac-spreyi-pembe-150-ml",
+      "title": "Geçici Renkli Saç Spreyi Pembe 150 ML",
+      "productType": "Saç Boyası",
+      "price": 349.0,
+      "compareAtPrice": 199.0,
+      "available": true,
+      "image": "/catalog/marmara/gecici-renkli-sac-spreyi-pembe-150-ml__42488890097889.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gecici-renkli-sac-spreyi-mor-150-ml",
+      "title": "Geçici Renkli Saç Spreyi Mor 150 ML",
+      "productType": "Saç Boyası",
+      "price": 349.0,
+      "compareAtPrice": 199.0,
+      "available": true,
+      "image": "/catalog/marmara/gecici-renkli-sac-spreyi-mor-150-ml__42488892031201.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gecici-renkli-sac-spreyi-mavi-150-ml",
+      "title": "Geçici Renkli Saç Spreyi Mavi 150 ML",
+      "productType": "Saç Boyası",
+      "price": 349.0,
+      "compareAtPrice": 199.0,
+      "available": true,
+      "image": "/catalog/marmara/gecici-renkli-sac-spreyi-mavi-150-ml__42488901501153.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gecici-renkli-sac-spreyi-kirmizi-150-ml",
+      "title": "Geçici Renkli Saç Spreyi Kırmızı 150 ML",
+      "productType": "Saç Boyası",
+      "price": 349.0,
+      "compareAtPrice": 199.0,
+      "available": true,
+      "image": "/catalog/marmara/gecici-renkli-sac-spreyi-kirmizi-150-ml__42488900124897.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gecici-renkli-sac-spreyi-gumus-150-ml",
+      "title": "Geçici Renkli Saç Spreyi Gümüş 150 ML",
+      "productType": "Saç Boyası",
+      "price": 349.0,
+      "compareAtPrice": 199.0,
+      "available": true,
+      "image": "/catalog/marmara/gecici-renkli-sac-spreyi-gumus-150-ml__42488898322657.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gecici-renkli-sac-spreyi-beyaz-150-ml",
+      "title": "Geçici Renkli Saç Spreyi Beyaz 150 ML",
+      "productType": "Saç Boyası",
+      "price": 349.0,
+      "compareAtPrice": 199.0,
+      "available": false,
+      "image": "/catalog/marmara/gecici-renkli-sac-spreyi-beyaz-150-ml__42488895275233.jpg",
+      "tags": []
+    },
+    {
+      "handle": "gecici-renkli-sac-spreyi-altin-150-ml",
+      "title": "Geçici Renkli Saç Spreyi Altın 150 ML",
+      "productType": "Saç Boyası",
+      "price": 349.0,
+      "compareAtPrice": 199.0,
+      "available": true,
+      "image": "/catalog/marmara/gecici-renkli-sac-spreyi-altin-150-ml__42488893604065.jpg",
+      "tags": []
+    },
+    {
+      "handle": "keratin-sampuan-arindirici-besleyici-pompali-1150-ml",
+      "title": "Keratin Şampuan, Arındırıcı, Besleyici Pompalı, 1150 ML",
+      "productType": "Şampuan",
+      "price": 499.0,
+      "compareAtPrice": 320.0,
+      "available": true,
+      "image": "/catalog/marmara/keratin-sampuan-arindirici-besleyici-pompali-1150-ml__42488813420769.jpg",
+      "tags": []
+    },
+    {
+      "handle": "argan-sampuan-arindirici-besleyici-pompali-1150-ml",
+      "title": "Argan Şampuan, Arındırıcı, Besleyici, Pompalı, 1150 ML",
+      "productType": "Şampuan",
+      "price": 499.0,
+      "compareAtPrice": 320.0,
+      "available": true,
+      "image": "/catalog/marmara/argan-sampuan-arindirici-besleyici-pompali-1150-ml__42488818729185.jpg",
+      "tags": []
+    },
+    {
+      "handle": "keratin-sac-bakim-kremi-arindirici-besleyici-nemlendirici-pompali-1150-ml",
+      "title": "Keratin Saç Bakım Kremi, Arındırıcı, Besleyici, Nemlendirici, Pompalı, 1150 ML",
+      "productType": "Saç Kremi",
+      "price": 599.0,
+      "compareAtPrice": 405.6,
+      "available": true,
+      "image": "/catalog/marmara/keratin-sac-bakim-kremi-arindirici-besleyici-nemlendirici-pompali-1150-ml__42488815747297.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-1-keratin-cift-fazli-fon-suyu-500-ml",
+      "title": "No.1 Keratin Çift Fazlı Fön Suyu 500 ml",
+      "productType": "Fön Suyu",
+      "price": 600.0,
+      "compareAtPrice": 600.0,
+      "available": true,
+      "image": "/catalog/marmara/no-1-keratin-cift-fazli-fon-suyu-500-ml__42488858444001.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-2-kolajen-cift-fazli-fon-suyu-500-ml",
+      "title": "No.2 Kolajen Çift Fazlı Fön Suyu 500 ml",
+      "productType": "Fön Suyu",
+      "price": 600.0,
+      "compareAtPrice": 600.0,
+      "available": true,
+      "image": "/catalog/marmara/no-2-kolajen-cift-fazli-fon-suyu-500-ml__42488857034977.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-4-biotin-cift-fazli-fon-suyu-500-ml",
+      "title": "No.4 Biotin Çift Fazlı Fön Suyu 500 ml",
+      "productType": "Fön Suyu",
+      "price": 600.0,
+      "compareAtPrice": 600.0,
+      "available": true,
+      "image": "/catalog/marmara/no-4-biotin-cift-fazli-fon-suyu-500-ml__42488852480225.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-3-argan-cift-fazli-fon-suyu-500-ml",
+      "title": "No.3 Argan Çift Fazlı Fön Suyu 500 ml",
+      "productType": "Fön Suyu",
+      "price": 600.0,
+      "compareAtPrice": 600.0,
+      "available": true,
+      "image": "/catalog/marmara/no-3-argan-cift-fazli-fon-suyu-500-ml__42488854085857.jpg",
+      "tags": []
+    },
+    {
+      "handle": "atomizer-pompali-kolonya-500-ml",
+      "title": "Atomizer Pompalı Kolonya 500 ML",
+      "productType": "Pompa",
+      "price": 599.0,
+      "compareAtPrice": 402.0,
+      "available": true,
+      "image": "/catalog/marmara/atomizer-pompali-kolonya-500-ml__41825411858657.jpg",
+      "tags": []
+    },
+    {
+      "handle": "siyah-penuar-takim-pro",
+      "title": "Siyah Penuar Takım Pro",
+      "productType": "Penuar",
+      "price": 849.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "image": "/catalog/marmara/siyah-penuar-takim-pro__41825411301601.jpg",
+      "tags": []
+    },
+    {
+      "handle": "beyaz-penuar-takim-pro",
+      "title": "Beyaz Penuar Takım Pro",
+      "productType": "Penuar",
+      "price": 632.4,
+      "compareAtPrice": 632.4,
+      "available": true,
+      "image": "/catalog/marmara/beyaz-penuar-takim-pro__41825411104993.jpg",
+      "tags": []
+    },
+    {
+      "handle": "super-sonic-purple-penuar",
+      "title": "Super Sonıc Purple Penuar",
+      "productType": "Penuar",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "image": "/catalog/marmara/super-sonic-purple-penuar__41825410482401.jpg",
+      "tags": []
+    },
+    {
+      "handle": "sari-simsek-penuar",
+      "title": "Sarı Şimşek Penuar",
+      "productType": "Penuar",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": true,
+      "image": "/catalog/marmara/sari-simsek-penuar__41825410154721.jpg",
+      "tags": []
+    },
+    {
+      "handle": "pembe-penuar",
+      "title": "Pembe Penuar",
+      "productType": "Penuar",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "image": "/catalog/marmara/pembe-penuar__41825409892577.jpg",
+      "tags": []
+    },
+    {
+      "handle": "kubiks-penuar",
+      "title": "Kubiks Penuar",
+      "productType": "Penuar",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": true,
+      "image": "/catalog/marmara/kubiks-penuar__41825409433825.jpg",
+      "tags": []
+    },
+    {
+      "handle": "hali-desen-turuncu-penuar",
+      "title": "Halı Desen Turuncu Penuar",
+      "productType": "Penuar",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "image": "/catalog/marmara/hali-desen-turuncu-penuar__41825409138913.jpg",
+      "tags": []
+    },
+    {
+      "handle": "hali-desen-mor-penuar",
+      "title": "Halı Desen Mor Penuar",
+      "productType": "Penuar",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "image": "/catalog/marmara/hali-desen-mor-penuar__41825408614625.jpg",
+      "tags": []
+    },
+    {
+      "handle": "hali-desen-mavi-penuar",
+      "title": "Halı Desen Mavi Penuar",
+      "productType": "Penuar",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "image": "/catalog/marmara/hali-desen-mavi-penuar__41825408352481.jpg",
+      "tags": []
+    },
+    {
+      "handle": "hali-desen-klasik-penuar",
+      "title": "Halı Desen Klasik Penuar",
+      "productType": "Penuar",
+      "price": 632.4,
+      "compareAtPrice": 632.4,
+      "available": true,
+      "image": "/catalog/marmara/hali-desen-klasik-penuar__41825407828193.jpg",
+      "tags": []
+    },
+    {
+      "handle": "funky-renkli-penuar",
+      "title": "Funky Renkli Penuar",
+      "productType": "Penuar",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": true,
+      "image": "/catalog/marmara/funky-renkli-penuar__41825407500513.jpg",
+      "tags": []
+    },
+    {
+      "handle": "obsessed-edp-erkek-parfum-50-ml",
+      "title": "Obsessed Edp Erkek Parfüm 50 ML",
+      "productType": "Parfüm",
+      "price": 599.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "image": "/catalog/marmara/obsessed-edp-erkek-parfum-50-ml__42488756633825.jpg",
+      "tags": []
+    },
+    {
+      "handle": "i-wanna-thank-me-edp-erkek-parfum-50-ml",
+      "title": "I Wanna Thank Me Edp Erkek Parfüm 50 ML",
+      "productType": "Parfüm",
+      "price": 395.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "image": "/catalog/marmara/i-wanna-thank-me-edp-erkek-parfum-50-ml__42488750637281.jpg",
+      "tags": []
+    },
+    {
+      "handle": "hangover-edp-erkek-parfum-50-ml",
+      "title": "Hangover Edp Erkek Parfüm 50 ML",
+      "productType": "Parfüm",
+      "price": 599.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "image": "/catalog/marmara/hangover-edp-erkek-parfum-50-ml__42488748671201.jpg",
+      "tags": []
+    },
+    {
+      "handle": "off-the-record-edp-erkek-parfum-100-ml",
+      "title": "Off The Record Edp Erkek Parfüm 100 ML",
+      "productType": "Parfüm",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "image": "/catalog/marmara/off-the-record-edp-erkek-parfum-100-ml__42488785338593.jpg",
+      "tags": []
+    },
+    {
+      "handle": "never-quit-edp-erkek-parfum-100-ml",
+      "title": "Never Quıt Edp Erkek Parfüm 100 ML",
+      "productType": "Parfüm",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "image": "/catalog/marmara/never-quit-edp-erkek-parfum-100-ml__42488779407585.jpg",
+      "tags": []
+    },
+    {
+      "handle": "hangover-edp-erkek-parfum-100-ml",
+      "title": "Hangover Edp Erkek Parfüm 100 ML",
+      "productType": "Parfüm",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "image": "/catalog/marmara/hangover-edp-erkek-parfum-100-ml__42488770167009.jpg",
+      "tags": []
+    },
+    {
+      "handle": "overdose-edp-erkek-parfum-50-ml",
+      "title": "Overdose Edp Erkek Parfüm 50 ML",
+      "productType": "Parfüm",
+      "price": 395.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "image": "/catalog/marmara/overdose-edp-erkek-parfum-50-ml__42488763416801.jpg",
+      "tags": []
+    },
+    {
+      "handle": "offline-edp-erkek-parfum-50-ml",
+      "title": "Offlıne Edp Erkek Parfüm 50 ML",
+      "productType": "Parfüm",
+      "price": 395.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "image": "/catalog/marmara/offline-edp-erkek-parfum-50-ml__42488762400993.jpg",
+      "tags": []
+    },
+    {
+      "handle": "off-the-record-edp-erkek-parfum-50-ml",
+      "title": "Off The Record Edp Erkek Parfüm 50 ML",
+      "productType": "Parfüm",
+      "price": 395.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "image": "/catalog/marmara/off-the-record-edp-erkek-parfum-50-ml__42488759091425.jpg",
+      "tags": []
+    },
+    {
+      "handle": "never-quit-edp-erkek-parfum-50-ml",
+      "title": "Never Quıt Edp Erkek Parfüm 50 ML",
+      "productType": "Parfüm",
+      "price": 395.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "image": "/catalog/marmara/never-quit-edp-erkek-parfum-50-ml__42488754667745.jpg",
+      "tags": []
+    },
+    {
+      "handle": "impossible-edp-erkek-parfum-50-ml",
+      "title": "Impossıble Edp Erkek Parfüm 50 ML",
+      "productType": "Parfüm",
+      "price": 395.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "image": "/catalog/marmara/impossible-edp-erkek-parfum-50-ml__42488753062113.jpg",
+      "tags": []
+    },
+    {
+      "handle": "game-changer-edp-erkek-parfum-50-ml",
+      "title": "Game Changer Edp Erkek Parfüm 50 ML",
+      "productType": "Parfüm",
+      "price": 599.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "image": "/catalog/marmara/game-changer-edp-erkek-parfum-50-ml__42488746967265.jpg",
+      "tags": []
+    },
+    {
+      "handle": "black-out-edp-erkek-parfum-50-ml",
+      "title": "Black Out Edp Erkek Parfüm 50 ML",
+      "productType": "Parfüm",
+      "price": 395.0,
+      "compareAtPrice": 395.0,
+      "available": true,
+      "image": "/catalog/marmara/black-out-edp-erkek-parfum-50-ml__42488744902881.jpg",
+      "tags": []
+    },
+    {
+      "handle": "overdose-edp-erkek-parfum-100-ml",
+      "title": "Overdose Edp Erkek Parfüm 100 ML",
+      "productType": "Parfüm",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "image": "/catalog/marmara/overdose-edp-erkek-parfum-100-ml__42488790417633.jpg",
+      "tags": []
+    },
+    {
+      "handle": "offline-edp-erkek-parfum-100-ml",
+      "title": "Offlıne Edp Erkek Parfüm 100 ML",
+      "productType": "Parfüm",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "image": "/catalog/marmara/offline-edp-erkek-parfum-100-ml__42488787960033.jpg",
+      "tags": []
+    },
+    {
+      "handle": "obsessed-edp-erkek-parfum-100-ml",
+      "title": "Obsessed Edp Erkek Parfüm 100 ML",
+      "productType": "Parfüm",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "image": "/catalog/marmara/obsessed-edp-erkek-parfum-100-ml__42488782160097.jpg",
+      "tags": []
+    },
+    {
+      "handle": "impossible-edp-erkek-parfum-100-ml",
+      "title": "Impossıble Edp Erkek Parfüm 100 ML",
+      "productType": "Parfüm",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "image": "/catalog/marmara/impossible-edp-erkek-parfum-100-ml__42488776622305.jpg",
+      "tags": []
+    },
+    {
+      "handle": "i-wanna-thank-me-edp-erkek-parfum-100-ml",
+      "title": "I Wanna Thank Me Edp Erkek Parfüm 100 ML",
+      "productType": "Parfüm",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "image": "/catalog/marmara/i-wanna-thank-me-edp-erkek-parfum-100-ml__42488774000865.jpg",
+      "tags": []
+    },
+    {
+      "handle": "game-changer-edp-erkek-parfum-100-ml",
+      "title": "Game Changer Edp Erkek Parfüm 100 ML",
+      "productType": "Parfüm",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "image": "/catalog/marmara/game-changer-edp-erkek-parfum-100-ml__42488767742177.jpg",
+      "tags": []
+    },
+    {
+      "handle": "black-out-edp-erkek-parfum-100-ml",
+      "title": "Black Out Edp Erkek Parfüm 100 ML",
+      "productType": "Parfüm",
+      "price": 699.0,
+      "compareAtPrice": 455.0,
+      "available": true,
+      "image": "/catalog/marmara/black-out-edp-erkek-parfum-100-ml__42488766464225.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-4-edc-krem-kolonya-400-ml",
+      "title": "No.4 EDC Krem Kolonya 400 ML",
+      "productType": "Krem Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 312.0,
+      "available": true,
+      "image": "/catalog/marmara/no-4-edc-krem-kolonya-400-ml__42488801427681.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-3-edc-krem-kolonya-400-ml",
+      "title": "No.3 EDC Krem Kolonya 400 ML",
+      "productType": "Krem Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 312.0,
+      "available": true,
+      "image": "/catalog/marmara/no-3-edc-krem-kolonya-400-ml__42488803590369.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-2-edc-krem-kolonya-400-ml",
+      "title": "No.2 EDC Krem Kolonya 400 ML",
+      "productType": "Krem Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 312.0,
+      "available": true,
+      "image": "/catalog/marmara/no-2-edc-krem-kolonya-400-ml__42488806637793.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-1-edc-krem-kolonya-400-ml",
+      "title": "No.1 EDC Krem Kolonya 400 ML",
+      "productType": "Krem Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 312.0,
+      "available": true,
+      "image": "/catalog/marmara/no-1-edc-krem-kolonya-400-ml__42488797397217.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-2-edc-kolonya-50-ml",
+      "title": "No.2 EDC Kolonya 50 ML",
+      "productType": "Dökme Kolonya",
+      "price": 65.0,
+      "compareAtPrice": 65.0,
+      "available": false,
+      "image": "/catalog/marmara/no-2-edc-kolonya-50-ml__41743554085089.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-1-edc-kolonya-50-ml",
+      "title": "No.1 EDC Kolonya 50 ML",
+      "productType": "Dökme Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 65.0,
+      "available": false,
+      "image": "/catalog/marmara/no-1-edc-kolonya-50-ml__41743550677217.jpg",
+      "tags": []
+    },
+    {
+      "handle": "puerto-rico-edc-premium-kolonya-cam-sise-500-ml",
+      "title": "Puerto Rıco EDC Premium Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 999.0,
+      "compareAtPrice": 726.0,
+      "available": true,
+      "image": "/catalog/marmara/puerto-rico-edc-premium-kolonya-cam-sise-500-ml__42488932040929.png",
+      "tags": []
+    },
+    {
+      "handle": "no-99-edc-premium-kolonya-cam-sise-500-ml",
+      "title": "No.99 EDC Premium Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 999.0,
+      "compareAtPrice": 726.0,
+      "available": true,
+      "image": "/catalog/marmara/no-99-edc-premium-kolonya-cam-sise-500-ml__42488932499681.png",
+      "tags": []
+    },
+    {
+      "handle": "no-7-edc-kolonya-cam-sise-500-ml",
+      "title": "No.7 EDC Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 295.0,
+      "available": true,
+      "image": "/catalog/marmara/no-7-edc-kolonya-cam-sise-500-ml__42489036112097.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-6-edc-kolonya-cam-sise-500-ml",
+      "title": "No.6 EDC Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 295.0,
+      "available": true,
+      "image": "/catalog/marmara/no-6-edc-kolonya-cam-sise-500-ml__42489032671457.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-5-edc-kolonya-cam-sise-500-ml",
+      "title": "No.5 EDC Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 295.0,
+      "available": true,
+      "image": "/catalog/marmara/no-5-edc-kolonya-cam-sise-500-ml__42489029853409.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-4-edc-kolonya-cam-sise-500-ml",
+      "title": "No.4 EDC Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 295.0,
+      "available": true,
+      "image": "/catalog/marmara/no-4-edc-kolonya-cam-sise-500-ml__42489026609377.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-3-edc-kolonya-cam-sise-500-ml",
+      "title": "No.3 EDC Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 295.0,
+      "available": true,
+      "image": "/catalog/marmara/no-3-edc-kolonya-cam-sise-500-ml__42489022382305.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-2-edc-kolonya-cam-sise-500-ml",
+      "title": "No.2 EDC Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 295.0,
+      "available": true,
+      "image": "/catalog/marmara/no-2-edc-kolonya-cam-sise-500-ml__42489019924705.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-1-edc-kolonya-cam-sise-500-ml",
+      "title": "No.1 EDC Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 499.0,
+      "compareAtPrice": 295.0,
+      "available": true,
+      "image": "/catalog/marmara/no-1-edc-kolonya-cam-sise-500-ml__42489016844513.jpg",
+      "tags": []
+    },
+    {
+      "handle": "love-memory-edc-premium-kolonya-cam-sise-500-ml",
+      "title": "Love Memory EDC Premium Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 999.0,
+      "compareAtPrice": 726.0,
+      "available": true,
+      "image": "/catalog/marmara/love-memory-edc-premium-kolonya-cam-sise-500-ml__42488933449953.jpg",
+      "tags": []
+    },
+    {
+      "handle": "dragon-edc-premium-kolonya-cam-sise-500-ml",
+      "title": "Dragon EDC Premium Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 999.0,
+      "compareAtPrice": 726.0,
+      "available": true,
+      "image": "/catalog/marmara/dragon-edc-premium-kolonya-cam-sise-500-ml__42488934334689.jpg",
+      "tags": []
+    },
+    {
+      "handle": "colombia-edc-premium-kolonya-cam-sise-500-ml",
+      "title": "Colombia EDC Premium Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 999.0,
+      "compareAtPrice": 726.0,
+      "available": true,
+      "image": "/catalog/marmara/colombia-edc-premium-kolonya-cam-sise-500-ml__42488937251041.jpg",
+      "tags": []
+    },
+    {
+      "handle": "christmas-edc-premium-kolonya-cam-sise-500-ml",
+      "title": "Chrıstmas EDC Premium Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 999.0,
+      "compareAtPrice": 726.0,
+      "available": true,
+      "image": "/catalog/marmara/christmas-edc-premium-kolonya-cam-sise-500-ml__42488956354785.png",
+      "tags": []
+    },
+    {
+      "handle": "amikoo-edc-premium-kolonya-cam-sise-500-ml",
+      "title": "Amıkoo EDC Premium Kolonya Cam Şişe 500 ML",
+      "productType": "Dökme Kolonya",
+      "price": 999.0,
+      "compareAtPrice": 726.0,
+      "available": true,
+      "image": "/catalog/marmara/amikoo-edc-premium-kolonya-cam-sise-500-ml__42488934990049.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-7-edc-sprey-kolonya-50-ml",
+      "title": "No.7 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-7-edc-sprey-kolonya-50-ml__42489065963745.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-6-edc-sprey-kolonya-50-ml",
+      "title": "No.6 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-6-edc-sprey-kolonya-50-ml__42489063866593.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-5-edc-sprey-kolonya-50-ml",
+      "title": "No.5 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-5-edc-sprey-kolonya-50-ml__42489060262113.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-4-edc-sprey-kolonya-50-ml",
+      "title": "No.4 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-4-edc-sprey-kolonya-50-ml__42489058656481.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-4-edc-kolonya-50-ml",
+      "title": "No.4 EDC Kolonya 50 ML",
+      "productType": "Dökme Kolonya",
+      "price": 65.0,
+      "compareAtPrice": 65.0,
+      "available": false,
+      "image": "/catalog/marmara/no-4-edc-kolonya-50-ml__41743485599969.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-3-edc-sprey-kolonya-50-ml",
+      "title": "No.3 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-3-edc-sprey-kolonya-50-ml__42489057050849.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-3-edc-kolonya-50-ml",
+      "title": "No.3 EDC Kolonya 50 ML",
+      "productType": "Dökme Kolonya",
+      "price": 65.0,
+      "compareAtPrice": 65.0,
+      "available": false,
+      "image": "/catalog/marmara/no-3-edc-kolonya-50-ml__41743474589921.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-25-edc-sprey-kolonya-50-ml",
+      "title": "No.25 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-25-edc-sprey-kolonya-50-ml__42488967725281.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-24-edc-sprey-kolonya-50-ml",
+      "title": "No.24 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-24-edc-sprey-kolonya-50-ml__42488967135457.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-23-edc-sprey-kolonya-50-ml",
+      "title": "No.23 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-23-edc-sprey-kolonya-50-ml__42488966086881.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-22-edc-sprey-kolonya-50-ml",
+      "title": "No.22 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-22-edc-sprey-kolonya-50-ml__42488964874465.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-21-edc-sprey-kolonya-50-ml",
+      "title": "No.21 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-21-edc-sprey-kolonya-50-ml__42488964022497.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-2-edc-sprey-kolonya-50-ml",
+      "title": "No.2 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 149.9,
+      "compareAtPrice": 81.4,
+      "available": true,
+      "image": "/catalog/marmara/no-2-edc-sprey-kolonya-50-ml__42489055281377.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-14-edc-kolonya-50-ml",
+      "title": "No.14 EDC Kolonya 50 ML",
+      "productType": "Dökme Kolonya",
+      "price": 65.0,
+      "compareAtPrice": 65.0,
+      "available": false,
+      "image": "/catalog/marmara/no-14-edc-kolonya-50-ml__41743442247905.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-13-edc-kolonya-50-ml",
+      "title": "No.13 EDC Kolonya 50 ML",
+      "productType": "Dökme Kolonya",
+      "price": 65.0,
+      "compareAtPrice": 65.0,
+      "available": false,
+      "image": "/catalog/marmara/no-13-edc-kolonya-50-ml__41743440543969.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-1-edc-sprey-kolonya-50-ml",
+      "title": "No.1 EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 81.4,
+      "compareAtPrice": 81.4,
+      "available": false,
+      "image": "/catalog/marmara/no-1-edc-sprey-kolonya-50-ml__42489052725473.jpg",
+      "tags": []
+    },
+    {
+      "handle": "7-mix-set-edc-sprey-kolonya-50-ml",
+      "title": "7 Mix Set EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 699.0,
+      "compareAtPrice": 328.0,
+      "available": true,
+      "image": "/catalog/marmara/7-mix-set-edc-sprey-kolonya-50-ml__41743433760993.jpg",
+      "tags": []
+    },
+    {
+      "handle": "5-mix-set-edc-sprey-kolonya-50-ml",
+      "title": "5 Mix Set EDC Sprey Kolonya 50 ML",
+      "productType": "Sprey Kolonya",
+      "price": 399.0,
+      "compareAtPrice": 275.0,
+      "available": true,
+      "image": "/catalog/marmara/5-mix-set-edc-sprey-kolonya-50-ml__41743429632225.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-25-edc-sprey-kolonya-400-ml",
+      "title": "No. 25 EDC Sprey Kolonya 400 ML",
+      "productType": "Sprey Kolonya",
+      "price": 369.0,
+      "compareAtPrice": 178.6,
+      "available": true,
+      "image": "/catalog/marmara/no-25-edc-sprey-kolonya-400-ml__42488989679841.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-24-edc-sprey-kolonya-400-ml",
+      "title": "No. 24 EDC Sprey Kolonya 400 ML",
+      "productType": "Sprey Kolonya",
+      "price": 369.0,
+      "compareAtPrice": 178.6,
+      "available": true,
+      "image": "/catalog/marmara/no-24-edc-sprey-kolonya-400-ml__42489000788193.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-23-edc-sprey-kolonya-400-ml",
+      "title": "No. 23 EDC Sprey Kolonya 400 ML",
+      "productType": "Sprey Kolonya",
+      "price": 369.0,
+      "compareAtPrice": 178.6,
+      "available": true,
+      "image": "/catalog/marmara/no-23-edc-sprey-kolonya-400-ml__42489003147489.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-22-edc-sprey-kolonya-400-ml",
+      "title": "No. 22 EDC Sprey Kolonya 400 ML",
+      "productType": "Sprey Kolonya",
+      "price": 369.0,
+      "compareAtPrice": 178.6,
+      "available": true,
+      "image": "/catalog/marmara/no-22-edc-sprey-kolonya-400-ml__42489004359905.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-21-edc-sprey-kolonya-400-ml",
+      "title": "No. 21 EDC Sprey Kolonya 400 ML",
+      "productType": "Sprey Kolonya",
+      "price": 369.0,
+      "compareAtPrice": 178.6,
+      "available": true,
+      "image": "/catalog/marmara/no-21-edc-sprey-kolonya-400-ml__42489007079649.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-7-edc-sprey-kolonya-250-ml",
+      "title": "No.7 EDC Sprey Kolonya 250 ML",
+      "productType": "Sprey Kolonya",
+      "price": 349.0,
+      "compareAtPrice": 146.2,
+      "available": true,
+      "image": "/catalog/marmara/no-7-edc-sprey-kolonya-250-ml__41743412560097.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-6-edc-sprey-kolonya-250-ml",
+      "title": "No.6 EDC Sprey Kolonya 250 ML",
+      "productType": "Sprey Kolonya",
+      "price": 299.0,
+      "compareAtPrice": 146.2,
+      "available": true,
+      "image": "/catalog/marmara/no-6-edc-sprey-kolonya-250-ml__41743409021153.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-5-edc-sprey-kolonya-250-ml",
+      "title": "No.5 EDC Sprey Kolonya 250 ML",
+      "productType": "Sprey Kolonya",
+      "price": 299.0,
+      "compareAtPrice": 146.2,
+      "available": true,
+      "image": "/catalog/marmara/no-5-edc-sprey-kolonya-250-ml__41743406661857.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-4-edc-sprey-kolonya-250-ml",
+      "title": "No.4 EDC Sprey Kolonya 250 ML",
+      "productType": "Sprey Kolonya",
+      "price": 146.2,
+      "compareAtPrice": 146.2,
+      "available": false,
+      "image": "/catalog/marmara/no-4-edc-sprey-kolonya-250-ml__41743403778273.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-4-edc-kolonya-cam-sise-250-ml",
+      "title": "No.4 EDC Kolonya Cam Şişe 250 ML",
+      "productType": "Dökme Kolonya",
+      "price": 149.0,
+      "compareAtPrice": 149.0,
+      "available": false,
+      "image": "/catalog/marmara/no-4-edc-kolonya-cam-sise-250-ml__41743401255137.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-3-edc-sprey-kolonya-250-ml",
+      "title": "No.3 EDC Sprey Kolonya 250 ML",
+      "productType": "Sprey Kolonya",
+      "price": 299.0,
+      "compareAtPrice": 146.2,
+      "available": false,
+      "image": "/catalog/marmara/no-3-edc-sprey-kolonya-250-ml__41743398273249.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-3-edc-kolonya-cam-sise-250-ml",
+      "title": "No.3 EDC Kolonya Cam Şişe 250 ML",
+      "productType": "Dökme Kolonya",
+      "price": 149.0,
+      "compareAtPrice": 149.0,
+      "available": false,
+      "image": "/catalog/marmara/no-3-edc-kolonya-cam-sise-250-ml__41743394930913.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-2-edc-sprey-kolonya-250-ml",
+      "title": "No.2 EDC Sprey Kolonya 250 ML",
+      "productType": "Sprey Kolonya",
+      "price": 299.0,
+      "compareAtPrice": 146.2,
+      "available": true,
+      "image": "/catalog/marmara/no-2-edc-sprey-kolonya-250-ml__41743391686881.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-2-edc-kolonya-cam-sise-250-ml",
+      "title": "No.2 EDC Kolonya Cam Şişe 250 ML",
+      "productType": "Dökme Kolonya",
+      "price": 149.0,
+      "compareAtPrice": 149.0,
+      "available": false,
+      "image": "/catalog/marmara/no-2-edc-kolonya-cam-sise-250-ml__41743387984097.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-1-edc-sprey-kolonya-250-ml",
+      "title": "No.1 EDC Sprey Kolonya 250 ML",
+      "productType": "Sprey Kolonya",
+      "price": 299.0,
+      "compareAtPrice": 146.2,
+      "available": true,
+      "image": "/catalog/marmara/no-1-edc-sprey-kolonya-250-ml__41743385690337.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-1-edc-kolonya-cam-sise-250-ml",
+      "title": "No.1 EDC Kolonya Cam Şişe 250 ML",
+      "productType": "Dökme Kolonya",
+      "price": 149.0,
+      "compareAtPrice": 135.0,
+      "available": false,
+      "image": "/catalog/marmara/no-1-edc-kolonya-cam-sise-250-ml__41743382446305.jpg",
+      "tags": []
+    },
+    {
+      "handle": "aftershave-tiras-kolonyasi-vintage-cam-sise-200-ml",
+      "title": "Aftershave Tıraş Kolonyası Vintage Cam Şişe 200 ML",
+      "productType": "Dökme Kolonya",
+      "price": 185.15,
+      "compareAtPrice": 185.15,
+      "available": false,
+      "image": "/catalog/marmara/aftershave-tiras-kolonyasi-vintage-cam-sise-200-ml__42488971591905.jpg",
+      "tags": []
+    },
+    {
+      "handle": "aftershave-tiras-kolonyasi-tradional-cam-sise-200-ml",
+      "title": "Aftershave Tıraş Kolonyası Tradional Cam Şişe 200 ML",
+      "productType": "Dökme Kolonya",
+      "price": 249.9,
+      "compareAtPrice": 185.15,
+      "available": true,
+      "image": "/catalog/marmara/aftershave-tiras-kolonyasi-tradional-cam-sise-200-ml__42488972804321.jpg",
+      "tags": []
+    },
+    {
+      "handle": "aftershave-tiras-kolonyasi-nostaljic-cam-sise-200-ml",
+      "title": "Aftershave Tıraş Kolonyası Nostaljic Cam Şişe 200 ML",
+      "productType": "Dökme Kolonya",
+      "price": 185.15,
+      "compareAtPrice": 185.15,
+      "available": true,
+      "image": "/catalog/marmara/aftershave-tiras-kolonyasi-nostaljic-cam-sise-200-ml__42488973721825.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-25-edc-sprey-kolonya-150-ml",
+      "title": "No.25 EDC Sprey Kolonya 150 ML",
+      "productType": "Sprey Kolonya",
+      "price": 199.9,
+      "compareAtPrice": 112.0,
+      "available": true,
+      "image": "/catalog/marmara/no-25-edc-sprey-kolonya-150-ml__42488983519457.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-24-edc-sprey-kolonya-150-ml",
+      "title": "No.24 EDC Sprey Kolonya 150 ML",
+      "productType": "Sprey Kolonya",
+      "price": 199.9,
+      "compareAtPrice": 112.0,
+      "available": true,
+      "image": "/catalog/marmara/no-24-edc-sprey-kolonya-150-ml__42488981586145.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-23-edc-sprey-kolonya-150-ml",
+      "title": "No.23 EDC Sprey Kolonya 150 ML",
+      "productType": "Sprey Kolonya",
+      "price": 199.9,
+      "compareAtPrice": 112.0,
+      "available": true,
+      "image": "/catalog/marmara/no-23-edc-sprey-kolonya-150-ml__42488980111585.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-22-edc-sprey-kolonya-150-ml",
+      "title": "No.22 EDC Sprey Kolonya 150 ML",
+      "productType": "Sprey Kolonya",
+      "price": 199.9,
+      "compareAtPrice": 112.0,
+      "available": true,
+      "image": "/catalog/marmara/no-22-edc-sprey-kolonya-150-ml__42488978768097.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-21-edc-sprey-kolonya-150-ml",
+      "title": "No.21 EDC Sprey Kolonya 150 ML",
+      "productType": "Sprey Kolonya",
+      "price": 199.9,
+      "compareAtPrice": 112.0,
+      "available": true,
+      "image": "/catalog/marmara/no-21-edc-sprey-kolonya-150-ml__42488977785057.jpg",
+      "tags": []
+    },
+    {
+      "handle": "edc-sprey-limon-kolonya-150-ml",
+      "title": "EDC Sprey Limon Kolonya 150 ML",
+      "productType": "Sprey Kolonya",
+      "price": 103.0,
+      "compareAtPrice": 103.0,
+      "available": true,
+      "image": "/catalog/marmara/edc-sprey-limon-kolonya-150-ml__41743349448929.jpg",
+      "tags": []
+    },
+    {
+      "handle": "771-tras-fircari",
+      "title": "771 Traş Fırçarı",
+      "productType": "Fırça",
+      "price": 330.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "image": "/catalog/marmara/771-tras-fircari__41743347384545.jpg",
+      "tags": []
+    },
+    {
+      "handle": "1071-tras-fircari",
+      "title": "1071 Traş Fırçarı",
+      "productType": "Fırça",
+      "price": 420.0,
+      "compareAtPrice": 420.0,
+      "available": false,
+      "image": "/catalog/marmara/1071-tras-fircari__41743346401505.jpg",
+      "tags": []
+    },
+    {
+      "handle": "037-tarak",
+      "title": "037 Tarak",
+      "productType": "Fırça",
+      "price": 186.0,
+      "compareAtPrice": 186.0,
+      "available": true,
+      "image": "/catalog/marmara/037-tarak__41743343812833.jpg",
+      "tags": []
+    },
+    {
+      "handle": "034-tarak",
+      "title": "034 Tarak",
+      "productType": "Fırça",
+      "price": 186.0,
+      "compareAtPrice": 186.0,
+      "available": true,
+      "image": "/catalog/marmara/034-tarak__41743341322465.jpg",
+      "tags": []
+    },
+    {
+      "handle": "033-tarak",
+      "title": "033 Tarak",
+      "productType": "Fırça",
+      "price": 186.0,
+      "compareAtPrice": 186.0,
+      "available": true,
+      "image": "/catalog/marmara/033-tarak__41743340077281.jpg",
+      "tags": []
+    },
+    {
+      "handle": "032-tarak",
+      "title": "032 Tarak",
+      "productType": "Fırça",
+      "price": 186.0,
+      "compareAtPrice": 186.0,
+      "available": true,
+      "image": "/catalog/marmara/032-tarak__41743337226465.jpg",
+      "tags": []
+    },
+    {
+      "handle": "no-29-sac-fircasi",
+      "title": "No.29 Saç Fırçası",
+      "productType": "Fırça",
+      "price": 196.8,
+      "compareAtPrice": 196.8,
+      "available": true,
+      "image": "/catalog/marmara/no-29-sac-fircasi__41743334899937.jpg",
+      "tags": []
+    },
+    {
+      "handle": "barberfade-firca-s",
+      "title": "BarberFade Fırça S",
+      "productType": "Fırça",
+      "price": 196.8,
+      "compareAtPrice": 196.8,
+      "available": true,
+      "image": "/catalog/marmara/barberfade-firca-s__41743331918049.jpg",
+      "tags": []
+    },
+    {
+      "handle": "barberfade-firca-r",
+      "title": "BarberFade Fırça R",
+      "productType": "Fırça",
+      "price": 214.8,
+      "compareAtPrice": 214.8,
+      "available": false,
+      "image": "/catalog/marmara/barberfade-firca-r__41743330672865.jpg",
+      "tags": []
+    },
+    {
+      "handle": "954-tras-fircari",
+      "title": "954 Traş Fırçarı",
+      "productType": "Fırça",
+      "price": 384.0,
+      "compareAtPrice": 384.0,
+      "available": true,
+      "image": "/catalog/marmara/954-tras-fircari__41743329886433.jpg",
+      "tags": []
+    },
+    {
+      "handle": "564-tras-fircari",
+      "title": "564 Traş Fırçarı",
+      "productType": "Fırça",
+      "price": 330.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "image": "/catalog/marmara/564-tras-fircari__41743328346337.jpg",
+      "tags": []
+    },
+    {
+      "handle": "siyah-soyun-bandi",
+      "title": "Siyah Soyun Bandı",
+      "productType": "Ürünler > Aksesuar > Boyun Bandı",
+      "price": 4200.0,
+      "compareAtPrice": null,
+      "available": true,
+      "image": "/catalog/marmara/siyah-soyun-bandi__41083617804513.jpg",
+      "tags": [
+        "mens hat example"
+      ]
+    },
+    {
+      "handle": "beyaz-boyun-bandi",
+      "title": "Siyah Soyun Bandı",
+      "productType": "Boyun Bandı",
+      "price": 335.0,
+      "compareAtPrice": 335.0,
+      "available": false,
+      "image": "/catalog/marmara/beyaz-boyun-bandi__41743326839009.jpg",
+      "tags": []
+    },
+    {
+      "handle": "bej-onluk",
+      "title": "Bej Önlük",
+      "productType": "Apron",
+      "price": 1550.0,
+      "compareAtPrice": 1550.0,
+      "available": true,
+      "image": "/catalog/marmara/bej-onluk__41743324709089.jpg",
+      "tags": []
+    }
+  ],
+  "collections": [
+    {
+      "handle": "aksesuar",
+      "title": "Aksesuar",
+      "productsCount": 1,
+      "image": null
+    },
+    {
+      "handle": "frontpage",
+      "title": "Ana sayfa",
+      "productsCount": 1,
+      "image": null
+    },
+    {
+      "handle": "apron",
+      "title": "Apron",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "boyun-bandi",
+      "title": "Boyun Bandı",
+      "productsCount": 1,
+      "image": null
+    },
+    {
+      "handle": "cilt-bakimi",
+      "title": "Cilt Bakımı",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "cilt-bakimi-1",
+      "title": "Cilt Bakımı",
+      "productsCount": 8,
+      "image": null
+    },
+    {
+      "handle": "dokme-kolonya",
+      "title": "Dökme Kolonya",
+      "productsCount": 41,
+      "image": null
+    },
+    {
+      "handle": "fon-suyu-1",
+      "title": "Fön Suyu",
+      "productsCount": 1,
+      "image": null
+    },
+    {
+      "handle": "urunler-aksesuar-firca",
+      "title": "Fırça",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "gecici-renkli-sac-spreyi",
+      "title": "Geçici Renkli Saç Spreyi",
+      "productsCount": 8,
+      "image": null
+    },
+    {
+      "handle": "kolonya",
+      "title": "Kolonya",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "krem-kolonya",
+      "title": "Krem Kolonya",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "marmara-barber-aqua-wax-ailesi",
+      "title": "Marmara Barber | Aqua Wax Ailesi",
+      "productsCount": 7,
+      "image": null
+    },
+    {
+      "handle": "marmara-barber-en-cok-satan-i̇lk-5-urun",
+      "title": "Marmara Barber | En Çok Satan İlk 5 Ürün",
+      "productsCount": 5,
+      "image": null
+    },
+    {
+      "handle": "fon-suyu",
+      "title": "Marmara Barber | Fön Suyu",
+      "productsCount": 5,
+      "image": null
+    },
+    {
+      "handle": "paketler",
+      "title": "Paketler",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "parfum",
+      "title": "Parfüm",
+      "productsCount": 20,
+      "image": null
+    },
+    {
+      "handle": "penuar",
+      "title": "Penuar",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "pompa",
+      "title": "Pompa",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "sakal-bakim",
+      "title": "Sakal Bakım",
+      "productsCount": 1,
+      "image": null
+    },
+    {
+      "handle": "sakal-yagi",
+      "title": "Sakal Yağı",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "sakal-yagi-1",
+      "title": "Sakal Yağı",
+      "productsCount": 1,
+      "image": null
+    },
+    {
+      "handle": "sakal-sampuani",
+      "title": "Sakal Şampuanı",
+      "productsCount": 1,
+      "image": null
+    },
+    {
+      "handle": "sakal-sekillendirici",
+      "title": "Sakal Şekillendirici",
+      "productsCount": 1,
+      "image": null
+    },
+    {
+      "handle": "sac-bakimi",
+      "title": "Saç Bakımı",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "sac-boyasi",
+      "title": "Saç Boyası",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "sac-kremi",
+      "title": "Saç Kremi",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "sac-sekillendirici",
+      "title": "Saç Şekillendirici",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "sac-sekillendirici-1",
+      "title": "Saç Şekillendirici",
+      "productsCount": 1,
+      "image": null
+    },
+    {
+      "handle": "sprey-kolonya",
+      "title": "Sprey Kolonya",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "tiras-jeli",
+      "title": "Tıraş Jeli",
+      "productsCount": 0,
+      "image": null
+    },
+    {
+      "handle": "sampuan",
+      "title": "Şampuan",
+      "productsCount": 0,
+      "image": null
+    }
+  ]
+}

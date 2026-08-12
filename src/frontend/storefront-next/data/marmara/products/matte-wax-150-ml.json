@@ -1,0 +1,56 @@
+{
+  "id": "8213123596513",
+  "title": "Matte Wax 150 ML",
+  "handle": "matte-wax-150-ml",
+  "descriptionHtml": "<p><strong>MATTE WAX</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLERİ</p>\n<p>Marmara Berber Ağdaları tutuş gücünde sunduğu çeşitlilik ile kusursuz stili yaratmak için tasarlanmıştır.</p>\n<p>Güçlü tutuşa sahip mumlar keskin stiller için uygundur. Düşük tutuşlu ağdalar daha yumuşak ve doğal bir görünüm sağlar.</p>\n<p>Marmara Barber Mat Ağda formu sayesinde saça uygulaması kolaydır. Saçlarınıza hacimli bir görünüm kazandırır. Kısa ve orta uzunlukta saçlar için idealdir. Saçlarınız gün boyu formda görünecektir.</p>\n<p>Hafif tutuş</p>\n<p>Kolayca yıkanır</p>\n<p>Mat</p>\n<p>Doğal Kaplama</p>\n<p> </p>\n<p><strong>NASIL KULLANILABİLİR</strong></p>\n<p>Avuçlarınızın arasında ovun, az miktarda nemli veya kuru saça uygulayın ve istediğiniz gibi şekillendirin.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Meyveli notalara yumuşak bir dokunuş yaparken, vanilya ve karamel ile dengelenmiş taban notaları ile sıcak ve samimi bir koku yaratıyor.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924842115297",
+      "title": "Default Title",
+      "sku": "BW-150-MAT",
+      "price": 499.0,
+      "compareAtPrice": 270.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42473997009121",
+      "src": "/catalog/marmara/matte-wax-150-ml__42473997009121.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmaraa_150.251.jpg?v=1718981164",
+      "alt": "Matte Wax 150 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42473997009121",
+    "src": "/catalog/marmara/matte-wax-150-ml__42473997009121.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmaraa_150.251.jpg?v=1718981164",
+    "alt": "Matte Wax 150 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 499.0,
+  "compareAtPrice": 270.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:25:27+03:00",
+  "createdAt": "2024-01-11T20:25:42+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

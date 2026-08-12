@@ -1,0 +1,44 @@
+---
+description: Headless Shopify geliştirme projesinin amacı, veri akışı ve katman sorumlulukları
+alwaysApply: true
+---
+
+# Proje Vizyonu — Headless Shopify Geliştirme
+
+Bu proje bir **Shopify geliştirme (headless commerce)** projesidir.
+
+## Ne yapıyoruz?
+
+1. **Storefront (Next.js)** — Shopify verisini kullanarak mağaza arayüzünü tasarlıyoruz (ürün, koleksiyon, sepet, checkout yönlendirme, hesap).
+2. **BFF (ASP.NET Core Gateway.Api)** — Storefront ile Shopify arasında ince bir katman; cache, auth, wishlist gibi uygulama verisi burada.
+3. **Shopify API'leri** — Commerce source of truth: Storefront GraphQL (vitrin + cart), Admin GraphQL (sipariş, stok, metafield).
+4. **Entegrasyonlar (ihtiyaç oldukça)** — ERP, CRM, marketing, webhook işleme; `Integrations/` altında adapter pattern ile eklenir.
+
+## Veri akışı
+
+```
+Kullanıcı → Next.js Storefront → BFF (MediatR/CQRS) → Shopify GraphQL
+                              ↘ SQL Server (wishlist, log, sync job)
+                              ↘ Redis (cache)
+Shopify Webhook → BFF → Queue → Worker → ERP / CRM / Marketing
+```
+
+## Altın kurallar
+
+- **Shopify = ticaret kaynağı.** Ürün, fiyat, stok, sipariş, checkout Shopify'da kalır; kopyalamayız.
+- **Storefront doğrudan Shopify'a değil, öncelikle BFF'e gider** (`services/shopify/commerce-api.ts`). İstisna: ileride performans için read-only Storefront GraphQL server-side proxy.
+- **Entegrasyon = interface + adapter.** Domain/Application Shopify veya ERP'ye bağımlı olmaz.
+- **Yeni özellik:** önce hangi katmanda olduğuna karar ver (UI / BFF use-case / webhook / worker / entegrasyon).
+
+## Monorepo kökleri
+
+| Klasör | Rol |
+|--------|-----|
+| `src/frontend/storefront-next/` | Next.js vitrin |
+| `src/backend/Gateway.Api/` | HTTP + webhook giriş |
+| `src/backend/Application/` | CQRS command/query |
+| `src/backend/Integrations/Shopify/` | GraphQL client'lar |
+| `src/backend/Integrations/{ERP,CRM,Marketing}/` | Harici sistem adapter'ları |
+| `src/backend/Workers/` | Arka plan sync + webhook |
+
+Detaylı mimari: `docs/01-architecture.md`

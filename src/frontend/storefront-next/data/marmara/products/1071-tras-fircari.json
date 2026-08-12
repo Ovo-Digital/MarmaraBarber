@@ -1,0 +1,65 @@
+{
+  "id": "8213063434465",
+  "title": "1071 Traş Fırçarı",
+  "handle": "1071-tras-fircari",
+  "descriptionHtml": "<p><span style=\"font-size:16px;\">Tamamen el yapımıdır ve dünyanın en iyi yapıştırıcıları ile bir araya getirilmiştir.<br>\nProfesyonel kuaför ihtiyaçları için idealdir.<br>\nTıraş köpüğünü yüzünüze uygulayabilir ve rahatça tıraş olabilirsiniz.<br>\nAhşap sap, doğal ve sentetik kılların karışımından yapılmıştır.</span></p>\n\n<p> </p>\n<span style=\"font-size:16px;\">\n<p>Kıl uzunluğu: 67 mm.<br>\nSap uzunluğu: 65 mm.<br>\nToplam uzunluk: 132 mm.</p>\n</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Fırça",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840080146657",
+      "title": "Default Title",
+      "sku": "BSB-1071",
+      "price": 420.0,
+      "compareAtPrice": 420.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743346401505",
+      "src": "/catalog/marmara/1071-tras-fircari__41743346401505.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-tiras-fircasi-1071-a-bfd7.jpg?v=1712594107",
+      "alt": "1071 Traş Fırçarı",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743346434273",
+      "src": "/catalog/marmara/1071-tras-fircari__41743346434273.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/1071-tras-fircari--8e8b5.jpg?v=1712594107",
+      "alt": "1071 Traş Fırçarı",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743346401505",
+    "src": "/catalog/marmara/1071-tras-fircari__41743346401505.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-tiras-fircasi-1071-a-bfd7.jpg?v=1712594107",
+    "alt": "1071 Traş Fırçarı",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 420.0,
+  "compareAtPrice": 420.0,
+  "available": false,
+  "publishedAt": "2024-01-11T19:56:50+03:00",
+  "createdAt": "2024-01-11T19:56:55+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

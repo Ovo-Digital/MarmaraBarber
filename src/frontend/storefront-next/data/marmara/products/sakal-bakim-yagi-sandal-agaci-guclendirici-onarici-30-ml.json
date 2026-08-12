@@ -1,0 +1,56 @@
+{
+  "id": "8213124382945",
+  "title": "Sakal Bakım Yağı, Sandal Ağacı, Güçlendirici, Onarıcı, 30 ML",
+  "handle": "sakal-bakim-yagi-sandal-agaci-guclendirici-onarici-30-ml",
+  "descriptionHtml": "<p><strong>BEARD OIL 30ML </strong></p>\n<p> </p>\n<p> </p>\n<p>Özellikler</p>\n<p>Marmara Berber Sakal Yağı eşsiz bir formül ve doğal yağların karışımıdır.</p>\n<p>Sakalınızı nemlendirir, besler ve güçlendirir. Nemlendirici bileşenler kaba saçların temiz ve pürüzsüz kalmasına yardımcı olur. Harika kokan doğal yağların eşsiz karışımı ile sakalınızı yumuşak ve dokunulur hale getirir.</p>\n<p>Yumuşatır, onarır ve nemlendirirken; Marmara Berber Sakal Yağı aynı zamanda içeriğindeki uyum ile sağlıklı sakal gelişimini destekler. Sakalı besler ve nemlendirir, ayrıca sakaldaki kaşıntı ve dökülmeyi de azaltır. Marmara Berber Sakal Yağı'nı daha pürüzsüz uygulaması sayesinde her cilt tipinde kullanabilirsiniz. Sakalınızın en iyi şekilde görünmesini sağlamak için yapı eklemenize yardımcı olur.</p>\n<p>Sağlıklı sakal büyümesini destekler</p>\n<p>Saçları besler ve nemlendirir</p>\n<p>Sakal kaşıntısını ve pul pul dökülmesini azaltır</p>\n<p>Marmara Kuaför adı altında tecrübe, kalite ve modayı harmanlayarak berberlerin ve tüketicilerin gözdesi haline geldik.</p>\n<p> </p>\n<p><strong>NASIL KULLANILIR</strong></p>\n<p>Avucunuza 4-8 damla Marmara Berber Sakal Yağı damlatın. Çenenizin altından ve yanaklardan yukarı doğru nazikçe masaj yapın. Ardından kalıntıları doğrudan bıyık ve sakalınıza uygulayın. Kullanmadan önce çalkalamayı unutmayın.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Sakal Yağı",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924842737889",
+      "title": "Default Title",
+      "sku": "BBO-30-SW",
+      "price": 499.0,
+      "compareAtPrice": 312.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488823480545",
+      "src": "/catalog/marmara/sakal-bakim-yagi-sandal-agaci-guclendirici-onarici-30-ml__42488823480545.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmara_cologne2.277.jpg?v=1719131333",
+      "alt": "Sakal Bakım Yağı, Sandal Ağacı, Güçlendirici, Onarıcı, 30 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488823480545",
+    "src": "/catalog/marmara/sakal-bakim-yagi-sandal-agaci-guclendirici-onarici-30-ml__42488823480545.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/marmara_cologne2.277.jpg?v=1719131333",
+    "alt": "Sakal Bakım Yağı, Sandal Ağacı, Güçlendirici, Onarıcı, 30 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 499.0,
+  "compareAtPrice": 312.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:26:02+03:00",
+  "createdAt": "2024-01-11T20:26:14+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

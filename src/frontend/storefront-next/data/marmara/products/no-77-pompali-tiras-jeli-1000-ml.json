@@ -1,0 +1,56 @@
+{
+  "id": "8213125365985",
+  "title": "No.77 Pompalı Tıraş Jeli 1000 ML",
+  "handle": "no-77-pompali-tiras-jeli-1000-ml",
+  "descriptionHtml": "<p><strong>SHAVING GEL NO.77 1000 ML</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLERİ</p>\n<p>Sakalınızı köpürtme işleminden önce yumuşatmak için kullanılır. Tıraş jeli masaj yapılarak   sürüldüğünden yoğun ve kremsi bir yapıya dönüşür. Kremsi yapıya dönüşen jel, sakalınızı hızla yumuşatarak, köpürtme işleminden sonra tıraş bıçağının kolayca kaymasını sağlar ve böylece cildin tahriş olmasını engeller.</p>\n<p> </p>\n<p><strong>NASIL KULLANILIR</strong></p>\n<p>Avucunuza fındık büyüklüğünde jeli alın. Sakalın üzerine masaj yaparak sürün. Ardındandan köpürterek tıraşı tamamlayabilirsiniz.</p>\n<p><br> </p>",
+  "vendor": "Barber Marmara",
+  "productType": "Tıraş Jeli",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924843524321",
+      "title": "Default Title",
+      "sku": "BSG-1000-77",
+      "price": 330.0,
+      "compareAtPrice": 330.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488920932577",
+      "src": "/catalog/marmara/no-77-pompali-tiras-jeli-1000-ml__42488920932577.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/100077.jpg?v=1719132632",
+      "alt": "No.77 Pompalı Tıraş Jeli 1000 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488920932577",
+    "src": "/catalog/marmara/no-77-pompali-tiras-jeli-1000-ml__42488920932577.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/100077.jpg?v=1719132632",
+    "alt": "No.77 Pompalı Tıraş Jeli 1000 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 330.0,
+  "compareAtPrice": 330.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:26:35+03:00",
+  "createdAt": "2024-01-11T20:26:50+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

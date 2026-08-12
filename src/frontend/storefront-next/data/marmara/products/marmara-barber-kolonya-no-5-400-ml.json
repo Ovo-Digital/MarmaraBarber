@@ -1,0 +1,67 @@
+{
+  "id": "8301036011745",
+  "title": "Marmara Barber Kolonya No 5 400 ML",
+  "handle": "marmara-barber-kolonya-no-5-400-ml",
+  "descriptionHtml": "<p>Marmara Barber Kolonya No 5 400 ML</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [
+    "pixa"
+  ],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924852338913",
+      "title": "Default Title",
+      "sku": "BC-400-5",
+      "price": 349.0,
+      "compareAtPrice": 166.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825459339489",
+      "src": "/catalog/marmara/marmara-barber-kolonya-no-5-400-ml__41825459339489.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/8691541009243_1_48f47646-23df-485f-9176-1c4d03cd6135.jpg?v=1713107468",
+      "alt": "Marmara Barber Kolonya No 5 400 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825459372257",
+      "src": "/catalog/marmara/marmara-barber-kolonya-no-5-400-ml__41825459372257.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/8691541009274_23b4ad9d-8a22-4e72-96d8-04a36f9ae55e.jpg?v=1713107468",
+      "alt": "Marmara Barber Kolonya No 5 400 ML",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825459339489",
+    "src": "/catalog/marmara/marmara-barber-kolonya-no-5-400-ml__41825459339489.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/8691541009243_1_48f47646-23df-485f-9176-1c4d03cd6135.jpg?v=1713107468",
+    "alt": "Marmara Barber Kolonya No 5 400 ML",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 349.0,
+  "compareAtPrice": 166.0,
+  "available": true,
+  "publishedAt": "2024-03-18T15:33:02+03:00",
+  "createdAt": "2024-03-18T15:33:06+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

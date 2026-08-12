@@ -1,0 +1,56 @@
+{
+  "id": "8213108392161",
+  "title": "No.3 Argan Çift Fazlı Fön Suyu 500 ml",
+  "handle": "no-3-argan-cift-fazli-fon-suyu-500-ml",
+  "descriptionHtml": "<p><strong>TWO PHASE ARGAN NO.3 (FÖN SUYU)</strong></p>\n<p> </p>\n<p><strong>NE İŞE YARAR?</strong></p>\n<p>Saçlarınıza parlaklık verir.</p>\n<p>Saçlarınızın kolayca taranmasını sağlar.</p>\n<p>Elektriklenmeyi önlemeye destek olur. </p>\n<p>Isı gerektiren işlemlerde saçı korumaya yardımcı olur.</p>\n<p> </p>\n<p><strong>NASIL KULLANILIR?</strong></p>\n<p>Kullanmadan önce çalkalayın.</p>\n<p>Nemli veya kuru saça uygulayın.</p>\n<p>Ürünü tarakla dağıtın.</p>\n<p>Günlük kullanıma uygundur.</p>\n<p>Durulama gerektirmez.</p>\n<p> </p>\n<p><strong>ARGAN TWO PHASE AÇIKLAMASI</strong></p>\n<p>Marmara Barber Argan çift fazlı saç kondisyoneri boyalı ve röfleli saçlar için özel olarak formüle edilmiştir. Argan yağı yüksek oranda antioksidan özellikli Tokoferol, yani E vitamini içermesi ile bilinir. Saç sağlığında önemli bir yeri vardır.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Fön Suyu",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924832022753",
+      "title": "Default Title",
+      "sku": "BTPC-500-ARG",
+      "price": 600.0,
+      "compareAtPrice": 600.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488854085857",
+      "src": "/catalog/marmara/no-3-argan-cift-fazli-fon-suyu-500-ml__42488854085857.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/3_eb5584d3-3e8a-4598-942b-121adf31526e.jpg?v=1719131667",
+      "alt": "No.3 Argan Çift Fazlı Fön Suyu 500 ml",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488854085857",
+    "src": "/catalog/marmara/no-3-argan-cift-fazli-fon-suyu-500-ml__42488854085857.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/3_eb5584d3-3e8a-4598-942b-121adf31526e.jpg?v=1719131667",
+    "alt": "No.3 Argan Çift Fazlı Fön Suyu 500 ml",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 600.0,
+  "compareAtPrice": 600.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:17:13+03:00",
+  "createdAt": "2024-01-11T20:17:27+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

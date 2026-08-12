@@ -1,0 +1,65 @@
+{
+  "id": "8832542867681",
+  "title": "JRL-2020C-G FreshFade 2020C Clipper Gold",
+  "handle": "jrl-2020c-g-freshfade-2020c-clipper-gold",
+  "descriptionHtml": "<p>JRL-2020C-G FreshFade 2020C Clipper Gold</p>",
+  "vendor": "Marmara Barber",
+  "productType": "",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "46089472835809",
+      "title": "Default Title",
+      "sku": "",
+      "price": 12000.0,
+      "compareAtPrice": 10500.0,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "44329792274657",
+      "src": "/catalog/marmara/jrl-2020c-g-freshfade-2020c-clipper-gold__44329792274657.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/JRL-2020C-G.jpg?v=1737471424",
+      "alt": "JRL-2020C-G FreshFade 2020C Clipper Gold",
+      "width": 1500,
+      "height": 1500,
+      "position": 1
+    },
+    {
+      "id": "44329793356001",
+      "src": "/catalog/marmara/jrl-2020c-g-freshfade-2020c-clipper-gold__44329793356001.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/JRL-2020C-G-2.jpg?v=1737471435",
+      "alt": "JRL-2020C-G FreshFade 2020C Clipper Gold",
+      "width": 1500,
+      "height": 1500,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "44329792274657",
+    "src": "/catalog/marmara/jrl-2020c-g-freshfade-2020c-clipper-gold__44329792274657.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/JRL-2020C-G.jpg?v=1737471424",
+    "alt": "JRL-2020C-G FreshFade 2020C Clipper Gold",
+    "width": 1500,
+    "height": 1500,
+    "position": 1
+  },
+  "price": 12000.0,
+  "compareAtPrice": 10500.0,
+  "available": false,
+  "publishedAt": "2025-01-21T17:41:53+03:00",
+  "createdAt": "2025-01-21T17:41:53+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "8213068382433",
+  "title": "Aftershave Tıraş Kolonyası Tradional Cam Şişe 200 ML",
+  "handle": "aftershave-tiras-kolonyasi-tradional-cam-sise-200-ml",
+  "descriptionHtml": "<p><strong>TRADITIONAL- 200ML</strong></p>\n<p> </p>\n<p> </p>\n<p>NASIL KULLANILIR</p>\n<p>Islak tıraştan sonra cildi serinletir ve temizler. Deri döküntülerini ve tıraş yanıklarını önleyerek yüzdeki tıraş sivilcelerini önler. Tüm cilt tipleri ve günlük cilt bakımı için uygundur.</p>\n<p>Tıraştan sonra veya yolda geçen uzun bir günün ardından, Barber Aftershave koku yelpazesi çok canlandırıcı, canlandırıcı, canlandırıcı, canlandırıcı, canlandırıcı ve canlandırıcı bir etkiye sahiptir.</p>\n<p>Cildiniz rahatlar ve nemle beslenir. Tıraş yanıkları, tıraş sivilceleri ve göze hoş görünmeyen iltihapların önüne geçilir.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Geçmişin ve geleceğin ortak noktası yıldız anason, limon ve muskat ile anın üst karışımıdır. Orta notalarda karanfil, kediotu ve sardunyanın eşlik ettiği ateşli kırmızı çiçeklerin arasında hissettiriyor. Ruhunu kehribar ve paçuli ile harmanlayıp, sandal ağacı ile derinleştirerek doruk noktasına ulaşıyor.</p>\n<p>Tarih ve anılar.. Geçmişten bir başka an. Kararlı ama bir yerden tanıdık. Şeker ve karanfile bulanmış bambu zambağının tılsıma verdiği eliyle içimizi sızlatan bir hava getiren pomelonun uzaktan selamı. Belirsiz ve kimseye özgü değil. Kendisine hayat verecek adayları bekliyor.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Dökme Kolonya",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840099610849",
+      "title": "Default Title",
+      "sku": "BC-200-TRA",
+      "price": 249.9,
+      "compareAtPrice": 185.15,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488972804321",
+      "src": "/catalog/marmara/aftershave-tiras-kolonyasi-tradional-cam-sise-200-ml__42488972804321.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/traditional.jpg?v=1719133923",
+      "alt": "Aftershave Tıraş Kolonyası Tradional Cam Şişe 200 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488972804321",
+    "src": "/catalog/marmara/aftershave-tiras-kolonyasi-tradional-cam-sise-200-ml__42488972804321.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/traditional.jpg?v=1719133923",
+    "alt": "Aftershave Tıraş Kolonyası Tradional Cam Şişe 200 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 249.9,
+  "compareAtPrice": 185.15,
+  "available": true,
+  "publishedAt": "2024-01-11T19:58:36+03:00",
+  "createdAt": "2024-01-11T19:58:50+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

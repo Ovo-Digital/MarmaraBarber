@@ -1,0 +1,65 @@
+{
+  "id": "8213107376353",
+  "title": "Beyaz Penuar Takım Pro",
+  "handle": "beyaz-penuar-takim-pro",
+  "descriptionHtml": "<span style=\"font-size:16px;\">Barber Penuar Takım Pro Beyaz</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Penuar",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924831400161",
+      "title": "Default Title",
+      "sku": "BCP-PROW",
+      "price": 632.4,
+      "compareAtPrice": 632.4,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825411104993",
+      "src": "/catalog/marmara/beyaz-penuar-takim-pro__41825411104993.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-takim-pro-beyaz-813-61_7f02a54e-a7e0-4ef6-a095-944d0bac2682.jpg?v=1713106650",
+      "alt": "Beyaz Penuar Takım Pro",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825411137761",
+      "src": "/catalog/marmara/beyaz-penuar-takim-pro__41825411137761.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/beyaz-penuar-takim-pro-725-4f_bf97eef3-6a2f-4c4b-9d8f-6cfd5d3f4cc4.jpg?v=1713106650",
+      "alt": "Beyaz Penuar Takım Pro",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825411104993",
+    "src": "/catalog/marmara/beyaz-penuar-takim-pro__41825411104993.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-takim-pro-beyaz-813-61_7f02a54e-a7e0-4ef6-a095-944d0bac2682.jpg?v=1713106650",
+    "alt": "Beyaz Penuar Takım Pro",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 632.4,
+  "compareAtPrice": 632.4,
+  "available": true,
+  "publishedAt": "2024-01-11T20:16:50+03:00",
+  "createdAt": "2024-01-11T20:16:57+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

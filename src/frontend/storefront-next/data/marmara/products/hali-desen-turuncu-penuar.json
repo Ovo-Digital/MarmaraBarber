@@ -1,0 +1,65 @@
+{
+  "id": "8213105901793",
+  "title": "Halı Desen Turuncu Penuar",
+  "handle": "hali-desen-turuncu-penuar",
+  "descriptionHtml": "<span style=\"font-size:16px;\">Barber Penuar Halı Desen Turuncu</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Penuar",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924830220513",
+      "title": "Default Title",
+      "sku": "BCP-FCO",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825409138913",
+      "src": "/catalog/marmara/hali-desen-turuncu-penuar__41825409138913.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-hali-desen-turuncu-7-ac3b_3e34657b-8cdf-4a5d-825d-dfc1fd946ab2.jpg?v=1713106615",
+      "alt": "Halı Desen Turuncu Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825409171681",
+      "src": "/catalog/marmara/hali-desen-turuncu-penuar__41825409171681.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/hali-desen-turuncu-penuar-9e3977_a291668e-233a-47da-aebf-5d627747d3c9.jpg?v=1713106615",
+      "alt": "Halı Desen Turuncu Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825409138913",
+    "src": "/catalog/marmara/hali-desen-turuncu-penuar__41825409138913.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-hali-desen-turuncu-7-ac3b_3e34657b-8cdf-4a5d-825d-dfc1fd946ab2.jpg?v=1713106615",
+    "alt": "Halı Desen Turuncu Penuar",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 799.0,
+  "compareAtPrice": 632.4,
+  "available": false,
+  "publishedAt": "2024-01-11T20:16:10+03:00",
+  "createdAt": "2024-01-11T20:16:16+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

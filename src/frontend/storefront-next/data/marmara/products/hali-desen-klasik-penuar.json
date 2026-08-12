@@ -1,0 +1,65 @@
+{
+  "id": "8213104951521",
+  "title": "Halı Desen Klasik Penuar",
+  "handle": "hali-desen-klasik-penuar",
+  "descriptionHtml": "<span style=\"font-size:16px;\">Barber Penuar Halı Desen Klasik</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Penuar",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924829696225",
+      "title": "Default Title",
+      "sku": "BCP-FCC",
+      "price": 632.4,
+      "compareAtPrice": 632.4,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825407828193",
+      "src": "/catalog/marmara/hali-desen-klasik-penuar__41825407828193.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-hali-desen-klasik-4db-ea_03da2f08-476c-492f-92f9-236680569503.jpg?v=1713106593",
+      "alt": "Halı Desen Klasik Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825407860961",
+      "src": "/catalog/marmara/hali-desen-klasik-penuar__41825407860961.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/hali-desen-klasik-penuar-4c4162_ef337304-ca1e-4b99-90de-5c8164d68896.jpg?v=1713106593",
+      "alt": "Halı Desen Klasik Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825407828193",
+    "src": "/catalog/marmara/hali-desen-klasik-penuar__41825407828193.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-hali-desen-klasik-4db-ea_03da2f08-476c-492f-92f9-236680569503.jpg?v=1713106593",
+    "alt": "Halı Desen Klasik Penuar",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 632.4,
+  "compareAtPrice": 632.4,
+  "available": true,
+  "publishedAt": "2024-01-11T20:15:49+03:00",
+  "createdAt": "2024-01-11T20:15:54+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

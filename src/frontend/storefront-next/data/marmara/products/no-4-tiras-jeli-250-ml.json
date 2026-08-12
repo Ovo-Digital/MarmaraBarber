@@ -1,0 +1,56 @@
+{
+  "id": "8213128380641",
+  "title": "No.4 Tıraş Jeli 250 ML",
+  "handle": "no-4-tiras-jeli-250-ml",
+  "descriptionHtml": "<p><strong>SHAVING GEL 250ML NO.4</strong></p>\n<p> </p>\n<p><strong>ÖZELLİKLER </strong></p>\n<p>Daha fazla tıraş konforu için tıraş rutininizi Barber Tıraş Jeli ile yükseltin.</p>\n<p>Köpük yapmayan şeffaf formülü kolay görünürlük sağlar. Bu sayede tıraş makinenizin bıçaklarının nereye gittiğini görebilirsiniz. Berber Tıraş jeli,</p>\n<p>Tıraş kremlerine göre daha az kullanımla daha hızlı ve hassas tıraş sağlar. berber</p>\n<p>Tıraş jeli, bıçak ile cildiniz arasında koruyucu bir tabaka oluşturarak cildi kesiklerden ve jilet yanıklarından korur.</p>\n<p> </p>\n<p><strong>NASIL KULLANILIR</strong></p>\n<p>Avucunuza az miktarda jel alın. Sakalınıza masaj yaparak yayın.</p>\n<p> </p>\n<p><strong>KOKU HİKAYESİ</strong></p>\n<p>Eşsiz ve aynı zamanda çekici. Sakinleştirici aromatik notalar ve bergamot, mandalina, greyfurt ve lavanta gibi narenciye notalarının yarattığı bir enerji patlamasıyla açılır. Baharatlı notalar, kokunun kalbine sıcaklık verir. Alt notalarda kehribar, tonka fasulyesi ve vanilya bu sıcaklığı destekleyen bir kompozisyon oluşturuyor.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Tıraş Jeli",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924846506209",
+      "title": "Default Title",
+      "sku": "BSG-250-4",
+      "price": 399.0,
+      "compareAtPrice": 250.8,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488915820769",
+      "src": "/catalog/marmara/no-4-tiras-jeli-250-ml__42488915820769.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/4_c746942a-9a39-4dab-a875-5c4a85257d3e.jpg?v=1719132510",
+      "alt": "No.4 Tıraş Jeli 250 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488915820769",
+    "src": "/catalog/marmara/no-4-tiras-jeli-250-ml__42488915820769.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/4_c746942a-9a39-4dab-a875-5c4a85257d3e.jpg?v=1719132510",
+    "alt": "No.4 Tıraş Jeli 250 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 399.0,
+  "compareAtPrice": 250.8,
+  "available": true,
+  "publishedAt": "2024-01-11T20:28:27+03:00",
+  "createdAt": "2024-01-11T20:28:40+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

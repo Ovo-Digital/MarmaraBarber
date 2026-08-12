@@ -1,0 +1,65 @@
+{
+  "id": "8213106229473",
+  "title": "Kubiks Penuar",
+  "handle": "kubiks-penuar",
+  "descriptionHtml": "<span style=\"font-size:16px;\">Barber Penuar Kubiks</span>",
+  "vendor": "Barber Marmara",
+  "productType": "Penuar",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924830515425",
+      "title": "Default Title",
+      "sku": "BCP–CBC",
+      "price": 799.0,
+      "compareAtPrice": 632.4,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41825409433825",
+      "src": "/catalog/marmara/kubiks-penuar__41825409433825.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-kubiks--2971_a1ed502e-0aef-4cf9-8345-0979b17f6cd4.jpg?v=1713106622",
+      "alt": "Kubiks Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41825409466593",
+      "src": "/catalog/marmara/kubiks-penuar__41825409466593.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/kubiks-penuar-9d3d9a_41423c11-f351-47d0-9c1e-da14c3b47b20.jpg?v=1713106622",
+      "alt": "Kubiks Penuar",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41825409433825",
+    "src": "/catalog/marmara/kubiks-penuar__41825409433825.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-penuar-kubiks--2971_a1ed502e-0aef-4cf9-8345-0979b17f6cd4.jpg?v=1713106622",
+    "alt": "Kubiks Penuar",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 799.0,
+  "compareAtPrice": 632.4,
+  "available": true,
+  "publishedAt": "2024-01-11T20:16:17+03:00",
+  "createdAt": "2024-01-11T20:16:24+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

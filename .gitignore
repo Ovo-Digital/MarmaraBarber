@@ -1,0 +1,36 @@
+# --- .NET ---
+bin/
+obj/
+*.user
+*.suo
+.vs/
+artifacts/
+TestResults/
+
+# --- Node / Next.js ---
+node_modules/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- Env / secrets ---
+.env
+.env.local
+.env.*.local
+*.pfx
+appsettings.*.Local.json
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+*.log
+
+# --- Docker / data ---
+docker/data/
+mssql-data/
+redis-data/

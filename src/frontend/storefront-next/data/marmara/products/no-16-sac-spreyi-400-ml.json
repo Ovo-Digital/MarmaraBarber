@@ -1,0 +1,56 @@
+{
+  "id": "8213120123105",
+  "title": "No.16 Saç Spreyi 400 ML",
+  "handle": "no-16-sac-spreyi-400-ml",
+  "descriptionHtml": "<p><strong>HAIR SPRAY NO.16</strong></p>\n<p> </p>\n<p> </p>\n<p>ÖZELLİKLERİ </p>\n<p>Güçlü tutuşa sahip Marmara Barber Saç Spreyi saçlarınıza gün boyu inanılmaz hacim, parlaklık ve doğal görünümlü tutuş sağlar.</p>\n<p>Yapışkanlık bırakmaz. Eşsiz formülü sayesinde yağlı, yıpranmış, kuru, kıvırcık veya düz saçlar dahil her tür saça bakım yapılabilir.</p>\n<p>Marmara Kuaför Saç Spreyi saniyeler içinde istediğiniz şekle kavuşmanıza yardımcı olurken, zorlu hava koşulları gibi dış etkenlere karşı gün boyu en iyi arkadaşınız olacak.</p>\n<p>Bırakın Marmara Barber Saç Spreyi saçlarınızı profesyonelce kontrol, duruluk ve korumayla ele alsın.</p>\n<p>Marmara Kuaför adı altında tecrübe, kalite ve modayı harmanlayarak berberlerin ve tüketicilerin gözdesi haline geldik.</p>\n<p> </p>\n<p><strong>NASIL KULLANILABİLİR</strong></p>\n<p>Kullanmadan önce sprey kutusunu çalkalayın. 25 cm'den tutarak hafifçe başlayın.</p>",
+  "vendor": "Barber Marmara",
+  "productType": "Saç Şekillendirici",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44924839821537",
+      "title": "Default Title",
+      "sku": "BHS-400-16",
+      "price": 599.0,
+      "compareAtPrice": 340.0,
+      "available": true,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "42488877777121",
+      "src": "/catalog/marmara/no-16-sac-spreyi-400-ml__42488877777121.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/16.jpg?v=1719131957",
+      "alt": "No.16 Saç Spreyi 400 ML",
+      "width": 1080,
+      "height": 1080,
+      "position": 1
+    }
+  ],
+  "featuredImage": {
+    "id": "42488877777121",
+    "src": "/catalog/marmara/no-16-sac-spreyi-400-ml__42488877777121.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/16.jpg?v=1719131957",
+    "alt": "No.16 Saç Spreyi 400 ML",
+    "width": 1080,
+    "height": 1080,
+    "position": 1
+  },
+  "price": 599.0,
+  "compareAtPrice": 340.0,
+  "available": true,
+  "publishedAt": "2024-01-11T20:23:35+03:00",
+  "createdAt": "2024-01-11T20:23:43+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}

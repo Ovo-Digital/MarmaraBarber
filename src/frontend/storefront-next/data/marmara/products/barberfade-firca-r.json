@@ -1,0 +1,65 @@
+{
+  "id": "8213061697761",
+  "title": "BarberFade Fırça R",
+  "handle": "barberfade-firca-r",
+  "descriptionHtml": "<p><strong>ÖZELLİKLER</strong></p>\n\n<p>Barber tıraş aksesuarları koleksiyonunda bulunan üstün kaliteli Barber tıraş fırçaları, kullanıcıları memnun etmek için en kaliteli şekilde elde üretilir. Kullanıcılara harika bir tıraş deneyimi sunar.</p>\n\n<p>Barber Fırça R, koyu abanoz bir tutamağa ve ince cilalı bir gövdeye sahiptir.</p>\n\n<p>Döngü tasarımı, kesme geçişleri arasında hızlı bir fırça, kişisel bakım veya kesme makinesi temizleme fırçası olarak kolay kullanım ve kullanım sağlar.</p>\n\n<p>Çok fonksiyonlu döngü tasarım kolu.</p>\n\n<p>Siyah kauçuk mat gövde.</p>\n\n<p>Sert Cilt kılları üzerinde nazik.</p>\n\n<p>Boyutlar: 5.70cm Genişlik, 8,90 cm Uzunluk.</p>\n\n<p> </p>\n",
+  "vendor": "Barber Marmara",
+  "productType": "Fırça",
+  "tags": [],
+  "options": [
+    {
+      "name": "Title",
+      "values": [
+        "Default Title"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "44840075362529",
+      "title": "Default Title",
+      "sku": "BFB-R",
+      "price": 214.8,
+      "compareAtPrice": 214.8,
+      "available": false,
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null
+    }
+  ],
+  "images": [
+    {
+      "id": "41743330672865",
+      "src": "/catalog/marmara/barberfade-firca-r__41743330672865.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-fade-firca-r-7-8caf.jpg?v=1712593997",
+      "alt": "BarberFade Fırça R",
+      "width": 1200,
+      "height": 1800,
+      "position": 1
+    },
+    {
+      "id": "41743330705633",
+      "src": "/catalog/marmara/barberfade-firca-r__41743330705633.jpg",
+      "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barberfade-firca-r-e722-4.jpg?v=1712593997",
+      "alt": "BarberFade Fırça R",
+      "width": 1200,
+      "height": 1800,
+      "position": 2
+    }
+  ],
+  "featuredImage": {
+    "id": "41743330672865",
+    "src": "/catalog/marmara/barberfade-firca-r__41743330672865.jpg",
+    "remoteSrc": "https://cdn.shopify.com/s/files/1/0682/7792/8161/files/barber-fade-firca-r-7-8caf.jpg?v=1712593997",
+    "alt": "BarberFade Fırça R",
+    "width": 1200,
+    "height": 1800,
+    "position": 1
+  },
+  "price": 214.8,
+  "compareAtPrice": 214.8,
+  "available": false,
+  "publishedAt": "2024-01-11T19:56:06+03:00",
+  "createdAt": "2024-01-11T19:56:12+03:00",
+  "updatedAt": "2026-08-01T15:02:00+03:00"
+}
