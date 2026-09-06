@@ -26,6 +26,7 @@ export interface ProductVariant {
   id: string;
   title: string;
   price: number;
+  compareAtPrice?: number | null;
   availableForSale: boolean;
   sku?: string;
   imageUrl?: string;

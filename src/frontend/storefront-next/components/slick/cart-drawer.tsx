@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { formatTry } from "@/lib/marmara-catalog";
-import { useLocalCartStore } from "@/store/local-cart-store";
+import { useShopifyCartStore } from "@/store/shopify-cart-store";
 
 export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const lines = useLocalCartStore((s) => s.lines);
-  const update = useLocalCartStore((s) => s.update);
-  const remove = useLocalCartStore((s) => s.remove);
-  const total = useLocalCartStore((s) => s.total);
+  const lines = useShopifyCartStore((s) => s.lines);
+  const update = useShopifyCartStore((s) => s.update);
+  const remove = useShopifyCartStore((s) => s.remove);
+  const total = useShopifyCartStore((s) => s.total);
 
   if (!open) return null;
 

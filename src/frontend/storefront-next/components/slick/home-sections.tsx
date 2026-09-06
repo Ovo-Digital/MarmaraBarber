@@ -16,7 +16,7 @@ export function HeroBanner({
   title = "READY FOR TAKEOFF",
   subtitle = "Partner paketini seç, berber standı hediyesiyle stokunu güçlendir.",
   ctaLabel = "Shop Now",
-  ctaHref = "/collections/paketler",
+  ctaHref = "/iletisim",
 }: {
   image?: string;
   title?: string;
@@ -69,7 +69,7 @@ export function CategoryTabs() {
 export function EssentialsSection({ products }: { products: Product[] }) {
   return (
     <div className="bg-white">
-      <ProductCarousel title="THE ESSENTIALS" products={products} viewAllHref="/products" />
+      <ProductCarousel title="Trending" eyebrow="Best sellers" products={products} />
     </div>
   );
 }
@@ -144,11 +144,11 @@ export function TrustBar() {
 /** 9. Promo split — sol görsel, sağ metin + CTA */
 export function PromoSplitBanner({
   image,
-  eyebrow = "Partner Ol",
-  title = "BERBERLER İÇİN ÖZEL PAKETLER",
-  body = "Stand hediyeli partner paketleriyle stoğunu güçlendir. Ücretsiz deneme kampanyasını kaçırma.",
-  ctaLabel = "Paketleri Gör",
-  ctaHref = "/collections/paketler",
+  eyebrow = "For barbers",
+  title = "Trade enquiries",
+  body = "Stocking Marmara Barber in your shop? Get in touch for trade pricing.",
+  ctaLabel = "Get in touch",
+  ctaHref = "/iletisim",
 }: {
   image?: string;
   eyebrow?: string;
@@ -158,18 +158,37 @@ export function PromoSplitBanner({
   ctaHref?: string;
 }) {
   return (
-    <section className="grid bg-white lg:grid-cols-2">
-      <div className="relative min-h-[280px] bg-[#ddd] lg:min-h-[420px]">
+    <section className="grid items-stretch lg:grid-cols-2" style={{ background: "var(--lx-bone)" }}>
+      <div className="relative min-h-[280px] bg-[#e9e6e2] lg:min-h-[460px]">
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover" />
         ) : null}
       </div>
-      <div className="flex flex-col justify-center bg-[var(--sg-off)] px-8 py-14 sm:px-12 lg:px-16">
-        <p className="sg-nav text-[11px] text-[#666]">{eyebrow}</p>
-        <h2 className="sg-heading mt-4 text-[28px] md:text-[34px]">{title}</h2>
-        <p className="sg-body mt-4 max-w-md text-[#444]">{body}</p>
-        <Link href={ctaHref} className="sg-btn-red mt-8 w-fit">
+      <div
+        className="flex flex-col items-center justify-center px-8 text-center sm:px-12 lg:px-16"
+        style={{
+          background: "var(--lx-bone)",
+          paddingTop: "var(--lx-section-y)",
+          paddingBottom: "var(--lx-section-y)",
+        }}
+      >
+        <p className="lx-eyebrow">{eyebrow}</p>
+        <h2
+          className="mt-4 uppercase"
+          style={{
+            fontFamily: "var(--font-owners-black)",
+            fontWeight: 900,
+            fontSize: "clamp(26px, 3vw, 42px)",
+            lineHeight: 1.04,
+            letterSpacing: "-0.012em",
+            color: "var(--lx-ink)",
+          }}
+        >
+          {title}
+        </h2>
+        <p className="mt-5 max-w-[46ch] text-[15px] leading-relaxed text-[var(--lx-stone)]">{body}</p>
+        <Link href={ctaHref} className="lx-btn mt-8">
           {ctaLabel}
         </Link>
       </div>

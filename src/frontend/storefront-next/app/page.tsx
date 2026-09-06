@@ -1,79 +1,119 @@
 import {
-  CategoryTabs,
   EssentialsSection,
   HeroBanner,
-  InstagramFeed,
-  PressLogoStrip,
-  PromoSplitBanner,
-  QuizPromoBanner,
-  ShopTiles,
-  SkinSection,
-  Testimonials,
-  TrustBar,
 } from "@/components/slick/home-sections";
+import { HeroSlider } from "@/components/slick/hero-slider";
+import { PromoBanner } from "@/components/slick/promo-banner";
+import { ProductRoller } from "@/components/slick/product-roller";
+import { FinderBanner } from "@/components/slick/finder-banner";
+import { NewsletterBand } from "@/components/slick/newsletter-band";
+import { MarqueeBand } from "@/components/slick/marquee-band";
+import { ActionReel } from "@/components/slick/action-reel";
+import { ProductCarousel } from "@/components/slick/product-carousel";
 import {
-  getMarmaraProductByHandle,
-  listMarmaraByProductType,
-  listMarmaraFeatured,
-} from "@/lib/marmara-catalog";
-import { INSTAGRAM_HANDLES } from "@/lib/slick-theme";
+  storefrontGetHeroSlides,
+  storefrontGetBestSellers,
+  storefrontGetNewArrivals,
+} from "@/services/shopify/storefront-direct";
+import { HOME_REEL_MEDIA } from "@/lib/slick-theme";
 
-export const dynamic = "force-static";
+/** Hero koleksiyonları Shopify'dan geliyor; 5 dakikada bir tazele. */
+export const revalidate = 300;
 
-function tileImages() {
-  return {
-    wax: listMarmaraByProductType("Saç Şekillendirici", 1)[0]?.imageUrl,
-    fon: listMarmaraByProductType("Fön Suyu", 1)[0]?.imageUrl,
-    penuar: listMarmaraByProductType("Penuar", 1)[0]?.imageUrl,
-    cilt:
-      listMarmaraByProductType("Cilt Bakımı", 1)[0]?.imageUrl ||
-      listMarmaraByProductType("Sakal Yağı", 1)[0]?.imageUrl,
-    paket:
-      getMarmaraProductByHandle("partner-deneme-2")?.imageUrl ||
-      listMarmaraByProductType("Paketler", 1)[0]?.imageUrl ||
-      listMarmaraFeatured(1)[0]?.imageUrl,
-  };
-}
+export default async function HomePage() {
+  const heroSlides = await storefrontGetHeroSlides(6);
 
-export default function HomePage() {
-  const essentials = listMarmaraFeatured(12);
-  const skin = [
-    ...listMarmaraByProductType("Cilt Bakımı", 4),
-    ...listMarmaraByProductType("Sakal Yağı", 4),
-    ...listMarmaraByProductType("Tıraş Jeli", 4),
-  ].slice(0, 10);
+  // "Öne çıkanlar" şeridi Shopify'ın en çok satanlarından; bağlantı kurulamazsa
+  // sayfa o bölüm olmadan açılır, çökmez.
+  let bestSellers: Awaited<ReturnType<typeof storefrontGetBestSellers>> = [];
+  try {
+    bestSellers = await storefrontGetBestSellers(24);
+  } catch {
+    bestSellers = [];
+  }
 
-  const heroImage =
-    listMarmaraByProductType("Paketler", 1)[0]?.imageUrl ||
-    listMarmaraByProductType("Parfüm", 1)[0]?.imageUrl ||
-    essentials[0]?.imageUrl;
+  const essentials = bestSellers.slice(0, 12);
 
-  const promoImage =
-    listMarmaraByProductType("Saç Şekillendirici", 2)[1]?.imageUrl ||
-    essentials[1]?.imageUrl;
+  // İkinci ürün şeridi — beyaz zeminde, iki koyu bölümün arasına giriyor.
+  let newArrivals: Awaited<ReturnType<typeof storefrontGetNewArrivals>> = [];
+  try {
+    newArrivals = await storefrontGetNewArrivals(12);
+  } catch {
+    newArrivals = [];
+  }
 
-  const instagram = INSTAGRAM_HANDLES.map((handle) => {
-    const p = getMarmaraProductByHandle(handle);
-    return {
-      handle,
-      src: p?.imageUrl,
-      title: p?.title,
-    };
+  // Kayan ürün listesi — önce her ürün tipinden birer tane (liste altı tane
+  // kolonya değil, yelpazenin kesiti olsun), sonra kalanlarla tamamla. Liste
+  // kısa kalırsa aynı ürün ekranda iki kez görünürdü.
+  const seenTypes = new Set<string>();
+  const oneOfEachType = bestSellers.filter((p) => {
+    const key = (p.productType || p.handle).toLowerCase();
+    if (seenTypes.has(key)) return false;
+    seenTypes.add(key);
+    return true;
   });
+  // Video şeridi: farklı tipten 5 ürün
+  const reelItems = oneOfEachType
+    .filter((p) => Boolean(p.imageUrl))
+    .slice(0, 5)
+    .map((product) => ({
+      product,
+      videoUrl: HOME_REEL_MEDIA[product.handle]?.video,
+      posterUrl: HOME_REEL_MEDIA[product.handle]?.poster,
+    }));
+
+  const chosen = new Set(oneOfEachType.map((p) => p.handle));
+  const rollerProducts = [
+    ...oneOfEachType,
+    ...bestSellers.filter((p) => !chosen.has(p.handle)),
+  ];
 
   return (
     <div className="w-full bg-white">
-      <HeroBanner image={heroImage} />
-      <CategoryTabs />
+      {heroSlides.length ? (
+        <HeroSlider slides={heroSlides} brandImage="/brand/marmara-logo.png" />
+      ) : (
+        // Shopify'dan görselli koleksiyon gelmezse eski tek görselli hero'ya düş
+        <HeroBanner image={heroSlides[0]?.imageUrl} />
+      )}
+
+      {/* Beyaz — koyu hero'dan sonra sayfa nefes alsın */}
       <EssentialsSection products={essentials} />
-      <ShopTiles images={tileImages()} />
-      <SkinSection products={skin.length ? skin : essentials.slice(0, 8)} />
-      <TrustBar />
-      <PromoSplitBanner image={promoImage} />
-      <PressLogoStrip />
-      <QuizPromoBanner />
-      <Testimonials />
-      <InstagramFeed images={instagram} />
+
+      {/* Promosyon bandı — metinler ve görsel buradan yönetilir, kodda sabit değil */}
+      <PromoBanner
+        eyebrow="Since 1970"
+        headline="Built for the chair."
+        subline={[
+          "Professional grooming products, trusted by barbers since 1970.",
+          "Cologne, styling, skin and beard care.",
+        ]}
+        ctaLabel="Shop now"
+        ctaHref="/products"
+      />
+
+      {/* Beyaz — iki koyu bölümün arasında ürün şeridi */}
+      <div className="bg-white">
+        <ProductCarousel title="New in" eyebrow="Just landed" products={newArrivals} />
+      </div>
+
+      <ProductRoller
+        products={rollerProducts}
+        eyebrow="The range"
+        title="Shop the products"
+        limit={8}
+      />
+
+      <MarqueeBand />
+      <FinderBanner />
+
+      {/* Video şeridi — videolar public/media/ altına konup HOME_REEL_MEDIA'ya
+          yazılınca kendiliğinden devreye giriyor; o zamana kadar ürün görselleri */}
+      <ActionReel items={reelItems} />
+
+      <NewsletterBand />
+
+      {/* Marka hikayesi — görseli public/brand/ altına koyup image prop'una ver */}
     </div>
   );
 }

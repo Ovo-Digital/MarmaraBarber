@@ -321,3 +321,458 @@ a {
 .sg-contact-input:focus {
   border-color: #999;
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   LUXURY STREET — tasarım dili
+   Sokak tipografisi + lüks duruş. Üç kural:
+   1) Boşluk cömert olacak  2) Kırmızı seyrek kullanılacak
+   3) Zeminler sıcak nötr olacak (buz beyazı / mutlak siyah değil)
+   ════════════════════════════════════════════════════════════════════ */
+:root {
+  /* Sıcak nötrler — saf beyaz/siyah yerine */
+  --lx-bone: #f7f5f2;      /* açık zemin */
+  --lx-paper: #ffffff;     /* kart zemini */
+  --lx-ink: #14110f;       /* koyu zemin ve ana metin */
+  --lx-stone: #8a8580;     /* ikincil metin */
+  --lx-line: rgba(20, 17, 15, 0.1); /* ince ayırıcı */
+
+  /* Dikey ritim — bölümler arası nefes */
+  --lx-section-y: clamp(76px, 7vw, 128px);
+  --lx-block-gap: clamp(28px, 3vw, 48px);
+
+  /* Hareket — yavaş ve yumuşak, zıplama yok */
+  --lx-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --lx-slow: 700ms;
+}
+
+/* Küçük, harfleri açılmış üst etiket — "street" imzası */
+.lx-eyebrow {
+  font-family: var(--font-owners);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sg-red);
+}
+
+/* Bölüm başlığı */
+.lx-title {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  font-size: clamp(26px, 3.2vw, 46px);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--lx-ink);
+}
+
+/* Metin bağlantısı — altı ince çizgiyle açılır */
+.lx-link {
+  font-family: var(--font-owners);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lx-ink);
+  padding-bottom: 3px;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 420ms var(--lx-ease);
+}
+.lx-link:hover {
+  background-size: 100% 1px;
+}
+
+/* Ana buton — dolu, sakin */
+.lx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 34px;
+  background: var(--lx-ink);
+  color: #fff;
+  font-family: var(--font-owners);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: opacity 300ms var(--lx-ease), transform 300ms var(--lx-ease);
+}
+.lx-btn:hover {
+  opacity: 0.86;
+}
+
+/* İkincil buton — çerçeveli */
+.lx-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 34px;
+  border: 1px solid currentColor;
+  font-family: var(--font-owners);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: background-color 300ms var(--lx-ease), color 300ms var(--lx-ease);
+}
+
+/* Koyu bordo → kırmızı degrade. Marka kırmızısını zemin olarak kullanmanın
+   yolu: düz kırmızı ekranda bağırır, degrade derinlik verir. */
+.lx-red-field {
+  background:
+    radial-gradient(120% 100% at 100% 0%, rgba(225, 6, 0, 0.55) 0%, rgba(225, 6, 0, 0) 58%),
+    linear-gradient(135deg, #16100f 0%, #2a1114 42%, #6d1620 100%);
+}
+
+/* Üzerine gelince kırmızı derinleşir */
+.lx-red-field-hover {
+  transition: background-position 900ms var(--lx-ease), filter 600ms var(--lx-ease);
+  background-size: 140% 140%;
+  background-position: 0% 50%;
+}
+.lx-red-field-hover:hover {
+  background-position: 100% 50%;
+  filter: saturate(1.15);
+}
+
+/* Sepete ekle — siyah daire, ortasında artı. Üzerine gelince daire hafifçe
+   büyür ve artı 90° döner. Sade ama fark edilir. */
+.lx-plus-btn {
+  transition: transform 420ms var(--lx-ease), background-color 320ms var(--lx-ease);
+}
+.lx-plus-btn:hover {
+  transform: scale(1.08);
+}
+.lx-plus-btn > svg {
+  transition: transform 420ms var(--lx-ease);
+}
+.lx-plus-btn:hover > svg {
+  transform: rotate(90deg);
+}
+
+/* (eski) Sepete ekle — ikon hafifçe yükselir, zemin dolar. */
+.lx-cart-btn {
+  position: relative;
+  overflow: hidden;
+  transition: color 320ms var(--lx-ease), border-color 320ms var(--lx-ease);
+}
+.lx-cart-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--lx-ink);
+  transform: scale(0);
+  border-radius: 999px;
+  transition: transform 380ms var(--lx-ease);
+}
+.lx-cart-btn:hover::before {
+  transform: scale(1);
+}
+.lx-cart-btn > * {
+  position: relative;
+  transition: transform 380ms var(--lx-ease);
+}
+.lx-cart-btn:hover > * {
+  transform: translateY(-2px);
+}
+
+/* Ürün bulucu butonu — ok sağa kayar, zemin hafifçe koyulaşır */
+.lx-finder-btn {
+  transition: filter 320ms var(--lx-ease), transform 320ms var(--lx-ease);
+}
+.lx-finder-btn:hover {
+  filter: brightness(0.92);
+  transform: translateY(-1px);
+}
+.lx-finder-arrow {
+  transition: transform 380ms var(--lx-ease);
+}
+.lx-finder-btn:hover .lx-finder-arrow {
+  transform: translateX(4px);
+}
+
+/* Bulucu seçenek butonu */
+.lx-finder-opt {
+  transition: background-color 260ms var(--lx-ease), color 260ms var(--lx-ease),
+    border-color 260ms var(--lx-ease);
+}
+.lx-finder-opt:hover {
+  background: var(--lx-ink);
+  border-color: var(--lx-ink);
+  color: #fff;
+}
+
+/* Karusel okları — sepet butonu ve bulucu seçenekleriyle aynı dil:
+   ince çizgi çerçeve, üzerine gelince mürekkeple doluyor. */
+.lx-arrow {
+  border: 1px solid var(--lx-line);
+  background: var(--lx-paper);
+  color: var(--lx-ink);
+  box-shadow: 0 6px 22px rgba(20, 17, 15, 0.07);
+  transition: background-color 300ms var(--lx-ease), color 300ms var(--lx-ease),
+    border-color 300ms var(--lx-ease), transform 300ms var(--lx-ease);
+}
+.lx-arrow:hover {
+  background: var(--lx-ink);
+  border-color: var(--lx-ink);
+  color: #fff;
+  transform: scale(1.06);
+}
+/* Karolar arasında ince ayırıcı — bitişik dursunlar ama sınır belli olsun */
+.lx-cat + .lx-cat {
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Ürün kartı hover — sol üstte açılan kırmızı köşe ayracı */
+/* Sol üstte duran kırmızı köşe ayracı. Kartı tamamen saran çerçeve denendi
+   ama ağır durdu; ayraç sadece hover'da bir miktar uzuyor. */
+.lx-corner {
+  width: 74px;
+  height: 30px;
+  border-top: 2px solid var(--sg-red);
+  border-left: 2px solid var(--sg-red);
+  transition: width 420ms var(--lx-ease), height 420ms var(--lx-ease);
+}
+.group:hover .lx-corner,
+.group:focus-within .lx-corner {
+  width: 108px;
+  height: 44px;
+}
+
+/* ── Koleksiyon indeksi satırları ─────────────────────────────────────
+   Satır normalde çizgisiz; imleç gelince altında ince kırmızı çizgi
+   soldan sağa açılıyor ve ok hafifçe kayıyor. */
+.lx-idx {
+  position: relative;
+  border-bottom: 1px solid var(--lx-line);
+  transition: color 260ms var(--lx-ease);
+}
+.lx-idx-rule {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 480ms var(--lx-ease);
+}
+.lx-idx:hover .lx-idx-rule,
+.lx-idx:focus-visible .lx-idx-rule {
+  transform: scaleX(1);
+}
+.lx-idx-arrow {
+  transition: transform 380ms var(--lx-ease);
+}
+.lx-idx:hover .lx-idx-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* ── Şeritli görsel geçişi ────────────────────────────────────────────
+   Görsel yatay şeritlere bölünüyor; her şerit yandan kayarak ve
+   bulanıklığı çözülerek giriyor. Şeritlerin gecikmesi sırayla arttığı
+   için görsel yatay çizgilere ayrışıp toparlanıyormuş gibi görünüyor. */
+@keyframes lx-slit-in {
+  0% {
+    transform: translateX(calc(var(--yon) * 14%));
+    opacity: 0;
+    filter: blur(7px);
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.lx-slit {
+  opacity: 0;
+  animation: lx-slit-in 620ms var(--lx-ease) forwards;
+  animation-delay: calc(var(--i) * 26ms);
+  will-change: transform, opacity, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lx-slit {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* ── Sayfa geçişi: perde ──────────────────────────────────────────────
+   Tıklandığında panel alttan yukarı kapanır, sayfa arkasında değişir,
+   sonra yukarı doğru çıkıp yeni sayfayı ortaya bırakır. */
+.lx-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--lx-ink);
+  transform: translateY(100%);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.lx-curtain--kapaniyor {
+  transform: translateY(0);
+  transition: transform 420ms cubic-bezier(0.7, 0, 0.3, 1);
+  pointer-events: auto;
+}
+
+.lx-curtain--aciliyor {
+  transform: translateY(-100%);
+  transition: transform 560ms var(--lx-ease);
+}
+
+.lx-curtain--bos {
+  transform: translateY(100%);
+  transition: none;
+}
+
+/* Yeni sayfa perdenin ardından hafifçe yükselerek geliyor */
+@keyframes lx-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lx-page {
+  animation: lx-page-in 480ms var(--lx-ease) 120ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lx-curtain {
+    display: none;
+  }
+  .lx-page {
+    animation: none;
+  }
+}
+
+/* ── Kayan yazı bandı ─────────────────────────────────────────────────── */
+.lx-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+.lx-marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: lx-marquee-slide var(--lx-marquee-dur, 38s) linear infinite;
+}
+.lx-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 26px);
+  padding-right: clamp(14px, 1.6vw, 26px);
+  white-space: nowrap;
+}
+.lx-marquee-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+}
+/* Dizi iki kez yazılı: yarıya gelince başa dönüş görünmez oluyor. */
+@keyframes lx-marquee-slide {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lx-marquee-track { animation: none; }
+}
+
+/* ── Video şeridi ─────────────────────────────────────────────────────── */
+.lx-reel-sahne {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(28px, 3vw, 44px);
+  /* Mobilde kart neredeyse tüm genişliği kaplıyor; 62vw'de içindeki ürün
+     kartı sığmıyor ve yan kartlar da okunmuyordu. */
+  --kart: 88vw;
+  /* Sahne yüksekliği kart genişliğinden türüyor (16:9) — ikisini ayrı ayrı
+     tutmuyoruz, kart büyüyünce sahne de büyüyor. */
+  height: calc(var(--kart) * 9 / 16);
+}
+.lx-reel-kart {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--kart);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 18px 60px rgba(20, 17, 15, 0.28);
+  transition:
+    transform 600ms cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 600ms cubic-bezier(0.25, 1, 0.5, 1),
+    filter 600ms cubic-bezier(0.25, 1, 0.5, 1);
+  /* Varsayılan: ortada küçülmüş ve görünmez bekliyor */
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.lx-reel-kart--aktif {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  z-index: 10;
+  border: 1px solid rgba(20, 17, 15, 0.12);
+  pointer-events: auto;
+}
+.lx-reel-kart--onceki {
+  transform: translate(-120%, -50%) scale(0.85);
+  opacity: 0.55;
+  filter: brightness(0.4);
+  z-index: 5;
+}
+.lx-reel-kart--sonraki {
+  transform: translate(20%, -50%) scale(0.85);
+  opacity: 0.55;
+  filter: brightness(0.4);
+  z-index: 5;
+}
+
+.lx-reel-ok {
+  position: absolute;
+  top: 50%;
+  z-index: 20;
+  display: flex;
+  height: 42px;
+  width: 42px;
+  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(20, 17, 15, 0.72);
+  color: #ffffff;
+  backdrop-filter: blur(6px);
+  transition: transform 250ms var(--lx-ease), background 250ms var(--lx-ease);
+}
+.lx-reel-ok:hover {
+  background: var(--lx-ink);
+  transform: translateY(-50%) scale(1.1);
+}
+.lx-reel-ok--sol { left: 10px; }
+.lx-reel-ok--sag { right: 10px; }
+
+@media (min-width: 768px) {
+  .lx-reel-sahne { --kart: min(820px, 62vw); }
+  .lx-reel-ok { height: 50px; width: 50px; }
+  .lx-reel-ok--sol { left: clamp(12px, 3vw, 40px); }
+  .lx-reel-ok--sag { right: clamp(12px, 3vw, 40px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lx-reel-kart { transition: none; }
+}

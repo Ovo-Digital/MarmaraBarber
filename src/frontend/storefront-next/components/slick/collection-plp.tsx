@@ -8,8 +8,6 @@ import {
   EMPTY_PLP_FILTERS,
   activeFilterChips,
   buildPlpFacets,
-  colorLabel,
-  colorSwatch,
   filterProducts,
   hasActiveFilters,
   PLP_PAGE_SIZE,
@@ -18,12 +16,13 @@ import {
   type SlickPlpFilters,
   type SlickPlpSort,
 } from "@/lib/slick-plp";
-import { useLocalCartStore } from "@/store/local-cart-store";
+import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import type { Product } from "@/types/commerce";
 
 type Props = {
   title: string;
   description?: string;
+  /** Artık kullanılmıyor: bant düz mürekkep zemin (bulanık ürün kırpıntısı kaldırıldı) */
   image?: string;
   products: Product[];
 };
@@ -104,7 +103,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
               ) : null}
             </button>
             <p className="hidden text-[13px] text-[#666] lg:block">
-              {filtered.length} / {products.length} ürün
+              {filtered.length} / {products.length} products
             </p>
           </div>
 
@@ -128,8 +127,20 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
               </button>
             </div>
             <label className="flex items-center gap-2 text-[12px]">
-              <span className="sg-nav hidden text-[10px] text-[#888] sm:inline">Sırala</span>
+              <span className="sg-nav hidden text-[10px] text-[#888] sm:inline">Sort</span>
               <select
+                style={{
+                  fontFamily: "var(--font-owners)",
+                  fontSize: "12px",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "var(--lx-ink)",
+                  border: "1px solid var(--lx-line)",
+                  background: "transparent",
+                  padding: "10px 14px",
+                  borderRadius: 0,
+                  appearance: "none",
+                }}
                 value={sort}
                 onChange={(e) => setSort(e.target.value as SlickPlpSort)}
                 className="sg-nav max-w-[180px] border border-black/20 bg-white px-2 py-2 text-[11px] outline-none sm:max-w-none"
@@ -158,7 +169,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
               </button>
             ))}
             <button type="button" onClick={clearAll} className="sg-nav text-[10px] underline">
-              Filtreleri Temizle
+              Clear filters
             </button>
           </div>
         )}
@@ -201,7 +212,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
                 {canLoadMore && (
                   <div className="mt-12 text-center">
                     <p className="mb-4 text-[13px] text-[#666]">
-                      {shown.length} / {filtered.length} ürün gösteriliyor
+                      Showing {shown.length} of {filtered.length}
                     </p>
                     <button
                       type="button"
@@ -260,31 +271,45 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
 function CollectionHeader({
   title,
   description,
-  image,
   count,
 }: {
   title: string;
   description?: string;
+  /** Artık okunmuyor: bant düz mürekkep zemin (bulanık ürün kırpıntısı kaldırıldı) */
   image?: string;
   count: number;
 }) {
   return (
-    <section className="relative overflow-hidden bg-[#1a1a1a] text-white">
-      {image ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={image}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-45 md:opacity-55"
-        />
-      ) : null}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/55 to-black/40" />
-      <div className="sg-container relative py-14 md:py-20">
-        <h1 className="sg-heading max-w-3xl">{title}</h1>
+    <section
+      className="relative overflow-hidden text-white"
+      style={{ background: "var(--lx-ink)" }}
+    >
+      {/* Arka planda bulanık ürün fotoğrafı yerine düz mürekkep zemin.
+          Yakınlaştırılmış etiket kırpıntısı okunmuyordu ve kaza gibi duruyordu;
+          sade zemin hem daha lüks hem başlığı öne çıkarıyor. */}
+      <div className="sg-container relative py-16 md:py-24">
+        <p className="lx-eyebrow" style={{ color: "rgba(255,255,255,0.55)" }}>
+          Collection
+        </p>
+        <h1
+          className="mt-3 max-w-3xl uppercase"
+          style={{
+            fontFamily: "var(--font-owners-black)",
+            fontWeight: 900,
+            fontSize: "clamp(30px, 4.4vw, 62px)",
+            lineHeight: 1.02,
+            letterSpacing: "-0.015em",
+            color: "#ffffff",
+          }}
+        >
+          {title}
+        </h1>
         {description ? (
-          <p className="sg-body mt-4 max-w-xl text-white/85 md:text-[15px]">{description}</p>
+          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/70">{description}</p>
         ) : null}
-        <p className="sg-nav mt-5 text-[11px] text-white/70">{count} ürün</p>
+        <p className="lx-eyebrow mt-7" style={{ color: "rgba(255,255,255,0.45)" }}>
+          {count} {count === 1 ? "product" : "products"}
+        </p>
       </div>
     </section>
   );
@@ -293,19 +318,19 @@ function CollectionHeader({
 function EmptyState({ onClear }: { onClear: () => void }) {
   return (
     <div className="py-24 text-center">
-      <p className="sg-heading text-[28px]">Bu filtrelerle ürün bulunamadı</p>
+      <p className="sg-heading text-[28px]">No products match these filters</p>
       <p className="sg-body mx-auto mt-4 max-w-md text-[#666]">
-        Filtreleri temizleyip koleksiyondaki tüm ürünlere tekrar göz atabilirsin.
+        Clear filtersyip koleksiyondaki tüm ürünlere tekrar göz atabilirsin.
       </p>
       <button type="button" className="sg-btn-red mt-8" onClick={onClear}>
-        Filtreleri Temizle
+        Clear filters
       </button>
     </div>
   );
 }
 
 function ListRow({ product }: { product: Product }) {
-  const add = useLocalCartStore((s) => s.add);
+  const add = useShopifyCartStore((s) => s.add);
   return (
     <li className="flex items-center gap-4 py-4">
       <Link href={`/products/${product.handle}`} className="h-24 w-24 shrink-0 bg-[var(--sg-off)] sm:h-28 sm:w-28">
@@ -359,17 +384,17 @@ function FilterPanel({
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h3 className="sg-nav text-[12px]">Filtreler</h3>
+        <h3 className="sg-nav text-[12px]">Filters</h3>
         {hasActiveFilters(value) && (
           <button type="button" onClick={onClear} className="text-[11px] underline">
-            Filtreleri Temizle
+            Clear filters
           </button>
         )}
       </div>
 
       {/* Fiyat */}
       <fieldset>
-        <legend className="sg-nav mb-3 text-[11px]">Fiyat</legend>
+        <legend className="sg-nav mb-3 text-[11px]">Price</legend>
         <div className="flex items-center gap-2">
           <input
             type="number"
@@ -417,7 +442,7 @@ function FilterPanel({
       {/* Tip */}
       {facets.types.length > 0 && (
         <fieldset>
-          <legend className="sg-nav mb-3 text-[11px]">Kategori / Tip</legend>
+          <legend className="sg-nav mb-3 text-[11px]">Category</legend>
           <ul className="max-h-48 space-y-2 overflow-y-auto">
             {facets.types.map((t) => (
               <li key={t.value}>
@@ -440,7 +465,7 @@ function FilterPanel({
       {/* Hacim */}
       {facets.volumes.length > 0 && (
         <fieldset>
-          <legend className="sg-nav mb-3 text-[11px]">Hacim</legend>
+          <legend className="sg-nav mb-3 text-[11px]">Size</legend>
           <ul className="max-h-40 space-y-2 overflow-y-auto">
             {facets.volumes.map((v) => (
               <li key={v.value}>
@@ -460,61 +485,6 @@ function FilterPanel({
         </fieldset>
       )}
 
-      {/* Renk / koku swatch */}
-      {facets.colors.length > 0 && (
-        <fieldset>
-          <legend className="sg-nav mb-3 text-[11px]">Renk / Nota</legend>
-          <div className="flex flex-wrap gap-2">
-            {facets.colors.map((c) => {
-              const active = value.colors.includes(c.value);
-              return (
-                <button
-                  key={c.value}
-                  type="button"
-                  title={`${colorLabel(c.value)} (${c.count})`}
-                  onClick={() => toggleArr("colors", c.value)}
-                  className={`h-9 w-9 border ${active ? "border-black ring-1 ring-black" : "border-black/20"}`}
-                  style={{ background: colorSwatch(c.value) }}
-                  aria-pressed={active}
-                />
-              );
-            })}
-          </div>
-        </fieldset>
-      )}
-
-      {/* Rating */}
-      <fieldset>
-        <legend className="sg-nav mb-3 text-[11px]">Puan</legend>
-        <ul className="space-y-2">
-          {[4, 3, 2].map((r) => (
-            <li key={r}>
-              <label className="flex cursor-pointer items-center gap-2 text-[13px]">
-                <input
-                  type="radio"
-                  name="plp-rating"
-                  checked={value.minRating === r}
-                  onChange={() => onChange({ ...value, minRating: r })}
-                  className="accent-black"
-                />
-                {r}★ ve üzeri
-              </label>
-            </li>
-          ))}
-          <li>
-            <label className="flex cursor-pointer items-center gap-2 text-[13px]">
-              <input
-                type="radio"
-                name="plp-rating"
-                checked={value.minRating == null}
-                onChange={() => onChange({ ...value, minRating: null })}
-                className="accent-black"
-              />
-              Tümü
-            </label>
-          </li>
-        </ul>
-      </fieldset>
     </div>
   );
 }

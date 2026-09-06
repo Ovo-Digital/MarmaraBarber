@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { SiteShell } from "@/components/slick/site-shell";
 import { QueryProvider } from "@/providers/query-provider";
+import { storefrontGetHeroSlides } from "@/services/shopify/storefront-direct";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,12 +25,20 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // Menü içeriği Shopify'dan; bağlantı kurulamazsa menü boş kalır ama site açılır.
+  let navCollections: Awaited<ReturnType<typeof storefrontGetHeroSlides>> = [];
+  try {
+    navCollections = await storefrontGetHeroSlides(10);
+  } catch {
+    navCollections = [];
+  }
+
   return (
-    <html lang="tr">
+    <html lang="en">
       <body className="flex min-h-screen flex-col antialiased">
         <QueryProvider>
-          <SiteShell>{children}</SiteShell>
+          <SiteShell navCollections={navCollections}>{children}</SiteShell>
         </QueryProvider>
       </body>
     </html>

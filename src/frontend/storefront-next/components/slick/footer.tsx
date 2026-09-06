@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { FOOTER_COLUMNS, FOOTER_NEWSLETTER, SITE_NAME } from "@/lib/slick-theme";
+import { FOOTER_COLUMNS, SITE_NAME } from "@/lib/slick-theme";
 
 const SOCIAL = [
   { label: "Instagram", href: "https://www.instagram.com/marmarabarber/", icon: InstagramIcon },
@@ -12,12 +11,10 @@ const SOCIAL = [
 ];
 
 export function SlickFooter() {
-  const [email, setEmail] = useState("");
-  const [done, setDone] = useState(false);
-
   return (
     <footer className="mt-auto border-t border-white/20 bg-black text-white">
-      {/* Üst: 3 kolon link + dikey çizgi + newsletter (Slick düzeni) */}
+      {/* Üst: 3 kolon link + dikey çizgi + sosyal hesaplar.
+          Bülten kaydı sayfanın hemen üstündeki bantta — iki form üst üste olmasın. */}
       <div className="sg-container grid gap-10 py-12 lg:grid-cols-[1.35fr_1px_1fr] lg:gap-0 lg:py-14">
         <div className="grid gap-10 sm:grid-cols-3 lg:pr-12">
           {FOOTER_COLUMNS.map((col) => (
@@ -39,38 +36,8 @@ export function SlickFooter() {
         <div className="hidden bg-white/25 lg:block" aria-hidden />
 
         <div className="lg:pl-12">
-          <h3 className="sg-nav-bold text-[14px] text-[var(--sg-red)] sm:text-[16px]">
-            {FOOTER_NEWSLETTER.title}
-          </h3>
-          <p className="sg-body mt-3 max-w-md text-[14px] text-white/80">{FOOTER_NEWSLETTER.body}</p>
-
-          {done ? (
-            <p className="mt-6 text-[12px] font-bold uppercase tracking-wide text-white/80">
-              Teşekkürler — kayıt oldun.
-            </p>
-          ) : (
-            <form
-              className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-stretch"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setDone(true);
-              }}
-            >
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
-                className="min-w-0 flex-1 border border-white/50 bg-black px-4 py-3 text-[14px] text-white outline-none placeholder:text-white/45"
-              />
-              <button type="submit" className="sg-btn-red shrink-0 !px-6">
-                Subscribe
-              </button>
-            </form>
-          )}
-
-          <div className="mt-8 flex flex-wrap items-center gap-5">
+          <h3 className="sg-nav-bold text-[12px] text-[var(--sg-red)]">FOLLOW</h3>
+          <div className="mt-5 flex flex-wrap items-center gap-5">
             {SOCIAL.map((s) => (
               <a
                 key={s.label}
@@ -87,16 +54,9 @@ export function SlickFooter() {
         </div>
       </div>
 
-      {/* Alt: dev logo + copyright / dil */}
+      {/* Alt: copyright / dil */}
       <div className="sg-container pb-8 pt-2">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <p
-            className="sg-display select-none text-[clamp(2.5rem,10vw,7.5rem)] leading-[0.85] text-white"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            MARMARA
-            <br className="sm:hidden" /> BARBER
-          </p>
           <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5 lg:pb-2">
             <p className="text-[11px] text-white/55">
               Copyright © {new Date().getFullYear()} {SITE_NAME}

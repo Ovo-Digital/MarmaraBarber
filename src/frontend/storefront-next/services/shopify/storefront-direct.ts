@@ -3,33 +3,69 @@ import type { PlpSortOption } from "@/lib/plp-filters";
 import type { Cart, Collection, Product, ProductFacet, ProductListingResult } from "@/types/commerce";
 
 const PRODUCT_FRAGMENT = `
-  id handle title description availableForSale
+  id handle title description availableForSale productType
   featuredImage { url }
+  images(first: 2) { edges { node { url } } }
   priceRange { minVariantPrice { amount currencyCode } }
+  compareAtPriceRange { minVariantPrice { amount } }
   variants(first: 10) {
-    edges { node { id title availableForSale sku price { amount currencyCode } } }
+    edges {
+      node {
+        id title availableForSale sku
+        price { amount currencyCode }
+        compareAtPrice { amount }
+        selectedOptions { name value }
+      }
+    }
   }
 `;
 
 function mapProduct(node: Record<string, unknown>): Product {
   const priceRange = node.priceRange as { minVariantPrice: { amount: string; currencyCode: string } };
   const variants = (node.variants as { edges: { node: Record<string, unknown> }[] })?.edges ?? [];
+  const images = (node.images as { edges: { node: { url: string } }[] } | undefined)?.edges ?? [];
+  const price = parseFloat(priceRange?.minVariantPrice?.amount ?? "0");
+
+  // Shopify indirim yoksa compareAtPrice'i fiyata eşit ya da 0 döndürebilir;
+  // sadece gerçekten üstteyse "üstü çizili fiyat" olarak göster.
+  const compareRaw = parseFloat(
+    (node.compareAtPriceRange as { minVariantPrice?: { amount?: string } } | undefined)
+      ?.minVariantPrice?.amount ?? "0",
+  );
+  const compareAtPrice = compareRaw > price ? compareRaw : null;
+
+  const featured = (node.featuredImage as { url?: string } | null)?.url;
+  // Hover'da gösterilecek 2. görsel: kapak görselinden farklı olan ilk görsel.
+  const secondaryImageUrl = images.map((e) => e.node.url).find((url) => url !== featured);
+
   return {
     id: node.id as string,
     handle: node.handle as string,
     title: node.title as string,
     description: (node.description as string) ?? "",
     availableForSale: node.availableForSale as boolean,
-    imageUrl: (node.featuredImage as { url?: string } | null)?.url,
-    price: parseFloat(priceRange?.minVariantPrice?.amount ?? "0"),
+    productType: (node.productType as string) || undefined,
+    imageUrl: featured,
+    secondaryImageUrl,
+    price,
+    compareAtPrice,
     currencyCode: priceRange?.minVariantPrice?.currencyCode ?? "TRY",
-    variants: variants.map(({ node: v }) => ({
-      id: v.id as string,
-      title: v.title as string,
-      price: parseFloat((v.price as { amount: string })?.amount ?? "0"),
-      availableForSale: v.availableForSale as boolean,
-      sku: v.sku as string | undefined,
-    })),
+    variants: variants.map(({ node: v }) => {
+      const vPrice = parseFloat((v.price as { amount: string })?.amount ?? "0");
+      const vCompare = parseFloat((v.compareAtPrice as { amount?: string } | null)?.amount ?? "0");
+      const opts = (v.selectedOptions as { name: string; value: string }[] | undefined) ?? [];
+      return {
+        id: v.id as string,
+        title: v.title as string,
+        price: vPrice,
+        compareAtPrice: vCompare > vPrice ? vCompare : null,
+        availableForSale: v.availableForSale as boolean,
+        sku: v.sku as string | undefined,
+        option1: opts[0]?.value ?? null,
+        option2: opts[1]?.value ?? null,
+        option3: opts[2]?.value ?? null,
+      };
+    }),
   };
 }
 
@@ -140,7 +176,7 @@ export async function storefrontSearchWithFilters(options: {
 export async function storefrontGetProductsByQuery(
   query: string,
   first = 48,
-  sortKey: "CREATED_AT" | "PRICE" | "TITLE" = "CREATED_AT",
+  sortKey: "CREATED_AT" | "PRICE" | "TITLE" | "RELEVANCE" | "BEST_SELLING" = "CREATED_AT",
   reverse = true,
 ): Promise<Product[]> {
   const client = createShopifyClient();
@@ -240,4 +276,415 @@ export async function storefrontGetCart(cartId: string): Promise<Cart | null> {
     { cartId }
   );
   return data.cart ? mapCart(data.cart) : null;
+}
+
+/* ── Hero slider verisi ────────────────────────────────────────────────
+   Mağazadan bağımsız çalışır: koleksiyonları çeker, görseli olanları seçer.
+   Görsel önceliği:
+     1) Koleksiyonun kendi görseli (Shopify'da elle atanmışsa — merchant kontrolü)
+     2) Koleksiyondaki ilk ürünün kapak görseli
+   Görseli hiç olmayan koleksiyon hero'ya alınmaz.
+   ────────────────────────────────────────────────────────────────────── */
+/** Sıralama için koleksiyon başına çekilecek örnek ürün sayısı (sayım burada tavanlanır). */
+const HERO_SAMPLE = 24;
+
+export type HeroSlide = {
+  handle: string;
+  title: string;
+  imageUrl: string;
+  href: string;
+  /** Koleksiyonun kendi görseli mi kullanıldı (merchant tarafından seçilmiş) */
+  curated: boolean;
+};
+
+export async function storefrontGetHeroSlides(limit = 6): Promise<HeroSlide[]> {
+  const client = createShopifyClient();
+  const data = await client.request<{
+    collections: {
+      edges: {
+        node: {
+          handle: string;
+          title: string;
+          image: { url: string } | null;
+          products: { edges: { node: { featuredImage: { url: string } | null } }[] };
+        };
+      }[];
+    };
+  }>(
+    `query($first:Int!,$sample:Int!){
+      collections(first:$first){
+        edges { node {
+          handle title
+          image { url }
+          products(first: $sample) { edges { node { featuredImage { url } } } }
+        } }
+      }
+    }`,
+    { first: 40, sample: HERO_SAMPLE },
+  );
+
+  const slides = data.collections.edges
+    // "frontpage" her Shopify mağazasında otomatik açılan varsayılan koleksiyondur,
+    // hero başlığı olarak anlamsız ("Ana sayfa") — dışarıda bırak.
+    .filter(({ node }) => node.handle !== "frontpage")
+    .map(({ node }) => {
+      const curated = Boolean(node.image?.url);
+      const firstProductImage = node.products.edges.find((e) => e.node.featuredImage?.url)?.node
+        .featuredImage?.url;
+      return {
+        handle: node.handle,
+        title: cleanCollectionTitle(node.title),
+        imageUrl: node.image?.url ?? firstProductImage ?? "",
+        href: `/collections/${node.handle}`,
+        curated,
+        weight: node.products.edges.length,
+      };
+    })
+    .filter((s) => s.imageUrl);
+
+  slides.sort(
+    (a, b) =>
+      // 1) Mağaza sahibi koleksiyona görsel atadıysa hero'yu panelden yönetiyor demektir
+      Number(b.curated) - Number(a.curated) ||
+      // 2) Sonra en çok ürünü olan koleksiyonlar (HERO_SAMPLE'da tavanlanır)
+      b.weight - a.weight ||
+      a.title.localeCompare(b.title, "tr"),
+  );
+
+  return slides.slice(0, limit).map((s) => ({
+    handle: s.handle,
+    title: s.title,
+    imageUrl: s.imageUrl,
+    href: s.href,
+    curated: s.curated,
+  }));
+}
+
+/**
+ * Koleksiyon adındaki marka önekini temizler: "Marmara Barber | Fön Suyu" → "Fön Suyu".
+ * Hero'da başlıklar çok büyük yazıldığı için tekrar eden marka adı yer israfı.
+ * Ayırıcı yoksa başlık olduğu gibi kalır — her mağazada güvenle çalışır.
+ */
+function cleanCollectionTitle(title: string): string {
+  const parts = title.split("|").map((p) => p.trim()).filter(Boolean);
+  return parts.length > 1 ? parts[parts.length - 1] : title.trim();
+}
+
+/**
+ * Anasayfa "öne çıkanlar" şeridi için ürünler.
+ * Shopify'ın BEST_SELLING sıralamasını kullanır — mağazadan bağımsız çalışır,
+ * hangi mağazaya bağlanırsa onun en çok satanları gelir.
+ */
+export async function storefrontGetBestSellers(first = 12): Promise<Product[]> {
+  const client = createShopifyClient();
+  const data = await client.request<{ products: { edges: { node: Record<string, unknown> }[] } }>(
+    `query($first:Int!){
+      products(first:$first, sortKey: BEST_SELLING){
+        edges { node { ${PRODUCT_FRAGMENT} } }
+      }
+    }`,
+    { first },
+  );
+  return data.products.edges.map((e) => mapProduct(e.node));
+}
+
+/**
+ * Anasayfa kategori ızgarası için koleksiyon karoları.
+ *
+ * Hero ile aynı görselleri tekrar etmemek için koleksiyonun İLK ürününü değil,
+ * sıradaki ürünlerinden birini kullanır (yoksa ilkine düşer). Koleksiyonun kendi
+ * görseli varsa her zaman o kazanır — mağaza sahibi panelden kontrol edebilsin.
+ */
+export async function storefrontGetCategoryTiles(limit = 4): Promise<HeroSlide[]> {
+  const client = createShopifyClient();
+  const data = await client.request<{
+    collections: {
+      edges: {
+        node: {
+          handle: string;
+          title: string;
+          image: { url: string } | null;
+          products: { edges: { node: { featuredImage: { url: string } | null } }[] };
+        };
+      }[];
+    };
+  }>(
+    `query($first:Int!,$sample:Int!){
+      collections(first:$first){
+        edges { node {
+          handle title
+          image { url }
+          products(first: $sample) { edges { node { featuredImage { url } } } }
+        } }
+      }
+    }`,
+    { first: 40, sample: HERO_SAMPLE },
+  );
+
+  const tiles = data.collections.edges
+    .filter(({ node }) => node.handle !== "frontpage")
+    .map(({ node }) => {
+      const gorseller = node.products.edges
+        .map((e) => e.node.featuredImage?.url)
+        .filter((u): u is string => Boolean(u));
+      // Hero ilk görseli kullanıyor; burada varsa 2. görseli seç
+      const urunGorseli = gorseller[1] ?? gorseller[0];
+      return {
+        handle: node.handle,
+        title: cleanCollectionTitle(node.title),
+        imageUrl: node.image?.url ?? urunGorseli ?? "",
+        href: `/collections/${node.handle}`,
+        curated: Boolean(node.image?.url),
+        weight: gorseller.length,
+        gorseller,
+      };
+    })
+    .filter((t) => t.imageUrl);
+
+  tiles.sort(
+    (a, b) =>
+      Number(b.curated) - Number(a.curated) ||
+      b.weight - a.weight ||
+      a.title.localeCompare(b.title, "tr"),
+  );
+
+  // Aynı ürün birden çok koleksiyonda olabiliyor; aynı görselle iki karo
+  // çizmek ızgarayı bozuyor. Görseli daha önce kullanılmışsa koleksiyonun
+  // başka bir ürününe geç, o da yoksa karoyu atla.
+  const kullanilan = new Set<string>();
+  const secilen: typeof tiles = [];
+
+  for (const t of tiles) {
+    if (secilen.length >= limit) break;
+    if (!kullanilan.has(t.imageUrl)) {
+      kullanilan.add(t.imageUrl);
+      secilen.push(t);
+      continue;
+    }
+    const alternatif = t.gorseller.find((u) => !kullanilan.has(u));
+    if (alternatif) {
+      kullanilan.add(alternatif);
+      secilen.push({ ...t, imageUrl: alternatif });
+    }
+  }
+
+  return secilen.map((t) => ({
+    handle: t.handle,
+    title: t.title,
+    imageUrl: t.imageUrl,
+    href: t.href,
+    curated: t.curated,
+  }));
+}
+
+/**
+ * "Yeni gelenler" şeridi — Shopify'ın eklenme tarihine göre en yeni ürünleri.
+ * Mağazadan bağımsız: hangi mağazaya bağlanırsa onun yeni ürünleri gelir.
+ */
+export async function storefrontGetNewArrivals(first = 12): Promise<Product[]> {
+  const client = createShopifyClient();
+  const data = await client.request<{ products: { edges: { node: Record<string, unknown> }[] } }>(
+    `query($first:Int!){
+      products(first:$first, sortKey: CREATED_AT, reverse: true){
+        edges { node { ${PRODUCT_FRAGMENT} } }
+      }
+    }`,
+    { first },
+  );
+  return data.products.edges.map((e) => mapProduct(e.node));
+}
+
+/** Ürün detay sayfası için tam ürün verisi. */
+export type ProductDetail = {
+  product: Product;
+  images: string[];
+  descriptionHtml: string;
+  productType: string;
+};
+
+/**
+ * Ürün detayı — kapak görselinin yanı sıra galeri görselleri ve zengin
+ * açıklama (descriptionHtml) da çekilir. Bulunamazsa null döner.
+ */
+export async function storefrontGetProductDetail(handle: string): Promise<ProductDetail | null> {
+  const client = createShopifyClient();
+  const data = await client.request<{
+    product:
+      | (Record<string, unknown> & {
+          descriptionHtml: string | null;
+          productType: string | null;
+          gallery: { edges: { node: { url: string } }[] };
+        })
+      | null;
+  }>(
+    `query($handle:String!){
+      product(handle:$handle){
+        ${PRODUCT_FRAGMENT}
+        descriptionHtml
+        gallery: images(first: 10) { edges { node { url } } }
+      }
+    }`,
+    { handle },
+  );
+
+  if (!data.product) return null;
+
+  const node = data.product;
+  const galeri = node.gallery.edges.map((e) => e.node.url);
+  const kapak = (node.featuredImage as { url?: string } | null)?.url;
+
+  return {
+    product: mapProduct(node),
+    // Kapak görseli her zaman ilk sırada olsun, tekrar etmesin
+    images: kapak ? [kapak, ...galeri.filter((u) => u !== kapak)] : galeri,
+    descriptionHtml: node.descriptionHtml ?? "",
+    productType: node.productType ?? "",
+  };
+}
+
+/** Koleksiyon dizini için: tüm koleksiyonlar (görseli olmayanlar dahil). */
+export async function storefrontGetAllCollections(first = 60): Promise<HeroSlide[]> {
+  const client = createShopifyClient();
+  const data = await client.request<{
+    collections: {
+      edges: {
+        node: {
+          handle: string;
+          title: string;
+          image: { url: string } | null;
+          products: { edges: { node: { featuredImage: { url: string } | null } }[] };
+        };
+      }[];
+    };
+  }>(
+    `query($first:Int!){
+      collections(first:$first){
+        edges { node {
+          handle title
+          image { url }
+          products(first: 1) { edges { node { featuredImage { url } } } }
+        } }
+      }
+    }`,
+    { first },
+  );
+
+  return data.collections.edges
+    // "frontpage" her Shopify mağazasında otomatik açılan varsayılan koleksiyondur
+    .filter(({ node }) => node.handle !== "frontpage")
+    .map(({ node }) => ({
+      handle: node.handle,
+      title: cleanCollectionTitle(node.title),
+      imageUrl: node.image?.url ?? node.products.edges[0]?.node.featuredImage?.url ?? "",
+      href: `/collections/${node.handle}`,
+      curated: Boolean(node.image?.url),
+    }));
+}
+
+/** Tek bir koleksiyon ve içindeki ürünler. Bulunamazsa null döner. */
+export async function storefrontGetCollectionByHandle(
+  handle: string,
+  first = 250,
+): Promise<{ title: string; description: string; imageUrl?: string; products: Product[] } | null> {
+  const client = createShopifyClient();
+  const data = await client.request<{
+    collection: {
+      title: string;
+      description: string | null;
+      image: { url: string } | null;
+      products: { edges: { node: Record<string, unknown> }[] };
+    } | null;
+  }>(
+    `query($handle:String!,$first:Int!){
+      collection(handle:$handle){
+        title description
+        image { url }
+        products(first:$first){ edges { node { ${PRODUCT_FRAGMENT} } } }
+      }
+    }`,
+    { handle, first },
+  );
+
+  if (!data.collection) return null;
+
+  const products = data.collection.products.edges.map((e) => mapProduct(e.node));
+  return {
+    title: cleanCollectionTitle(data.collection.title),
+    description: data.collection.description ?? "",
+    imageUrl: data.collection.image?.url ?? products.find((p) => p.imageUrl)?.imageUrl,
+    products,
+  };
+}
+
+/** Koleksiyon indeksi satırı — sıra no, ad, ürün sayısı, görsel. */
+export type CollectionIndexRow = {
+  handle: string;
+  title: string;
+  imageUrl: string;
+  href: string;
+  /** Örneklenen ürün sayısı (HERO_SAMPLE'da tavanlanır) */
+  count: number;
+};
+
+/**
+ * Hover'a bağlı koleksiyon indeksi için veri.
+ * Görseli olmayan koleksiyonlar listeye girmez — sağdaki panel boş kalmasın.
+ */
+export async function storefrontGetCollectionIndex(limit = 14): Promise<CollectionIndexRow[]> {
+  const client = createShopifyClient();
+  const data = await client.request<{
+    collections: {
+      edges: {
+        node: {
+          handle: string;
+          title: string;
+          image: { url: string } | null;
+          products: { edges: { node: { featuredImage: { url: string } | null } }[] };
+        };
+      }[];
+    };
+  }>(
+    `query($first:Int!,$sample:Int!){
+      collections(first:$first){
+        edges { node {
+          handle title
+          image { url }
+          products(first: $sample) { edges { node { featuredImage { url } } } }
+        } }
+      }
+    }`,
+    { first: 60, sample: HERO_SAMPLE },
+  );
+
+  const satirlar = data.collections.edges
+    .filter(({ node }) => node.handle !== "frontpage")
+    .map(({ node }) => {
+      const gorseller = node.products.edges
+        .map((e) => e.node.featuredImage?.url)
+        .filter((u): u is string => Boolean(u));
+      return {
+        handle: node.handle,
+        title: cleanCollectionTitle(node.title),
+        imageUrl: node.image?.url ?? gorseller[0] ?? "",
+        href: `/collections/${node.handle}`,
+        count: gorseller.length,
+        curated: Boolean(node.image?.url),
+      };
+    })
+    .filter((r) => r.imageUrl && r.count > 0);
+
+  satirlar.sort(
+    (a, b) =>
+      Number(b.curated) - Number(a.curated) ||
+      b.count - a.count ||
+      a.title.localeCompare(b.title, "tr"),
+  );
+
+  return satirlar.slice(0, limit).map((r) => ({
+    handle: r.handle,
+    title: r.title,
+    imageUrl: r.imageUrl,
+    href: r.href,
+    count: r.count,
+  }));
 }

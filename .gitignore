@@ -34,3 +34,7 @@ Thumbs.db
 docker/data/
 mssql-data/
 redis-data/
+
+# --- Yedek dosyalar (calisma sirasinda alinan kopyalar) ---
+*.yedek
+*.yedek[0-9]

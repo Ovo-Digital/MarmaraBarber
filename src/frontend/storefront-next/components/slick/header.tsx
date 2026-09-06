@@ -2,78 +2,122 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { MAIN_NAV, MEGA_FEATURED, MEGA_LINKS, SITE_NAME } from "@/lib/slick-theme";
+import { MAIN_NAV, SITE_NAME } from "@/lib/slick-theme";
 import { useAuthStore } from "@/store/auth-store";
-import { useLocalCartStore } from "@/store/local-cart-store";
+import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useUiStore } from "@/store/ui-store";
 
-function MegaPanel({ onClose }: { onClose: () => void }) {
-  const mid = Math.ceil(MEGA_LINKS.length / 2);
-  const col1 = MEGA_LINKS.slice(0, mid);
-  const col2 = MEGA_LINKS.slice(mid);
+/**
+ * Hap nav'ın altında açılan kategori paneli.
+ *
+ * İçerik tamamen Shopify koleksiyonlarından gelir (kodda koleksiyon adı/görseli
+ * sabit yazılı DEĞİL) — böylece başka bir mağazaya bağlandığında kendi
+ * kategorileri görünür. İlk 4 koleksiyon görselli kart, kalanlar alt satırda
+ * metin link olur.
+ */
+/** Menüyü besleyen koleksiyon — Shopify'dan gelir, kodda sabit değildir. */
+export type NavCollection = {
+  handle: string;
+  title: string;
+  imageUrl: string;
+  href: string;
+};
+
+function MegaPanel({
+  collections,
+  onClose,
+}: {
+  collections: NavCollection[];
+  onClose: () => void;
+}) {
+  const cards = collections.slice(0, 4);
+  const links = collections.slice(4, 10);
+
+  if (!cards.length) return null;
 
   return (
-    <div className="border-t border-white/10 bg-black text-white">
-      <div className="mx-auto grid max-w-[90rem] items-start gap-8 px-6 py-6 lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-12 lg:px-8 lg:py-7">
-        {/* Sol: kompakt 2 kolon link */}
-        <div className="grid grid-cols-2 gap-x-8 content-start">
-          <ul className="space-y-3.5">
-            {col1.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={onClose}
-                  className="sg-nav-bold text-[16px] transition-opacity hover:opacity-60"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <ul className="space-y-3.5">
-            {col2.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={onClose}
-                  className="sg-nav-bold text-[16px] transition-opacity hover:opacity-60"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Sağ: yatay/kısa featured kartlar (full-height değil) */}
-        <div className="grid grid-cols-2 gap-4">
-          {MEGA_FEATURED.map((f) => (
-            <Link key={f.href} href={f.href} onClick={onClose} className="group block max-w-xs">
-              <div className="aspect-[16/10] overflow-hidden bg-[#111]">
+    <div className="px-3 pt-2 sm:px-4 sm:pt-3">
+      <div
+        className="mx-auto w-full max-w-[1100px] rounded-[26px] p-4 sm:rounded-[32px] sm:p-7"
+        /* Buzlu cam: arkadaki hero görseli bulanık olarak geçer.
+           Satır içi stil kullanılıyor çünkü projenin katmansız CSS kuralları
+           Tailwind renk sınıflarını eziyor. */
+        style={{
+          background: "rgba(255,255,255,0.11)",
+          backdropFilter: "blur(34px) saturate(150%)",
+          WebkitBackdropFilter: "blur(34px) saturate(150%)",
+          border: "1px solid rgba(255,255,255,0.16)",
+          boxShadow: "0 28px 70px rgba(0,0,0,0.35)",
+          color: "#ffffff",
+        }}
+      >
+        <div className="grid gap-x-8 gap-y-4 sm:grid-cols-2 sm:gap-y-6">
+          {cards.map((c) => (
+            <Link
+              key={c.handle}
+              href={c.href}
+              onClick={onClose}
+              className="group flex items-center gap-4 sm:items-start"
+              style={{ color: "#ffffff" }}
+            >
+              <span className="block h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-white/10 sm:h-28 sm:w-28">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={f.image}
-                  alt={f.title}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  src={c.imageUrl}
+                  alt=""
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-              </div>
-              <p className="sg-nav mt-2.5 text-[11px] tracking-[0.04em]">{f.title}</p>
+              </span>
+              <span
+                className="sg-heading min-w-0 transition-opacity group-hover:opacity-60 sm:pt-1"
+                style={{ fontSize: "clamp(15px, 1.45vw, 21px)", lineHeight: 1.08 }}
+              >
+                {c.title}
+              </span>
             </Link>
           ))}
+        </div>
+
+        <div
+          className="mt-5 flex flex-wrap items-center justify-between gap-4 pt-5 sm:mt-7"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}
+        >
+          <div className="flex min-w-0 flex-wrap gap-x-6 gap-y-2">
+            {links.map((l) => (
+              <Link
+                key={l.handle}
+                href={l.href}
+                onClick={onClose}
+                className="text-[12px] font-bold uppercase tracking-[0.04em] transition-opacity hover:opacity-100 sm:text-[13px]"
+                style={{ color: "rgba(255,255,255,0.72)" }}
+              >
+                {l.title}
+              </Link>
+            ))}
+          </div>
+
+          <Link
+            href="/collections"
+            onClick={onClose}
+            className="shrink-0 px-5 py-3 text-[12px] font-bold uppercase tracking-[0.06em] transition-opacity hover:opacity-80 sm:px-7 sm:text-[13px]"
+            style={{ background: "#000000", color: "#ffffff" }}
+          >
+            View all
+          </Link>
         </div>
       </div>
     </div>
   );
 }
 
-export function SlickHeader() {
+export function SlickHeader({ collections = [] }: { collections?: NavCollection[] }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [accordion, setAccordion] = useState<string | null>(null);
   const [q, setQ] = useState("");
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const count = useLocalCartStore((s) => s.lines.reduce((n, l) => n + l.quantity, 0));
+  const count = useShopifyCartStore((s) => s.lines.reduce((n, l) => n + l.quantity, 0));
   const customer = useAuthStore((s) => s.customer);
   const openCartDrawer = useUiStore((s) => s.openCartDrawer);
 
@@ -108,9 +152,26 @@ export function SlickHeader() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  /**
+   * Header her sayfada, hero/içeriğin üzerinde yüzen siyah bir "hap".
+   * Sayfa kaydırılsa da, kategori paneli açılsa da hap olarak kalır —
+   * panel hapın ALTINDA ayrı bir kart olarak açılır. Sadece mobil menü
+   * açıldığında tam genişlik siyah çubuğa döner (menü hapa sığmaz).
+   */
+  const pill = !menuOpen;
+
   return (
-    <header className="relative bg-black text-white" onMouseLeave={scheduleCloseShop}>
-      <div className="mx-auto flex h-[var(--sg-header-h)] max-w-[90rem] items-center gap-6 px-4 sm:gap-10 sm:px-8">
+    <header
+      className={`relative text-white ${pill ? "bg-transparent" : "bg-black"}`}
+      onMouseLeave={scheduleCloseShop}
+    >
+      <div
+        className={
+          pill
+            ? "mx-auto mt-4 flex w-fit items-center gap-5 rounded-full bg-black px-5 py-2.5 sm:mt-5 sm:gap-9 sm:px-8 sm:py-3"
+            : "mx-auto flex h-[var(--sg-header-h)] max-w-[90rem] items-center gap-6 px-4 sm:gap-10 sm:px-8"
+        }
+      >
         <button type="button" className="p-1 lg:hidden" aria-label="Menü" onClick={() => setMenuOpen(true)}>
           <BurgerIcon />
         </button>
@@ -125,12 +186,16 @@ export function SlickHeader() {
           <img
             src="/brand/marmara-logo.png"
             alt={SITE_NAME}
-            className="h-11 w-auto object-contain brightness-0 invert sm:h-12"
+            className={`w-auto object-contain brightness-0 invert ${pill ? "h-7 sm:h-8" : "h-11 sm:h-12"}`}
           />
         </Link>
 
-        <nav className="hidden min-w-0 flex-1 lg:block">
-          <ul className="flex h-[var(--sg-header-h)] items-center gap-6 xl:gap-9">
+        <nav className={`hidden min-w-0 lg:block ${pill ? "" : "flex-1"}`}>
+          <ul
+            className={`flex items-center gap-6 xl:gap-9 ${
+              pill ? "" : "h-[var(--sg-header-h)]"
+            }`}
+          >
             {MAIN_NAV.map((item) => {
               const isShop = Boolean(item.children);
               const active = isShop && shopOpen;
@@ -145,6 +210,7 @@ export function SlickHeader() {
                 >
                   <Link
                     href={item.href}
+                    data-no-transition={isShop ? "true" : undefined}
                     className={`sg-header-link relative transition-opacity hover:opacity-70 ${
                       active ? "opacity-100" : ""
                     }`}
@@ -167,7 +233,7 @@ export function SlickHeader() {
         </nav>
 
         <div
-          className="ml-auto flex shrink-0 items-center gap-4 sm:gap-5"
+          className={`flex shrink-0 items-center gap-4 sm:gap-5 ${pill ? "" : "ml-auto"}`}
           onMouseEnter={scheduleCloseShop}
         >
           <Link href={customer ? "/account" : "/login"} aria-label="Login" className="hover:opacity-70">
@@ -204,7 +270,7 @@ export function SlickHeader() {
           onMouseLeave={scheduleCloseShop}
         >
           <div className="pointer-events-auto absolute -top-4 left-0 right-0 h-4" aria-hidden />
-          <MegaPanel onClose={() => setShopOpen(false)} />
+          <MegaPanel collections={collections} onClose={() => setShopOpen(false)} />
         </div>
       )}
 
@@ -235,7 +301,7 @@ export function SlickHeader() {
         <div className="fixed inset-0 z-[70] lg:hidden">
           <button
             type="button"
-            className="absolute inset-0 bg-black/50"
+            className="absolute inset-0 bg-black/70"
             aria-label="Kapat"
             onClick={() => setMenuOpen(false)}
           />
@@ -261,14 +327,14 @@ export function SlickHeader() {
                       </button>
                       {accordion === item.label && (
                         <ul className="space-y-3 pb-4 pl-3">
-                          {MEGA_LINKS.map((link) => (
-                            <li key={link.href}>
+                          {collections.map((c) => (
+                            <li key={c.handle}>
                               <Link
-                                href={link.href}
+                                href={c.href}
                                 className="sg-nav text-[12px]"
                                 onClick={() => setMenuOpen(false)}
                               >
-                                {link.label}
+                                {c.title}
                               </Link>
                             </li>
                           ))}

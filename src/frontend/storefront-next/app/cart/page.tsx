@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { formatTry } from "@/lib/marmara-catalog";
-import { useLocalCartStore } from "@/store/local-cart-store";
+import { formatMoney } from "@/lib/money";
+import { useShopifyCartStore } from "@/store/shopify-cart-store";
 
 export default function CartPage() {
-  const lines = useLocalCartStore((s) => s.lines);
-  const update = useLocalCartStore((s) => s.update);
-  const remove = useLocalCartStore((s) => s.remove);
-  const total = useLocalCartStore((s) => s.total);
+  const lines = useShopifyCartStore((s) => s.lines);
+  const update = useShopifyCartStore((s) => s.update);
+  const remove = useShopifyCartStore((s) => s.remove);
+  const total = useShopifyCartStore((s) => s.total);
+  const checkoutUrl = useShopifyCartStore((s) => s.checkoutUrl);
+  const currencyCode = useShopifyCartStore((s) => s.currencyCode);
 
   if (lines.length === 0) {
     return (
@@ -111,12 +114,21 @@ export default function CartPage() {
           <p className="text-[16px]">
             <span className="text-[#333]">Total: </span>
             <span className="sg-price text-[18px]">
-              {formatTry(amount)} TRY
+              {formatMoney(amount, currencyCode)}
             </span>
           </p>
-          <Link href="/checkout" className="sg-btn min-w-[200px]">
-            Checkout
-          </Link>
+
+          {/* Ödeme Shopify'ın kendi kasasında tamamlanır: kart, 3D Secure,
+              vergi, kargo ve sipariş oluşturma orada yönetilir. */}
+          {checkoutUrl ? (
+            <a href={checkoutUrl} className="sg-btn min-w-[200px] text-center">
+              Checkout
+            </a>
+          ) : (
+            <span className="sg-btn min-w-[200px] cursor-not-allowed text-center opacity-40">
+              Checkout
+            </span>
+          )}
         </div>
       </div>
     </div>

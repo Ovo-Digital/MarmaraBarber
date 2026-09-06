@@ -148,10 +148,10 @@ export const HOME_SHOP_TILES = [
 ];
 
 export const TRUST_STATS = [
-  { label: "TÜRKİYE'DE ÜRETİLDİ", sub: "Made in Turkey" },
-  { label: "10.000+ BERBER", sub: "Profesyonel tercih" },
-  { label: "199+ ÜRÜN", sub: "Geniş katalog" },
-  { label: "5★ YORUMLAR", sub: "Müşteri memnuniyeti" },
+  { label: "SINCE 1970", sub: "Barber heritage" },
+  { label: "MADE IN TURKEY", sub: "Own production" },
+  { label: "10,000+ BARBERS", sub: "Professional choice" },
+  { label: "FULL RANGE", sub: "Cologne, styling, skin & tools" },
 ];
 
 export const PRESS_LOGOS = ["GQ", "Men's Health", "Forbes", "Esquire", "Barber Mag"];
@@ -228,3 +228,12 @@ export const INSTAGRAM_HANDLES = [
   "no-1-keratin-cift-fazli-fon-suyu-500-ml",
   "hangover-edp-erkek-parfum-100-ml",
 ];
+
+/**
+ * Anasayfa video şeridi.
+ *
+ * Ürün handle'ı → o ürünün videosu. Dosyaları public/media/ altına koy,
+ * yolu buraya yaz; video verilmeyen üründe ürün görseli gösterilir.
+ * Örnek: "space-wax-100-ml": { video: "/media/space-wax.mp4", poster: "/media/space-wax.jpg" }
+ */
+export const HOME_REEL_MEDIA: Record<string, { video?: string; poster?: string }> = {};

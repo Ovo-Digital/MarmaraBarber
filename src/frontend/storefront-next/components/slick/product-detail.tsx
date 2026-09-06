@@ -13,18 +13,9 @@ import {
 import { ProductCarousel } from "@/components/slick/product-carousel";
 import { SlickProductCard } from "@/components/slick/product-card";
 import { formatTry } from "@/lib/marmara-catalog";
-import { useLocalCartStore } from "@/store/local-cart-store";
+import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useUiStore } from "@/store/ui-store";
 import type { Product, ProductOption, ProductVariant } from "@/types/commerce";
-
-type Review = {
-  id: string;
-  name: string;
-  date: string;
-  rating: number;
-  body: string;
-  photo?: string;
-};
 
 function isDefaultOnly(options: ProductOption[] | undefined) {
   if (!options?.length) return true;
@@ -70,60 +61,15 @@ function extractSections(html: string, plain: string) {
   return {
     usage: usage.trim(),
     ingredients: ingredients.trim(),
-    shipping:
-      "Siparişler 1–3 iş günü içinde kargoya verilir. 14 gün içinde iade ve değişim hakkınız vardır. Güvenli ödeme altyapısı ile alışveriş yapabilirsiniz.",
+    // Kargo ve iade taahhüdü uydurulamaz; mağazanın gerçek politikası
+    // Shopify tarafından yönetilmeli. Boşsa bölüm gizleniyor.
+    shipping: "",
   };
-}
-
-function buildReviews(product: Product): Review[] {
-  const names = ["Ahmet K.", "Burak Y.", "Serkan D.", "Emre T.", "Caner A.", "Mert S.", "Deniz A.", "Ozan B."];
-  const bodies = [
-    "Kalitesi çok iyi, salonumda günlük kullanıyorum.",
-    "Kokusu ve tutuşu tam beklediğim gibi. Tekrar alacağım.",
-    "Fiyat/performans açısından başarılı bir ürün.",
-    "Müşterilerime güvenle öneriyorum.",
-    "Kargo hızlı geldi, ürün orijinal.",
-    "Beklentimin üzerinde. Özellikle tutuşu çok iyi.",
-  ];
-  const seed = Number(product.id) || product.handle.length;
-  const count = Math.min(12, Math.max(4, Math.floor((product.reviewCount || 20) / 8)));
-  return Array.from({ length: count }, (_, i) => {
-    const rating = 5 - ((seed + i) % 5 === 0 ? 1 : 0);
-    return {
-      id: `${product.id}-r-${i}`,
-      name: names[(seed + i) % names.length],
-      date: new Date(2025, (seed + i) % 12, ((seed + i * 3) % 27) + 1).toLocaleDateString("tr-TR"),
-      rating,
-      body: bodies[(seed + i) % bodies.length],
-      photo: i % 4 === 0 ? product.imageUrl : undefined,
-    };
-  });
-}
-
-function ratingDistribution(reviews: Review[]) {
-  const counts = [0, 0, 0, 0, 0];
-  for (const r of reviews) counts[r.rating - 1] += 1;
-  const total = reviews.length || 1;
-  return [5, 4, 3, 2, 1].map((star) => ({
-    star,
-    pct: Math.round((counts[star - 1] / total) * 100),
-    count: counts[star - 1],
-  }));
 }
 
 function productTypeHref(type?: string) {
   if (!type) return "/products";
   return `/products?type=${encodeURIComponent(type)}`;
-}
-
-function StarText({ rating }: { rating: number }) {
-  const full = Math.round(rating);
-  return (
-    <span aria-hidden>
-      {"★".repeat(Math.min(5, full))}
-      {"☆".repeat(Math.max(0, 5 - full))}
-    </span>
-  );
 }
 
 function Accordion({
@@ -343,11 +289,10 @@ export function SlickProductDetail({
   const [qty, setQty] = useState(1);
   const [adding, setAdding] = useState(false);
   const [descOpen, setDescOpen] = useState(false);
-  const [reviewPage, setReviewPage] = useState(1);
   const [ctaVisible, setCtaVisible] = useState(true);
   const ctaRef = useRef<HTMLButtonElement>(null);
 
-  const add = useLocalCartStore((s) => s.add);
+  const add = useShopifyCartStore((s) => s.add);
   const openCart = useUiStore((s) => s.openCartDrawer);
 
   const price = variant?.price ?? product.price;
@@ -357,8 +302,6 @@ export function SlickProductDetail({
       : null;
   const discount = discountPercent(price, compareAt);
   const inStock = Boolean(variant?.availableForSale ?? product.availableForSale);
-  const rating = product.rating ?? 4.9;
-  const reviewCount = product.reviewCount ?? 0;
 
   const plain = useMemo(() => {
     return (descriptionHtml || "")
@@ -371,10 +314,6 @@ export function SlickProductDetail({
 
   const shortDesc = plain.slice(0, 180);
   const sections = useMemo(() => extractSections(descriptionHtml || "", plain), [descriptionHtml, plain]);
-  const reviews = useMemo(() => buildReviews(product), [product]);
-  const dist = useMemo(() => ratingDistribution(reviews), [reviews]);
-  const reviewsPerPage = 3;
-  const visibleReviews = reviews.slice(0, reviewPage * reviewsPerPage);
 
   // Varyant görseline geç
   useEffect(() => {
@@ -415,7 +354,7 @@ export function SlickProductDetail({
         {/* 1. Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-6 truncate text-[12px] text-[#666]">
           <Link href="/" className="hover:text-black">
-            Ana Sayfa
+            Home
           </Link>
           <span className="mx-2">/</span>
           <Link href={productTypeHref(product.productType)} className="hover:text-black">
@@ -435,14 +374,20 @@ export function SlickProductDetail({
           />
 
           <div className="lg:sticky lg:top-[calc(var(--sg-promo-h)+var(--sg-header-h)+1rem)] lg:self-start">
-            <h1 className="sg-heading text-[clamp(1.75rem,1.2rem+2vw,2.75rem)]">{product.title}</h1>
-
-            <a href="#reviews" className="sg-star mt-3 inline-flex items-center gap-2 hover:opacity-70">
-              <StarText rating={rating} />
-              <span className="text-[12px] text-[#666]">
-                {rating.toFixed(1)} · {reviewCount} yorum
-              </span>
-            </a>
+            <h1
+              className="uppercase"
+              style={{
+                fontFamily: "var(--font-owners-black)",
+                fontWeight: 900,
+                fontSize: "clamp(28px, 3vw, 44px)",
+                // 0.9 satır yüksekliği Ş/Ç/Ğ gibi harflerin altını kırpıyordu
+                lineHeight: 1.04,
+                letterSpacing: "-0.012em",
+                color: "var(--lx-ink)",
+              }}
+            >
+              {product.title}
+            </h1>
 
             <div className="mt-4 flex flex-wrap items-center gap-3">
               {compareAt ? (
@@ -549,9 +494,9 @@ export function SlickProductDetail({
                   Ekleniyor…
                 </>
               ) : inStock ? (
-                "Sepete Ekle"
+                "Add to cart"
               ) : (
-                "Stokta Yok"
+                "Sold out"
               )}
             </button>
             {!inStock ? <NotifyForm /> : null}
@@ -559,7 +504,7 @@ export function SlickProductDetail({
             {/* Trust row */}
             <div className="mt-8 grid grid-cols-3 gap-3 border-y border-black/10 py-5">
               <TrustItem
-                label="Hızlı kargo"
+                label="Fast shipping"
                 icon={
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <path d="M3 7h11v10H3V7z" />
@@ -570,7 +515,7 @@ export function SlickProductDetail({
                 }
               />
               <TrustItem
-                label="14 gün iade"
+                label="Easy returns"
                 icon={
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <path d="M4 12a8 8 0 1 0 2.3-5.7" strokeLinecap="round" />
@@ -579,7 +524,7 @@ export function SlickProductDetail({
                 }
               />
               <TrustItem
-                label="Güvenli ödeme"
+                label="Secure checkout"
                 icon={
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <rect x="4" y="10" width="16" height="10" rx="1" />
@@ -592,9 +537,9 @@ export function SlickProductDetail({
             <div className="mt-2">
               <Accordion
                 items={[
-                  { id: "usage", title: "Kullanım Talimatları", body: sections.usage },
-                  { id: "ingredients", title: "İçindekiler", body: sections.ingredients },
-                  { id: "shipping", title: "Kargo & İade", body: sections.shipping },
+                  { id: "usage", title: "How to use", body: sections.usage },
+                  { id: "ingredients", title: "Ingredients", body: sections.ingredients },
+                  { id: "shipping", title: "Shipping & returns", body: sections.shipping },
                 ]}
               />
             </div>
@@ -604,7 +549,7 @@ export function SlickProductDetail({
         {/* 3. Cross-sell */}
         {crossSell.length > 0 && (
           <section className="mt-16 border-t border-black/10 pt-12">
-            <h2 className="sg-section-title mb-8">Sıkça Birlikte Alınanlar</h2>
+            <h2 className="sg-section-title mb-8">Frequently bought together</h2>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               {crossSell.map((p) => (
                 <SlickProductCard key={p.id} product={p} />
@@ -626,74 +571,13 @@ export function SlickProductDetail({
           )}
         </section>
 
-        {/* 5. Reviews */}
-        <section id="reviews" className="mt-16 scroll-mt-28 border-t border-black/10 pt-12">
-          <h2 className="sg-section-title mb-10">Yorumlar</h2>
-          <div className="grid gap-10 lg:grid-cols-[240px_1fr]">
-            <div className="text-center lg:text-left">
-              <p className="sg-display text-[64px] leading-none">{rating.toFixed(1)}</p>
-              <p className="sg-star mt-2">
-                <StarText rating={rating} />
-              </p>
-              <p className="mt-1 text-[13px] text-[#666]">{reviewCount} değerlendirme</p>
-              <div className="mt-6 space-y-2">
-                {dist.map((d) => (
-                  <div key={d.star} className="flex items-center gap-2 text-[12px]">
-                    <span className="w-6">{d.star}★</span>
-                    <div className="h-2 flex-1 bg-[var(--sg-off)]">
-                      <div className="h-full bg-black" style={{ width: `${d.pct}%` }} />
-                    </div>
-                    <span className="w-10 text-right text-[#666]">%{d.pct}</span>
-                  </div>
-                ))}
-              </div>
-              <button type="button" className="sg-btn mt-6 w-full !py-3 text-[11px]">
-                Yorum Yaz
-              </button>
-            </div>
-
-            <div>
-              <ul className="space-y-5">
-                {visibleReviews.map((r) => (
-                  <li key={r.id} className="border-b border-black/10 pb-5">
-                    <div className="flex items-start gap-4">
-                      {r.photo ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={r.photo} alt="" className="h-14 w-14 object-cover bg-[var(--sg-off)]" />
-                      ) : null}
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                          <span className="sg-nav text-[11px]">{r.name}</span>
-                          <span className="text-[12px] text-[#888]">{r.date}</span>
-                        </div>
-                        <p className="sg-star mt-1 text-[12px]">
-                          <StarText rating={r.rating} />
-                        </p>
-                        <p className="sg-body mt-2 text-[14px] text-[#333]">{r.body}</p>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              {visibleReviews.length < reviews.length && (
-                <button
-                  type="button"
-                  className="sg-btn mt-6 !py-3 text-[11px]"
-                  onClick={() => setReviewPage((p) => p + 1)}
-                >
-                  Daha fazla göster
-                </button>
-              )}
-            </div>
-          </div>
-        </section>
       </div>
 
       {/* 6. Related carousel */}
       {related.length > 0 && (
         <div className="mt-8 bg-[var(--sg-off)]">
           <ProductCarousel
-            title="Bunu da Beğenebilirsin"
+            title="You may also like"
             products={related}
             viewAllHref={productTypeHref(product.productType)}
           />
@@ -727,7 +611,7 @@ export function SlickProductDetail({
                 className="sg-btn-red shrink-0 !px-4 !py-3 text-[11px]"
                 onClick={onAdd}
               >
-                {adding ? "…" : inStock ? "Sepete Ekle" : "Stokta Yok"}
+                {adding ? "…" : inStock ? "Add to cart" : "Sold out"}
               </button>
             </div>
           </motion.div>
