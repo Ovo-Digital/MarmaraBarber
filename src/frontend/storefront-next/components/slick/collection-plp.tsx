@@ -18,6 +18,7 @@ import {
 } from "@/lib/slick-plp";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import type { Product } from "@/types/commerce";
+import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
 
 type Props = {
   title: string;
@@ -28,6 +29,9 @@ type Props = {
 };
 
 export function SlickCollectionPlp({ title, description, image, products }: Props) {
+  // Üstteki koyu hero bandı: header şeffaf durabilir
+  useKoyuUstBildir();
+
   const facets = useMemo(() => buildPlpFacets(products), [products]);
   const [filters, setFilters] = useState<SlickPlpFilters>(EMPTY_PLP_FILTERS);
   const [draft, setDraft] = useState<SlickPlpFilters>(EMPTY_PLP_FILTERS);
@@ -281,6 +285,7 @@ function CollectionHeader({
 }) {
   return (
     <section
+      data-dark-top
       className="relative overflow-hidden text-white"
       style={{ background: "var(--lx-ink)" }}
     >

@@ -8,12 +8,18 @@ import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useUiStore } from "@/store/ui-store";
 
 /**
- * Hap nav'ın altında açılan kategori paneli.
+ * Hap nav'ın altında açılan kategori paneli — numaralı indeks.
+ *
+ * Solda satırlar: [001] sıra numarası, koleksiyon adı, sağda SHOP işareti.
+ * İmleç bir satıra geldiğinde satır kırmızıya döner, boydan boya ince bir
+ * çizgi belirir ve SAĞDAKİ görsel o koleksiyonunkine geçer.
+ *
+ * Görseller üst üste duruyor, sadece opaklıkları değişiyor — geçişte yeniden
+ * yükleme olmuyor, bu yüzden takılmıyor.
  *
  * İçerik tamamen Shopify koleksiyonlarından gelir (kodda koleksiyon adı/görseli
- * sabit yazılı DEĞİL) — böylece başka bir mağazaya bağlandığında kendi
- * kategorileri görünür. İlk 4 koleksiyon görselli kart, kalanlar alt satırda
- * metin link olur.
+ * sabit yazılı DEĞİL) — başka bir mağazaya bağlandığında kendi kategorileri
+ * listelenir.
  */
 /** Menüyü besleyen koleksiyon — Shopify'dan gelir, kodda sabit değildir. */
 export type NavCollection = {
@@ -23,6 +29,9 @@ export type NavCollection = {
   href: string;
 };
 
+/** Panelde kaç koleksiyon listelenecek */
+const PANEL_SATIR = 8;
+
 function MegaPanel({
   collections,
   onClose,
@@ -30,76 +39,129 @@ function MegaPanel({
   collections: NavCollection[];
   onClose: () => void;
 }) {
-  const cards = collections.slice(0, 4);
-  const links = collections.slice(4, 10);
+  const rows = collections.slice(0, PANEL_SATIR);
+  /* Görsel geçişi için hem şimdiki hem bir önceki satır tutuluyor: alttaki
+     katman eskisini gösterirken üstteki yenisi perde gibi açılıyor. */
+  const [{ simdi, onceki, tur }, setIndeks] = useState({ simdi: 0, onceki: 0, tur: 0 });
+  const sec = (i: number) =>
+    setIndeks((d) => (d.simdi === i ? d : { simdi: i, onceki: d.simdi, tur: d.tur + 1 }));
 
-  if (!cards.length) return null;
+  if (!rows.length) return null;
 
   return (
     <div className="px-3 pt-2 sm:px-4 sm:pt-3">
       <div
-        className="mx-auto w-full max-w-[1100px] rounded-[26px] p-4 sm:rounded-[32px] sm:p-7"
+        className="mx-auto w-full max-w-[1180px] rounded-[26px] p-5 sm:rounded-[32px] sm:p-8"
         /* Buzlu cam: arkadaki hero görseli bulanık olarak geçer.
            Satır içi stil kullanılıyor çünkü projenin katmansız CSS kuralları
            Tailwind renk sınıflarını eziyor. */
+        /* Zemin KOYU ve büyük ölçüde donuk. Önceden beyaz-şeffaftı; beyaz zeminli
+           sayfalarda (ürün, koleksiyon) beyaz yazı beyaz üstüne düşüp
+           okunmuyordu. Koyu zemin her sayfada çalışır. */
         style={{
-          background: "rgba(255,255,255,0.11)",
-          backdropFilter: "blur(34px) saturate(150%)",
-          WebkitBackdropFilter: "blur(34px) saturate(150%)",
-          border: "1px solid rgba(255,255,255,0.16)",
-          boxShadow: "0 28px 70px rgba(0,0,0,0.35)",
+          background: "rgba(16,14,13,0.94)",
+          backdropFilter: "blur(24px) saturate(130%)",
+          WebkitBackdropFilter: "blur(24px) saturate(130%)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          boxShadow: "0 32px 80px rgba(0,0,0,0.55)",
           color: "#ffffff",
         }}
+        onMouseLeave={() => sec(0)}
       >
-        <div className="grid gap-x-8 gap-y-4 sm:grid-cols-2 sm:gap-y-6">
-          {cards.map((c) => (
-            <Link
-              key={c.handle}
-              href={c.href}
-              onClick={onClose}
-              className="group flex items-center gap-4 sm:items-start"
-              style={{ color: "#ffffff" }}
-            >
-              <span className="block h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-white/10 sm:h-28 sm:w-28">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={c.imageUrl}
-                  alt=""
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </span>
-              <span
-                className="sg-heading min-w-0 transition-opacity group-hover:opacity-60 sm:pt-1"
-                style={{ fontSize: "clamp(15px, 1.45vw, 21px)", lineHeight: 1.08 }}
-              >
-                {c.title}
-              </span>
-            </Link>
-          ))}
+        <div className="grid gap-8 lg:grid-cols-[1fr_minmax(0,300px)] lg:gap-12">
+          {/* Sol: numaralı indeks */}
+          <ul className="m-0 list-none p-0">
+            {rows.map((c, i) => {
+              const secili = i === simdi;
+              return (
+                <li key={c.handle}>
+                  <Link
+                    href={c.href}
+                    onClick={onClose}
+                    onMouseEnter={() => sec(i)}
+                    onFocus={() => sec(i)}
+                    className="relative flex items-center gap-5 py-2.5"
+                    style={{ color: secili ? "var(--sg-red)" : "#ffffff" }}
+                  >
+                    {/* Satırı boydan boya kesen çizgi — sadece imleç üstündeyken */}
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-x-0 bottom-0 h-px origin-left"
+                      style={{
+                        background: "var(--sg-red)",
+                        transform: secili ? "scaleX(1)" : "scaleX(0)",
+                        transition: "transform 420ms var(--lx-ease)",
+                      }}
+                    />
+
+                    <span
+                      className="shrink-0 tabular-nums text-[11px] tracking-[0.14em]"
+                      style={{ color: secili ? "var(--sg-red)" : "rgba(255,255,255,0.5)" }}
+                    >
+                      [ {String(i + 1).padStart(3, "0")} ]
+                    </span>
+
+                    <span
+                      className="sg-heading min-w-0 flex-1 truncate uppercase"
+                      style={{
+                        fontSize: "clamp(15px, 1.45vw, 22px)",
+                        lineHeight: 1.1,
+                        letterSpacing: "0",
+                      }}
+                    >
+                      {c.title}
+                    </span>
+
+                    <span
+                      className="shrink-0 text-[11px] uppercase tracking-[0.14em] transition-opacity"
+                      style={{
+                        color: secili ? "var(--sg-red)" : "rgba(255,255,255,0.5)",
+                        opacity: secili ? 1 : 0.7,
+                      }}
+                    >
+                      Shop <span aria-hidden="true">↗</span>
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Sağ: imlecin durduğu koleksiyonun görseli */}
+          <div className="relative hidden overflow-hidden rounded-2xl bg-white/10 lg:block">
+            {/* Alt katman: bir önceki görsel, yerinde duruyor */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={rows[onceki]?.imageUrl}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            {/* Üst katman: yeni görsel aşağıdan yukarı açılıyor.
+                key her seçimde değiştiği için animasyon baştan başlıyor —
+                aynı sınıfı yeniden vermek animasyonu tekrar tetiklemez. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              key={`${rows[simdi]?.handle}-${tur}`}
+              src={rows[simdi]?.imageUrl}
+              alt=""
+              aria-hidden="true"
+              className="lx-menu-gorsel absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
         </div>
 
         <div
-          className="mt-5 flex flex-wrap items-center justify-between gap-4 pt-5 sm:mt-7"
+          className="mt-6 flex items-center justify-between gap-4 pt-5"
           style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}
         >
-          <div className="flex min-w-0 flex-wrap gap-x-6 gap-y-2">
-            {links.map((l) => (
-              <Link
-                key={l.handle}
-                href={l.href}
-                onClick={onClose}
-                className="text-[12px] font-bold uppercase tracking-[0.04em] transition-opacity hover:opacity-100 sm:text-[13px]"
-                style={{ color: "rgba(255,255,255,0.72)" }}
-              >
-                {l.title}
-              </Link>
-            ))}
-          </div>
-
+          <span className="text-[11px] uppercase tracking-[0.14em]" style={{ color: "rgba(255,255,255,0.55)" }}>
+            {collections.length} collections
+          </span>
           <Link
             href="/collections"
             onClick={onClose}
-            className="shrink-0 px-5 py-3 text-[12px] font-bold uppercase tracking-[0.06em] transition-opacity hover:opacity-80 sm:px-7 sm:text-[13px]"
+            className="shrink-0 px-6 py-3 text-[12px] font-bold uppercase tracking-[0.06em] transition-opacity hover:opacity-80 sm:px-7 sm:text-[13px]"
             style={{ background: "#000000", color: "#ffffff" }}
           >
             View all
@@ -110,13 +172,22 @@ function MegaPanel({
   );
 }
 
-export function SlickHeader({ collections = [] }: { collections?: NavCollection[] }) {
+export function SlickHeader({
+  collections = [],
+  dolu = false,
+}: {
+  collections?: NavCollection[];
+  /** Sayfanın üstü açık renkliyse hap en baştan dolu siyah olur */
+  dolu?: boolean;
+}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [accordion, setAccordion] = useState<string | null>(null);
   const [q, setQ] = useState("");
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
+  const [kaydi, setKaydi] = useState(false);
   const count = useShopifyCartStore((s) => s.lines.reduce((n, l) => n + l.quantity, 0));
   const customer = useAuthStore((s) => s.customer);
   const openCartDrawer = useUiStore((s) => s.openCartDrawer);
@@ -140,6 +211,44 @@ export function SlickHeader({ collections = [] }: { collections?: NavCollection[
     };
   }, []);
 
+  /** Sayfa en üstte mi? Hapın şeffaf mı dolu mu olacağını bu belirliyor. */
+  useEffect(() => {
+    const olc = () => setKaydi(window.scrollY > 24);
+    olc();
+    window.addEventListener("scroll", olc, { passive: true });
+    return () => window.removeEventListener("scroll", olc);
+  }, []);
+
+  /**
+   * Panel açıkken imleç header'ın (hap + panel) dışına çıkarsa kapat.
+   *
+   * Yalnızca onMouseLeave'e güvenmek yetmiyor: imleç panelin kenarındaki boş
+   * alandan çıktığında ya da pencereden ayrıldığında olay her zaman gelmiyor,
+   * panel açık kalıyordu. Burada imlecin gerçek konumu ölçülüyor.
+   */
+  useEffect(() => {
+    if (!shopOpen) return;
+    const izle = (e: PointerEvent) => {
+      const el = headerRef.current;
+      if (!el) return;
+
+      // Panel mutlak konumlu, header'ın kendi ölçüsüne girmiyor — ikisinin
+      // kapladığı alanı birleştiriyoruz.
+      const kutular = [el.getBoundingClientRect()];
+      const panel = el.querySelector("[data-shop-panel]");
+      if (panel) kutular.push(panel.getBoundingClientRect());
+
+      const icinde = kutular.some(
+        (r) =>
+          e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom,
+      );
+      if (icinde) openShop();
+      else scheduleCloseShop();
+    };
+    document.addEventListener("pointermove", izle);
+    return () => document.removeEventListener("pointermove", izle);
+  }, [shopOpen]);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -162,14 +271,26 @@ export function SlickHeader({ collections = [] }: { collections?: NavCollection[
 
   return (
     <header
+      ref={headerRef}
       className={`relative text-white ${pill ? "bg-transparent" : "bg-black"}`}
       onMouseLeave={scheduleCloseShop}
     >
       <div
         className={
           pill
-            ? "mx-auto mt-4 flex w-fit items-center gap-5 rounded-full bg-black px-5 py-2.5 sm:mt-5 sm:gap-9 sm:px-8 sm:py-3"
+            ? "mx-auto mt-4 flex w-fit items-center gap-5 rounded-full px-5 py-2.5 sm:mt-5 sm:gap-9 sm:px-8 sm:py-3"
             : "mx-auto flex h-[var(--sg-header-h)] max-w-[90rem] items-center gap-6 px-4 sm:gap-10 sm:px-8"
+        }
+        /* Sayfanın en üstündeyken hap şeffaf — arkadaki görsel kesilmiyor.
+           Aşağı kaydırılınca dolu siyaha dönüyor ki içerik altından geçerken
+           menü okunur kalsın. Panel açıkken de dolu, yoksa panelden kopuk durur. */
+        style={
+          pill
+            ? {
+                background: dolu || kaydi || shopOpen ? "#000000" : "transparent",
+                transition: "background 320ms var(--lx-ease)",
+              }
+            : undefined
         }
       >
         <button type="button" className="p-1 lg:hidden" aria-label="Menü" onClick={() => setMenuOpen(true)}>
@@ -265,6 +386,7 @@ export function SlickHeader({ collections = [] }: { collections?: NavCollection[
 
       {shopOpen && (
         <div
+          data-shop-panel
           className="absolute inset-x-0 top-full z-50 hidden lg:block"
           onMouseEnter={openShop}
           onMouseLeave={scheduleCloseShop}
@@ -326,15 +448,19 @@ export function SlickHeader({ collections = [] }: { collections?: NavCollection[
                         <span>{accordion === item.label ? "−" : "+"}</span>
                       </button>
                       {accordion === item.label && (
-                        <ul className="space-y-3 pb-4 pl-3">
-                          {collections.map((c) => (
+                        <ul className="space-y-3 pb-4 pl-1">
+                          {collections.map((c, i) => (
                             <li key={c.handle}>
                               <Link
                                 href={c.href}
-                                className="sg-nav text-[12px]"
+                                className="flex items-center gap-3"
                                 onClick={() => setMenuOpen(false)}
                               >
-                                {c.title}
+                                {/* Masaüstü paneldeki numaralı indeksin aynısı */}
+                                <span className="shrink-0 text-[10px] tracking-[0.14em] text-white/45">
+                                  [ {String(i + 1).padStart(3, "0")} ]
+                                </span>
+                                <span className="sg-nav min-w-0 truncate text-[12px]">{c.title}</span>
                               </Link>
                             </li>
                           ))}

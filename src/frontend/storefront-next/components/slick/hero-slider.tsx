@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { HeroSlide } from "@/services/shopify/storefront-direct";
+import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
 
 /**
  * Tam ekran hero slider — solda dikey olarak "yuvarlanan" başlık listesi.
@@ -55,6 +56,9 @@ export function HeroSlider({
   const targetRef = useRef(0); // gitmek istediği konum
   const rafRef = useRef<number | null>(null);
   const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Header'a "üstüm koyu" de: şeffaf durabilsin
+  useKoyuUstBildir();
 
   const [, forceRender] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -178,6 +182,7 @@ export function HeroSlider({
   return (
     <section
       ref={sectionRef}
+      data-dark-top
       className="relative w-full overflow-hidden bg-black"
       style={{ height, minHeight }}
       onMouseEnter={() => setPaused(true)}
