@@ -10,17 +10,21 @@ interface AccountFieldProps {
 export function AccountField({ label, required, children, className = "" }: AccountFieldProps) {
   return (
     <label className={`block ${className}`}>
-      <span className="text-[11px] text-[#666]">
+      <span
+        className="text-[11px] uppercase tracking-[0.14em]"
+        style={{ color: "rgba(20,17,15,0.55)", fontFamily: "var(--font-owners)" }}
+      >
         {label}
-        {required && <span className="text-[#e53935]">*</span>}
+        {required && <span style={{ color: "var(--sg-red)" }}> *</span>}
       </span>
       <div className="mt-1.5">{children}</div>
     </label>
   );
 }
 
+/* Alt çizgili sade alan; odaklanınca çizgi marka kırmızısına döner. */
 export const accountInputClass =
-  "w-full border-0 border-b border-[#ccc] bg-transparent py-2 text-[13px] text-black outline-none focus:border-black placeholder:text-[#bbb]";
+  "w-full border-0 border-b border-[rgba(20,17,15,0.25)] bg-transparent py-2.5 text-[14px] text-[var(--lx-ink)] outline-none focus:border-[var(--sg-red)] placeholder:text-[rgba(20,17,15,0.3)]";
 
 export const accountSelectClass =
-  "w-full appearance-none border-0 border-b border-[#ccc] bg-transparent py-2 pr-6 text-[13px] text-black outline-none focus:border-black";
+  "w-full appearance-none border-0 border-b border-[rgba(20,17,15,0.25)] bg-transparent py-2.5 pr-6 text-[14px] text-[var(--lx-ink)] outline-none focus:border-[var(--sg-red)]";

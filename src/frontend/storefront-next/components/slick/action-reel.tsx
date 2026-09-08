@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { formatTry } from "@/lib/marmara-catalog";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import type { Product } from "@/types/commerce";
+import { useUiStore } from "@/store/ui-store";
 
 export type ReelItem = {
   product: Product;
@@ -42,6 +43,7 @@ export function ActionReel({
   title?: string;
 }) {
   const add = useShopifyCartStore((s) => s.add);
+  const openCartDrawer = useUiStore((s) => s.openCartDrawer);
   const [aktif, setAktif] = useState(0);
   const [eklenen, setEklenen] = useState<string | null>(null);
   const dokunusX = useRef<number | null>(null);
@@ -149,6 +151,7 @@ export function ActionReel({
                     onClick={() => {
                       if (!p.availableForSale) return;
                       add(p);
+                    openCartDrawer();
                       setEklenen(p.handle);
                       setTimeout(() => setEklenen((h) => (h === p.handle ? null : h)), 1600);
                     }}

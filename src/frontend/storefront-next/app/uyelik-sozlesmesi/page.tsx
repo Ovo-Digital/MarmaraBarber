@@ -8,6 +8,6 @@ export const metadata: Metadata = { title: page.title };
 
 export default function UyelikSozlesmesiPage() {
   return (
-    <LegalPageLayout title={page.title} sections={[...page.sections]} breadcrumbLabel="Üyelik Sözleşmesi" />
+    <LegalPageLayout title={page.title} sections={[...page.sections]} breadcrumbLabel="Terms" />
   );
 }

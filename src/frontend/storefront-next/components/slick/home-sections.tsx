@@ -222,7 +222,7 @@ export function QuizPromoBanner() {
         <p className="sg-nav text-[11px] text-white/55">Find Your Formula</p>
         <h2 className="sg-section-title mt-4 text-white">ÜRÜN BULUCU</h2>
         <p className="sg-body mx-auto mt-5 max-w-lg text-white/75">
-          Kolonya, şekillendirici, sakal bakımı veya aksesuar — sana uygun ürünü birkaç adımda bul.
+          Cologne, styling, beard care or accessories — find what fits you in a couple of steps.
         </p>
         <Link href="/products" className="sg-btn-red mt-8 inline-flex">
           Quiz&apos;e Başla

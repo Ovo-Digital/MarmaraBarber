@@ -15,7 +15,7 @@ export function SlickFooter() {
     <footer className="mt-auto border-t border-white/20 bg-black text-white">
       {/* Üst: 3 kolon link + dikey çizgi + sosyal hesaplar.
           Bülten kaydı sayfanın hemen üstündeki bantta — iki form üst üste olmasın. */}
-      <div className="sg-container grid gap-10 py-12 lg:grid-cols-[1.35fr_1px_1fr] lg:gap-0 lg:py-14">
+      <div className="sg-container grid gap-10 py-10 lg:grid-cols-[1.35fr_1px_1fr] lg:gap-0 lg:py-12">
         <div className="grid gap-10 sm:grid-cols-3 lg:pr-12">
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title}>
@@ -54,21 +54,24 @@ export function SlickFooter() {
         </div>
       </div>
 
-      {/* Alt: copyright / dil */}
-      <div className="sg-container pb-8 pt-2">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5 lg:pb-2">
+      {/* Alt: ortada marka işareti, altında copyright / dil */}
+      <div className="sg-container pb-7 pt-2">
+        <div className="flex flex-col items-center gap-4">
+          {/* İşaretin üzerine gelince kırmızı bir parıltı yayılıyor */}
+          <Link href="/" aria-label={SITE_NAME} className="lx-parilti inline-block w-fit">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/marmara-logo.png"
+              alt={SITE_NAME}
+              draggable={false}
+              className="h-auto w-[120px] select-none sm:w-[150px]"
+            />
+          </Link>
+
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
             <p className="text-[11px] text-white/55">
               Copyright © {new Date().getFullYear()} {SITE_NAME}
             </p>
-            <button
-              type="button"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white px-3 py-1.5 text-[12px] font-semibold text-black"
-              aria-label="Dil"
-            >
-              TR
-              <span className="text-[#666]">›</span>
-            </button>
           </div>
         </div>
       </div>

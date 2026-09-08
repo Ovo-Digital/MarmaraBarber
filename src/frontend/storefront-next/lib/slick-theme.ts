@@ -29,50 +29,50 @@ export const MAIN_NAV: NavItem[] = [
     href: "/products",
     children: [
       {
-        label: "KOLONYA",
+        label: "COLOGNE",
         href: "/collections/dokme-kolonya",
         children: [
-          { label: "Dökme Kolonya", href: "/collections/dokme-kolonya" },
-          { label: "Sprey Kolonya", href: "/products?type=Sprey%20Kolonya" },
-          { label: "Krem Kolonya", href: "/products?type=Krem%20Kolonya" },
+          { label: "Bulk cologne", href: "/collections/dokme-kolonya" },
+          { label: "Spray cologne", href: "/products?type=Sprey%20Kolonya" },
+          { label: "Cream cologne", href: "/products?type=Krem%20Kolonya" },
         ],
       },
       {
-        label: "SAÇ BAKIMI",
+        label: "HAIR",
         href: "/products?type=Sa%C3%A7%20%C5%9Eekillendirici",
         children: [
-          { label: "Saç Şekillendirici", href: "/products?type=Sa%C3%A7%20%C5%9Eekillendirici" },
-          { label: "Fön Suyu", href: "/collections/fon-suyu" },
-          { label: "Şampuan", href: "/products?type=%C5%9Eampuan" },
-          { label: "Saç Boyası", href: "/collections/gecici-renkli-sac-spreyi" },
+          { label: "Styling", href: "/products?type=Sa%C3%A7%20%C5%9Eekillendirici" },
+          { label: "Blow-dry lotion", href: "/collections/fon-suyu" },
+          { label: "Shampoo", href: "/products?type=%C5%9Eampuan" },
+          { label: "Colour spray", href: "/collections/gecici-renkli-sac-spreyi" },
         ],
       },
       {
-        label: "CİLT & SAKAL",
+        label: "SKIN & BEARD",
         href: "/collections/cilt-bakimi-1",
         children: [
-          { label: "Cilt Bakımı", href: "/collections/cilt-bakimi-1" },
-          { label: "Sakal Yağı", href: "/collections/sakal-yagi-1" },
-          { label: "Tıraş Jeli", href: "/products?type=T%C4%B1ra%C5%9F%20Jeli" },
+          { label: "Skin care", href: "/collections/cilt-bakimi-1" },
+          { label: "Beard oil", href: "/collections/sakal-yagi-1" },
+          { label: "Shave gel", href: "/products?type=T%C4%B1ra%C5%9F%20Jeli" },
         ],
       },
       {
-        label: "AKSESUAR",
+        label: "ACCESSORIES",
         href: "/collections/aksesuar",
         children: [
           { label: "Apron", href: "/products?type=Apron" },
-          { label: "Penuar", href: "/products?type=Penuar" },
-          { label: "Fırça", href: "/products?type=F%C4%B1r%C3%A7a" },
+          { label: "Cape", href: "/products?type=Penuar" },
+          { label: "Brush", href: "/products?type=F%C4%B1r%C3%A7a" },
         ],
       },
-      { label: "PARFÜM", href: "/collections/parfum" },
-      { label: "PAKETLER", href: "/collections/paketler" },
+      { label: "FRAGRANCE", href: "/collections/parfum" },
+      { label: "KITS", href: "/collections/paketler" },
     ],
   },
   { label: "BUNDLE & SAVE", href: "/collections/paketler" },
-  { label: "PARTNER OL", href: "/hakkimizda" },
-  { label: "HAKKIMIZDA", href: "/hakkimizda" },
-  { label: "İLETİŞİM", href: "/iletisim" },
+  { label: "WHOLESALE", href: "/hakkimizda" },
+  { label: "ABOUT", href: "/hakkimizda" },
+  { label: "CONTACT", href: "/iletisim" },
 ];
 
 /** Geriye uyumluluk */
@@ -90,7 +90,7 @@ export const MEGA_LINKS = [
   { label: "SETS & BUNDLES", href: "/collections/paketler" },
   { label: "SKIN", href: "/collections/cilt-bakimi-1" },
   { label: "ACCESSORIES", href: "/collections/aksesuar" },
-  { label: "PARFÜM", href: "/collections/parfum" },
+  { label: "FRAGRANCE", href: "/collections/parfum" },
 ];
 
 export const MEGA_FEATURED = [
@@ -185,32 +185,33 @@ export const TESTIMONIALS = [
 
 export const FOOTER_COLUMNS = [
   {
-    title: "HIZLI LİNKLER",
+    title: "SHOP",
     links: [
-      { label: "Mağaza", href: "/products" },
-      { label: "KVKK Formu", href: "/kvkk-basvuru-formu" },
-      { label: "Partner Ol", href: "/hakkimizda" },
+      { label: "All products", href: "/products" },
+      { label: "Collections", href: "/collections" },
+      { label: "Find your formula", href: "/finder" },
+      { label: "Wholesale", href: "/hakkimizda" },
     ],
   },
   {
-    title: "ÖNEMLİ BİLGİLER",
+    title: "COMPANY",
     links: [
-      { label: "Hakkımızda", href: "/hakkimizda" },
-      { label: "Üyelik Sözleşmesi", href: "/uyelik-sozlesmesi" },
-      { label: "İade ve Değişim Şartları", href: "/iade-ve-degisim" },
-      { label: "Aydınlatma Metni", href: "/aydinlatma-metni" },
-      { label: "Teslimat ve Sipariş Koşulları", href: "/kargo-ve-teslimat" },
-      { label: "İletişim", href: "/iletisim" },
+      { label: "About", href: "/hakkimizda" },
+      { label: "Stores", href: "/magazalar" },
+      { label: "Careers", href: "/kariyer" },
+      { label: "Contact", href: "/iletisim" },
     ],
   },
   {
     title: "SUPPORT",
     links: [
-      { label: "Hesabım", href: "/account" },
-      { label: "SSS", href: "/sss" },
-      { label: "Gizlilik", href: "/gizlilik-politikasi" },
-      { label: "KVKK", href: "/kvkk" },
-      { label: "Çerez Politikası", href: "/cerez-politikasi" },
+      { label: "My account", href: "/account" },
+      { label: "FAQ", href: "/sss" },
+      { label: "Shipping & delivery", href: "/kargo-ve-teslimat" },
+      { label: "Returns & exchanges", href: "/iade-ve-degisim" },
+      { label: "Privacy policy", href: "/gizlilik-politikasi" },
+      { label: "Cookie policy", href: "/cerez-politikasi" },
+      { label: "Terms of service", href: "/uyelik-sozlesmesi" },
     ],
   },
 ];

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { formatTry } from "@/lib/marmara-catalog";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import type { Product } from "@/types/commerce";
+import { useUiStore } from "@/store/ui-store";
 
 function PlusIcon() {
   return (
@@ -51,6 +52,7 @@ export function SlickProductCard({
   badge?: string;
 }) {
   const add = useShopifyCartStore((s) => s.add);
+  const openCartDrawer = useUiStore((s) => s.openCartDrawer);
   const hasCompare =
     typeof product.compareAtPrice === "number" && product.compareAtPrice > product.price;
 
@@ -185,6 +187,7 @@ export function SlickProductCard({
               onClick={() => {
                 if (!product.availableForSale) return;
                 add(product);
+                openCartDrawer();
                 setAdded(true);
               }}
               className="lx-plus-btn flex h-11 w-11 items-center justify-center rounded-full active:scale-95 disabled:cursor-not-allowed disabled:opacity-30"

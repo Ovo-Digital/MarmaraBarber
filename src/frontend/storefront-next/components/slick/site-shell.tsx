@@ -21,8 +21,9 @@ function CartHydrator() {
 
 function GlobalCartDrawer() {
   const open = useUiStore((s) => s.cartDrawerOpen);
+  const hoverIle = useUiStore((s) => s.cartDrawerHover);
   const close = useUiStore((s) => s.closeCartDrawer);
-  return <CartDrawer open={open} onClose={close} />;
+  return <CartDrawer open={open} onClose={close} hoverIleAcildi={hoverIle} />;
 }
 
 export function SiteShell({

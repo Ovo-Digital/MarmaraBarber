@@ -11,7 +11,7 @@ export default function TeslimatPage() {
     <LegalPageLayout
       title={page.title}
       sections={[...page.sections]}
-      breadcrumbLabel="Teslimat ve Sipariş"
+      breadcrumbLabel="Shipping"
     />
   );
 }

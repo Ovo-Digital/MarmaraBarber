@@ -27,12 +27,13 @@ export const EMPTY_PLP_FILTERS: SlickPlpFilters = {
 };
 
 export const SLICK_SORT_OPTIONS: { value: SlickPlpSort; label: string }[] = [
-  { value: "featured", label: "Öne Çıkanlar" },
-  { value: "price-asc", label: "Fiyat: Düşükten Yükseğe" },
-  { value: "price-desc", label: "Fiyat: Yüksekten Düşüğe" },
-  { value: "newest", label: "En Yeni" },
-  { value: "bestselling", label: "En Çok Satan" },
-  { value: "rating", label: "En Yüksek Puan" },
+  { value: "featured", label: "Featured" },
+  { value: "price-asc", label: "Price: low to high" },
+  { value: "price-desc", label: "Price: high to low" },
+  { value: "newest", label: "Newest" },
+  { value: "bestselling", label: "Best selling" },
+  /* "Puana göre" seçeneği kaldırıldı: Shopify'da ürün puanı yok, sıralama
+     hiçbir şeyi değiştirmiyordu. */
 ];
 
 const COLOR_KEYWORDS = [

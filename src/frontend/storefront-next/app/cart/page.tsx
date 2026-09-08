@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { formatTry } from "@/lib/marmara-catalog";
 import { formatMoney } from "@/lib/money";
+import { PageHero } from "@/components/slick/page-hero";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 
 export default function CartPage() {
@@ -15,24 +15,30 @@ export default function CartPage() {
 
   if (lines.length === 0) {
     return (
-      <div className="bg-white py-24 text-center">
-        <div className="sg-container">
-          <h1 className="sg-heading text-[36px]">Cart</h1>
-          <p className="sg-body mt-6 text-[#666]">Your cart is empty</p>
-          <Link href="/products" className="sg-btn mt-8 inline-flex">
-            Continue shopping
-          </Link>
+      <>
+        <PageHero eyebrow="Cart" title="Your cart" subline="Nothing here yet." />
+        <div className="bg-white py-20 text-center">
+          <div className="sg-container">
+            <Link href="/products" className="lx-btn inline-flex">
+              Start shopping
+            </Link>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
   const amount = total();
 
   return (
-    <div className="bg-white py-12 md:py-16">
+    <>
+      <PageHero
+        eyebrow="Cart"
+        title="Your cart"
+        subline={`${lines.length} ${lines.length === 1 ? "item" : "items"}`}
+      />
+      <div className="bg-white py-12 md:py-16">
       <div className="sg-container max-w-5xl">
-        <h1 className="sg-heading mb-10 text-center text-[40px] md:text-[48px]">Cart</h1>
 
         {/* Kolon başlıkları */}
         <div className="hidden grid-cols-[1fr_140px_100px] border-b border-black/15 pb-3 text-[11px] uppercase tracking-[0.08em] text-[#888] md:grid">
@@ -65,7 +71,7 @@ export default function CartPage() {
                   >
                     {line.title}
                   </Link>
-                  <p className="sg-price mt-2 text-[15px]">{formatTry(line.price)}</p>
+                  <p className="sg-price mt-2 text-[15px]">{formatMoney(line.price, currencyCode)}</p>
                 </div>
               </div>
 
@@ -103,34 +109,69 @@ export default function CartPage() {
 
               {/* Line total */}
               <p className="sg-price text-left text-[15px] md:text-right">
-                {formatTry(line.price * line.quantity)}
+                {formatMoney(line.price * line.quantity, currencyCode)}
               </p>
             </li>
           ))}
         </ul>
 
         {/* Total + Checkout — sağa hizalı (Slick) */}
-        <div className="mt-8 flex flex-col items-end gap-4">
-          <p className="text-[16px]">
-            <span className="text-[#333]">Total: </span>
-            <span className="sg-price text-[18px]">
+        <div className="mt-10 flex flex-col items-end gap-5">
+          <div
+            className="flex w-full max-w-[320px] items-baseline justify-between pt-5"
+            style={{ borderTop: "1px solid rgba(20,17,15,0.15)" }}
+          >
+            <span className="text-[11px] uppercase tracking-[0.14em]" style={{ color: "rgba(20,17,15,0.55)" }}>
+              Total
+            </span>
+            <span
+              style={{
+                fontFamily: "var(--font-owners-black)",
+                fontWeight: 900,
+                fontSize: "24px",
+                color: "var(--lx-ink)",
+              }}
+            >
               {formatMoney(amount, currencyCode)}
             </span>
-          </p>
+          </div>
 
           {/* Ödeme Shopify'ın kendi kasasında tamamlanır: kart, 3D Secure,
               vergi, kargo ve sipariş oluşturma orada yönetilir. */}
           {checkoutUrl ? (
-            <a href={checkoutUrl} className="sg-btn min-w-[200px] text-center">
+            <a
+              href={checkoutUrl}
+              className="flex w-full max-w-[320px] items-center justify-center uppercase tracking-[0.16em]"
+              style={{
+                minHeight: 54,
+                background: "var(--sg-red)",
+                color: "#ffffff",
+                fontFamily: "var(--font-owners)",
+                fontSize: "12px",
+              }}
+            >
               Checkout
             </a>
           ) : (
-            <span className="sg-btn min-w-[200px] cursor-not-allowed text-center opacity-40">
+            <span
+              className="flex w-full max-w-[320px] cursor-not-allowed items-center justify-center uppercase tracking-[0.16em] opacity-40"
+              style={{
+                minHeight: 54,
+                background: "var(--lx-ink)",
+                color: "#ffffff",
+                fontFamily: "var(--font-owners)",
+                fontSize: "12px",
+              }}
+            >
               Checkout
             </span>
           )}
+          <Link href="/products" className="text-[12px] uppercase tracking-[0.14em]" style={{ color: "rgba(20,17,15,0.55)" }}>
+            Continue shopping
+          </Link>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

@@ -798,3 +798,76 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .lx-menu-gorsel { animation: none; }
 }
+
+/* Filtre paneli başlığı */
+.lx-filtre-baslik {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--lx-ink);
+}
+
+/* Hesap sayfası bölüm listesi — büyük puntolu, satır satır */
+.lx-hesap-satir {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  font-size: clamp(26px, 3vw, 42px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  transition: color 220ms var(--lx-ease), transform 220ms var(--lx-ease);
+}
+.lx-hesap-satir:hover {
+  color: var(--sg-red) !important;
+  transform: translateX(6px);
+}
+
+/* Footer marka işareti — imleç üzerine gelince kırmızı parıltı */
+/* Logo siyah çizim; siyah zeminde görünmesi için beyaza çevriliyor.
+   Filtre satır içi değil burada: satır içi stil hover kuralını yenerdi. */
+.lx-parilti img {
+  filter: brightness(0) invert(1);
+  transition: filter 420ms var(--lx-ease), transform 420ms var(--lx-ease);
+}
+.lx-parilti:hover img {
+  transform: scale(1.03);
+  /* Üst üste binen gölgeler saçaklı bir ışıma veriyor */
+  filter: brightness(0) invert(1)
+    drop-shadow(0 0 6px rgba(225, 6, 0, 0.9))
+    drop-shadow(0 0 18px rgba(225, 6, 0, 0.75))
+    drop-shadow(0 0 42px rgba(225, 6, 0, 0.5));
+}
+@media (prefers-reduced-motion: reduce) {
+  .lx-parilti img,
+  .lx-parilti:hover img { transition: none; transform: none; }
+}
+
+/* Header araması — hap arama alanına dönüşürken içerik yumuşak gelsin */
+@keyframes lx-arama-gir {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.lx-arama {
+  animation: lx-arama-gir 380ms var(--lx-ease) 120ms both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lx-arama { animation: none; }
+}
+
+/* Header hesap paneli — büyük puntolu satırlar */
+.lx-hesap-menu {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 1.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: color 200ms var(--lx-ease), transform 200ms var(--lx-ease);
+}
+.lx-hesap-menu:hover {
+  color: var(--sg-red);
+  transform: translateX(5px);
+}

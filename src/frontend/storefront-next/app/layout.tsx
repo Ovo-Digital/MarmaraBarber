@@ -6,16 +6,16 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Marmara Barber | Profesyonel Berber & Grooming",
+    default: "Marmara Barber | Professional Barber & Grooming",
     template: "%s | Marmara Barber",
   },
   description:
-    "Marmara Barber resmi online mağaza — kolonya, saç şekillendirme, cilt bakımı, parfüm ve berber aksesuarları.",
+    "The official Marmara Barber store — cologne, styling, skin care, fragrance and barber accessories. Made for the chair since 1970.",
   openGraph: {
     title: "Marmara Barber",
-    description: "Profesyonel berber ve grooming ürünleri.",
+    description: "Professional barber and grooming products.",
     siteName: "Marmara Barber",
-    locale: "tr_TR",
+    locale: "en_US",
     type: "website",
   },
 };

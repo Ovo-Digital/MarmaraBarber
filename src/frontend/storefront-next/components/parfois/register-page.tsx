@@ -55,7 +55,7 @@ function PasswordInput({
           type="button"
           onClick={() => setVisible((v) => !v)}
           className="absolute right-0 top-1/2 -translate-y-1/2 p-1 text-[#999] hover:text-black"
-          aria-label={visible ? "Şifreyi gizle" : "Şifreyi göster"}
+          aria-label={visible ? "Hide password" : "Show password"}
         >
           {visible ? (
             <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
@@ -107,7 +107,7 @@ export function RegisterPageClient() {
       setCustomer(customer);
       router.push("/account");
     },
-    onError: (err) => setError(err instanceof Error ? err.message : "Kayıt başarısız"),
+    onError: (err) => setError(err instanceof Error ? err.message : "Sign-up failed."),
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -115,11 +115,11 @@ export function RegisterPageClient() {
     setError(null);
 
     if (password !== confirmPassword) {
-      setError("Şifreler eşleşmiyor.");
+      setError("Passwords do not match.");
       return;
     }
     if (phoneDigits.length < 10) {
-      setError("Geçerli bir telefon numarası girin.");
+      setError("Enter a valid phone number.");
       return;
     }
 
@@ -127,38 +127,36 @@ export function RegisterPageClient() {
   };
 
   return (
-    <div className="mx-auto max-w-[560px] px-4 py-12 lg:py-20">
-      <h1 className="mb-10 text-[15px] font-semibold uppercase tracking-[0.04em]">Hesap Oluştur</h1>
-
+    <div className="mx-auto w-full max-w-[560px]">
       <form className="space-y-8" onSubmit={handleSubmit}>
-        <AccountField label="İsim" required>
+        <AccountField label="First name" required>
           <input
             required
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="İsim"
+            placeholder="First name"
             className={accountInputClass}
           />
         </AccountField>
 
-        <AccountField label="Soyad" required>
+        <AccountField label="Last name" required>
           <input
             required
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="Soyad"
+            placeholder="Last name"
             className={accountInputClass}
           />
         </AccountField>
 
-        <AccountField label="Doğum Tarihi">
+        <AccountField label="Date of birth">
           <div className="grid grid-cols-3 gap-4 border-b border-[#ccc]">
             <select
               value={birthDay}
               onChange={(e) => setBirthDay(e.target.value)}
               className={`${accountSelectClass} border-b-0`}
             >
-              <option value="">Gün</option>
+              <option value="">Day</option>
               {BIRTH_DAYS.map((d) => (
                 <option key={d} value={d}>
                   {d}
@@ -170,7 +168,7 @@ export function RegisterPageClient() {
               onChange={(e) => setBirthMonth(e.target.value)}
               className={`${accountSelectClass} border-b-0`}
             >
-              <option value="">Ay</option>
+              <option value="">Month</option>
               {BIRTH_MONTHS.map((m) => (
                 <option key={m.value} value={m.value}>
                   {m.label}
@@ -182,7 +180,7 @@ export function RegisterPageClient() {
               onChange={(e) => setBirthYear(e.target.value)}
               className={`${accountSelectClass} border-b-0`}
             >
-              <option value="">Yıl</option>
+              <option value="">Year</option>
               {BIRTH_YEARS.map((y) => (
                 <option key={y} value={y}>
                   {y}
@@ -192,18 +190,18 @@ export function RegisterPageClient() {
           </div>
         </AccountField>
 
-        <AccountField label="E-Posta" required>
+        <AccountField label="Email" required>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-posta"
+            placeholder="you@example.com"
             className={accountInputClass}
           />
         </AccountField>
 
-        <AccountField label="Telefon" required>
+        <AccountField label="Phone" required>
           <div className="flex items-center gap-2 border-b border-[#ccc]">
             <span className="shrink-0 pb-2 text-[13px]">🇹🇷 +90</span>
             <input
@@ -220,33 +218,61 @@ export function RegisterPageClient() {
 
         <PasswordInput
           id="password"
-          label="Şifre"
+          label="Password"
           value={password}
           onChange={setPassword}
-          placeholder="Şifre"
+          placeholder="At least 5 characters"
         />
 
         <PasswordInput
           id="confirmPassword"
-          label="Şifreyi Onayla"
+          label="Confirm password"
           value={confirmPassword}
           onChange={setConfirmPassword}
-          placeholder="Şifreyi Onayla"
+          placeholder="Repeat password"
         />
 
-        {error && <p className="text-[11px] text-red-600">{error}</p>}
+        {error ? (
+          <p
+            role="alert"
+            className="px-3 py-2.5 text-[13px]"
+            style={{ border: "1px solid var(--sg-red)", color: "var(--sg-red)" }}
+          >
+            {error}
+          </p>
+        ) : null}
 
-        <button type="submit" disabled={mutation.isPending} className="pf-btn-primary mt-4">
-          {mutation.isPending ? "Kaydediliyor..." : "Hesap Oluştur"}
+        <button
+          type="submit"
+          disabled={mutation.isPending}
+          className="mt-2 w-full disabled:opacity-60"
+          style={{
+            minHeight: 52,
+            background: "var(--sg-red)",
+            color: "#ffffff",
+            fontFamily: "var(--font-owners)",
+            fontSize: "12px",
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+          }}
+        >
+          {mutation.isPending ? "Creating account…" : "Create account"}
         </button>
       </form>
 
-      <p className="mt-8 text-[11px] text-[#666]">
-        Zaten üye misiniz?{" "}
-        <Link href="/login" className="underline text-black">
-          Giriş Yap
+      <div
+        className="mt-8 flex items-center justify-between pt-6 text-[12px]"
+        style={{ borderTop: "1px solid rgba(20,17,15,0.12)" }}
+      >
+        <span style={{ color: "rgba(20,17,15,0.55)" }}>Already have an account?</span>
+        <Link
+          href="/login"
+          className="uppercase tracking-[0.14em]"
+          style={{ color: "var(--sg-red)", fontFamily: "var(--font-owners)" }}
+        >
+          Sign in →
         </Link>
-      </p>
+      </div>
     </div>
   );
 }

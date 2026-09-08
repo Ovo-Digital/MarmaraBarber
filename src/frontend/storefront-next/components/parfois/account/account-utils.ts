@@ -3,11 +3,11 @@ import { formatPrice } from "@/lib/parfois-theme";
 export type AccountSection = "profile" | "addresses" | "orders" | "returns" | "password";
 
 export const ACCOUNT_SECTIONS: { id: AccountSection; label: string; href?: string }[] = [
-  { id: "profile", label: "Kişisel Bilgilerim" },
-  { id: "addresses", label: "Adreslerim" },
-  { id: "orders", label: "Siparişlerim" },
-  { id: "returns", label: "İadeler", href: "/iade-ve-degisim" },
-  { id: "password", label: "Şifre Değiştir" },
+  { id: "profile", label: "Personal details" },
+  { id: "addresses", label: "Addresses" },
+  { id: "orders", label: "Orders" },
+  { id: "returns", label: "Returns", href: "/iade-ve-degisim" },
+  { id: "password", label: "Password" },
 ];
 
 export function parseAccountSection(value: string | null): AccountSection {
@@ -75,17 +75,17 @@ export function saveProfileExtra(customerId: string, extra: ProfileExtra): void 
 
 export const BIRTH_DAYS = Array.from({ length: 31 }, (_, i) => String(i + 1));
 export const BIRTH_MONTHS = [
-  { value: "1", label: "Ocak" },
-  { value: "2", label: "Şubat" },
-  { value: "3", label: "Mart" },
-  { value: "4", label: "Nisan" },
-  { value: "5", label: "Mayıs" },
-  { value: "6", label: "Haziran" },
-  { value: "7", label: "Temmuz" },
-  { value: "8", label: "Ağustos" },
-  { value: "9", label: "Eylül" },
-  { value: "10", label: "Ekim" },
-  { value: "11", label: "Kasım" },
-  { value: "12", label: "Aralık" },
+  { value: "1", label: "January" },
+  { value: "2", label: "February" },
+  { value: "3", label: "March" },
+  { value: "4", label: "April" },
+  { value: "5", label: "May" },
+  { value: "6", label: "June" },
+  { value: "7", label: "July" },
+  { value: "8", label: "August" },
+  { value: "9", label: "September" },
+  { value: "10", label: "October" },
+  { value: "11", label: "November" },
+  { value: "12", label: "December" },
 ];
 export const BIRTH_YEARS = Array.from({ length: 100 }, (_, i) => String(new Date().getFullYear() - i));

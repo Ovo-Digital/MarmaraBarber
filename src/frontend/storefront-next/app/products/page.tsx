@@ -28,7 +28,7 @@ export default async function ProductsPage({ searchParams }: Props) {
       description={
         type
           ? `${title} kategorisindeki profesyonel berber ürünlerini incele.`
-          : "Kolonya, şekillendirici, cilt bakımı, aksesuar ve daha fazlası — tüm katalog."
+          : "Cologne, styling, skin care, accessories and more — the full range."
       }
       image={heroImage}
       products={products}

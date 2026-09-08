@@ -75,7 +75,7 @@ function AddressFormModal({
             e.preventDefault();
             setLocalError(null);
             if (!isTurkeyAddressComplete(turkeyAddress)) {
-              setLocalError("Lütfen il, ilçe, mahalle ve açık adresi doldurun.");
+              setLocalError("Please fill in city, district, neighbourhood and street address.");
               return;
             }
             const mapped = turkeyAddressToShopifyFields(turkeyAddress);
@@ -88,12 +88,12 @@ function AddressFormModal({
             });
           }}
         >
-          <AccountField label="Adres Adı" required>
+          <AccountField label="Address name" required>
             <input
               required
               value={form.company ?? ""}
               onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
-              placeholder="Ev, İş..."
+              placeholder="Home, Work…"
               className={accountInputClass}
             />
           </AccountField>
@@ -107,7 +107,7 @@ function AddressFormModal({
                 className={accountInputClass}
               />
             </AccountField>
-            <AccountField label="Soyad" required>
+            <AccountField label="Last name" required>
               <input
                 required
                 value={form.lastName}
@@ -140,7 +140,7 @@ function AddressFormModal({
           )}
 
           <button type="submit" disabled={isPending} className="pf-btn-primary w-auto px-8 !text-[10px]">
-            {isPending ? "Kaydediliyor..." : "Kaydet"}
+            {isPending ? "Saving…" : "Save"}
           </button>
         </form>
       </div>
@@ -171,7 +171,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
       setFormError(null);
       await onUpdated();
     },
-    onError: (err) => setFormError(err instanceof Error ? err.message : "Adres güncellenemedi"),
+    onError: (err) => setFormError(err instanceof Error ? err.message : "Could not update the address."),
   });
 
   const deleteMutation = useMutation({
@@ -191,7 +191,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
   return (
     <div>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-[#e0e0e0] pb-4">
-        <h2 className="text-[15px] font-semibold">Adreslerim</h2>
+        <h2 className="text-[15px] font-semibold">Addresses</h2>
         <button
           type="button"
           onClick={() => {
@@ -211,9 +211,9 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
         <p className="py-12 text-center text-[12px] text-[#666]">Kayıtlı adresiniz bulunmuyor.</p>
       ) : (
         <div className="hidden border-b border-[#e0e0e0] pb-3 text-[11px] font-semibold text-black sm:grid sm:grid-cols-[1fr_2fr_auto] sm:gap-6">
-          <span>Adres Adı</span>
-          <span>Adres Açıklamaları</span>
-          <span className="sr-only">İşlemler</span>
+          <span>Address name</span>
+          <span>Address details</span>
+          <span className="sr-only">Actions</span>
         </div>
       )}
 
@@ -242,7 +242,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
                 {addr.city ? ` ${addr.city}` : ""}
                 {addr.zip ? ` ${addr.zip}` : ""}
               </p>
-              <p>{addr.country === "Turkey" ? "Türkiye" : addr.country}</p>
+              <p>{addr.country}</p>
               <p className="mt-2">
                 <span className="font-semibold">Kurumsal Fatura:</span> Hayır
               </p>
@@ -274,7 +274,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
 
       {showAdd && (
         <AddressFormModal
-          title="Yeni Adres Ekle"
+          title="Add address"
           initial={{
             ...emptyAddress,
             firstName: customer.firstName ?? "",
@@ -291,7 +291,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
 
       {editing && (
         <AddressFormModal
-          title="Adresi Düzenle"
+          title="Edit address"
           initial={{
             firstName: editing.firstName,
             lastName: editing.lastName,

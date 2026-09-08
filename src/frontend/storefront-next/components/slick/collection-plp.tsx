@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SlickProductCard } from "@/components/slick/product-card";
 import { formatTry } from "@/lib/marmara-catalog";
 import {
@@ -19,6 +19,8 @@ import {
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import type { Product } from "@/types/commerce";
 import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
+import { useUiStore } from "@/store/ui-store";
+import { formatMoney } from "@/lib/money";
 
 type Props = {
   title: string;
@@ -34,6 +36,8 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
 
   const facets = useMemo(() => buildPlpFacets(products), [products]);
   const [filters, setFilters] = useState<SlickPlpFilters>(EMPTY_PLP_FILTERS);
+  /** Filtre kolonu açık mı? Kapanınca kolon tamamen kalkıyor, ürünler genişliyor. */
+  const [filtreAcik, setFiltreAcik] = useState(true);
   const [draft, setDraft] = useState<SlickPlpFilters>(EMPTY_PLP_FILTERS);
   const [sort, setSort] = useState<SlickPlpSort>("featured");
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -130,32 +134,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
                 <ListIcon />
               </button>
             </div>
-            <label className="flex items-center gap-2 text-[12px]">
-              <span className="sg-nav hidden text-[10px] text-[#888] sm:inline">Sort</span>
-              <select
-                style={{
-                  fontFamily: "var(--font-owners)",
-                  fontSize: "12px",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: "var(--lx-ink)",
-                  border: "1px solid var(--lx-line)",
-                  background: "transparent",
-                  padding: "10px 14px",
-                  borderRadius: 0,
-                  appearance: "none",
-                }}
-                value={sort}
-                onChange={(e) => setSort(e.target.value as SlickPlpSort)}
-                className="sg-nav max-w-[180px] border border-black/20 bg-white px-2 py-2 text-[11px] outline-none sm:max-w-none"
-              >
-                {SLICK_SORT_OPTIONS.map((o) => (
-                  <option key={o.value} value={o.value}>
-                    {o.label}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <SiralamaSecici value={sort} onChange={setSort} />
           </div>
         </div>
 
@@ -182,19 +161,45 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
       <div className="sg-container pt-8">
         <div className="flex gap-10">
           {/* 3. Desktop sidebar */}
-          <aside className="hidden w-56 shrink-0 lg:block xl:w-64">
-            <div className="sticky top-[calc(var(--sg-promo-h)+var(--sg-header-h)+4.5rem)] max-h-[calc(100vh-var(--sg-promo-h)-var(--sg-header-h)-5.5rem)] overflow-y-auto pr-2">
-              <FilterPanel
-                facets={facets}
-                value={filters}
-                onChange={setFilters}
-                onClear={clearAll}
-              />
-            </div>
-          </aside>
+          {filtreAcik ? (
+            <aside className="hidden w-56 shrink-0 lg:block xl:w-64">
+              <div className="sticky top-[calc(var(--sg-header-h)+3rem)] max-h-[calc(100vh-var(--sg-header-h)-4rem)] overflow-y-auto pr-2">
+                <FilterPanel
+                  facets={facets}
+                  value={filters}
+                  onChange={setFilters}
+                  onClear={clearAll}
+                  onKapat={() => setFiltreAcik(false)}
+                />
+              </div>
+            </aside>
+          ) : null}
 
           {/* 4 + 5 + 6. Grid / load more / empty */}
           <div className="min-w-0 flex-1">
+            {/* Kolon kapalıyken tekrar açmanın tek yolu bu düğme */}
+            {!filtreAcik ? (
+              <button
+                type="button"
+                onClick={() => setFiltreAcik(true)}
+                className="mb-6 hidden items-center gap-2 lg:inline-flex"
+              >
+                <span
+                  className="uppercase"
+                  style={{
+                    fontFamily: "var(--font-owners-black)",
+                    fontWeight: 900,
+                    fontSize: "16px",
+                    color: "var(--lx-ink)",
+                  }}
+                >
+                  Filters
+                </span>
+                <span aria-hidden="true" className="text-[11px]" style={{ color: "rgba(20,17,15,0.5)" }}>
+                  ▸
+                </span>
+              </button>
+            ) : null}
             {filtered.length === 0 ? (
               <EmptyState onClear={clearAll} />
             ) : (
@@ -336,6 +341,7 @@ function EmptyState({ onClear }: { onClear: () => void }) {
 
 function ListRow({ product }: { product: Product }) {
   const add = useShopifyCartStore((s) => s.add);
+  const openCartDrawer = useUiStore((s) => s.openCartDrawer);
   return (
     <li className="flex items-center gap-4 py-4">
       <Link href={`/products/${product.handle}`} className="h-24 w-24 shrink-0 bg-[var(--sg-off)] sm:h-28 sm:w-28">
@@ -348,35 +354,231 @@ function ListRow({ product }: { product: Product }) {
         <Link href={`/products/${product.handle}`}>
           <h3 className="sg-product-title text-[13px]">{product.title}</h3>
         </Link>
-        <p className="sg-star mt-1 text-[11px]">
-          ★★★★★{" "}
-          <span className="text-[#666]">
-            {(product.rating ?? 4.9).toFixed(1)} ({product.reviewCount ?? 0})
-          </span>
+        {/* Yıldız puanı kaldırıldı: Shopify'da ürün puanı yok, uydurma sayıydı. */}
+        <p className="sg-price mt-2 text-[15px]">
+          {formatMoney(product.price, product.currencyCode)}
         </p>
-        <p className="sg-price mt-2 text-[15px]">{formatTry(product.price)}</p>
       </div>
       <button
         type="button"
         disabled={!product.availableForSale}
         className="sg-btn hidden shrink-0 !px-4 !py-2.5 text-[10px] sm:inline-flex"
-        onClick={() => add(product)}
+        onClick={() => {
+          add(product);
+          openCartDrawer();
+        }}
       >
         {product.availableForSale ? "Add to cart" : "Sold out"}
       </button>
     </li>
   );
 }
+/** Sıralama seçici — tarayıcının kendi menüsü yerine marka dilinde açılır liste */
+function SiralamaSecici({
+  value,
+  onChange,
+}: {
+  value: SlickPlpSort;
+  onChange: (v: SlickPlpSort) => void;
+}) {
+  const [acik, setAcik] = useState(false);
+  const kutuRef = useRef<HTMLDivElement | null>(null);
+  const secili = SLICK_SORT_OPTIONS.find((o) => o.value === value);
+
+  // Dışarı tıklayınca kapansın
+  useEffect(() => {
+    if (!acik) return;
+    const disari = (e: MouseEvent) => {
+      if (kutuRef.current && !kutuRef.current.contains(e.target as Node)) setAcik(false);
+    };
+    document.addEventListener("mousedown", disari);
+    return () => document.removeEventListener("mousedown", disari);
+  }, [acik]);
+
+  return (
+    <div ref={kutuRef} className="relative">
+      <button
+        type="button"
+        onClick={() => setAcik((a) => !a)}
+        aria-expanded={acik}
+        aria-haspopup="listbox"
+        className="flex min-w-[190px] items-center justify-between gap-4 px-4 py-3 uppercase"
+        style={{
+          fontFamily: "var(--font-owners)",
+          fontSize: "11px",
+          letterSpacing: "0.14em",
+          color: "var(--lx-ink)",
+          border: "1px solid rgba(20,17,15,0.22)",
+        }}
+      >
+        <span className="truncate">{secili?.label ?? "Sort"}</span>
+        <span
+          aria-hidden="true"
+          className="text-[9px]"
+          style={{
+            color: "rgba(20,17,15,0.5)",
+            transform: acik ? "rotate(180deg)" : "none",
+            transition: "transform 220ms var(--lx-ease)",
+          }}
+        >
+          ▼
+        </span>
+      </button>
+
+      {acik ? (
+        <ul
+          role="listbox"
+          className="absolute right-0 z-30 mt-1 m-0 w-[240px] list-none p-0"
+          style={{
+            background: "var(--lx-ink)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            boxShadow: "0 24px 60px rgba(20,17,15,0.35)",
+          }}
+        >
+          {SLICK_SORT_OPTIONS.map((o) => {
+            const isActive = o.value === value;
+            return (
+              <li key={o.value}>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected={isActive}
+                  onClick={() => {
+                    onChange(o.value);
+                    setAcik(false);
+                  }}
+                  className="block w-full px-4 py-3 text-left uppercase transition-colors"
+                  style={{
+                    fontFamily: "var(--font-owners)",
+                    fontSize: "11px",
+                    letterSpacing: "0.14em",
+                    color: isActive ? "var(--sg-red)" : "rgba(255,255,255,0.8)",
+                  }}
+                >
+                  {o.label}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
+/** Açılıp kapanan filtre bölümü — başlığa basınca içerik görünür/gizlenir */
+function FiltreBolumu({
+  baslik,
+  children,
+  acikBasla = true,
+}: {
+  baslik: string;
+  children: React.ReactNode;
+  acikBasla?: boolean;
+}) {
+  const [acik, setAcik] = useState(acikBasla);
+
+  return (
+    <div style={{ borderTop: "1px solid rgba(20,17,15,0.12)" }}>
+      <button
+        type="button"
+        onClick={() => setAcik((a) => !a)}
+        aria-expanded={acik}
+        className="flex w-full items-center justify-between py-4 text-left"
+      >
+        <span
+          className="uppercase"
+          style={{
+            fontFamily: "var(--font-owners)",
+            fontSize: "12px",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            color: "var(--lx-ink)",
+          }}
+        >
+          {baslik}
+        </span>
+        {/* Artı/eksi: açıkken yatay çizgi, kapalıyken artı */}
+        <span aria-hidden="true" className="relative block h-3 w-3 shrink-0">
+          <span
+            className="absolute left-0 top-1/2 h-px w-3 -translate-y-1/2"
+            style={{ background: "var(--lx-ink)" }}
+          />
+          <span
+            className="absolute left-1/2 top-0 h-3 w-px -translate-x-1/2"
+            style={{
+              background: "var(--lx-ink)",
+              transform: acik ? "translateX(-50%) scaleY(0)" : "translateX(-50%) scaleY(1)",
+              transition: "transform 260ms var(--lx-ease)",
+            }}
+          />
+        </span>
+      </button>
+
+      {acik ? <div className="pb-5">{children}</div> : null}
+    </div>
+  );
+}
+
+/** Kare kutucuk — işaretliyken marka kırmızısı */
+function Kutucuk({
+  isaretli,
+  onChange,
+  etiket,
+  adet,
+}: {
+  isaretli: boolean;
+  onChange: () => void;
+  etiket: string;
+  adet: number;
+}) {
+  return (
+    <label className="flex cursor-pointer items-center gap-3 py-1.5">
+      <input
+        type="checkbox"
+        checked={isaretli}
+        onChange={onChange}
+        className="sr-only"
+      />
+      <span
+        aria-hidden="true"
+        className="flex h-4 w-4 shrink-0 items-center justify-center"
+        style={{
+          border: `1px solid ${isaretli ? "var(--sg-red)" : "rgba(20,17,15,0.35)"}`,
+          background: isaretli ? "var(--sg-red)" : "transparent",
+          transition: "background 180ms var(--lx-ease), border-color 180ms var(--lx-ease)",
+        }}
+      >
+        {isaretli ? (
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        ) : null}
+      </span>
+      <span className="min-w-0 flex-1 truncate text-[13px]" style={{ color: "var(--lx-ink)" }}>
+        {etiket}
+      </span>
+      <span className="text-[11px]" style={{ color: "rgba(20,17,15,0.45)" }}>
+        {adet}
+      </span>
+    </label>
+  );
+}
+
 function FilterPanel({
   facets,
   value,
   onChange,
   onClear,
+  onKapat,
 }: {
   facets: ReturnType<typeof buildPlpFacets>;
   value: SlickPlpFilters;
   onChange: (next: SlickPlpFilters) => void;
   onClear: () => void;
+  /** Verilirse başlık tıklanabilir olur ve kolon yerleşimden çıkar.
+   *  Mobil çekmecede kolon kavramı yok, o yüzden verilmiyor. */
+  onKapat?: () => void;
 }) {
   const toggleArr = (key: "types" | "volumes" | "colors", item: string) => {
     const list = value[key];
@@ -387,109 +589,114 @@ function FilterPanel({
   };
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <h3 className="sg-nav text-[12px]">Filters</h3>
+    <div>
+      {/* Panel başlığı */}
+      <div className="flex items-center justify-between pb-4">
+        {onKapat ? (
+          <button
+            type="button"
+            onClick={onKapat}
+            aria-expanded="true"
+            className="flex items-center gap-2"
+          >
+            <span className="lx-filtre-baslik">Filters</span>
+            <span aria-hidden="true" className="text-[11px]" style={{ color: "rgba(20,17,15,0.5)" }}>
+              ▾
+            </span>
+          </button>
+        ) : (
+          <span className="lx-filtre-baslik">Filters</span>
+        )}
+
         {hasActiveFilters(value) && (
-          <button type="button" onClick={onClear} className="text-[11px] underline">
-            Clear filters
+          <button
+            type="button"
+            onClick={onClear}
+            className="text-[11px] uppercase tracking-[0.12em]"
+            style={{ color: "var(--sg-red)", fontFamily: "var(--font-owners)" }}
+          >
+            Clear
           </button>
         )}
       </div>
 
-      {/* Fiyat */}
-      <fieldset>
-        <legend className="sg-nav mb-3 text-[11px]">Price</legend>
-        <div className="flex items-center gap-2">
-          <input
-            type="number"
-            inputMode="numeric"
-            placeholder={String(facets.priceMin)}
-            value={value.minPrice ?? ""}
-            onChange={(e) =>
-              onChange({
-                ...value,
-                minPrice: e.target.value === "" ? null : Number(e.target.value),
-              })
-            }
-            className="w-full border border-black/20 px-2 py-2 text-[13px] outline-none"
-            aria-label="Min fiyat"
-          />
-          <span className="text-[#888]">–</span>
-          <input
-            type="number"
-            inputMode="numeric"
-            placeholder={String(facets.priceMax)}
-            value={value.maxPrice ?? ""}
-            onChange={(e) =>
-              onChange({
-                ...value,
-                maxPrice: e.target.value === "" ? null : Number(e.target.value),
-              })
-            }
-            className="w-full border border-black/20 px-2 py-2 text-[13px] outline-none"
-            aria-label="Max fiyat"
-          />
-        </div>
-        {facets.priceMax > 0 && (
-          <input
-            type="range"
-            min={facets.priceMin}
-            max={facets.priceMax}
-            value={value.maxPrice ?? facets.priceMax}
-            onChange={(e) => onChange({ ...value, maxPrice: Number(e.target.value) })}
-            className="mt-3 w-full accent-black"
-            aria-label="Maksimum fiyat"
-          />
-        )}
-      </fieldset>
+      <div>
+          <FiltreBolumu baslik="Price">
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                inputMode="numeric"
+                placeholder={String(facets.priceMin)}
+                value={value.minPrice ?? ""}
+                onChange={(e) =>
+                  onChange({ ...value, minPrice: e.target.value === "" ? null : Number(e.target.value) })
+                }
+                className="w-full px-3 py-2.5 text-[13px] outline-none"
+                style={{ border: "1px solid rgba(20,17,15,0.22)", color: "var(--lx-ink)" }}
+                aria-label="Min price"
+              />
+              <span style={{ color: "rgba(20,17,15,0.4)" }}>–</span>
+              <input
+                type="number"
+                inputMode="numeric"
+                placeholder={String(facets.priceMax)}
+                value={value.maxPrice ?? ""}
+                onChange={(e) =>
+                  onChange({ ...value, maxPrice: e.target.value === "" ? null : Number(e.target.value) })
+                }
+                className="w-full px-3 py-2.5 text-[13px] outline-none"
+                style={{ border: "1px solid rgba(20,17,15,0.22)", color: "var(--lx-ink)" }}
+                aria-label="Max price"
+              />
+            </div>
+            {facets.priceMax > 0 && (
+              <input
+                type="range"
+                min={facets.priceMin}
+                max={facets.priceMax}
+                value={value.maxPrice ?? facets.priceMax}
+                onChange={(e) => onChange({ ...value, maxPrice: Number(e.target.value) })}
+                className="mt-4 w-full"
+                style={{ accentColor: "var(--sg-red)" }}
+                aria-label="Maximum price"
+              />
+            )}
+          </FiltreBolumu>
 
-      {/* Tip */}
-      {facets.types.length > 0 && (
-        <fieldset>
-          <legend className="sg-nav mb-3 text-[11px]">Category</legend>
-          <ul className="max-h-48 space-y-2 overflow-y-auto">
-            {facets.types.map((t) => (
-              <li key={t.value}>
-                <label className="flex cursor-pointer items-center gap-2 text-[13px]">
-                  <input
-                    type="checkbox"
-                    checked={value.types.includes(t.value)}
-                    onChange={() => toggleArr("types", t.value)}
-                    className="accent-black"
-                  />
-                  <span className="flex-1">{t.value}</span>
-                  <span className="text-[11px] text-[#888]">{t.count}</span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        </fieldset>
-      )}
+          {facets.types.length > 0 && (
+            <FiltreBolumu baslik="Category">
+              <ul className="max-h-56 space-y-0 overflow-y-auto">
+                {facets.types.map((t) => (
+                  <li key={t.value}>
+                    <Kutucuk
+                      isaretli={value.types.includes(t.value)}
+                      onChange={() => toggleArr("types", t.value)}
+                      etiket={t.value}
+                      adet={t.count}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </FiltreBolumu>
+          )}
 
-      {/* Hacim */}
-      {facets.volumes.length > 0 && (
-        <fieldset>
-          <legend className="sg-nav mb-3 text-[11px]">Size</legend>
-          <ul className="max-h-40 space-y-2 overflow-y-auto">
-            {facets.volumes.map((v) => (
-              <li key={v.value}>
-                <label className="flex cursor-pointer items-center gap-2 text-[13px]">
-                  <input
-                    type="checkbox"
-                    checked={value.volumes.includes(v.value)}
-                    onChange={() => toggleArr("volumes", v.value)}
-                    className="accent-black"
-                  />
-                  <span className="flex-1">{v.value}</span>
-                  <span className="text-[11px] text-[#888]">{v.count}</span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        </fieldset>
-      )}
-
+          {facets.volumes.length > 0 && (
+            <FiltreBolumu baslik="Size" acikBasla={false}>
+              <ul className="max-h-56 space-y-0 overflow-y-auto">
+                {facets.volumes.map((v) => (
+                  <li key={v.value}>
+                    <Kutucuk
+                      isaretli={value.volumes.includes(v.value)}
+                      onChange={() => toggleArr("volumes", v.value)}
+                      etiket={v.value}
+                      adet={v.count}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </FiltreBolumu>
+          )}
+      </div>
     </div>
   );
 }

@@ -20,108 +20,94 @@ export type LegalSection = {
 
 export const LEGAL_PAGES = {
   hakkimizda: {
-    title: "Hakkımızda",
+    title: "About Marmara Barber",
     sections: [
       {
         id: "who",
-        title: "Marmara Barber Kimdir?",
+        title: "Who we are",
         content: [
-          "Marmara Barber 1992 yılında İstanbul Feriköy’de kuruldu.",
-          "Geniş üretim kapasitemiz ile hem kendi markalarımızda hem de fason üretimde Türkiye’nin önde gelen firmaları arasında yer alıyoruz. Ürün gamımızda kolonyalar, parfümler, oda spreyleri, krem kolonyalar, tıraş jelleri, losyonlar, saç bakım ve saç şekillendirme ürünleri, sakal yağı ve tekstil ürünleri gibi birçok ürünümüz bulunmaktadır.",
-          "Şu anda 54 ülke ve 6 kıtaya ihracat yapan, dünya çapında tanınan bir markayız.",
-          "Ürünlerimiz, GMP iyi üretim standartlarına göre üretilmektedir. Kalite yönetim sistemi odaklı çalışmakta olup, müşteri memnuniyetini her zaman ön planda tutmaktayız.",
+          "Marmara Barber was founded in 1992 in Feriköy, Istanbul.",
+          "With large-scale production capacity, we manufacture both our own brands and private label products, and we are among the leading manufacturers in Türkiye. Our range covers colognes, fragrances, room sprays, cream colognes, shave gels, lotions, hair care and styling products, beard oil and textiles.",
+          "We export to 54 countries across 6 continents.",
+          "Our products are manufactured to GMP good manufacturing practice standards, under a quality management system.",
         ],
       },
       {
         id: "vision",
-        title: "Vizyonumuz",
+        title: "Vision",
         content: [
-          "Bir Türk markası olarak kozmetik sektöründe, her ülkede hem erkeklerin hem de kadınların bir numaralı tercihi olmak ve ihracat başarımızı sürdürerek dünya kozmetik pazarında lider markalardan biri olmaktır.",
+          "To be the first choice in grooming in every market we enter, and to grow into one of the leading brands in the global cosmetics industry.",
         ],
       },
       {
         id: "mission",
-        title: "Misyonumuz",
+        title: "Mission",
         content: [
-          "Beklentileri karşılamak, müşteri odaklı yaklaşım, modern ve gelişmiş teknolojiyi kullanarak kaliteli ürünler üretmek. Yasal yükümlülükleri yerine getirerek çalışanların etik değerlere dayalı çalışma yapısına ve yetkinliğine saygı duymak.",
+          "To meet expectations with a customer-focused approach, to manufacture quality products using modern technology, and to respect the ethical values and competence of the people we work with.",
         ],
       },
       {
         id: "partner",
-        title: "Partnerlik",
+        title: "Wholesale & partnership",
         content: [
-          "Marmara Barber ile iş birliği; kaliteli bakım ürünleri, çeşitlilik, ekonomik avantajlar ve marka değeri sunar.",
-          "Amerika ve Avrupa’da berberlerin en çok tercih ettiği markalardan biri olmanın gururunu yaşıyoruz. Türkiye pazarında ölçeklenebilir başarı için pazarlama desteği sunuyoruz.",
+          "Working with Marmara Barber means professional-grade grooming products, a broad range, competitive terms and an established brand.",
+          "Marmara Barber is already one of the brands barbers reach for across Europe and the United States.",
+          "For wholesale, distribution or partnership enquiries, get in touch and we will come back to you.",
         ],
       },
     ] as LegalSection[],
   },
 
+  /* TASLAK: hukukçu gözden geçirmeli. */
   uyelik: {
-    title: "Üyelik Sözleşmesi",
+    title: "Terms of service",
     sections: [
       {
-        id: "intro",
-        title: "Giriş",
+        id: "scope",
+        title: "Scope",
         content: [
-          "Sitemize üye olmadan önce aşağıda yer alan sözleşmeyi dikkatlice okuyunuz.",
+          `These terms cover your use of this website and any order you place through it with ${COMPANY.name}.`,
+          "By placing an order you accept these terms.",
         ],
       },
       {
-        id: "parties",
-        title: "1. Taraflar",
+        id: "account",
+        title: "Your account",
         content: [
-          `a) ${COMPANY.site} internet sitesinin faaliyetlerini yürüten ${COMPANY.addressHq} adresinde mukim ${COMPANY.legalName} (Bundan böyle Marmara Barber olarak anılacaktır).`,
-          "b) İnternet sitesine üye olan internet kullanıcısı (“Üye”).",
+          "You are responsible for keeping your sign-in details secure and for activity on your account.",
+          "You can ask us to close your account at any time.",
         ],
       },
       {
-        id: "subject",
-        title: "2. Sözleşmenin Konusu",
+        id: "orders",
+        title: "Orders & pricing",
         content: [
-          "İşbu Sözleşme’nin konusu, Marmara Barber’ın sahip olduğu internet sitesinden üyenin faydalanma şartlarının belirlenmesidir.",
+          "Prices, taxes and shipping are shown at checkout before you pay.",
+          "An order is accepted once payment is approved and we send you a confirmation email.",
+          "We may cancel an order and refund you if an item turns out to be unavailable or a price is shown in error.",
         ],
       },
       {
-        id: "obligations",
-        title: "3. Tarafların Hak ve Yükümlülükleri",
+        id: "returns",
+        title: "Returns",
         content: [
-          "3.1. Üye, üye olurken verdiği kişisel ve diğer bilgilerin doğru olduğunu; gerçeğe aykırılık nedeniyle Marmara Barber’ın uğrayacağı zararları tazmin edeceğini kabul eder.",
-          "3.2. Üye, kendisine verilen şifreyi üçüncü kişilere veremez; şifre kullanım hakkı bizzat kendisine aittir.",
-          "3.3. Üye, siteyi kullanırken yasal mevzuata riayet etmeyi kabul eder. Aksi halde doğacak yükümlülükler üyeyi bağlar.",
-          "3.4. Üye siteyi kamu düzenini bozucu, genel ahlaka aykırı, taciz edici veya başkalarının haklarına tecavüz edecek şekilde kullanamaz; spam, virüs vb. faaliyetlerde bulunamaz.",
-          "3.5. Üyeler tarafından beyan edilen fikir ve düşünceler kişilerin kendi görüşleridir; Marmara Barber bunlardan sorumlu değildir.",
-          "3.6. Marmara Barber, üye verilerinin yetkisiz okunması veya yazılıma gelebilecek zararlardan sorumlu değildir. Üye site kullanımından doğabilecek zararlar için tazminat talep etmemeyi peşinen kabul eder.",
-          "3.7. Üye, diğer kullanıcıların yazılım ve verilerine izinsiz erişmemeyi kabul eder.",
-          "3.8. Sözleşme maddelerini ihlal eden üye hukuki ve cezai olarak şahsen sorumludur; Marmara Barber’ın tazminat hakkı saklıdır.",
-          "3.9. Marmara Barber gerektiğinde üyenin üyeliğini ve ilgili dosya/bilgileri silme hakkını saklı tutar.",
-          "3.10. Site yazılım ve tasarımı Marmara Barber mülkiyetindedir; izinsiz kullanılamaz.",
-          "3.11. Site iyileştirme ve yasal çerçevede IP, erişim tarihi/saat, ziyaret edilen sayfalar gibi teknik bilgiler toplanabilir.",
-          "3.12. Yasal zorunluluk veya hakların korunması hallerinde kişisel bilgiler yetkili mercilerle paylaşılabilir.",
-          "3.13. Virüs ve benzeri tehditlere karşı imkanlar dahilinde tedbir alınır; kullanıcının kendi koruma sistemini kullanması gerekir.",
-          "3.14. Marmara Barber site içeriğini ve hizmetleri değiştirme, sona erdirme veya kullanıcı verilerini silme hakkını saklı tutar.",
-          "3.15. Marmara Barber üyelik koşullarını ön ihbar olmaksızın değiştirebilir; değişiklikler yayın tarihinde yürürlüğe girer.",
-          "3.16. Marmara Barber’a ait bilgisayar kayıtları delil sözleşmesi niteliğindedir.",
-          "3.17. Üye, bilgilendirme e-posta ve SMS gönderimini üyelik onayı ile kabul etmiş sayılır.",
+          "Returns are handled under our Returns & exchanges policy, which forms part of these terms.",
         ],
       },
       {
-        id: "termination",
-        title: "4. Sözleşmenin Feshi",
+        id: "use",
+        title: "Use of the site",
         content: [
-          "Sözleşme, üyenin üyeliğini iptal etmesi veya Marmara Barber tarafından iptal edilmesine kadar yürürlükte kalır. İhlal halinde Marmara Barber üyeliği tek taraflı feshedebilir.",
+          "Brand names, logos, product photography and site content belong to their owners and may not be reused without permission.",
+          "Do not attempt to disrupt the site or access data that is not yours.",
         ],
       },
       {
-        id: "disputes",
-        title: "5. İhtilafların Halli",
-        content: ["İşbu sözleşmeye ilişkin ihtilaflarda İstanbul Mahkemeleri ve İcra Daireleri yetkilidir."],
-      },
-      {
-        id: "validity",
-        title: "6. Yürürlük",
+        id: "contact",
+        title: "Contact",
         content: [
-          "Üyelik kaydı yapılması, üyenin tüm maddeleri okuyup kabul ettiği anlamına gelir. Sözleşme üyelik anında yürürlüğe girer.",
+          `Questions about these terms: ${COMPANY.email}`,
+          `Registered name: ${COMPANY.legalName}`,
         ],
       },
     ] as LegalSection[],
@@ -258,223 +244,264 @@ export const LEGAL_PAGES = {
     ] as LegalSection[],
   },
 
+  /* TASLAK: bu sayfa sitenin gerçekte ne veri işlediğini anlatıyor.
+     Yayına almadan önce hedef pazarın hukukçusu (ABD için CCPA/CPRA,
+     AB için GDPR) gözden geçirmeli. */
   gizlilik: {
-    title: "Gizlilik Politikası",
+    title: "Privacy policy",
     sections: [
       {
-        id: "scope",
-        title: "Kapsam",
+        id: "intro",
+        title: "Overview",
         content: [
-          "Bu politika, web sitemiz üzerinden toplanan bilgilerin nasıl kullanıldığını açıklar.",
-          "Siteyi kullanarak bu politikayı kabul etmiş sayılırsınız. Detaylı aydınlatma için Aydınlatma Metni sayfamızı inceleyiniz.",
+          `This policy explains what personal data ${COMPANY.name} collects through this website, why, and who processes it.`,
+          "It should be reviewed together with our Cookie policy and Terms of service.",
         ],
       },
       {
-        id: "collection",
-        title: "Toplanan Bilgiler",
+        id: "collect",
+        title: "What we collect",
         content: [
-          "Hesap oluşturma, sipariş verme veya bülten kaydı sırasında sağladığınız bilgiler.",
-          "Otomatik toplanan teknik veriler: IP adresi, tarayıcı türü, oturum süresi ve çerez verileri.",
+          "Order data: the name, email address, shipping and billing address, phone number and order contents you provide when you buy.",
+          "Account data: if you create an account, your name, email address, saved addresses and order history.",
+          "Marketing data: your email address, if you sign up for our newsletter.",
+          "Technical data: standard server logs and cookie data — see the Cookie policy.",
+          "We do not receive or store your card details. Payment is handled by Shopify's checkout.",
         ],
       },
       {
-        id: "sharing",
-        title: "Üçüncü Taraflarla Paylaşım",
+        id: "use",
+        title: "How we use it",
         content: [
-          "Ödeme altyapısı, kargo firmaları ve yasal zorunluluk halinde yetkili kurumlarla sınırlı paylaşım yapılabilir.",
-          "Verileriniz izniniz olmadan pazarlama amacıyla üçüncü taraflara satılmaz.",
+          "To process, ship and support your orders.",
+          "To operate your account and keep your order history available to you.",
+          "To send marketing emails, only if you asked for them. Every email carries an unsubscribe link.",
+          "To keep the site secure and to understand how it is used.",
         ],
       },
       {
-        id: "security",
-        title: "Güvenlik",
+        id: "processors",
+        title: "Who processes your data",
         content: [
-          "Kredi kartı bilgileri 128 bit SSL ile şifrelenir. Verilerinizi korumak için erişim kontrolü ve güvenlik önlemleri uygulanır.",
+          "Shopify — store, checkout, payment and customer records.",
+          "Payment providers connected to that checkout, for the payment itself.",
+          "Carriers, for delivery.",
+          "Where an email or SMS marketing tool is connected, that provider, for sending campaigns.",
+        ],
+      },
+      {
+        id: "rights",
+        title: "Your rights",
+        content: [
+          "You can ask for a copy of your data, ask us to correct it, or ask us to delete it.",
+          "You can unsubscribe from marketing at any time.",
+          `To make a request, email ${COMPANY.email}.`,
         ],
       },
     ] as LegalSection[],
   },
 
+  /* TASLAK: hukukçu gözden geçirmeli. */
   cerez: {
-    title: "Çerez Politikası",
+    title: "Cookie policy",
     sections: [
       {
         id: "what",
-        title: "Çerez Nedir?",
+        title: "What cookies we use",
         content: [
-          "Çerezler, web sitesini ziyaret ettiğinizde cihazınıza kaydedilen küçük metin dosyalarıdır.",
-          "Oturum yönetimi, sepet hatırlama ve site performans analizi için kullanılır.",
+          "Necessary: needed for the site to work — keeping your cart, your session and your sign-in state. These cannot be switched off.",
+          "Analytics: help us understand how the site is used, so we can improve it.",
+          "Marketing: used only where an advertising or email tool is connected, to measure campaigns.",
         ],
       },
       {
-        id: "types",
-        title: "Kullandığımız Çerez Türleri",
+        id: "storage",
+        title: "Browser storage",
         content: [
-          "Zorunlu çerezler: Sitenin çalışması için gereklidir (oturum, sepet).",
-          "Performans çerezleri: Anonim kullanım istatistikleri.",
-          "Pazarlama çerezleri: Açık rızanız ile kişiselleştirilmiş içerik.",
+          "This site keeps your cart reference in your browser's local storage so your cart survives a page refresh. The cart contents themselves are held by Shopify.",
         ],
       },
       {
-        id: "manage",
-        title: "Çerezleri Yönetme",
+        id: "control",
+        title: "Controlling cookies",
         content: [
-          "Tarayıcı ayarlarınızdan çerezleri silebilir veya engelleyebilirsiniz.",
-          "Zorunlu çerezlerin devre dışı bırakılması alışveriş deneyimini etkileyebilir.",
+          "You can clear or block cookies in your browser settings. Blocking necessary cookies will stop the cart and sign-in from working.",
         ],
       },
     ] as LegalSection[],
   },
 
   sss: {
-    title: "Sıkça Sorulan Sorular",
+    title: "Frequently asked questions",
     sections: [
       {
         id: "order",
-        title: "Sipariş ve Ödeme",
+        title: "Orders & payment",
         content: [
-          "S: Ödeme yöntemleri nelerdir? C: Kredi/banka kartı ve havale/EFT ile ödeme yapabilirsiniz. Kart bilgileriniz 128 bit SSL ile şifrelenir.",
-          "S: Havale sonrası ne olur? C: Havale bildiriminden sonra sipariş onaylanır; 3 iş günü içinde yatırılmayan siparişler iptal edilir.",
+          "Q: How do I pay? A: Checkout is handled by Shopify. Card payments are processed on Shopify's secure checkout — we never see or store your card details.",
+          "Q: Will I get a confirmation? A: Yes. An order confirmation is emailed to you as soon as the payment is approved.",
+          "Q: Can I change or cancel an order? A: Contact us as soon as possible. If the order has not been dispatched yet we can usually amend or cancel it.",
         ],
       },
       {
         id: "shipping",
-        title: "Kargo",
+        title: "Shipping",
         content: [
-          "S: Ne zaman kargoya verilir? C: Kart ödemelerinde banka onayı sonrası aynı gün; havalede hesabımıza geçiş sonrası aynı gün kargoya verilir.",
-          "S: Teslimat nasıl yapılır? C: Kargo firmasının adrese teslim bölgesindeyse adrese; değilse ofisten teslimat yapılır.",
+          "Q: When is my order dispatched? A: Orders are prepared once payment is approved. You will receive tracking details by email when the parcel leaves us.",
+          "Q: Where do you ship? A: Delivery areas, carriers and lead times depend on the market you are ordering from — see Shipping & delivery, or contact us.",
         ],
       },
       {
         id: "returns",
-        title: "İade",
+        title: "Returns",
         content: [
-          "S: İade süresi nedir? C: Satın aldığınız ürünleri 14 iş günü içinde iade edebilirsiniz.",
-          "S: Açılmış kozmetik ürünler iade edilir mi? C: Kolonya, wax, losyon, saç spreyi vb. sağlık açısından risk oluşturabilecek ürünlerde (ayıplı mal hariç) iade mümkün değildir.",
+          "Q: Can I return an item? A: Unopened products in their original packaging can be returned within the return window that applies to your market. See Returns & exchanges.",
+          "Q: Are opened cosmetics returnable? A: For hygiene reasons, opened cologne, wax, lotion, hair spray and similar products cannot be returned unless the item is faulty.",
+        ],
+      },
+      {
+        id: "products",
+        title: "Products",
+        content: [
+          "Q: Are your products suitable for professional use? A: Yes. Marmara Barber has been made for the barber's chair since 1970 and is used by professionals in over 50 countries.",
+          "Q: Where are they made? A: In our own facilities in Türkiye, to GMP good manufacturing practice standards.",
         ],
       },
     ] as LegalSection[],
   },
 
   kargo: {
-    title: "Teslimat ve Sipariş Koşulları",
+    title: "Shipping & delivery",
     sections: [
       {
         id: "payment",
-        title: "Ödeme Seçenekleri",
+        title: "Payment",
         content: [
-          "Siparişlerinizin ödemesini kredi kartı veya banka havalesi yoluyla yapabilirsiniz.",
-          "Kredi kartı bilgileriniz 128 bit SSL kullanılarak şifrelenir. SSL’in aktif olduğunu adres çubuğundaki kilit simgesinden anlayabilirsiniz.",
+          "Payment is taken on Shopify's secure checkout. Card details are encrypted in transit and are never stored on this site.",
+          "Your order is confirmed once the payment is approved, and a confirmation email is sent to the address you provided.",
         ],
       },
       {
-        id: "transfer",
-        title: "Havale / EFT Ödemeleri",
+        id: "processing",
+        title: "Processing",
         content: [
-          "Havale seçeneğiyle siparişi tamamladıktan sonra belirtilen tutarı banka hesaplarımıza göndermeniz yeterlidir.",
-          "Hızlı onay için havale sonrası bildirim formumuzu kullanın. Siparişi takip eden 3 iş günü içinde havalesi yapılmayan siparişler iptal edilir.",
+          "Orders are prepared as soon as the payment clears. You will receive tracking details by email when the parcel is handed to the carrier.",
         ],
       },
       {
         id: "delivery",
-        title: "Teslimat Bilgileri",
+        title: "Delivery",
         content: [
-          "Kart ödemelerinde banka onayı ve güvenlik kontrolü sonrası aynı gün; havalede ödemenin hesaba geçmesi sonrası aynı gün kargoya verilir.",
-          "Adrese teslim, seçilen kargo firmasının hizmet verdiği bölgelere yapılır. Bölge dışında telefon ihbarlı / ofisten teslimat uygulanır.",
+          "Carriers, delivery areas, lead times and shipping rates are set per market and are shown at checkout before you pay.",
+          "If you need a delivery estimate before ordering, contact us and we will confirm it for your address.",
         ],
       },
       {
         id: "company",
-        title: "Firma Bilgileri",
+        title: "Manufacturer",
         content: [
-          `Ünvan: ${COMPANY.legalName}`,
-          `Telefon: ${COMPANY.phone}`,
-          `Adres: ${COMPANY.addressHq}`,
-          `E-posta: ${COMPANY.emailAlt}`,
+          `Company: ${COMPANY.legalName}`,
+          `Phone: ${COMPANY.phone}`,
+          `Address: ${COMPANY.addressHq}`,
+          `Email: ${COMPANY.emailAlt}`,
         ],
       },
     ] as LegalSection[],
   },
 
   iade: {
-    title: "İade ve Değişim Şartları",
+    title: "Returns & exchanges",
     sections: [
       {
         id: "period",
-        title: "İade Süresi",
+        title: "Return window",
         content: [
-          `${COMPANY.site} üzerinden satın aldığınız ürünleri ondört (14) iş günü içerisinde iade edebilirsiniz.`,
+          "Unused products can be returned within the return window that applies to your market. The exact period is confirmed at checkout and in your order confirmation.",
         ],
       },
       {
         id: "conditions",
-        title: "İade Şartları",
+        title: "Conditions",
         content: [
-          "İade edeceğiniz ürün, orijinal faturası ve iade sebebini belirten bir dilekçe ile birlikte gönderilmelidir.",
-          "Orijinal kutusu veya ambalajı bozulmuş, hasar görmüş veya tekrar satılmasını engelleyecek şekilde kullanılamaz hale gelmiş ürünlerin iadesi kabul edilmez.",
-          "İade, anlaşmalı kargo firmaları kanalıyla yapılmalıdır. 14 iş günü içinde gönderilen, şartlara uyan ve ayıplı mal kapsamındaki ürünlerde kargo ücreti tarafımızdan karşılanır; aksi halde kargo ücreti müşteriye aittir.",
+          "Returned items must be sent back with the original invoice and a note explaining the reason for the return.",
+          "Products whose original box or packaging is damaged, missing or no longer resaleable cannot be accepted.",
+          "Where an item is faulty, return shipping is covered by us. Otherwise return shipping is paid by the customer.",
         ],
       },
       {
         id: "boxed",
-        title: "Kutulu Ürünler",
+        title: "Boxed products",
         content: [
-          "Ürünlerin kutusu ve orijinal ambalajı hasarsız ve eksiksiz olmalıdır. Orijinal kutu üzerine kargo bandı yapıştırılmamalıdır. Bu şekilde gelen ürünler iade alınmaz ve adresinize geri gönderilir.",
+          "The original box must arrive undamaged and complete. Please do not tape shipping labels directly onto the product box — parcels sent that way cannot be accepted and will be returned to you.",
         ],
       },
       {
         id: "special",
-        title: "Özel Ürünler",
+        title: "Non-returnable items",
         content: [
-          "Niteliği itibarıyla iade edilemeyecek ürünler (arıza/ayıp dışında); açıldıktan sonra sağlık açısından tehlike arz edebilen ürünler (kolonya, wax, losyon, saç spreyi vb.) ile tek kullanımlık veya tüketim ürünlerinin iadesi mümkün değildir.",
+          "For hygiene reasons, products that can pose a health risk once opened — cologne, wax, lotion, hair spray and similar — cannot be returned unless they are faulty. Single-use and consumable items are also non-returnable.",
         ],
       },
     ] as LegalSection[],
   },
 
   iletisim: {
-    title: "İletişim",
+    title: "Contact",
     sections: [
       {
         id: "contact",
-        title: "Firma Bilgileri",
+        title: "Get in touch",
         content: [
-          `Firma Ünvanı: ${COMPANY.legalName}`,
-          `Adres: ${COMPANY.address}`,
-          `Telefon: ${COMPANY.phone}`,
-          `E-posta: ${COMPANY.email}`,
-          `Vergi Dairesi: ${COMPANY.vergiDairesi}`,
-          `Vergi No: ${COMPANY.vergiNo}`,
+          "For product, wholesale, distribution and partnership enquiries, email us and we will come back to you.",
+          `Email: ${COMPANY.email}`,
+          `Phone: ${COMPANY.phone}`,
+        ],
+      },
+      {
+        id: "company",
+        title: "Company details",
+        content: [
+          `Registered name: ${COMPANY.legalName}`,
+          `Address: ${COMPANY.address}`,
+          `Tax office: ${COMPANY.vergiDairesi}`,
+          `Tax number: ${COMPANY.vergiNo}`,
         ],
       },
     ] as LegalSection[],
   },
 
   magazalar: {
-    title: "Mağazalar",
+    title: "Stores",
     sections: [
       {
         id: "stores",
-        title: "İletişim ve Merkez",
+        title: "Head office & production",
         content: [
-          `Genel merkez: ${COMPANY.addressHq}`,
-          `Düzce: ${COMPANY.address}`,
-          `Telefon: ${COMPANY.phone}`,
-          "Bayi / partner noktaları için bizimle iletişime geçebilirsiniz.",
+          `Head office: ${COMPANY.addressHq}`,
+          `Production: ${COMPANY.address}`,
+          `Phone: ${COMPANY.phone}`,
+        ],
+      },
+      {
+        id: "stockists",
+        title: "Stockists",
+        content: [
+          "Marmara Barber is carried by barbershops and distributors in over 50 countries.",
+          "Looking for a stockist near you, or want to carry the range? Get in touch and we will point you to the right contact.",
         ],
       },
     ] as LegalSection[],
   },
 
   kariyer: {
-    title: "Kariyer",
+    title: "Careers",
     sections: [
       {
         id: "jobs",
-        title: "Bizimle Çalışın",
+        title: "Work with us",
         content: [
-          "Marmara Barber ailesine katılmak isteyen adayları bekliyoruz.",
-          `Özgeçmişinizi ${COMPANY.email} adresine “Kariyer” konu başlığı ile gönderebilirsiniz.`,
+          "We are always interested in people who want to join the Marmara Barber team.",
+          `Send your CV to ${COMPANY.email} with "Careers" in the subject line.`,
         ],
       },
     ] as LegalSection[],

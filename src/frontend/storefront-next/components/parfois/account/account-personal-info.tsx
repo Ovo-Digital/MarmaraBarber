@@ -40,11 +40,11 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
     mutationFn: (payload: { firstName?: string; lastName?: string; phone?: string }) =>
       apiUpdateCustomer(payload),
     onSuccess: async () => {
-      setMessage("Bilgileriniz güncellendi.");
+      setMessage("Your details have been updated.");
       setError(null);
       await onUpdated();
     },
-    onError: (err) => setError(err instanceof Error ? err.message : "Güncelleme başarısız"),
+    onError: (err) => setError(err instanceof Error ? err.message : "Update failed"),
   });
 
   const handleSaveProfile = (e: React.FormEvent) => {
@@ -59,7 +59,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
       {
         onSuccess: () => {
           setPhoneEditing(false);
-          setMessage("Telefon numaranız güncellendi.");
+          setMessage("Your phone number has been updated.");
         },
       }
     );
@@ -75,7 +75,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
         </h2>
 
         <div className="grid gap-8 sm:grid-cols-2">
-          <AccountField label="İsim" required>
+          <AccountField label="First name" required>
             <input
               required
               value={firstName}
@@ -83,7 +83,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
               className={accountInputClass}
             />
           </AccountField>
-          <AccountField label="Soyad" required>
+          <AccountField label="Last name" required>
             <input
               required
               value={lastName}
@@ -100,7 +100,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
         </div>
 
         <div className="mt-8">
-          <AccountField label="Doğum tarihi" required>
+          <AccountField label="Date of birth" required>
             <div className="grid grid-cols-3 gap-4">
               <div className="relative">
                 <select
@@ -109,7 +109,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
                   onChange={(e) => setExtra((x) => ({ ...x, birthDay: e.target.value }))}
                   className={accountSelectClass}
                 >
-                  <option value="">Gün</option>
+                  <option value="">Day</option>
                   {BIRTH_DAYS.map((d) => (
                     <option key={d} value={d}>
                       {d}
@@ -139,7 +139,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
                   onChange={(e) => setExtra((x) => ({ ...x, birthYear: e.target.value }))}
                   className={accountSelectClass}
                 >
-                  <option value="">Yıl</option>
+                  <option value="">Year</option>
                   {BIRTH_YEARS.map((y) => (
                     <option key={y} value={y}>
                       {y}
@@ -152,13 +152,13 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
         </div>
 
         <div className="mt-8">
-          <p className="text-[11px] text-[#666] mb-3">Cinsiyet</p>
+          <p className="text-[11px] text-[#666] mb-3">Gender</p>
           <div className="flex flex-wrap gap-6 text-[13px]">
             {(
               [
-                ["male", "Erkek"],
-                ["female", "Kadın"],
-                ["unspecified", "Belirtmek İstemiyorum"],
+                ["male", "Male"],
+                ["female", "Female"],
+                ["unspecified", "Prefer not to say"],
               ] as const
             ).map(([value, label]) => (
               <label key={value} className="flex items-center gap-2 cursor-pointer">
@@ -180,12 +180,12 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
           disabled={updateMutation.isPending}
           className="pf-btn-primary mt-8 w-auto px-8 !text-[10px]"
         >
-          {updateMutation.isPending ? "Kaydediliyor..." : "Kaydet"}
+          {updateMutation.isPending ? "Saving…" : "Save"}
         </button>
       </form>
 
       <div className="border border-[#e0e0e0] p-6 sm:p-8">
-        <h2 className="text-[13px] font-semibold mb-8">İletişim Bilgileriniz</h2>
+        <h2 className="text-[13px] font-semibold mb-8">Contact details</h2>
 
         <AccountField label="Telefon" required>
           {phoneEditing ? (

@@ -51,6 +51,7 @@ function MegaPanel({
   return (
     <div className="px-3 pt-2 sm:px-4 sm:pt-3">
       <div
+        data-panel-card
         className="mx-auto w-full max-w-[1180px] rounded-[26px] p-5 sm:rounded-[32px] sm:p-8"
         /* Buzlu cam: arkadaki hero görseli bulanık olarak geçer.
            Satır içi stil kullanılıyor çünkü projenin katmansız CSS kuralları
@@ -183,6 +184,8 @@ export function SlickHeader({
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [hesapAcik, setHesapAcik] = useState(false);
+  const aramaAlaniRef = useRef<HTMLInputElement | null>(null);
   const [accordion, setAccordion] = useState<string | null>(null);
   const [q, setQ] = useState("");
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -191,6 +194,7 @@ export function SlickHeader({
   const count = useShopifyCartStore((s) => s.lines.reduce((n, l) => n + l.quantity, 0));
   const customer = useAuthStore((s) => s.customer);
   const openCartDrawer = useUiStore((s) => s.openCartDrawer);
+  const closeCartDrawer = useUiStore((s) => s.closeCartDrawer);
 
   const openShop = () => {
     if (closeTimer.current) {
@@ -219,6 +223,37 @@ export function SlickHeader({
     return () => window.removeEventListener("scroll", olc);
   }, []);
 
+  /** Arama açılınca imleci alana koy — alan hep DOM'da olduğu için autoFocus yok */
+  useEffect(() => {
+    if (searchOpen) aramaAlaniRef.current?.focus();
+  }, [searchOpen]);
+
+  /**
+   * Arama açıkken imleç hapın dışına çıkar ve hiçbir şey yazılmamışsa kapat.
+   *
+   * Forma onMouseLeave koymak yetmiyor: imleç arama ikonunun üzerindeyken form
+   * onun yerine geçiyor, tarayıcı "hiç girmedi" saydığı için ayrılma olayı
+   * gelmiyordu. Burada imlecin gerçek konumu ölçülüyor.
+   */
+  useEffect(() => {
+    if (!searchOpen) return;
+    const izle = (e: PointerEvent) => {
+      if (q.trim()) return; // yazmaya başlamışsa kapatma
+      const hap = headerRef.current?.querySelector(".lx-hap");
+      if (!hap) return;
+      const r = hap.getBoundingClientRect();
+      const pay = 16;
+      const disarida =
+        e.clientX < r.left - pay ||
+        e.clientX > r.right + pay ||
+        e.clientY < r.top - pay ||
+        e.clientY > r.bottom + pay;
+      if (disarida) setSearchOpen(false);
+    };
+    document.addEventListener("pointermove", izle);
+    return () => document.removeEventListener("pointermove", izle);
+  }, [searchOpen, q]);
+
   /**
    * Panel açıkken imleç header'ın (hap + panel) dışına çıkarsa kapat.
    *
@@ -232,21 +267,56 @@ export function SlickHeader({
       const el = headerRef.current;
       if (!el) return;
 
-      // Panel mutlak konumlu, header'ın kendi ölçüsüne girmiyor — ikisinin
-      // kapladığı alanı birleştiriyoruz.
-      const kutular = [el.getBoundingClientRect()];
-      const panel = el.querySelector("[data-shop-panel]");
-      if (panel) kutular.push(panel.getBoundingClientRect());
+      /* GÖRÜNEN kutuları ölçüyoruz: hapın kendisi ve panel kartı.
+         Önceden header ve panel sarmalayıcısı ölçülüyordu; ikisi de ekran
+         genişliğinde olduğu için imleç sağa/sola gidince hâlâ "içeride"
+         sayılıyor ve panel kapanmıyordu.
 
-      const icinde = kutular.some(
-        (r) =>
-          e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom,
-      );
+         İkisinin kapsayıcı dikdörtgeni alınıyor: hap ile kart arasındaki
+         boşluk da içeri giriyor, aradan geçerken panel kapanmıyor. */
+      const hap = el.querySelector(".lx-hap");
+      const kart = el.querySelector("[data-panel-card]");
+      if (!hap || !kart) return;
+
+      const a = hap.getBoundingClientRect();
+      const c = kart.getBoundingClientRect();
+      const pay = 12; // küçük taşmalar kapatmasın
+      const sol = Math.min(a.left, c.left) - pay;
+      const sag = Math.max(a.right, c.right) + pay;
+      const ust = Math.min(a.top, c.top) - pay;
+      const alt = Math.max(a.bottom, c.bottom) + pay;
+
+      const icinde = e.clientX >= sol && e.clientX <= sag && e.clientY >= ust && e.clientY <= alt;
+      // Dışarıdaysa BEKLETMEDEN kapat. Gecikme, hap ile panel arasında geçerken
+      // kapanmasın diye vardı; ikisi bitişik olduğu için gerek yok ve imleç
+      // çekilince panel bir süre daha açık kalıyordu.
       if (icinde) openShop();
-      else scheduleCloseShop();
+      else setShopOpen(false);
     };
+    /* İmleç pencereden tamamen çıkarsa artık pointermove gelmez — panel açık
+       kalırdı. Pencereden ayrılma, sekme değişimi ve sayfa kaydırma da
+       kapanma sebebi. */
+    const pencereyiTerk = () => setShopOpen(false);
+    /* İmleç pencereden çıkarken son hareket hapın üzerindeyse pointermove
+       "içeride" der ve panel açık kalırdı. mouseout'ta relatedTarget boşsa
+       imleç belgeyi tamamen terk etmiş demektir. */
+    const belgedenCikti = (e: MouseEvent) => {
+      if (!e.relatedTarget) setShopOpen(false);
+    };
+    const kaydirinca = () => setShopOpen(false);
+
     document.addEventListener("pointermove", izle);
-    return () => document.removeEventListener("pointermove", izle);
+    document.addEventListener("mouseleave", pencereyiTerk);
+    document.addEventListener("mouseout", belgedenCikti);
+    window.addEventListener("blur", kaydirinca);
+    window.addEventListener("scroll", kaydirinca, { passive: true });
+    return () => {
+      document.removeEventListener("pointermove", izle);
+      document.removeEventListener("mouseleave", pencereyiTerk);
+      document.removeEventListener("mouseout", belgedenCikti);
+      window.removeEventListener("blur", kaydirinca);
+      window.removeEventListener("scroll", kaydirinca);
+    };
   }, [shopOpen]);
 
   useEffect(() => {
@@ -278,7 +348,7 @@ export function SlickHeader({
       <div
         className={
           pill
-            ? "mx-auto mt-4 flex w-fit items-center gap-5 rounded-full px-5 py-2.5 sm:mt-5 sm:gap-9 sm:px-8 sm:py-3"
+            ? "lx-hap relative mx-auto mt-4 flex w-fit items-center rounded-full px-5 py-2.5 sm:mt-5 sm:px-8 sm:py-3"
             : "mx-auto flex h-[var(--sg-header-h)] max-w-[90rem] items-center gap-6 px-4 sm:gap-10 sm:px-8"
         }
         /* Sayfanın en üstündeyken hap şeffaf — arkadaki görsel kesilmiyor.
@@ -287,12 +357,26 @@ export function SlickHeader({
         style={
           pill
             ? {
-                background: dolu || kaydi || shopOpen ? "#000000" : "transparent",
+                background: dolu || kaydi || shopOpen || searchOpen ? "#000000" : "transparent",
+                /* Genişlik SABİT: arama açılınca hap ne büyüyor ne küçülüyor,
+                   sadece içi boşalıp yerine arama alanı geliyor. */
                 transition: "background 320ms var(--lx-ease)",
               }
             : undefined
         }
       >
+        {/* Menü ve arama ÜST ÜSTE duruyor, biri diğerinin yerine geçmiyor.
+            Böylece hap yeniden ölçülmüyor: genişlik yumuşakça değişiyor,
+            içerik yer değiştirirken zıplama/titreme olmuyor. */}
+        <div
+          className="flex items-center gap-5 sm:gap-9"
+          style={{
+            opacity: searchOpen ? 0 : 1,
+            pointerEvents: searchOpen ? "none" : "auto",
+            transition: "opacity 260ms var(--lx-ease)",
+          }}
+          aria-hidden={searchOpen}
+        >
         <button type="button" className="p-1 lg:hidden" aria-label="Menü" onClick={() => setMenuOpen(true)}>
           <BurgerIcon />
         </button>
@@ -357,21 +441,87 @@ export function SlickHeader({
           className={`flex shrink-0 items-center gap-4 sm:gap-5 ${pill ? "" : "ml-auto"}`}
           onMouseEnter={scheduleCloseShop}
         >
-          <Link href={customer ? "/account" : "/login"} aria-label="Login" className="hover:opacity-70">
-            <UserIcon />
-          </Link>
+          {/* Hesap — imleç gelince açılıyor, tıklamaya gerek yok */}
+          <div
+            className="relative flex items-center"
+            onMouseEnter={() => {
+              closeCartDrawer();
+              setSearchOpen(false);
+              setHesapAcik(true);
+            }}
+            onMouseLeave={() => setHesapAcik(false)}
+          >
+            <Link href={customer ? "/account" : "/login"} aria-label="Account" className="hover:opacity-70">
+              <UserIcon />
+            </Link>
+
+            {hesapAcik ? (
+              <div className="absolute right-0 top-full z-50 pt-4">
+                <div
+                  className="w-[240px] rounded-[20px] px-6 py-5"
+                  style={{
+                    background: "rgba(16,14,13,0.94)",
+                    backdropFilter: "blur(24px) saturate(130%)",
+                    WebkitBackdropFilter: "blur(24px) saturate(130%)",
+                    border: "1px solid rgba(255,255,255,0.12)",
+                    boxShadow: "0 28px 70px rgba(0,0,0,0.55)",
+                  }}
+                >
+                  <p className="lx-eyebrow mb-4">Account</p>
+                  <ul className="m-0 list-none p-0">
+                    {(customer
+                      ? [
+                          { etiket: "My account", href: "/account" },
+                          { etiket: "Orders", href: "/account?section=orders" },
+                          { etiket: "Addresses", href: "/account?section=addresses" },
+                          { etiket: "Password", href: "/account?section=password" },
+                        ]
+                      : [
+                          { etiket: "Sign in", href: "/login" },
+                          { etiket: "Create account", href: "/uye-ol" },
+                        ]
+                    ).map((satir) => (
+                      <li key={satir.href}>
+                        <Link
+                          href={satir.href}
+                          onClick={() => setHesapAcik(false)}
+                          className="lx-hesap-menu block"
+                        >
+                          {satir.etiket}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          {/* Arama — imleç gelince hap arama alanına dönüşüyor */}
           <button
             type="button"
             aria-label="Search"
             className="hover:opacity-70"
+            onMouseEnter={() => {
+              closeCartDrawer();
+              setHesapAcik(false);
+              setSearchOpen(true);
+            }}
             onClick={() => setSearchOpen((v) => !v)}
           >
             <SearchIcon />
           </button>
+
+          {/* Sepet — imleç gelince mini sepet açılıyor; imleç ayrılınca kapanıyor */}
           <button
             type="button"
             aria-label="Cart"
             className="relative hover:opacity-70"
+            onMouseEnter={() => {
+              setSearchOpen(false);
+              setHesapAcik(false);
+              openCartDrawer(true);
+            }}
             onClick={() => openCartDrawer()}
           >
             <BagIcon />
@@ -382,6 +532,48 @@ export function SlickHeader({
             )}
           </button>
         </div>
+        </div>
+
+        <form
+          className="absolute inset-y-0 left-5 right-5 flex items-center gap-4 sm:left-8 sm:right-8"
+          style={{
+            opacity: searchOpen ? 1 : 0,
+            pointerEvents: searchOpen ? "auto" : "none",
+            transition: "opacity 320ms var(--lx-ease) 90ms",
+          }}
+          aria-hidden={!searchOpen}
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (!q.trim()) return;
+            window.location.href = `/search?q=${encodeURIComponent(q.trim())}`;
+          }}
+        >
+          <span aria-hidden="true" className="shrink-0 opacity-70">
+            <SearchIcon />
+          </span>
+          <input
+            ref={aramaAlaniRef}
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search products…"
+            aria-label="Search products"
+            tabIndex={searchOpen ? 0 : -1}
+            className="min-w-0 flex-1 border-0 bg-transparent text-[16px] text-white outline-none placeholder:text-white/45"
+            style={{ fontFamily: "var(--font-owners)" }}
+          />
+          <button
+            type="button"
+            tabIndex={searchOpen ? 0 : -1}
+            onClick={() => {
+              setSearchOpen(false);
+              setQ("");
+            }}
+            className="shrink-0 text-[11px] uppercase tracking-[0.16em] opacity-70 hover:opacity-100"
+            style={{ fontFamily: "var(--font-owners)" }}
+          >
+            Close
+          </button>
+        </form>
       </div>
 
       {shopOpen && (
@@ -393,29 +585,6 @@ export function SlickHeader({
         >
           <div className="pointer-events-auto absolute -top-4 left-0 right-0 h-4" aria-hidden />
           <MegaPanel collections={collections} onClose={() => setShopOpen(false)} />
-        </div>
-      )}
-
-      {searchOpen && (
-        <div className="border-t border-white/10 bg-black px-4 py-5">
-          <form
-            className="mx-auto flex max-w-[90rem] gap-3"
-            onSubmit={(e) => {
-              e.preventDefault();
-              window.location.href = `/search?q=${encodeURIComponent(q)}`;
-            }}
-          >
-            <input
-              autoFocus
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Search products…"
-              className="w-full border-0 border-b border-white/40 bg-transparent py-2 text-[16px] text-white outline-none placeholder:text-white/40"
-            />
-            <button type="submit" className="sg-btn-red !py-2">
-              Search
-            </button>
-          </form>
         </div>
       )}
 
