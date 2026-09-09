@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { PageHero } from "@/components/slick/page-hero";
 import { LxEtiket, LxHata, lxAlan, lxAlanStil } from "@/components/slick/auth-form";
 import { apiLogin } from "@/services/api/storefront-api";
 import { useAuthStore } from "@/store/auth-store";
+import { DEMO_MUSTERI, demoGirisi } from "@/lib/demo-customer";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 
 /**
@@ -34,20 +34,43 @@ export function LoginPage() {
   });
 
   return (
-    <>
-      <PageHero eyebrow="Account" title="Sign in" subline="Track your orders and check out faster." />
-
-      <div className="bg-white">
+    <div className="bg-white">
         <div
           className="sg-container"
-          style={{ paddingTop: "clamp(48px, 5vw, 80px)", paddingBottom: "clamp(64px, 7vw, 120px)" }}
+          style={{ paddingTop: "clamp(56px, 6vw, 96px)", paddingBottom: "clamp(64px, 7vw, 120px)" }}
         >
-          <div className="mx-auto w-full max-w-[440px]">
+          <div className="mx-auto w-full max-w-[420px]">
+            {/* Başlık formun kendi üstünde: ayrı koyu bant sayfayı gereksiz uzatıyordu */}
+            <div className="mb-10 text-center">
+              <p className="lx-eyebrow mb-3">Account</p>
+              <h1
+                className="uppercase"
+                style={{
+                  fontFamily: "var(--font-owners-black)",
+                  fontWeight: 900,
+                  fontSize: "clamp(30px, 3.4vw, 44px)",
+                  lineHeight: 1.02,
+                  color: "var(--lx-ink)",
+                }}
+              >
+                Sign in
+              </h1>
+              <p className="mt-3 text-[14px]" style={{ color: "rgba(20,17,15,0.55)" }}>
+                Track your orders and check out faster.
+              </p>
+            </div>
+
             <form
               className="space-y-6"
               onSubmit={(e) => {
                 e.preventDefault();
                 setHata(null);
+                // Geliştirme kısayolu: Shopify'a gitmeden hesap ekranlarını aç
+                if (demoGirisi(email)) {
+                  setCustomer(DEMO_MUSTERI);
+                  router.push("/account?demo=1");
+                  return;
+                }
                 islem.mutate();
               }}
             >
@@ -121,7 +144,6 @@ export function LoginPage() {
             </div>
           </div>
         </div>
-      </div>
-    </>
+    </div>
   );
 }

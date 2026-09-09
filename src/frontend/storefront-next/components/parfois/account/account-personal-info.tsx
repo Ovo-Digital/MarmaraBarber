@@ -71,7 +71,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
     <div className="space-y-6">
       <form onSubmit={handleSaveProfile} className="border border-[#e0e0e0] p-6 sm:p-8">
         <h2 className="text-[13px] font-semibold uppercase tracking-[0.06em] mb-8">
-          Kişisel Bilgileriniz
+          Personal details
         </h2>
 
         <div className="grid gap-8 sm:grid-cols-2">
@@ -94,7 +94,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
         </div>
 
         <div className="mt-8">
-          <AccountField label="E-posta" required>
+          <AccountField label="Email" required>
             <input type="email" readOnly value={email} className={`${accountInputClass} text-[#666]`} />
           </AccountField>
         </div>
@@ -124,7 +124,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
                   onChange={(e) => setExtra((x) => ({ ...x, birthMonth: e.target.value }))}
                   className={accountSelectClass}
                 >
-                  <option value="">Ay</option>
+                  <option value="">Month</option>
                   {BIRTH_MONTHS.map((m) => (
                     <option key={m.value} value={m.value}>
                       {m.label}
@@ -225,7 +225,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
               }}
               className="pf-btn-outline-dark px-6 !text-[10px]"
             >
-              İptal
+              Cancel
             </button>
           </div>
         ) : (
@@ -238,7 +238,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
               <path d="M12 20h9" />
               <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
             </svg>
-            Telefon Numarasını Değiştir
+            Change phone number
           </button>
         )}
       </div>

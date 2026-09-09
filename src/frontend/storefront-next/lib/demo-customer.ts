@@ -55,3 +55,19 @@ export const DEMO_MUSTERI: Customer = {
 export function demoModu(arama: string | null): boolean {
   return process.env.NODE_ENV !== "production" && arama === "1";
 }
+
+/**
+ * Geliştirmede tanımlı e-posta ile giriş denendi mi?
+ *
+ * Shopify'a istek gitmez, mağazada kayıt oluşmaz. Şifre KONTROL EDİLMİYOR ve
+ * hiçbir yerde saklanmıyor — sadece e-posta eşleşmesine bakılıyor, böylece
+ * gerçek bir parola koda ya da ortam dosyasına yazılmış olmuyor.
+ *
+ * Üretim derlemesinde tamamen kapalı.
+ */
+export function demoGirisi(email: string): boolean {
+  if (process.env.NODE_ENV === "production") return false;
+  const tanimli = process.env.NEXT_PUBLIC_DEV_LOGIN_EMAIL?.trim().toLowerCase();
+  if (!tanimli) return false;
+  return email.trim().toLowerCase() === tanimli;
+}

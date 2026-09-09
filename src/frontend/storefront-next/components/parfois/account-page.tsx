@@ -10,7 +10,6 @@ import { AccountSidebar } from "./account/account-sidebar";
 import { parseAccountSection, type AccountSection } from "./account/account-utils";
 import { apiGetCustomer } from "@/services/api/storefront-api";
 import { useAuthStore } from "@/store/auth-store";
-import { PageHero } from "@/components/slick/page-hero";
 import { DEMO_MUSTERI, demoModu } from "@/lib/demo-customer";
 
 function AccountPasswordStub() {
@@ -93,32 +92,55 @@ export function AccountPageClient() {
   const isim = [customer.firstName, customer.lastName].filter(Boolean).join(" ");
 
   return (
-    <>
-      <PageHero eyebrow="Account" title={isim || "My account"} subline={customer.email ?? undefined}>
-        <button
-          type="button"
-          onClick={handleLogout}
-          className="uppercase tracking-[0.14em]"
-          style={{
-            minHeight: 44,
-            padding: "0 22px",
-            border: "1px solid rgba(255,255,255,0.45)",
-            color: "#ffffff",
-            fontFamily: "var(--font-owners)",
-            fontSize: "12px",
-          }}
+    <div className="bg-white">
+      <div
+        className="sg-container"
+        style={{ paddingTop: "clamp(48px, 5vw, 80px)", paddingBottom: "clamp(64px, 7vw, 110px)" }}
+      >
+        {/* Başlık ve çıkış aynı satırda; ayrı koyu bant kaldırıldı */}
+        <div
+          className="mb-10 flex flex-wrap items-end justify-between gap-5 pb-6"
+          style={{ borderBottom: "1px solid rgba(20,17,15,0.12)" }}
         >
-          Sign out
-        </button>
-      </PageHero>
+          <div className="min-w-0">
+            <h1
+              className="uppercase"
+              style={{
+                fontFamily: "var(--font-owners-black)",
+                fontWeight: 900,
+                fontSize: "clamp(28px, 3vw, 40px)",
+                lineHeight: 1.02,
+                color: "var(--lx-ink)",
+              }}
+            >
+              {[customer.firstName, customer.lastName].filter(Boolean).join(" ") || "My account"}
+            </h1>
+            <p className="mt-2 text-[13px]" style={{ color: "rgba(20,17,15,0.55)" }}>
+              {customer.email}
+            </p>
+          </div>
 
-      <div className="bg-white">
-      <div className="sg-container py-12 lg:py-16">
-      <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
-        <AccountSidebar active={activeSection} onSelect={setSection} />
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="uppercase tracking-[0.14em]"
+            style={{
+              minHeight: 42,
+              padding: "0 20px",
+              border: "1px solid rgba(20,17,15,0.25)",
+              color: "var(--lx-ink)",
+              fontFamily: "var(--font-owners)",
+              fontSize: "11px",
+            }}
+          >
+            Sign out
+          </button>
+        </div>
 
-        <div className="min-w-0 flex-1">
+        <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
+          <AccountSidebar active={activeSection} onSelect={setSection} />
 
+          <div className="min-w-0 flex-1">
           {activeSection === "profile" && (
             <AccountPersonalInfo customer={customer} onUpdated={refreshCustomer} />
           )}
@@ -127,10 +149,9 @@ export function AccountPageClient() {
           )}
           {activeSection === "orders" && <AccountOrders customer={customer} />}
           {activeSection === "password" && <AccountPasswordStub />}
+          </div>
         </div>
       </div>
-      </div>
-      </div>
-    </>
+    </div>
   );
 }

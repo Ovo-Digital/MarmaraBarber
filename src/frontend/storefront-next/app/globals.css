@@ -871,3 +871,113 @@ a {
   color: var(--sg-red);
   transform: translateX(5px);
 }
+
+/* ═══ Sprey boya animasyonları (/animations) ══════════════════════════════
+   Kenarların taneli ve düzensiz olması SVG türbülans filtreleriyle sağlanıyor;
+   CSS gradyanı düz bir kenar bırakıyor ve boyaya benzemiyor. Buradaki CSS
+   sadece zamanlamayı yönetiyor, dokuyu filtreler üretiyor. */
+
+.sp-sahne {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 600 / 260;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.sp-svg { display: block; width: 100%; height: 100%; }
+/* Logo siyah çizim; koyu zeminde görünmesi için beyaza çevriliyor */
+.sp-logo { filter: brightness(0) invert(1); }
+
+/* ── Sprey darbesi: maske çizgisi soldan sağa "çiziliyor" ───────────────── */
+@keyframes sp-cek {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+.sp-cizgi {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: sp-cek 900ms cubic-bezier(.45,.05,.35,1) both;
+}
+.sp-cizgi--2 { animation-duration: 1000ms; animation-delay: 120ms; }
+.sp-cizgi--3 { animation-duration: 1100ms; animation-delay: 240ms; }
+
+/* ── Sprey kutusu: darbeyle aynı hızda ilerliyor ────────────────────────── */
+@keyframes sp-kutu {
+  0%   { transform: translate(-70px, 0) rotate(-14deg); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { transform: translate(470px, 0) rotate(-14deg); opacity: 1; }
+  100% { transform: translate(520px, 0) rotate(-14deg); opacity: 0; }
+}
+.sp-kutu { animation: sp-kutu 1150ms cubic-bezier(.45,.05,.35,1) both; }
+
+/* Nozuldan çıkan koni — kutuyla birlikte taşınıyor */
+@keyframes sp-koni {
+  0%, 100% { opacity: 0; }
+  12%, 85% { opacity: .55; }
+}
+.sp-koni { animation: sp-koni 1150ms linear both; transform-origin: left center; }
+
+/* ── Overspray sisi: darbenin ardından beliren, sonra sönen halka ───────── */
+@keyframes sp-sis {
+  0%   { opacity: 0; }
+  35%  { opacity: .5; }
+  100% { opacity: .16; }
+}
+.sp-sis { animation: sp-sis 1600ms ease-out both; }
+
+/* ── Damlalar: sprey geçtikten sonra aşağı akıyor ───────────────────────── */
+@keyframes sp-damla {
+  0%   { transform: scaleY(0); opacity: 0; }
+  18%  { opacity: 1; }
+  100% { transform: scaleY(1); opacity: .9; }
+}
+.sp-damla {
+  transform-origin: top center;
+  animation: sp-damla 1500ms cubic-bezier(.3,.7,.2,1) both;
+}
+
+/* ── Şablon (stencil): kalkan çerçeve ──────────────────────────────────── */
+@keyframes sp-sablon-kalk {
+  0%, 55%  { transform: translateY(0px); opacity: 1; }
+  100%     { transform: translateY(-300px); opacity: 0; }
+}
+.sp-sablon-kalk { animation: sp-sablon-kalk 1900ms cubic-bezier(.6,0,.3,1) both; }
+
+/* ── Patlama: türbülanslı leke dışa doğru açılıyor ─────────────────────── */
+@keyframes sp-patla {
+  from { transform: scale(.05); }
+  to   { transform: scale(1); }
+}
+.sp-patla { transform-origin: center; animation: sp-patla 850ms cubic-bezier(.16,.9,.3,1) both; }
+
+@keyframes sp-sacil {
+  0%   { transform: translate(0,0) scale(1); opacity: 0; }
+  15%  { opacity: 1; }
+  100% { transform: translate(var(--x,0), var(--y,0)) scale(.35); opacity: 0; }
+}
+.sp-sacil { animation: sp-sacil 1100ms cubic-bezier(.2,.8,.3,1) both; }
+
+/* ── Kat kat sprey: her geçişte boya koyulaşıyor ───────────────────────── */
+@keyframes sp-kat {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.sp-kat-1 { animation: sp-kat 420ms ease-out both; }
+.sp-kat-2 { animation: sp-kat 420ms ease-out 380ms both; }
+.sp-kat-3 { animation: sp-kat 420ms ease-out 760ms both; }
+
+/* ── Etiket darbesi: kalın çapraz çizgi ────────────────────────────────── */
+@keyframes sp-cik {
+  0%   { opacity: 0; transform: scale(.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.sp-cik { transform-origin: center; animation: sp-cik 520ms cubic-bezier(.2,.9,.3,1) 620ms both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sp-cizgi, .sp-kutu, .sp-koni, .sp-sis, .sp-damla, .sp-sablon-kalk,
+  .sp-patla, .sp-sacil, .sp-kat-1, .sp-kat-2, .sp-kat-3, .sp-cik { animation: none; }
+  .sp-cizgi { stroke-dashoffset: 0; }
+}
+
+.sp-cizgi--4 { animation-duration: 1180ms; animation-delay: 340ms; }

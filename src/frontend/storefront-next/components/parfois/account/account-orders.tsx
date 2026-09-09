@@ -16,7 +16,7 @@ export function AccountOrders({ customer }: AccountOrdersProps) {
       <h2 className="mb-6 border-b border-[#e0e0e0] pb-4 text-[15px] font-semibold">Orders</h2>
 
       {customer.orders.length === 0 ? (
-        <p className="py-12 text-center text-[12px] text-[#666]">Henüz siparişiniz bulunmuyor.</p>
+        <p className="py-12 text-center text-[12px] text-[#666]">You have no orders yet.</p>
       ) : (
         <>
           <div className="hidden border-b border-[#e0e0e0] pb-3 text-[11px] font-semibold sm:grid sm:grid-cols-[1.2fr_1fr_1fr_1fr_auto] sm:gap-4">
@@ -56,7 +56,7 @@ export function AccountOrders({ customer }: AccountOrdersProps) {
                     rel="noopener noreferrer"
                     className="pf-btn-primary inline-flex w-auto px-4 !py-2.5 !text-[10px] whitespace-nowrap"
                   >
-                    Sipariş Detayı
+                    View order
                   </a>
                 </div>
               </li>

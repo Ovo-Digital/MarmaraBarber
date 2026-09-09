@@ -526,7 +526,17 @@ export function SlickHeader({
           >
             <BagIcon />
             {count > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center bg-[var(--sg-red)] px-1 text-[9px] font-bold text-white">
+              <span
+                className="absolute -right-2 -top-2 flex items-center justify-center rounded-full text-[10px] font-bold text-white"
+                style={{
+                  background: "var(--sg-red)",
+                  minWidth: 18,
+                  height: 18,
+                  padding: "0 5px",
+                  lineHeight: 1,
+                  border: "2px solid #000000",
+                }}
+              >
                 {count}
               </span>
             )}
@@ -680,9 +690,20 @@ function SearchIcon() {
 }
 function BagIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-      <path d="M6 8h12l-1 12H7L6 8z" />
-      <path d="M9 8V7a3 3 0 0 1 6 0v1" />
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {/* Yuvarlatılmış çanta gövdesi + sap */}
+      <path d="M5.4 8.5h13.2l-.9 10.1a2 2 0 0 1-2 1.9H8.3a2 2 0 0 1-2-1.9z" />
+      <path d="M9 11V7.6a3 3 0 0 1 6 0V11" />
     </svg>
   );
 }

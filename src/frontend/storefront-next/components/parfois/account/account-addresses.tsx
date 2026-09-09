@@ -208,7 +208,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
       </div>
 
       {customer.addresses.length === 0 ? (
-        <p className="py-12 text-center text-[12px] text-[#666]">Kayıtlı adresiniz bulunmuyor.</p>
+        <p className="py-12 text-center text-[12px] text-[#666]">You have no saved addresses.</p>
       ) : (
         <div className="hidden border-b border-[#e0e0e0] pb-3 text-[11px] font-semibold text-black sm:grid sm:grid-cols-[1fr_2fr_auto] sm:gap-6">
           <span>Address name</span>
@@ -233,7 +233,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
 
             <div className="text-[12px] leading-relaxed">
               <p>
-                <span className="font-semibold">Telefon Numarası:</span> {formatPhone(addr.phone)}
+                <span className="font-semibold">Phone:</span> {formatPhone(addr.phone)}
               </p>
               <p className="mt-2">{addr.address1}</p>
               {addr.address2 && <p>{addr.address2}</p>}
@@ -244,7 +244,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
               </p>
               <p>{addr.country}</p>
               <p className="mt-2">
-                <span className="font-semibold">Kurumsal Fatura:</span> Hayır
+                <span className="font-semibold">Business invoice:</span> No
               </p>
             </div>
 
@@ -257,7 +257,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
                 }}
                 className="min-w-[88px] border border-black px-4 py-2 text-[10px] font-semibold uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
               >
-                Düzenle
+                Edit
               </button>
               <button
                 type="button"
