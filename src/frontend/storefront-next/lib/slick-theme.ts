@@ -70,6 +70,8 @@ export const MAIN_NAV: NavItem[] = [
     ],
   },
   { label: "BUNDLE & SAVE", href: "/collections/paketler" },
+  { label: "HOW TO USE", href: "/how-to-use" },
+  { label: "PROS", href: "/professional" },
   { label: "WHOLESALE", href: "/wholesale" },
   { label: "ABOUT", href: "/hakkimizda" },
   { label: "CONTACT", href: "/iletisim" },

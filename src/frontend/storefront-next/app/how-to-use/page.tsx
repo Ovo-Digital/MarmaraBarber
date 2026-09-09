@@ -20,14 +20,49 @@ export default async function HowToUsePage() {
     kartlar = [];
   }
 
-  // Ürün tipine göre grupla, çok ürünlü tip başa
-  const gruplar = new Map<string, typeof kartlar>();
+  /**
+   * İki kademeli gruplama.
+   *
+   * Aynı kategorideki ürünlerin çoğunda kullanım metni BİREBİR aynı (13 tıraş
+   * jelinin hepsinde tek cümle). Her ürün için ayrı ayrı yazdırınca sayfa aynı
+   * metni tekrar tekrar gösteriyordu. Önce ürün tipine, sonra metnin kendisine
+   * göre gruplanıyor: her metin bir kez yazılıyor, altında o metni paylaşan
+   * ürünler küçük görsellerle listeleniyor.
+   */
+  const gruplar = new Map<string, Map<string, typeof kartlar>>();
   for (const k of kartlar) {
-    const liste = gruplar.get(k.productType) ?? [];
-    liste.push(k);
-    gruplar.set(k.productType, liste);
+    const tip = gruplar.get(k.productType) ?? new Map<string, typeof kartlar>();
+    const ayni = tip.get(k.usage) ?? [];
+    ayni.push(k);
+    tip.set(k.usage, ayni);
+    gruplar.set(k.productType, tip);
   }
-  const sirali = [...gruplar.entries()].sort((a, b) => b[1].length - a[1].length);
+
+  /* Neredeyse aynı metinleri birleştir.
+     Bazı açıklamalarda aynı cümle bir yerde tam, başka yerde yarım bitiyor;
+     birebir karşılaştırma bunları iki ayrı blok sayıyordu. Noktalama ve
+     büyük/küçük harf atılıp biri diğerinin başlangıcıysa tek blok yapılıyor
+     ve uzun olan metin tutuluyor. */
+  const sadelestir = (t: string) =>
+    t.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, "").replace(/\s+/g, " ").trim();
+
+  for (const [tip, metinler] of gruplar) {
+    const girisler = [...metinler.entries()].sort((a, b) => b[0].length - a[0].length);
+    const birlesik = new Map<string, typeof kartlar>();
+    for (const [metin, urunler] of girisler) {
+      const sade = sadelestir(metin);
+      const esles = [...birlesik.keys()].find((m) => sadelestir(m).startsWith(sade));
+      if (esles) birlesik.get(esles)!.push(...urunler);
+      else birlesik.set(metin, [...urunler]);
+    }
+    gruplar.set(tip, birlesik);
+  }
+
+  const sirali = [...gruplar.entries()].sort(
+    (a, b) =>
+      [...b[1].values()].reduce((n, l) => n + l.length, 0) -
+      [...a[1].values()].reduce((n, l) => n + l.length, 0),
+  );
 
   return (
     <>
@@ -50,7 +85,7 @@ export default async function HowToUsePage() {
             <>
               {/* Bölüm bağlantıları */}
               <nav className="mb-14 flex flex-wrap gap-2">
-                {sirali.map(([tip, liste]) => (
+                {sirali.map(([tip, metinler]) => (
                   <a
                     key={tip}
                     href={`#${encodeURIComponent(tip)}`}
@@ -62,12 +97,15 @@ export default async function HowToUsePage() {
                     }}
                   >
                     {tip}
-                    <span style={{ color: "rgba(20,17,15,0.4)" }}> · {liste.length}</span>
+                    <span style={{ color: "rgba(20,17,15,0.4)" }}>
+                      {" "}
+                      · {[...metinler.values()].reduce((n, l) => n + l.length, 0)}
+                    </span>
                   </a>
                 ))}
               </nav>
 
-              {sirali.map(([tip, liste]) => (
+              {sirali.map(([tip, metinler]) => (
                 <section key={tip} id={encodeURIComponent(tip)} className="mb-16 scroll-mt-28">
                   <h2
                     className="mb-8 uppercase"
@@ -83,35 +121,36 @@ export default async function HowToUsePage() {
                     {tip}
                   </h2>
 
-                  <div className="grid gap-x-10 gap-y-10 lg:grid-cols-2">
-                    {liste.map((k) => (
-                      <article key={k.handle} className="flex gap-5">
-                        <Link
-                          href={`/products/${k.handle}`}
-                          className="h-28 w-24 shrink-0 overflow-hidden"
-                          style={{ background: "var(--sg-off)" }}
-                        >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={k.imageUrl} alt={k.title} className="h-full w-full object-contain p-2" />
-                        </Link>
-                        <div className="min-w-0">
-                          <Link
-                            href={`/products/${k.handle}`}
-                            className="block uppercase"
-                            style={{
-                              fontFamily: "var(--font-owners-black)",
-                              fontSize: "15px",
-                              lineHeight: 1.2,
-                              color: "var(--lx-ink)",
-                            }}
+                  <div className="space-y-8">
+                    {[...metinler.entries()].map(([metin, urunler]) => (
+                      <div key={metin} className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-12">
+                        <p className="text-[15px] leading-relaxed" style={{ color: "rgba(20,17,15,0.72)" }}>
+                          {metin}
+                        </p>
+
+                        <div>
+                          <p
+                            className="mb-3 text-[11px] uppercase tracking-[0.14em]"
+                            style={{ color: "rgba(20,17,15,0.5)", fontFamily: "var(--font-owners)" }}
                           >
-                            {k.title}
-                          </Link>
-                          <p className="mt-2 text-[14px] leading-relaxed" style={{ color: "rgba(20,17,15,0.65)" }}>
-                            {k.usage}
+                            Applies to · {urunler.length}
                           </p>
+                          <div className="flex flex-wrap gap-2">
+                            {urunler.map((u) => (
+                              <Link
+                                key={u.handle}
+                                href={`/products/${u.handle}`}
+                                title={u.title}
+                                aria-label={u.title}
+                                className="lx-seri-kare block h-16 w-16 overflow-hidden bg-white"
+                              >
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={u.imageUrl} alt="" className="h-full w-full object-contain p-1" />
+                              </Link>
+                            ))}
+                          </div>
                         </div>
-                      </article>
+                      </div>
                     ))}
                   </div>
                 </section>
