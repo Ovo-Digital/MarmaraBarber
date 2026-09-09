@@ -989,8 +989,8 @@ a {
   z-index: 1;
   display: block;
   overflow: hidden;
-  /* Sağ kenardan büyüyor: sola doğru açılıyor, ürün adının üstünü kapatmıyor */
-  transform-origin: right center;
+  /* Ortadan büyüyor */
+  transform-origin: center center;
   transition: transform 260ms cubic-bezier(.2,.9,.3,1), box-shadow 260ms var(--lx-ease);
 }
 /* Yalnızca imleci olan cihazlarda: dokunmatikte büyütmenin karşılığı yok */
@@ -1004,3 +1004,35 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .lx-oneri-gorsel, .lx-oneri-gorsel:hover { transition: none; transform: none; }
 }
+
+/* Arama önerisindeki sepete ekle düğmesi */
+.lx-oneri-sepet {
+  display: flex;
+  height: 38px;
+  width: 38px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transition:
+    background 220ms var(--lx-ease),
+    transform 220ms cubic-bezier(.2,.9,.3,1);
+}
+@media (hover: hover) {
+  .lx-oneri-sepet:hover:not(:disabled) {
+    background: var(--sg-red);
+    transform: scale(1.14);
+  }
+  /* Çantanın içindeki artı, imleç gelince hafifçe zıplıyor */
+  .lx-oneri-sepet:hover:not(:disabled) .lx-oneri-arti {
+    transform: translateY(-1.5px) scale(1.15);
+  }
+}
+.lx-oneri-arti {
+  transform-origin: center;
+  transition: transform 220ms cubic-bezier(.2,.9,.3,1);
+}
+.lx-oneri-sepet:disabled { opacity: .3; }
+.lx-oneri-sepet--eklendi { background: var(--sg-red); }

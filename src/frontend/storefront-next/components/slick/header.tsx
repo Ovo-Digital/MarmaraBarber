@@ -200,6 +200,8 @@ export function SlickHeader({
   const aramaAlaniRef = useRef<HTMLInputElement | null>(null);
   const [oneriler, setOneriler] = useState<AramaOnerisi[]>([]);
   const [araniyor, setAraniyor] = useState(false);
+  const [eklenen, setEklenen] = useState<string | null>(null);
+  const add = useShopifyCartStore((s) => s.add);
   const [accordion, setAccordion] = useState<string | null>(null);
   const [q, setQ] = useState("");
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -677,14 +679,17 @@ export function SlickHeader({
                 <>
                   <ul className="m-0 list-none p-0">
                     {oneriler.map((urun) => (
-                      <li key={urun.handle}>
+                      <li
+                        key={urun.handle}
+                        className="flex items-center rounded-2xl transition-colors hover:bg-white/10"
+                      >
                         <Link
                           href={`/products/${urun.handle}`}
                           onClick={() => {
                             setSearchOpen(false);
                             setQ("");
                           }}
-                          className="flex items-center gap-4 rounded-2xl px-3 py-2.5 transition-colors hover:bg-white/10"
+                          className="flex min-w-0 flex-1 items-center gap-4 px-3 py-2.5"
                         >
                           {/* İmleç görselin üzerinde beklerken görsel büyüyor:
                               satırdan taşabilmesi için üstte duruyor. */}
@@ -717,6 +722,52 @@ export function SlickHeader({
                             {formatMoney(urun.price, urun.currencyCode)}
                           </span>
                         </Link>
+
+                        {/* Sepete ekle — listeden çıkmadan */}
+                        <button
+                          type="button"
+                          disabled={!urun.availableForSale || !urun.variantId}
+                          aria-label={urun.availableForSale ? `Add ${urun.title} to cart` : "Sold out"}
+                          title={urun.availableForSale ? "Add to cart" : "Sold out"}
+                          onClick={() => {
+                            if (!urun.availableForSale || !urun.variantId) return;
+                            /* Sepet doğrudan varyant kimliğiyle çalışıyor; öneri
+                               listesinde ürünün tüm verisini taşımaya gerek yok. */
+                            add(
+                              {
+                                id: urun.handle,
+                                handle: urun.handle,
+                                title: urun.title,
+                                description: "",
+                                price: urun.price,
+                                currencyCode: urun.currencyCode,
+                                availableForSale: urun.availableForSale,
+                                imageUrl: urun.imageUrl ?? undefined,
+                                variants: [],
+                              },
+                              1,
+                              urun.variantId,
+                            );
+                            setEklenen(urun.handle);
+                            setTimeout(() => setEklenen((h) => (h === urun.handle ? null : h)), 1600);
+                          }}
+                          className={`lx-oneri-sepet mr-2 ${eklenen === urun.handle ? "lx-oneri-sepet--eklendi" : ""}`}
+                        >
+                          {eklenen === urun.handle ? (
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <path d="M20 6 9 17l-5-5" />
+                            </svg>
+                          ) : (
+                            /* Çanta + artı: sepet olduğu ikondan anlaşılsın */
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <path d="M5.6 8.6h12.8l-.85 9.6a1.9 1.9 0 0 1-1.9 1.75H8.35a1.9 1.9 0 0 1-1.9-1.75z" />
+                              <path d="M9.1 10.9V7.8a2.9 2.9 0 0 1 5.8 0v3.1" />
+                              <g className="lx-oneri-arti">
+                                <path d="M12 12.4v4.2M9.9 14.5h4.2" />
+                              </g>
+                            </svg>
+                          )}
+                        </button>
                       </li>
                     ))}
                   </ul>
