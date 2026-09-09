@@ -187,7 +187,7 @@ function Gallery({
             )}
           </AnimatePresence>
           <span className="sg-nav pointer-events-none absolute bottom-3 right-3 bg-white/90 px-2 py-1 text-[9px] opacity-0 transition group-hover:opacity-100">
-            Büyüt
+            Zoom
           </span>
         </button>
       </div>

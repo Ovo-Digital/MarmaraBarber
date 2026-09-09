@@ -1,4 +1,4 @@
-import { formatPrice } from "@/lib/parfois-theme";
+import { formatMoney } from "@/lib/money";
 
 export type AccountSection = "profile" | "addresses" | "orders" | "returns" | "password";
 
@@ -46,7 +46,7 @@ export function formatOrderNumber(orderNumber: number): string {
 }
 
 export function formatOrderTotal(amount: number, currencyCode: string): string {
-  return formatPrice(amount, currencyCode);
+  return formatMoney(amount, currencyCode);
 }
 
 export interface ProfileExtra {

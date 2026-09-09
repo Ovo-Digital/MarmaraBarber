@@ -12,7 +12,7 @@ export default function WishlistPage() {
       <Breadcrumb items={[{ label: "Ana Sayfa", href: "/" }, { label: "Favorilerim" }]} />
       <h1 className="text-[20px] font-light uppercase tracking-[0.15em] mb-8">Favorilerim</h1>
       {items.length === 0 ? (
-        <p className="text-[12px] text-[#666] text-center py-12">Henüz favori ürününüz yok.</p>
+        <p className="text-[12px] text-[#666] text-center py-12">You have no saved products yet.</p>
       ) : (
         <ul className="divide-y divide-[#e5e5e5]">
           {items.map((id) => (

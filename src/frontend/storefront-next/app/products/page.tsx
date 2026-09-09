@@ -19,7 +19,7 @@ export default async function ProductsPage({ searchParams }: Props) {
     ? await storefrontGetProductsByQuery(`product_type:"${type.replace(/"/g, "")}"`, 250, "TITLE", false)
     : await storefrontGetProducts(250);
 
-  const title = type || "Tüm Ürünler";
+  const title = type || "All products";
   const heroImage = products.find((p) => p.imageUrl)?.imageUrl;
 
   return (

@@ -118,7 +118,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
             <div className="hidden items-center gap-1 sm:flex">
               <button
                 type="button"
-                aria-label="Grid görünüm"
+                aria-label="Grid view"
                 onClick={() => setView("grid")}
                 className={`p-2 ${view === "grid" ? "opacity-100" : "opacity-40"}`}
               >
@@ -126,7 +126,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
               </button>
               <button
                 type="button"
-                aria-label="Liste görünüm"
+                aria-label="List view"
                 onClick={() => setView("list")}
                 className={`p-2 ${view === "list" ? "opacity-100" : "opacity-40"}`}
               >
@@ -227,7 +227,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
                       className="sg-btn"
                       onClick={() => setVisible((v) => v + PLP_PAGE_SIZE)}
                     >
-                      Daha Fazla Yükle
+                      Load more
                     </button>
                   </div>
                 )}

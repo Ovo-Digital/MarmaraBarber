@@ -18,32 +18,32 @@ import {
 const DENEMELER = [
   {
     ad: "01 — Spray pass",
-    aciklama: "Sprey kutusu soldan sağa geçiyor, nozuldan koni çıkıyor, üç üst üste darbe logoyu açığa çıkarıyor. Arkada overspray sisi kalıyor.",
+    aciklama: "The can travels left to right, spray cone from the nozzle, three overlapping passes reveal the logo. Overspray haze stays behind.",
     Govde: SprayPass,
   },
   {
     ad: "02 — Stencil",
-    aciklama: "Boya şablonun içine sıkılıyor, sonra şablon kartonu yukarı kalkıyor ve logo ortaya çıkıyor.",
+    aciklama: "Paint is sprayed through a stencil, then the card lifts away to reveal the logo.",
     Govde: Stencil,
   },
   {
     ad: "03 — Drips",
-    aciklama: "Sprey geçiyor, boya fazlası alt kenardan aşağı akıyor. Damlaların ucunda toplanma var.",
+    aciklama: "The spray passes, excess paint runs down from the bottom edge, pooling at the tip of each drip.",
     Govde: Drips,
   },
   {
     ad: "04 — Splatter",
-    aciklama: "Ortadan patlayan düzensiz leke logoyu açıyor, çevreye boya zerreleri saçılıyor.",
+    aciklama: "An irregular blot bursts from the centre to reveal the logo, flicking paint specks outward.",
     Govde: Splatter,
   },
   {
     ad: "05 — Tag stroke",
-    aciklama: "Grafiti gibi tek bir kalın kırmızı darbe atılıyor, ardından logo öne çıkıyor.",
+    aciklama: "A single thick red stroke, graffiti style, then the logo steps forward.",
     Govde: TagStroke,
   },
   {
     ad: "06 — Build-up",
-    aciklama: "Üç hızlı geçiş; her geçişte boya birikiyor ve logo koyulaşarak tamamlanıyor.",
+    aciklama: "Three quick passes; paint builds with each one until the logo is solid.",
     Govde: BuildUp,
   },
 ];
@@ -75,8 +75,8 @@ export default function AnimationsPage() {
               Spray paint animations
             </h1>
             <p className="mt-3 max-w-[64ch] text-[14px]" style={{ color: "rgba(20,17,15,0.6)" }}>
-              Altı deneme. Kenarların taneli ve düzensiz olması SVG türbülans filtreleriyle
-              üretiliyor — video, GIF ya da kütüphane yok, sadece logo dosyası kullanılıyor.
+              Six options. The grainy, irregular edges come from SVG turbulence filters — no video,
+              no GIF, no library, just the logo file.
             </p>
           </div>
 

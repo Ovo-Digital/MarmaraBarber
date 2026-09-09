@@ -460,7 +460,7 @@ export function SlickHeader({
           }}
           aria-hidden={searchOpen}
         >
-        <button type="button" className="p-1 lg:hidden" aria-label="Menü" onClick={() => setMenuOpen(true)}>
+        <button type="button" className="p-1 lg:hidden" aria-label="Menu" onClick={() => setMenuOpen(true)}>
           <BurgerIcon />
         </button>
 
@@ -833,7 +833,7 @@ export function SlickHeader({
           <button
             type="button"
             className="absolute inset-0 bg-black/70"
-            aria-label="Kapat"
+            aria-label="Close"
             onClick={() => setMenuOpen(false)}
           />
           <aside className="absolute inset-y-0 left-0 w-[88%] max-w-sm overflow-y-auto bg-black p-5 text-white">
