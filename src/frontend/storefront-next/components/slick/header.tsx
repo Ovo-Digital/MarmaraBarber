@@ -412,7 +412,9 @@ export function SlickHeader({
       <div
         className={
           pill
-            ? "lx-hap relative mx-auto mt-4 flex w-fit items-center rounded-full px-5 py-2.5 sm:mt-5 sm:px-8 sm:py-3"
+            ? `lx-hap relative mx-auto mt-4 flex w-fit items-center rounded-full px-5 py-2.5 sm:mt-5 sm:px-8 sm:py-3${
+                searchOpen ? " lx-hap--arama" : ""
+              }`
             : "mx-auto flex h-[var(--sg-header-h)] max-w-[90rem] items-center gap-6 px-4 sm:gap-10 sm:px-8"
         }
         /* Sayfanın en üstündeyken hap şeffaf — arkadaki görsel kesilmiyor.
@@ -505,6 +507,26 @@ export function SlickHeader({
           className={`flex shrink-0 items-center gap-4 sm:gap-5 ${pill ? "" : "ml-auto"}`}
           onMouseEnter={scheduleCloseShop}
         >
+          {/* Arama — imleç gelince hap arama alanına dönüşüyor */}
+          <button
+            type="button"
+            aria-label="Search"
+            className="hover:opacity-70"
+            onMouseEnter={() => {
+              closeCartDrawer();
+              setHesapAcik(false);
+              setSearchOpen(true);
+            }}
+            /* Tıklama her zaman AÇAR. Önceden değiştirici (toggle) idi: imleç
+               gelince açılıyor, hemen ardından tıklayınca kapanıyordu. */
+            onClick={() => {
+              setSearchOpen(true);
+              aramaAlaniRef.current?.focus();
+            }}
+          >
+            <SearchIcon />
+          </button>
+
           {/* Hesap — imleç gelince açılıyor, tıklamaya gerek yok */}
           <div
             className="relative flex items-center"
@@ -560,26 +582,6 @@ export function SlickHeader({
               </div>
             ) : null}
           </div>
-
-          {/* Arama — imleç gelince hap arama alanına dönüşüyor */}
-          <button
-            type="button"
-            aria-label="Search"
-            className="hover:opacity-70"
-            onMouseEnter={() => {
-              closeCartDrawer();
-              setHesapAcik(false);
-              setSearchOpen(true);
-            }}
-            /* Tıklama her zaman AÇAR. Önceden değiştirici (toggle) idi: imleç
-               gelince açılıyor, hemen ardından tıklayınca kapanıyordu. */
-            onClick={() => {
-              setSearchOpen(true);
-              aramaAlaniRef.current?.focus();
-            }}
-          >
-            <SearchIcon />
-          </button>
 
           {/* Sepet — imleç gelince mini sepet açılıyor; imleç ayrılınca kapanıyor */}
           <button

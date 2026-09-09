@@ -249,6 +249,82 @@ function NotifyForm() {
   );
 }
 
+
+/**
+ * Düz metin açıklamayı yapılandırıp gösterir.
+ *
+ * Ürünlerin bir kısmında açıklama gerçek HTML (başlık, liste), bir kısmında
+ * ise <pre> içinde düz metin. İkincisi tek parça daktilo yazısı gibi
+ * görünüyor ve satırlar sarmıyordu.
+ *
+ * Burada satırlar okunuyor: tamamı BÜYÜK HARF olan kısa satır başlık,
+ * "Etiket: değer" biçimindeki satır madde, kalanı paragraf sayılıyor.
+ */
+function YapilandirilmisAciklama({ metin }: { metin: string }) {
+  const satirlar = metin
+    .split("\n")
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0);
+
+  const bloklar: { baslik: string; satirlar: string[] }[] = [];
+  for (const satir of satirlar) {
+    const buyukHarfli =
+      satir.length <= 40 && satir === satir.toLocaleUpperCase("tr") && /[A-ZÇĞİÖŞÜ]/.test(satir);
+    if (buyukHarfli) bloklar.push({ baslik: satir, satirlar: [] });
+    else if (bloklar.length === 0) bloklar.push({ baslik: "", satirlar: [satir] });
+    else bloklar[bloklar.length - 1].satirlar.push(satir);
+  }
+
+  return (
+    <div className="mx-auto max-w-[760px]">
+      {bloklar.map((b, i) => (
+        <section key={`${b.baslik}-${i}`} className={i === 0 ? "" : "mt-11"}>
+          {b.baslik ? (
+            <h3
+              className="mb-5 pb-2.5 uppercase"
+              style={{
+                fontFamily: "var(--font-owners-black)",
+                fontWeight: 900,
+                fontSize: "15px",
+                letterSpacing: "0.06em",
+                color: "var(--lx-ink)",
+                borderBottom: "1px solid rgba(20,17,15,0.12)",
+              }}
+            >
+              {b.baslik}
+            </h3>
+          ) : null}
+
+          <div className="space-y-2.5">
+            {b.satirlar.map((satir, j) => {
+              const ayrac = satir.indexOf(":");
+              const etiketli = ayrac > 0 && ayrac < 42;
+              if (!etiketli) {
+                return (
+                  <p key={j} className="text-[15px] leading-[1.75]" style={{ color: "rgba(20,17,15,0.72)" }}>
+                    {satir}
+                  </p>
+                );
+              }
+              return (
+                <p key={j} className="relative pl-5 text-[15px] leading-[1.7]" style={{ color: "rgba(20,17,15,0.72)" }}>
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 top-[9px] block h-1.5 w-1.5"
+                    style={{ background: "var(--sg-red)" }}
+                  />
+                  <span style={{ color: "var(--lx-ink)", fontWeight: 700 }}>{satir.slice(0, ayrac)}</span>
+                  {satir.slice(ayrac + 1)}
+                </p>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
 export function SlickProductDetail({
   product,
   images,
@@ -319,6 +395,22 @@ export function SlickProductDetail({
       .trim() || product.description;
   }, [descriptionHtml, product.description]);
   const sections = useMemo(() => extractSections(descriptionHtml || "", plain), [descriptionHtml, plain]);
+
+  /* Bazı ürünlerde açıklama gerçek HTML (başlık/liste), bazılarında <pre>
+     içinde düz metin. İkisi farklı gösterilmeli. */
+  const zenginHtml = /<(h[1-6]|ul|ol|p)\b/i.test(descriptionHtml ?? "");
+  const satirliMetin = useMemo(
+    () =>
+      (descriptionHtml || product.description || "")
+        .replace(/<br\s*\/?>/gi, "\n")
+        .replace(/<\/(p|div|li|h[1-6]|pre)>/gi, "\n")
+        .replace(/<[^>]+>/g, "")
+        .replace(/&amp;/g, "&")
+        .replace(/&nbsp;/g, " ")
+        .replace(/&#39;/g, "'")
+        .replace(/&quot;/g, '"'),
+    [descriptionHtml, product.description],
+  );
 
   // Varyant görseline geç
   useEffect(() => {
@@ -544,7 +636,7 @@ export function SlickProductDetail({
             <div className="mt-2">
               <Accordion
                 items={[
-                  { id: "details", title: "Details", body: plain },
+                  /* "Details" kaldırıldı: aşağıdaki tam açıklamayla aynı metindi */
                   { id: "usage", title: "How to use", body: sections.usage },
                   { id: "ingredients", title: "Ingredients", body: sections.ingredients },
                 ].filter((b) => b.body.trim().length > 0)}
@@ -566,17 +658,38 @@ export function SlickProductDetail({
         )}
 
         {/* 4. Detaylı açıklama */}
-        <section className="mt-16 border-t border-black/10 pt-12">
-          <h2 className="sg-section-title mb-8">Ürün Açıklaması</h2>
-          {descriptionHtml ? (
-            <div
-              className="sg-body prose-pdp mx-auto max-w-3xl text-[#222] [&_h2]:mb-3 [&_h2]:mt-8 [&_h2]:font-[family-name:var(--font-owners)] [&_h2]:text-[18px] [&_h2]:uppercase [&_img]:my-6 [&_img]:max-w-full [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-5"
-              dangerouslySetInnerHTML={{ __html: sanitizeHtml(descriptionHtml) }}
-            />
-          ) : (
-            <p className="sg-body mx-auto max-w-3xl text-[#333]">{plain}</p>
-          )}
-        </section>
+        {descriptionHtml || plain ? (
+          <section className="mt-16 pt-14" style={{ borderTop: "1px solid rgba(20,17,15,0.12)" }}>
+            <div className="mb-10 text-center">
+              <p className="lx-eyebrow mb-2">The detail</p>
+              <h2
+                className="uppercase"
+                style={{
+                  fontFamily: "var(--font-owners-black)",
+                  fontWeight: 900,
+                  fontSize: "clamp(24px,2.6vw,36px)",
+                  lineHeight: 1.02,
+                  color: "var(--lx-ink)",
+                }}
+              >
+                Product description
+              </h2>
+            </div>
+
+            {zenginHtml ? (
+              <div
+                className="lx-pdp-metin mx-auto max-w-[760px]"
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(descriptionHtml ?? "") }}
+              />
+            ) : satirliMetin.trim() ? (
+              <YapilandirilmisAciklama metin={satirliMetin} />
+            ) : (
+              <p className="mx-auto max-w-[760px] text-[15px] leading-[1.75]" style={{ color: "rgba(20,17,15,0.72)" }}>
+                {plain}
+              </p>
+            )}
+          </section>
+        ) : null}
 
       </div>
 

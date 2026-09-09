@@ -1048,3 +1048,58 @@ a {
     transform: translateY(-2px);
   }
 }
+
+/* ── Ürün detayındaki açıklama (Shopify HTML'i) ────────────────────────────
+   Metin Shopify'dan geliyor, sınıf veremiyoruz; biçim burada veriliyor.
+   Başlıklar marka yazı tipinde, listelerde kırmızı kare madde imi. */
+.lx-pdp-metin { color: rgba(20, 17, 15, 0.72); font-size: 15px; line-height: 1.75; }
+.lx-pdp-metin > *:first-child { margin-top: 0; }
+
+.lx-pdp-metin h1,
+.lx-pdp-metin h2,
+.lx-pdp-metin h3,
+.lx-pdp-metin h4,
+.lx-pdp-metin strong:only-child {
+  margin: 44px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(20, 17, 15, 0.12);
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--lx-ink);
+}
+
+.lx-pdp-metin p { margin: 0 0 14px; }
+.lx-pdp-metin strong { color: var(--lx-ink); font-weight: 700; }
+
+.lx-pdp-metin ul { margin: 0 0 18px; padding: 0; list-style: none; }
+.lx-pdp-metin li { position: relative; margin-bottom: 10px; padding-left: 20px; }
+/* Kırmızı kare madde imi — markanın çizgisiyle aynı */
+.lx-pdp-metin li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  background: var(--sg-red);
+}
+
+.lx-pdp-metin img { margin: 26px 0; max-width: 100%; height: auto; }
+.lx-pdp-metin a { color: var(--sg-red); }
+
+/* Mobilde arama açılınca hap genişler: 254px'lik hapa arama alanı sığmıyordu.
+   Masaüstünde genişlik sabit kalır — hap zaten geniş. */
+@media (max-width: 1023px) {
+  .lx-hap--arama { min-width: calc(100vw - 24px); }
+}
+
+/* Güvenlik ağı: <pre> içinde gelen açıklama satırları sarmalı, taşmamalı */
+.lx-pdp-metin pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: inherit;
+  font-size: inherit;
+}

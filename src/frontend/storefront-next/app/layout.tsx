@@ -23,6 +23,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  /* Mobil klavye açılınca görünür alan KÜÇÜLSÜN, içeriğin üstüne binmesin.
+     Varsayılan davranışta klavye sabit konumlu header'ı yerinden oynatıyor;
+     arama alanına dokununca header kayıp gidiyordu. */
+  interactiveWidget: "resizes-content",
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
