@@ -212,11 +212,15 @@ export function SlickHeader({
   const openCartDrawer = useUiStore((s) => s.openCartDrawer);
   const closeCartDrawer = useUiStore((s) => s.closeCartDrawer);
 
+  /** Aynı anda tek panel açık kalsın: biri açılırken diğerleri kapanır. */
   const openShop = () => {
     if (closeTimer.current) {
       clearTimeout(closeTimer.current);
       closeTimer.current = null;
     }
+    setHesapAcik(false);
+    setSearchOpen(false);
+    closeCartDrawer();
     setShopOpen(true);
   };
 
@@ -328,6 +332,8 @@ export function SlickHeader({
   useEffect(() => {
     if (!shopOpen) return;
     const izle = (e: PointerEvent) => {
+      // Hesap ya da arama açıksa kategori panelini bu kural yönetmesin
+      if (hesapAcik || searchOpen) return;
       const el = headerRef.current;
       if (!el) return;
 
@@ -351,11 +357,22 @@ export function SlickHeader({
       const alt = Math.max(a.bottom, c.bottom) + pay;
 
       const icinde = e.clientX >= sol && e.clientX <= sag && e.clientY >= ust && e.clientY <= alt;
-      // Dışarıdaysa BEKLETMEDEN kapat. Gecikme, hap ile panel arasında geçerken
-      // kapanmasın diye vardı; ikisi bitişik olduğu için gerek yok ve imleç
-      // çekilince panel bir süre daha açık kalıyordu.
-      if (icinde) openShop();
-      else setShopOpen(false);
+
+      /* İçerideyken openShop() ÇAĞIRMIYORUZ. openShop diğer panelleri
+         kapatıyor; hesap ikonu da hapın içinde olduğu için imleç oraya
+         gidince hesap paneli açılır açılmaz kapanıyordu. Burada sadece
+         bekleyen kapatma iptal ediliyor.
+
+         Dışarıdaysa bekletmeden kapat: gecikme, hap ile panel arasında
+         geçerken kapanmasın diye vardı; ikisi bitişik olduğu için gereksiz. */
+      if (icinde) {
+        if (closeTimer.current) {
+          clearTimeout(closeTimer.current);
+          closeTimer.current = null;
+        }
+      } else {
+        setShopOpen(false);
+      }
     };
     /* İmleç pencereden tamamen çıkarsa artık pointermove gelmez — panel açık
        kalırdı. Pencereden ayrılma, sekme değişimi ve sayfa kaydırma da
@@ -381,7 +398,7 @@ export function SlickHeader({
       window.removeEventListener("blur", kaydirinca);
       window.removeEventListener("scroll", kaydirinca);
     };
-  }, [shopOpen]);
+  }, [shopOpen, hesapAcik, searchOpen]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -515,6 +532,7 @@ export function SlickHeader({
             onMouseEnter={() => {
               closeCartDrawer();
               setHesapAcik(false);
+              setShopOpen(false);
               setSearchOpen(true);
             }}
             /* Tıklama her zaman AÇAR. Önceden değiştirici (toggle) idi: imleç
@@ -533,6 +551,7 @@ export function SlickHeader({
             onMouseEnter={() => {
               closeCartDrawer();
               setSearchOpen(false);
+              setShopOpen(false);
               setHesapAcik(true);
             }}
             onMouseLeave={() => setHesapAcik(false)}
@@ -591,6 +610,7 @@ export function SlickHeader({
             onMouseEnter={() => {
               setSearchOpen(false);
               setHesapAcik(false);
+              setShopOpen(false);
               openCartDrawer(true);
             }}
             onClick={() => openCartDrawer()}

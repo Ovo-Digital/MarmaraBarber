@@ -278,10 +278,10 @@ function YapilandirilmisAciklama({ metin }: { metin: string }) {
   return (
     <div className="mx-auto max-w-[760px]">
       {bloklar.map((b, i) => (
-        <section key={`${b.baslik}-${i}`} className={i === 0 ? "" : "mt-11"}>
+        <section key={`${b.baslik}-${i}`} className={i === 0 ? "" : "mt-8"}>
           {b.baslik ? (
             <h3
-              className="mb-5 pb-2.5 uppercase"
+              className="mb-4 pb-2 uppercase"
               style={{
                 fontFamily: "var(--font-owners-black)",
                 fontWeight: 900,
@@ -295,22 +295,22 @@ function YapilandirilmisAciklama({ metin }: { metin: string }) {
             </h3>
           ) : null}
 
-          <div className="space-y-2.5">
+          <div className="space-y-1.5">
             {b.satirlar.map((satir, j) => {
               const ayrac = satir.indexOf(":");
               const etiketli = ayrac > 0 && ayrac < 42;
               if (!etiketli) {
                 return (
-                  <p key={j} className="text-[15px] leading-[1.75]" style={{ color: "rgba(20,17,15,0.72)" }}>
+                  <p key={j} className="text-[14.5px] leading-[1.62]" style={{ color: "rgba(20,17,15,0.72)" }}>
                     {satir}
                   </p>
                 );
               }
               return (
-                <p key={j} className="relative pl-5 text-[15px] leading-[1.7]" style={{ color: "rgba(20,17,15,0.72)" }}>
+                <p key={j} className="relative pl-[18px] text-[14.5px] leading-[1.62]" style={{ color: "rgba(20,17,15,0.72)" }}>
                   <span
                     aria-hidden="true"
-                    className="absolute left-0 top-[9px] block h-1.5 w-1.5"
+                    className="absolute left-0 top-[8px] block h-[5px] w-[5px]"
                     style={{ background: "var(--sg-red)" }}
                   />
                   <span style={{ color: "var(--lx-ink)", fontWeight: 700 }}>{satir.slice(0, ayrac)}</span>
@@ -321,6 +321,74 @@ function YapilandirilmisAciklama({ metin }: { metin: string }) {
           </div>
         </section>
       ))}
+    </div>
+  );
+}
+
+
+/**
+ * Uzun açıklamayı kısaltıp "Read more" ile açar.
+ *
+ * Kapalıyken sabit bir yüksekliğe kırpılıyor ve alt kenar beyaza soluyor;
+ * metnin devamı olduğu böylece anlaşılıyor. İçerik zaten kısaysa düğme
+ * gösterilmiyor — ölçüp karar veriyoruz, tahmin etmiyoruz.
+ */
+function KatlanabilirAciklama({ children }: { children: React.ReactNode }) {
+  const [acik, setAcik] = useState(false);
+  const [tasiyor, setTasiyor] = useState(false);
+  const kutuRef = useRef<HTMLDivElement | null>(null);
+  const KAPALI_YUKSEKLIK = 340;
+
+  useEffect(() => {
+    const el = kutuRef.current;
+    if (!el) return;
+    const olc = () => setTasiyor(el.scrollHeight > KAPALI_YUKSEKLIK + 40);
+    olc();
+    const gozlemci = new ResizeObserver(olc);
+    gozlemci.observe(el);
+    return () => gozlemci.disconnect();
+  }, [children]);
+
+  return (
+    <div>
+      {/* Solma metnin KUTUSUNA ait; dıştaki sarmalayıcıya konunca düğmenin
+          üstünü de kapatıyordu. */}
+      <div
+        className="relative"
+        style={{
+          maxHeight: acik || !tasiyor ? "none" : KAPALI_YUKSEKLIK,
+          overflow: acik || !tasiyor ? "visible" : "hidden",
+        }}
+      >
+        <div ref={kutuRef}>{children}</div>
+
+        {tasiyor && !acik ? (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+            style={{ background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, #fff 88%)" }}
+          />
+        ) : null}
+      </div>
+
+      {tasiyor ? (
+        <div className="mt-6 text-center">
+          <button
+            type="button"
+            onClick={() => setAcik((a) => !a)}
+            className="px-7 uppercase tracking-[0.14em]"
+            style={{
+              minHeight: 46,
+              border: "1px solid rgba(20,17,15,0.25)",
+              color: "var(--lx-ink)",
+              fontFamily: "var(--font-owners)",
+              fontSize: "11px",
+            }}
+          >
+            {acik ? "Show less" : "Read more"}
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -676,18 +744,21 @@ export function SlickProductDetail({
               </h2>
             </div>
 
-            {zenginHtml ? (
-              <div
-                className="lx-pdp-metin mx-auto max-w-[760px]"
-                dangerouslySetInnerHTML={{ __html: sanitizeHtml(descriptionHtml ?? "") }}
-              />
-            ) : satirliMetin.trim() ? (
-              <YapilandirilmisAciklama metin={satirliMetin} />
-            ) : (
-              <p className="mx-auto max-w-[760px] text-[15px] leading-[1.75]" style={{ color: "rgba(20,17,15,0.72)" }}>
-                {plain}
-              </p>
-            )}
+            {/* Açıklama uzun olabiliyor; kapalıyken kısaltılıp altı soluyor */}
+            <KatlanabilirAciklama>
+              {zenginHtml ? (
+                <div
+                  className="lx-pdp-metin mx-auto max-w-[760px]"
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(descriptionHtml ?? "") }}
+                />
+              ) : satirliMetin.trim() ? (
+                <YapilandirilmisAciklama metin={satirliMetin} />
+              ) : (
+                <p className="mx-auto max-w-[760px] text-[15px] leading-[1.75]" style={{ color: "rgba(20,17,15,0.72)" }}>
+                  {plain}
+                </p>
+              )}
+            </KatlanabilirAciklama>
           </section>
         ) : null}
 

@@ -1052,7 +1052,7 @@ a {
 /* ── Ürün detayındaki açıklama (Shopify HTML'i) ────────────────────────────
    Metin Shopify'dan geliyor, sınıf veremiyoruz; biçim burada veriliyor.
    Başlıklar marka yazı tipinde, listelerde kırmızı kare madde imi. */
-.lx-pdp-metin { color: rgba(20, 17, 15, 0.72); font-size: 15px; line-height: 1.75; }
+.lx-pdp-metin { color: rgba(20, 17, 15, 0.72); font-size: 14.5px; line-height: 1.62; }
 .lx-pdp-metin > *:first-child { margin-top: 0; }
 
 .lx-pdp-metin h1,
@@ -1060,8 +1060,8 @@ a {
 .lx-pdp-metin h3,
 .lx-pdp-metin h4,
 .lx-pdp-metin strong:only-child {
-  margin: 44px 0 16px;
-  padding-bottom: 10px;
+  margin: 30px 0 12px;
+  padding-bottom: 8px;
   border-bottom: 1px solid rgba(20, 17, 15, 0.12);
   font-family: var(--font-owners-black);
   font-weight: 900;
@@ -1071,19 +1071,19 @@ a {
   color: var(--lx-ink);
 }
 
-.lx-pdp-metin p { margin: 0 0 14px; }
+.lx-pdp-metin p { margin: 0 0 10px; }
 .lx-pdp-metin strong { color: var(--lx-ink); font-weight: 700; }
 
-.lx-pdp-metin ul { margin: 0 0 18px; padding: 0; list-style: none; }
-.lx-pdp-metin li { position: relative; margin-bottom: 10px; padding-left: 20px; }
+.lx-pdp-metin ul { margin: 0 0 14px; padding: 0; list-style: none; }
+.lx-pdp-metin li { position: relative; margin-bottom: 6px; padding-left: 18px; }
 /* Kırmızı kare madde imi — markanın çizgisiyle aynı */
 .lx-pdp-metin li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 9px;
-  width: 6px;
-  height: 6px;
+  top: 8px;
+  width: 5px;
+  height: 5px;
   background: var(--sg-red);
 }
 
