@@ -12,7 +12,7 @@ import {
 } from "react";
 import { ProductCarousel } from "@/components/slick/product-carousel";
 import { SlickProductCard } from "@/components/slick/product-card";
-import { formatTry } from "@/lib/marmara-catalog";
+import { formatMoney } from "@/lib/money";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useUiStore } from "@/store/ui-store";
 import type { Product, ProductOption, ProductVariant } from "@/types/commerce";
@@ -50,21 +50,18 @@ function discountPercent(price: number, compareAt?: number | null) {
   return Math.round(((compareAt - price) / compareAt) * 100);
 }
 
+/**
+ * Açıklamadan bölüm çıkar.
+ *
+ * Bulunamayan bölüm için metin UYDURULMUYOR — önceden "profesyonel formül,
+ * ambalajı inceleyin" gibi cümleler yazılıyordu; hiçbiri Shopify'dan gelmiyordu.
+ * Bölüm yoksa hiç gösterilmiyor.
+ */
 function extractSections(html: string, plain: string) {
   const text = plain || html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-  const usage =
-    text.match(/(?:NASIL KULLANILIR|Kullanım|How to use)[:\s]+(.{40,220})/i)?.[1] ||
-    "Ürünü temiz saça veya cilde uygulayın. İhtiyaca göre miktarı ayarlayın.";
-  const ingredients =
-    text.match(/(?:İçindekiler|Ingredients)[:\s]+(.{40,220})/i)?.[1] ||
-    "Profesyonel formül. Detaylı içerik listesi için ambalajı inceleyin.";
-  return {
-    usage: usage.trim(),
-    ingredients: ingredients.trim(),
-    // Kargo ve iade taahhüdü uydurulamaz; mağazanın gerçek politikası
-    // Shopify tarafından yönetilmeli. Boşsa bölüm gizleniyor.
-    shipping: "",
-  };
+  const usage = text.match(/(?:NASIL KULLANILIR|Kullanım|How to use)[:\s]+(.{40,320})/i)?.[1] ?? "";
+  const ingredients = text.match(/(?:İçindekiler|Ingredients|INCI)[:\s]+(.{40,320})/i)?.[1] ?? "";
+  return { usage: usage.trim(), ingredients: ingredients.trim() };
 }
 
 function productTypeHref(type?: string) {
@@ -77,7 +74,9 @@ function Accordion({
 }: {
   items: { id: string; title: string; body: string }[];
 }) {
-  const [open, setOpen] = useState<string | null>(items[0]?.id ?? null);
+  /* Hepsi kapalı başlıyor: ilk bölüm açık gelince uzun açıklama sayfayı
+     yine duvara çeviriyordu. */
+  const [open, setOpen] = useState<string | null>(null);
 
   return (
     <div className="divide-y divide-black/10 border-y border-black/10">
@@ -236,11 +235,16 @@ function NotifyForm() {
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="E-posta"
-        className="flex-1 border border-black/20 px-3 py-2 text-[13px] outline-none"
+        placeholder="Your email"
+        className="min-w-0 flex-1 px-3 py-2.5 text-[13px] outline-none"
+        style={{ border: "1px solid rgba(20,17,15,0.25)", color: "var(--lx-ink)" }}
       />
-      <button type="submit" className="sg-btn !px-4 !py-2 text-[11px]">
-        Haber Ver
+      <button
+        type="submit"
+        className="shrink-0 px-5 uppercase tracking-[0.14em]"
+        style={{ background: "var(--lx-ink)", color: "#fff", fontFamily: "var(--font-owners)", fontSize: "11px" }}
+      >
+        Notify me
       </button>
     </form>
   );
@@ -358,7 +362,7 @@ export function SlickProductDetail({
           </Link>
           <span className="mx-2">/</span>
           <Link href={productTypeHref(product.productType)} className="hover:text-black">
-            {product.productType || "Ürünler"}
+            {product.productType || "Products"}
           </Link>
           <span className="mx-2">/</span>
           <span className="text-black">{product.title}</span>
@@ -373,7 +377,8 @@ export function SlickProductDetail({
             onSelect={setActiveImage}
           />
 
-          <div className="lg:sticky lg:top-[calc(var(--sg-promo-h)+var(--sg-header-h)+1rem)] lg:self-start">
+          <div className="lg:sticky lg:top-[calc(var(--sg-header-h)+1.5rem)] lg:self-start">
+            {product.productType ? <p className="lx-eyebrow mb-3">{product.productType}</p> : null}
             <h1
               className="uppercase"
               style={{
@@ -391,9 +396,15 @@ export function SlickProductDetail({
 
             <div className="mt-4 flex flex-wrap items-center gap-3">
               {compareAt ? (
-                <span className="sg-nav text-[13px] text-[#888] line-through">{formatTry(compareAt)}</span>
+                <span className="text-[14px] line-through" style={{ color: "rgba(20,17,15,0.45)" }}>
+                  {formatMoney(compareAt, product.currencyCode)}
+                </span>
               ) : null}
-              <span className="sg-price text-[22px]">{formatTry(price)}</span>
+              <span
+                style={{ fontFamily: "var(--font-owners-black)", fontWeight: 900, fontSize: "26px", color: "var(--lx-ink)" }}
+              >
+                {formatMoney(price, product.currencyCode)}
+              </span>
               {discount ? (
                 <span className="bg-[var(--sg-red)] px-2 py-1 text-[10px] font-bold tracking-wide text-white">
                   -%{discount}
@@ -401,18 +412,13 @@ export function SlickProductDetail({
               ) : null}
             </div>
 
-            <div className="mt-5">
-              <p className={`sg-body text-[#333] ${descOpen ? "" : "line-clamp-3"}`}>{plain}</p>
-              {plain.length > shortDesc.length && (
-                <button
-                  type="button"
-                  className="sg-nav mt-2 text-[11px] underline"
-                  onClick={() => setDescOpen((v) => !v)}
-                >
-                  {descOpen ? "Daha az göster" : "Devamını oku"}
-                </button>
-              )}
-            </div>
+            {/* Üstte yalnızca iki satır: tamamı aşağıdaki "Details" bölümünde.
+                Ham Shopify metni burada duvar gibi duruyordu. */}
+            {plain ? (
+              <p className="mt-5 line-clamp-2 text-[15px] leading-relaxed" style={{ color: "rgba(20,17,15,0.7)" }}>
+                {plain}
+              </p>
+            ) : null}
 
             {/* Varyant seçiciler */}
             {options.map((opt) => {
@@ -461,12 +467,12 @@ export function SlickProductDetail({
             })}
 
             {/* Adet */}
-            <div className="mt-8 flex max-w-xs items-center border border-black">
+            <div className="mt-8 flex max-w-[200px] items-center" style={{ border: "1px solid rgba(20,17,15,0.25)" }}>
               <button
                 type="button"
                 className="px-4 py-3 text-[16px]"
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
-                aria-label="Azalt"
+                aria-label="Decrease"
               >
                 −
               </button>
@@ -475,7 +481,7 @@ export function SlickProductDetail({
                 type="button"
                 className="px-4 py-3 text-[16px]"
                 onClick={() => setQty((q) => q + 1)}
-                aria-label="Artır"
+                aria-label="Increase"
               >
                 +
               </button>
@@ -485,13 +491,20 @@ export function SlickProductDetail({
               ref={ctaRef}
               type="button"
               disabled={!inStock || adding}
-              className="sg-btn mt-4 flex w-full items-center justify-center gap-2 !py-4"
+              className="mt-4 flex w-full items-center justify-center gap-2 uppercase tracking-[0.16em] disabled:cursor-not-allowed disabled:opacity-40"
+              style={{
+                minHeight: 56,
+                background: inStock ? "var(--sg-red)" : "var(--lx-ink)",
+                color: "#fff",
+                fontFamily: "var(--font-owners)",
+                fontSize: "12px",
+              }}
               onClick={onAdd}
             >
               {adding ? (
                 <>
                   <Spinner />
-                  Ekleniyor…
+                  Adding…
                 </>
               ) : inStock ? (
                 "Add to cart"
@@ -501,46 +514,13 @@ export function SlickProductDetail({
             </button>
             {!inStock ? <NotifyForm /> : null}
 
-            {/* Trust row */}
-            <div className="mt-8 grid grid-cols-3 gap-3 border-y border-black/10 py-5">
-              <TrustItem
-                label="Fast shipping"
-                icon={
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M3 7h11v10H3V7z" />
-                    <path d="M14 10h4l3 3v4h-7v-7z" />
-                    <circle cx="7" cy="18" r="1.5" />
-                    <circle cx="17" cy="18" r="1.5" />
-                  </svg>
-                }
-              />
-              <TrustItem
-                label="Easy returns"
-                icon={
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M4 12a8 8 0 1 0 2.3-5.7" strokeLinecap="round" />
-                    <path d="M4 5v4h4" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                }
-              />
-              <TrustItem
-                label="Secure checkout"
-                icon={
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <rect x="4" y="10" width="16" height="10" rx="1" />
-                    <path d="M8 10V8a4 4 0 0 1 8 0v2" />
-                  </svg>
-                }
-              />
-            </div>
-
             <div className="mt-2">
               <Accordion
                 items={[
+                  { id: "details", title: "Details", body: plain },
                   { id: "usage", title: "How to use", body: sections.usage },
                   { id: "ingredients", title: "Ingredients", body: sections.ingredients },
-                  { id: "shipping", title: "Shipping & returns", body: sections.shipping },
-                ]}
+                ].filter((b) => b.body.trim().length > 0)}
               />
             </div>
           </div>
@@ -603,7 +583,7 @@ export function SlickProductDetail({
               </div>
               <div className="min-w-0 flex-1">
                 <p className="sg-product-title truncate text-[11px]">{product.title}</p>
-                <p className="sg-price text-[14px]">{formatTry(price)}</p>
+                <p className="sg-price text-[14px]">{formatMoney(price, product.currencyCode)}</p>
               </div>
               <button
                 type="button"
