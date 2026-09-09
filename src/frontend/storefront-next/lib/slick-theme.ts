@@ -195,6 +195,7 @@ export const FOOTER_COLUMNS = [
       { label: "How to use", href: "/how-to-use" },
       { label: "Wholesale", href: "/wholesale" },
       { label: "Barber registration", href: "/professional" },
+      { label: "Ambassadors", href: "/ambassador" },
     ],
   },
   {

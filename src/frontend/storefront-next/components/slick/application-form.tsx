@@ -29,7 +29,7 @@ const ORTAK: Alan[] = [
   { ad: "phone", etiket: "Phone", tur: "tel" },
 ];
 
-const ALANLAR: Record<"barber" | "wholesale", Alan[]> = {
+const ALANLAR: Record<"barber" | "wholesale" | "ambassador", Alan[]> = {
   barber: [
     ...ORTAK,
     { ad: "business", etiket: "Shop name", zorunlu: true },
@@ -39,6 +39,16 @@ const ALANLAR: Record<"barber" | "wholesale", Alan[]> = {
     { ad: "website", etiket: "Website or Instagram", genis: true },
     { ad: "message", etiket: "Anything else?", genis: true, cokSatir: true },
   ],
+  ambassador: [
+    ...ORTAK,
+    { ad: "website", etiket: "Instagram / TikTok / YouTube", zorunlu: true, genis: true },
+    { ad: "audience", etiket: "Followers", ipucu: "Across your main platform" },
+    { ad: "focus", etiket: "What do you post?", ipucu: "Barbering, grooming, lifestyle…" },
+    { ad: "city", etiket: "City" },
+    { ad: "country", etiket: "Country" },
+    { ad: "message", etiket: "Tell us about you", genis: true, cokSatir: true },
+  ],
+
   wholesale: [
     ...ORTAK,
     { ad: "business", etiket: "Company name", zorunlu: true },
@@ -51,7 +61,7 @@ const ALANLAR: Record<"barber" | "wholesale", Alan[]> = {
   ],
 };
 
-export function ApplicationForm({ type }: { type: "barber" | "wholesale" }) {
+export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "ambassador" }) {
   const [veri, setVeri] = useState<Record<string, string>>({});
   const [durum, setDurum] = useState<"bos" | "gonderiliyor" | "tamam" | "hata">("bos");
   const [hata, setHata] = useState("");

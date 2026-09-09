@@ -15,6 +15,7 @@ import { NextResponse } from "next/server";
 const TURLER = {
   barber: { etiket: "barber", baslik: "Barber / professional application" },
   wholesale: { etiket: "wholesale", baslik: "Wholesale / distributor application" },
+  ambassador: { etiket: "ambassador", baslik: "Ambassador / creator application" },
 } as const;
 
 type Tur = keyof typeof TURLER;
@@ -54,6 +55,8 @@ export async function POST(request: Request) {
     ["City", govde.city ?? ""],
     ["Phone", govde.phone ?? ""],
     ["Monthly volume", govde.volume ?? ""],
+    ["Audience / following", govde.audience ?? ""],
+    ["Content focus", govde.focus ?? ""],
     ["Message", govde.message ?? ""],
   ];
   const not = alanlar
