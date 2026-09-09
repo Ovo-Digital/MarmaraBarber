@@ -30,6 +30,7 @@ type AramaOnerisi = {
   currencyCode: string;
   imageUrl: string | null;
   availableForSale: boolean;
+  variantId: string | null;
 };
 
 /** Menüyü besleyen koleksiyon — Shopify'dan gelir, kodda sabit değildir. */
@@ -199,6 +200,8 @@ export function SlickHeader({
   const aramaAlaniRef = useRef<HTMLInputElement | null>(null);
   const [oneriler, setOneriler] = useState<AramaOnerisi[]>([]);
   const [araniyor, setAraniyor] = useState(false);
+  const [eklenen, setEklenen] = useState<string | null>(null);
+  const add = useShopifyCartStore((s) => s.add);
   const [accordion, setAccordion] = useState<string | null>(null);
   const [q, setQ] = useState("");
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -676,19 +679,19 @@ export function SlickHeader({
                 <>
                   <ul className="m-0 list-none p-0">
                     {oneriler.map((urun) => (
-                      <li key={urun.handle}>
+                      <li key={urun.handle} className="flex items-center gap-2 rounded-2xl pr-2 transition-colors hover:bg-white/10">
                         <Link
                           href={`/products/${urun.handle}`}
                           onClick={() => {
                             setSearchOpen(false);
                             setQ("");
                           }}
-                          className="flex items-center gap-4 rounded-2xl px-3 py-2.5 transition-colors hover:bg-white/10"
+                          className="flex min-w-0 flex-1 items-center gap-4 px-3 py-2.5"
                         >
-                          <span className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-white">
+                          <span className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-white">
                             {urun.imageUrl ? (
                               // eslint-disable-next-line @next/next/no-img-element
-                              <img src={urun.imageUrl} alt="" className="h-full w-full object-contain p-1" />
+                              <img src={urun.imageUrl} alt="" className="h-full w-full object-contain p-1.5" />
                             ) : null}
                           </span>
                           <span className="min-w-0 flex-1">
@@ -697,6 +700,12 @@ export function SlickHeader({
                               style={{ fontFamily: "var(--font-owners-black)", color: "#fff" }}
                             >
                               {urun.title}
+                            </span>
+                            <span
+                              className="mt-1 block text-[13px]"
+                              style={{ fontFamily: "var(--font-owners-black)", color: "rgba(255,255,255,.85)" }}
+                            >
+                              {formatMoney(urun.price, urun.currencyCode)}
                             </span>
                             {!urun.availableForSale ? (
                               <span
@@ -707,13 +716,51 @@ export function SlickHeader({
                               </span>
                             ) : null}
                           </span>
-                          <span
-                            className="shrink-0 text-[13px]"
-                            style={{ fontFamily: "var(--font-owners-black)", color: "#fff" }}
-                          >
-                            {formatMoney(urun.price, urun.currencyCode)}
-                          </span>
                         </Link>
+
+                        {/* Sepete ekle — listeden çıkmadan */}
+                        <button
+                          type="button"
+                          disabled={!urun.availableForSale || !urun.variantId}
+                          aria-label={
+                            urun.availableForSale ? `Add ${urun.title} to cart` : "Sold out"
+                          }
+                          title={urun.availableForSale ? "Add to cart" : "Sold out"}
+                          onClick={() => {
+                            if (!urun.availableForSale || !urun.variantId) return;
+                            /* Sepet doğrudan varyant kimliğiyle çalışıyor; öneri
+                               listesinde tam ürün nesnesi taşımaya gerek yok. */
+                            add(
+                              {
+                                id: urun.handle,
+                                handle: urun.handle,
+                                title: urun.title,
+                                description: "",
+                                price: urun.price,
+                                currencyCode: urun.currencyCode,
+                                availableForSale: urun.availableForSale,
+                                imageUrl: urun.imageUrl ?? undefined,
+                                variants: [],
+                              },
+                              1,
+                              urun.variantId,
+                            );
+                            setEklenen(urun.handle);
+                            setTimeout(
+                              () => setEklenen((h) => (h === urun.handle ? null : h)),
+                              1600,
+                            );
+                          }}
+                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-transform active:scale-95 disabled:opacity-30"
+                          style={{
+                            background: eklenen === urun.handle ? "var(--sg-red)" : "rgba(255,255,255,.14)",
+                            color: "#fff",
+                          }}
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+                            {eklenen === urun.handle ? <path d="M20 6 9 17l-5-5" /> : <path d="M12 5v14M5 12h14" />}
+                          </svg>
+                        </button>
                       </li>
                     ))}
                   </ul>

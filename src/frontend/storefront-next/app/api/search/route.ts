@@ -26,6 +26,8 @@ export async function GET(request: Request) {
         currencyCode: p.currencyCode,
         imageUrl: p.imageUrl ?? null,
         availableForSale: p.availableForSale,
+        /* Sepete ekleme doğrudan varyant üzerinden yapılıyor */
+        variantId: p.variants[0]?.id ?? null,
       })),
     });
   } catch {
