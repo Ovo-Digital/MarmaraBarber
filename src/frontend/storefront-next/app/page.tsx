@@ -87,16 +87,16 @@ export default async function HomePage() {
       {/* Beyaz — koyu hero'dan sonra sayfa nefes alsın */}
       <EssentialsSection products={essentials} />
 
-      {/* Promosyon bandı — metinler ve görsel buradan yönetilir, kodda sabit değil */}
+      {/* İçerik bandı — satışa değil, kılavuzlara ve topluluğa götürüyor */}
       <PromoBanner
-        eyebrow="Since 1970"
-        headline="Built for the chair."
+        eyebrow="Guides & community"
+        headline="Learn the craft."
         subline={[
-          "Professional grooming products, trusted by barbers since 1970.",
-          "Cologne, styling, skin and beard care.",
+          "How every product is used, straight from the chair.",
+          "Technique, routines and the barbers behind them.",
         ]}
-        ctaLabel="Shop now"
-        ctaHref="/products"
+        ctaLabel="Explore"
+        ctaHref="/how-to-use"
       />
 
       {/* Beyaz — iki koyu bölümün arasında ürün şeridi */}
