@@ -89,8 +89,6 @@ export function AccountPageClient() {
 
   if (!customer) return null;
 
-  const isim = [customer.firstName, customer.lastName].filter(Boolean).join(" ");
-
   return (
     <div className="bg-white">
       <div

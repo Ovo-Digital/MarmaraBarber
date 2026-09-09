@@ -21,7 +21,14 @@ import { HOME_REEL_MEDIA } from "@/lib/slick-theme";
 export const revalidate = 300;
 
 export default async function HomePage() {
-  const heroSlides = await storefrontGetHeroSlides(6);
+  /* Shopify'a ulaşılamazsa sayfa ÇÖKMEMELİ. Anahtarları olmayan bir ortamda
+     (ör. CI) derleme bu satırda patlıyordu; diğer çağrılar zaten korumalıydı. */
+  let heroSlides: Awaited<ReturnType<typeof storefrontGetHeroSlides>> = [];
+  try {
+    heroSlides = await storefrontGetHeroSlides(6);
+  } catch {
+    heroSlides = [];
+  }
 
   // "Öne çıkanlar" şeridi Shopify'ın en çok satanlarından; bağlantı kurulamazsa
   // sayfa o bölüm olmadan açılır, çökmez.

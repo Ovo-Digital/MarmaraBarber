@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SlickProductCard } from "@/components/slick/product-card";
-import { formatTry } from "@/lib/marmara-catalog";
 import {
   EMPTY_PLP_FILTERS,
   activeFilterChips,

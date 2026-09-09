@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { formatTry } from "@/lib/marmara-catalog";
+import { formatMoney } from "@/lib/money";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import type { Product } from "@/types/commerce";
 import { useUiStore } from "@/store/ui-store";
@@ -28,8 +28,6 @@ export type ReelItem = {
  * lib/slick-theme.ts'teki listeye yazıldıkça kartlar kendiliğinden videoya döner.
  */
 
-/** Yan kartların ortadan ne kadar taşacağı (kendi genişliğinin oranı) */
-const YAN_KAYMA = 70;
 
 const mod = (n: number, m: number) => ((n % m) + m) % m;
 
@@ -138,7 +136,7 @@ export function ActionReel({
                         className="block text-[12px] leading-tight sm:text-[13px]"
                         style={{ fontFamily: "var(--font-owners-black)", color: "var(--lx-ink)" }}
                       >
-                        {formatTry(p.price)}
+                        {formatMoney(p.price, p.currencyCode)}
                       </span>
                     </span>
                   </Link>

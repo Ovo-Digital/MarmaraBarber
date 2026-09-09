@@ -8,7 +8,6 @@ import {
   useMemo,
   useRef,
   useState,
-  type ReactNode,
 } from "react";
 import { ProductCarousel } from "@/components/slick/product-carousel";
 import { SlickProductCard } from "@/components/slick/product-card";
@@ -297,7 +296,6 @@ export function SlickProductDetail({
   const [activeImage, setActiveImage] = useState(0);
   const [qty, setQty] = useState(1);
   const [adding, setAdding] = useState(false);
-  const [descOpen, setDescOpen] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(true);
   const ctaRef = useRef<HTMLButtonElement>(null);
 
@@ -320,8 +318,6 @@ export function SlickProductDetail({
       .replace(/\s+/g, " ")
       .trim() || product.description;
   }, [descriptionHtml, product.description]);
-
-  const shortDesc = plain.slice(0, 180);
   const sections = useMemo(() => extractSections(descriptionHtml || "", plain), [descriptionHtml, plain]);
 
   // Varyant görseline geç
@@ -632,14 +628,6 @@ export function SlickProductDetail({
   );
 }
 
-function TrustItem({ icon, label }: { icon: ReactNode; label: string }) {
-  return (
-    <div className="flex flex-col items-center gap-1.5 text-center text-[#222]">
-      {icon}
-      <span className="sg-nav text-[9px] leading-tight text-[#444]">{label}</span>
-    </div>
-  );
-}
 
 function Spinner() {
   return (
