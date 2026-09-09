@@ -6,6 +6,7 @@ import { MAIN_NAV, SITE_NAME } from "@/lib/slick-theme";
 import { useAuthStore } from "@/store/auth-store";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useUiStore } from "@/store/ui-store";
+import { formatMoney } from "@/lib/money";
 
 /**
  * Hap nav'ın altında açılan kategori paneli — numaralı indeks.
@@ -21,6 +22,16 @@ import { useUiStore } from "@/store/ui-store";
  * sabit yazılı DEĞİL) — başka bir mağazaya bağlandığında kendi kategorileri
  * listelenir.
  */
+/** Header aramasının açılır listesinde gösterilen ürün */
+type AramaOnerisi = {
+  handle: string;
+  title: string;
+  price: number;
+  currencyCode: string;
+  imageUrl: string | null;
+  availableForSale: boolean;
+};
+
 /** Menüyü besleyen koleksiyon — Shopify'dan gelir, kodda sabit değildir. */
 export type NavCollection = {
   handle: string;
@@ -186,6 +197,8 @@ export function SlickHeader({
   const [searchOpen, setSearchOpen] = useState(false);
   const [hesapAcik, setHesapAcik] = useState(false);
   const aramaAlaniRef = useRef<HTMLInputElement | null>(null);
+  const [oneriler, setOneriler] = useState<AramaOnerisi[]>([]);
+  const [araniyor, setAraniyor] = useState(false);
   const [accordion, setAccordion] = useState<string | null>(null);
   const [q, setQ] = useState("");
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -226,7 +239,43 @@ export function SlickHeader({
   /** Arama açılınca imleci alana koy — alan hep DOM'da olduğu için autoFocus yok */
   useEffect(() => {
     if (searchOpen) aramaAlaniRef.current?.focus();
+    if (!searchOpen) setOneriler([]);
   }, [searchOpen]);
+
+  /**
+   * Yazdıkça öneri getir.
+   *
+   * Her tuşta istek atmıyoruz: 220ms yazmaya ara verilince gidiyor. Yanıtlar
+   * sırasız dönebildiği için, istek eskimişse sonucu yazmıyoruz — yoksa hızlı
+   * yazarken eski aramanın sonucu ekranda kalabiliyor.
+   */
+  useEffect(() => {
+    const terim = q.trim();
+    if (!searchOpen || terim.length < 2) {
+      setOneriler([]);
+      setAraniyor(false);
+      return;
+    }
+
+    let iptal = false;
+    setAraniyor(true);
+    const zaman = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/search?q=${encodeURIComponent(terim)}`);
+        const veri = (await res.json()) as { products: AramaOnerisi[] };
+        if (!iptal) setOneriler(veri.products ?? []);
+      } catch {
+        if (!iptal) setOneriler([]);
+      } finally {
+        if (!iptal) setAraniyor(false);
+      }
+    }, 220);
+
+    return () => {
+      iptal = true;
+      clearTimeout(zaman);
+    };
+  }, [q, searchOpen]);
 
   /**
    * Arama açıkken imleç hapın dışına çıkar ve hiçbir şey yazılmamışsa kapat.
@@ -250,8 +299,20 @@ export function SlickHeader({
         e.clientY > r.bottom + pay;
       if (disarida) setSearchOpen(false);
     };
+    /* Yazı yazıldıysa imleç kuralı kapatmıyor; o durumda dışarı tıklamak
+       kapatma yolu oluyor. */
+    const disariTikla = (e: MouseEvent) => {
+      if (headerRef.current?.contains(e.target as Node)) return;
+      setSearchOpen(false);
+      setQ("");
+    };
+
     document.addEventListener("pointermove", izle);
-    return () => document.removeEventListener("pointermove", izle);
+    document.addEventListener("mousedown", disariTikla);
+    return () => {
+      document.removeEventListener("pointermove", izle);
+      document.removeEventListener("mousedown", disariTikla);
+    };
   }, [searchOpen, q]);
 
   /**
@@ -507,7 +568,12 @@ export function SlickHeader({
               setHesapAcik(false);
               setSearchOpen(true);
             }}
-            onClick={() => setSearchOpen((v) => !v)}
+            /* Tıklama her zaman AÇAR. Önceden değiştirici (toggle) idi: imleç
+               gelince açılıyor, hemen ardından tıklayınca kapanıyordu. */
+            onClick={() => {
+              setSearchOpen(true);
+              aramaAlaniRef.current?.focus();
+            }}
           >
             <SearchIcon />
           </button>
@@ -585,6 +651,94 @@ export function SlickHeader({
           </button>
         </form>
       </div>
+
+      {searchOpen && q.trim().length >= 2 && (
+        <div className="absolute inset-x-0 top-full z-50">
+          <div className="px-3 pt-2 sm:px-4 sm:pt-3">
+            <div
+              className="mx-auto w-full max-w-[760px] overflow-hidden rounded-[24px] p-3"
+              style={{
+                background: "rgba(16,14,13,0.94)",
+                backdropFilter: "blur(24px) saturate(130%)",
+                WebkitBackdropFilter: "blur(24px) saturate(130%)",
+                border: "1px solid rgba(255,255,255,0.12)",
+                boxShadow: "0 28px 70px rgba(0,0,0,0.55)",
+              }}
+            >
+              {oneriler.length === 0 ? (
+                <p
+                  className="px-4 py-6 text-center text-[12px] uppercase tracking-[0.14em]"
+                  style={{ color: "rgba(255,255,255,0.5)" }}
+                >
+                  {araniyor ? "Searching…" : "No results"}
+                </p>
+              ) : (
+                <>
+                  <ul className="m-0 list-none p-0">
+                    {oneriler.map((urun) => (
+                      <li key={urun.handle}>
+                        <Link
+                          href={`/products/${urun.handle}`}
+                          onClick={() => {
+                            setSearchOpen(false);
+                            setQ("");
+                          }}
+                          className="flex items-center gap-4 rounded-2xl px-3 py-2.5 transition-colors hover:bg-white/10"
+                        >
+                          <span className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-white">
+                            {urun.imageUrl ? (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img src={urun.imageUrl} alt="" className="h-full w-full object-contain p-1" />
+                            ) : null}
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span
+                              className="block truncate text-[13px]"
+                              style={{ fontFamily: "var(--font-owners-black)", color: "#fff" }}
+                            >
+                              {urun.title}
+                            </span>
+                            {!urun.availableForSale ? (
+                              <span
+                                className="mt-0.5 block text-[10px] uppercase tracking-[0.14em]"
+                                style={{ color: "rgba(255,255,255,0.45)" }}
+                              >
+                                Sold out
+                              </span>
+                            ) : null}
+                          </span>
+                          <span
+                            className="shrink-0 text-[13px]"
+                            style={{ fontFamily: "var(--font-owners-black)", color: "#fff" }}
+                          >
+                            {formatMoney(urun.price, urun.currencyCode)}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    href={`/search?q=${encodeURIComponent(q.trim())}`}
+                    onClick={() => {
+                      setSearchOpen(false);
+                      setQ("");
+                    }}
+                    className="mt-2 flex items-center justify-center rounded-2xl py-3 text-[11px] uppercase tracking-[0.16em]"
+                    style={{
+                      background: "var(--sg-red)",
+                      color: "#fff",
+                      fontFamily: "var(--font-owners)",
+                    }}
+                  >
+                    See all results
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {shopOpen && (
         <div
