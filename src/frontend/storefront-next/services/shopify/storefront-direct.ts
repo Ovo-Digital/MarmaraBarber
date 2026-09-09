@@ -688,3 +688,52 @@ export async function storefrontGetCollectionIndex(limit = 14): Promise<Collecti
     count: r.count,
   }));
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Kullanım kılavuzu — /how-to-use sayfası
+   Açıklamasında "nasıl kullanılır" bölümü OLAN ürünler. Metin uydurulmuyor;
+   bölümü olmayan ürün listelenmiyor.
+   ────────────────────────────────────────────────────────────────────────── */
+export type KullanimKarti = {
+  handle: string;
+  title: string;
+  productType: string;
+  imageUrl: string;
+  usage: string;
+};
+
+export async function storefrontGetUsageGuides(first = 250): Promise<KullanimKarti[]> {
+  const { kullanimMetni } = await import("@/lib/urun-metni");
+  const client = createShopifyClient();
+  const data = await client.request<{
+    products: {
+      edges: {
+        node: {
+          handle: string;
+          title: string;
+          productType: string | null;
+          description: string;
+          featuredImage: { url: string } | null;
+        };
+      }[];
+    };
+  }>(
+    `query($first:Int!){
+      products(first:$first){
+        edges { node { handle title productType description featuredImage { url } } }
+      }
+    }`,
+    { first },
+  );
+
+  return data.products.edges
+    .map((e) => e.node)
+    .map((n) => ({
+      handle: n.handle,
+      title: n.title,
+      productType: n.productType?.trim() || "Other",
+      imageUrl: n.featuredImage?.url ?? "",
+      usage: kullanimMetni(n.description ?? ""),
+    }))
+    .filter((k) => k.usage.length > 0 && k.imageUrl.length > 0);
+}

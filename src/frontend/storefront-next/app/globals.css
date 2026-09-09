@@ -1036,3 +1036,15 @@ a {
 }
 .lx-oneri-sepet:disabled { opacity: .3; }
 .lx-oneri-sepet--eklendi { background: var(--sg-red); }
+
+/* Ürün detayında serinin diğer ürünleri — renk seçici gibi kareler */
+.lx-seri-kare {
+  border: 1px solid rgba(20, 17, 15, 0.18);
+  transition: border-color 200ms var(--lx-ease), transform 200ms var(--lx-ease);
+}
+@media (hover: hover) {
+  .lx-seri-kare:hover {
+    border-color: var(--sg-red);
+    transform: translateY(-2px);
+  }
+}

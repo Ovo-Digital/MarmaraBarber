@@ -70,7 +70,7 @@ export const MAIN_NAV: NavItem[] = [
     ],
   },
   { label: "BUNDLE & SAVE", href: "/collections/paketler" },
-  { label: "WHOLESALE", href: "/hakkimizda" },
+  { label: "WHOLESALE", href: "/wholesale" },
   { label: "ABOUT", href: "/hakkimizda" },
   { label: "CONTACT", href: "/iletisim" },
 ];
@@ -190,7 +190,9 @@ export const FOOTER_COLUMNS = [
       { label: "All products", href: "/products" },
       { label: "Collections", href: "/collections" },
       { label: "Find your formula", href: "/finder" },
-      { label: "Wholesale", href: "/hakkimizda" },
+      { label: "How to use", href: "/how-to-use" },
+      { label: "Wholesale", href: "/wholesale" },
+      { label: "Barber registration", href: "/professional" },
     ],
   },
   {

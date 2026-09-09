@@ -254,12 +254,17 @@ export function SlickProductDetail({
   product,
   images,
   descriptionHtml,
+  series = [],
+  seriesLabel,
   crossSell,
   related,
 }: {
   product: Product;
   images: string[];
   descriptionHtml?: string;
+  /** Serinin diğer ürünleri — küçük görsellerle, renk seçici gibi */
+  series?: Product[];
+  seriesLabel?: string;
   crossSell: Product[];
   related: Product[];
 }) {
@@ -466,6 +471,32 @@ export function SlickProductDetail({
               );
             })}
 
+            {/* Serinin diğer ürünleri — tekstildeki renk seçici gibi */}
+            {series.length > 0 ? (
+              <div className="mt-8">
+                <p className="mb-3 text-[11px] uppercase tracking-[0.14em]" style={{ color: "rgba(20,17,15,0.55)", fontFamily: "var(--font-owners)" }}>
+                  More in {seriesLabel ?? "this range"}
+                  <span style={{ color: "rgba(20,17,15,0.35)" }}> · {series.length}</span>
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {series.map((p) => (
+                    <Link
+                      key={p.handle}
+                      href={`/products/${p.handle}`}
+                      title={p.title}
+                      aria-label={p.title}
+                      className="lx-seri-kare block h-16 w-16 overflow-hidden bg-white"
+                    >
+                      {p.imageUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={p.imageUrl} alt="" className="h-full w-full object-contain p-1" />
+                      ) : null}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
             {/* Adet */}
             <div className="mt-8 flex max-w-[200px] items-center" style={{ border: "1px solid rgba(20,17,15,0.25)" }}>
               <button
@@ -529,7 +560,7 @@ export function SlickProductDetail({
         {/* 3. Cross-sell */}
         {crossSell.length > 0 && (
           <section className="mt-16 border-t border-black/10 pt-12">
-            <h2 className="sg-section-title mb-8">Frequently bought together</h2>
+            <h2 className="sg-section-title mb-8">Pairs well with</h2>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               {crossSell.map((p) => (
                 <SlickProductCard key={p.id} product={p} />

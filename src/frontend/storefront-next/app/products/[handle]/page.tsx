@@ -59,13 +59,32 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const digerleri = havuz.filter((p) => p.handle !== handle);
 
+  /* Serinin diğer ürünleri: aynı ürün tipinden. Tekstildeki renk seçici gibi
+     küçük görsellerle, alım alanının hemen altında gösteriliyor. */
+  const seri = digerleri.filter((p) => p.productType === productType).slice(0, 12);
+
+  /* Birlikte kullanılanlar: BAŞKA bir ürün tipinden olmalı. Aynı tipten ürün
+     "birlikte kullanılan" değil, alternatiftir. */
+  let birlikte: Product[] = [];
+  try {
+    const genel = await storefrontGetBestSellers(24);
+    birlikte = genel
+      .filter((p) => p.handle !== handle && p.productType && p.productType !== productType)
+      .filter((p, i, hepsi) => hepsi.findIndex((x) => x.productType === p.productType) === i)
+      .slice(0, 4);
+  } catch {
+    birlikte = [];
+  }
+
   return (
     <SlickProductDetail
       product={product}
       images={images}
       descriptionHtml={descriptionHtml}
-      crossSell={digerleri.slice(0, 4)}
-      related={digerleri.length > 4 ? digerleri.slice(4, 12) : digerleri.slice(0, 8)}
+      series={seri}
+      seriesLabel={productType ?? undefined}
+      crossSell={birlikte}
+      related={digerleri.slice(0, 8)}
     />
   );
 }
