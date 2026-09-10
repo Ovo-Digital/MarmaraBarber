@@ -15,7 +15,8 @@ import { useEffect, useState } from "react";
  * gerekiyor; sadece adres değişimini dinlemek buna yetmiyor.
  */
 
-const KAPANMA_MS = 420;
+/* Perde kapanma süresi: gezinme bu kadar geciktiği için kısa tutuldu */
+const KAPANMA_MS = 300;
 const ACILMA_MS = 560;
 
 type Durum = "bos" | "kapaniyor" | "aciliyor";
