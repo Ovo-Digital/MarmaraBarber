@@ -15,6 +15,8 @@ export const DEMO_MUSTERI: Customer = {
   firstName: "Demo",
   lastName: "User",
   phone: "555-000-00-00",
+  // Geliştirmede /wholesale ortak panelini görebilmek için
+  tags: ["wholesale-partner"],
   addresses: [
     {
       id: "gid://demo/Address/1",

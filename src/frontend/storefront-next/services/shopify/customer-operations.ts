@@ -29,6 +29,7 @@ function mapCustomer(node: Record<string, unknown>): Customer {
     firstName: node.firstName as string | undefined,
     lastName: node.lastName as string | undefined,
     phone: node.phone as string | undefined,
+    tags: Array.isArray(node.tags) ? (node.tags as string[]) : [],
     defaultAddress: defaultAddress ? mapAddress(defaultAddress) : undefined,
     addresses: addresses.map((e) => mapAddress(e.node)),
     orders: orders.map((e) => {
@@ -95,7 +96,7 @@ export async function customerGet(client: GraphQLClient, accessToken: string): P
   const data = await client.request<{ customer: Record<string, unknown> | null }>(
     `query($token:String!){
       customer(customerAccessToken:$token){
-        id email firstName lastName phone
+        id email firstName lastName phone tags
         defaultAddress { id firstName lastName company address1 address2 city province zip country phone }
         addresses(first:20){ edges { node { id firstName lastName company address1 address2 city province zip country phone } } }
         orders(first:10,sortKey:PROCESSED_AT,reverse:true){

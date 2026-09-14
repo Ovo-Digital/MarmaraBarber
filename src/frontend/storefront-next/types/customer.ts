@@ -28,6 +28,8 @@ export interface Customer {
   firstName?: string;
   lastName?: string;
   phone?: string;
+  /** Shopify müşteri etiketleri — onaylı toptan ortak kontrolü için */
+  tags?: string[];
   defaultAddress?: CustomerAddress;
   addresses: CustomerAddress[];
   orders: CustomerOrder[];

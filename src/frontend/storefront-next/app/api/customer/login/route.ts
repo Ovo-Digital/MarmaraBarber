@@ -28,6 +28,12 @@ export async function POST(req: NextRequest) {
     setCustomerTokenCookie(response, accessToken, expiresAt);
     return response;
   } catch (error) {
+    // Shopify yanlış e-posta/şifrede "Unidentified customer" döndürüyor;
+    // ziyaretçiye bu ham mesaj yerine anlaşılır bir cümle gösteriliyor.
+    const mesaj = error instanceof Error ? error.message : "";
+    if (/unidentified customer/i.test(mesaj)) {
+      return apiError(new Error("Email or password is incorrect."), 401);
+    }
     return apiError(error, 401);
   }
 }

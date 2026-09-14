@@ -590,6 +590,7 @@ export function SlickHeader({
                       : [
                           { etiket: "Sign in", href: "/login" },
                           { etiket: "Create account", href: "/uye-ol" },
+                          { etiket: "Wholesale partner login", href: "/wholesale?tab=login#portal" },
                         ]
                     ).map((satir) => (
                       <li key={satir.href}>

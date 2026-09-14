@@ -1374,3 +1374,20 @@ a {
   .lx-sohbet-panel { animation: none; }
   .lx-sohbet-yaziyor span { animation: none; }
 }
+
+/* ── Wholesale: sekmeler ve avantaj kartları ───────────────────────────── */
+.lx-sekmeler { display: flex; justify-content: center; gap: 0; border-bottom: 1px solid rgba(20, 17, 15, 0.14); }
+.lx-sekme {
+  position: relative; padding: 14px 22px;
+  font-family: var(--font-owners); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(20, 17, 15, 0.5); transition: color 200ms var(--lx-ease);
+}
+.lx-sekme::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: var(--sg-red); transform: scaleX(0); transition: transform 300ms var(--lx-ease);
+}
+.lx-sekme:hover { color: var(--lx-ink); }
+.lx-sekme[aria-selected="true"] { color: var(--lx-ink); }
+.lx-sekme[aria-selected="true"]::after { transform: scaleX(1); }
+.lx-avantaj { transition: background-color 260ms var(--lx-ease); }
+@media (hover: hover) { .lx-avantaj:hover { background: var(--lx-bone); } }
