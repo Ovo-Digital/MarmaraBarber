@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useT } from "@/lib/i18n/dil";
 import { LxEtiket, LxHata, lxAlan, lxAlanStil } from "@/components/slick/auth-form";
 
 /**
@@ -62,6 +63,7 @@ const ALANLAR: Record<"barber" | "wholesale" | "ambassador", Alan[]> = {
 };
 
 export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "ambassador" }) {
+  const t = useT();
   const [veri, setVeri] = useState<Record<string, string>>({});
   const [durum, setDurum] = useState<"bos" | "gonderiliyor" | "tamam" | "hata">("bos");
   const [hata, setHata] = useState("");
@@ -82,13 +84,13 @@ export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "amba
       });
       const cevap = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok || !cevap.ok) {
-        setHata(cevap.error ?? "We couldn't send your application right now.");
+        setHata(cevap.error ? t(cevap.error) : t("We couldn't send your application right now."));
         setDurum("hata");
         return;
       }
       setDurum("tamam");
     } catch {
-      setHata("We couldn't send your application right now.");
+      setHata(t("We couldn't send your application right now."));
       setDurum("hata");
     }
   }
@@ -99,7 +101,7 @@ export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "amba
         className="mx-auto w-full max-w-[640px] px-8 py-14 text-center"
         style={{ border: "1px solid rgba(20,17,15,0.14)" }}
       >
-        <p className="lx-eyebrow mb-3">Application received</p>
+        <p className="lx-eyebrow mb-3">{t("Application received")}</p>
         <h2
           className="uppercase"
           style={{
@@ -109,10 +111,10 @@ export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "amba
             color: "var(--lx-ink)",
           }}
         >
-          Thanks — we&apos;ll be in touch
+          {t("Thanks — we'll be in touch")}
         </h2>
         <p className="mx-auto mt-4 max-w-[46ch] text-[14px]" style={{ color: "rgba(20,17,15,0.6)" }}>
-          We review applications in the order they arrive and reply by email.
+          {t("We review applications in the order they arrive and reply by email.")}
         </p>
       </div>
     );
@@ -124,7 +126,7 @@ export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "amba
         {alanlar.map((a) => (
           <div key={a.ad} className={a.genis ? "sm:col-span-2" : ""}>
             <LxEtiket htmlFor={a.ad} zorunlu={a.zorunlu}>
-              {a.etiket}
+              {t(a.etiket)}
             </LxEtiket>
             {a.cokSatir ? (
               <textarea
@@ -132,7 +134,7 @@ export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "amba
                 rows={4}
                 value={veri[a.ad] ?? ""}
                 onChange={(e) => yaz(a.ad, e.target.value)}
-                placeholder={a.ipucu}
+                placeholder={a.ipucu ? t(a.ipucu) : undefined}
                 className={`${lxAlan} resize-y`}
                 style={lxAlanStil}
               />
@@ -143,7 +145,7 @@ export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "amba
                 required={a.zorunlu}
                 value={veri[a.ad] ?? ""}
                 onChange={(e) => yaz(a.ad, e.target.value)}
-                placeholder={a.ipucu}
+                placeholder={a.ipucu ? t(a.ipucu) : undefined}
                 className={lxAlan}
                 style={lxAlanStil}
               />
@@ -170,11 +172,11 @@ export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "amba
           fontSize: "12px",
         }}
       >
-        {durum === "gonderiliyor" ? "Sending…" : "Submit application"}
+        {durum === "gonderiliyor" ? t("Sending…") : t("Submit application")}
       </button>
 
       <p className="mt-4 text-center text-[12px]" style={{ color: "rgba(20,17,15,0.5)" }}>
-        We only use these details to review your application and get back to you.
+        {t("We only use these details to review your application and get back to you.")}
       </p>
     </form>
   );

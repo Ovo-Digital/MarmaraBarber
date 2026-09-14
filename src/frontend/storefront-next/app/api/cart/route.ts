@@ -13,11 +13,11 @@ async function maybeAttachCustomer(cart: Awaited<ReturnType<typeof cartOps.cartC
 export async function GET(req: NextRequest) {
   try {
     const cartId = req.nextUrl.searchParams.get("cartId");
-    if (!cartId) return apiError(new Error("cartId gerekli"), 400);
+    if (!cartId) return apiError(new Error("cartId is required"), 400);
 
     const client = createShopifyServerClient();
     const cart = await cartOps.cartGet(client, cartId);
-    if (!cart) return apiError(new Error("Sepet bulunamadı"), 404);
+    if (!cart) return apiError(new Error("Cart not found."), 404);
     return apiSuccess(cart);
   } catch (error) {
     return apiError(error, 500);
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
         return apiSuccess(cart);
       }
       case "add": {
-        if (!body.cartId || !body.variantId) return apiError(new Error("cartId ve variantId gerekli"), 400);
+        if (!body.cartId || !body.variantId) return apiError(new Error("cartId and variantId are required"), 400);
         const cart = await maybeAttachCustomer(
           await cartOps.cartAddLine(client, body.cartId, body.variantId, body.quantity ?? 1),
           customerToken
@@ -53,24 +53,24 @@ export async function POST(req: NextRequest) {
       }
       case "update": {
         if (!body.cartId || !body.lineId || body.quantity === undefined) {
-          return apiError(new Error("cartId, lineId ve quantity gerekli"), 400);
+          return apiError(new Error("cartId, lineId and quantity are required"), 400);
         }
         const cart = await cartOps.cartUpdateLine(client, body.cartId, body.lineId, body.quantity);
         return apiSuccess(cart);
       }
       case "remove": {
-        if (!body.cartId || !body.lineIds?.length) return apiError(new Error("cartId ve lineIds gerekli"), 400);
+        if (!body.cartId || !body.lineIds?.length) return apiError(new Error("cartId and lineIds are required"), 400);
         const cart = await cartOps.cartRemoveLines(client, body.cartId, body.lineIds);
         return apiSuccess(cart);
       }
       case "attachCustomer": {
-        if (!body.cartId) return apiError(new Error("cartId gerekli"), 400);
-        if (!customerToken) return apiError(new Error("Oturum açmanız gerekli"), 401);
+        if (!body.cartId) return apiError(new Error("cartId is required"), 400);
+        if (!customerToken) return apiError(new Error("Please sign in."), 401);
         const cart = await cartOps.cartAttachCustomer(client, body.cartId, customerToken);
         return apiSuccess(cart);
       }
       default:
-        return apiError(new Error("Geçersiz işlem"), 400);
+        return apiError(new Error("Invalid request."), 400);
     }
   } catch (error) {
     return apiError(error, 500);

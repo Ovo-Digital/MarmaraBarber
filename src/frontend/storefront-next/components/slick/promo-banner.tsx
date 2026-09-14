@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { T } from "@/lib/i18n/dil";
 
 /**
  * Tam genişlik promosyon bandı: arka planda görsel, ortada büyük başlık,
@@ -47,7 +48,7 @@ export function PromoBanner({
       <div className="relative flex min-h-[420px] flex-col items-center justify-end px-5 pb-12 pt-24 text-center sm:min-h-[520px] sm:pb-16 md:min-h-[600px]">
         {eyebrow ? (
           <p className="lx-eyebrow mb-5" style={{ color: "rgba(255,255,255,0.65)" }}>
-            {eyebrow}
+            <T k={eyebrow} />
           </p>
         ) : null}
 
@@ -62,7 +63,7 @@ export function PromoBanner({
             color: "#FFFFFF",
           }}
         >
-          {headline}
+          <T k={headline} />
         </h2>
 
         {subline?.length ? (
@@ -77,7 +78,7 @@ export function PromoBanner({
           >
             {subline.map((satir, i) => (
               <span key={satir} className="block">
-                {satir}
+                <T k={satir} />
                 {i < subline.length - 1 ? <br className="hidden sm:block" /> : null}
               </span>
             ))}
@@ -89,7 +90,7 @@ export function PromoBanner({
           className="lx-btn-outline mt-9"
           style={{ color: "#FFFFFF" }}
         >
-          {ctaLabel}
+          <T k={ctaLabel} />
         </Link>
       </div>
     </section>

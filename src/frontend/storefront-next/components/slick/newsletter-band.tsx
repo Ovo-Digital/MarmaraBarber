@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useT } from "@/lib/i18n/dil";
 
 /**
  * Kırmızı bülten bandı — solda başlık, sağda e-posta alanı.
@@ -22,6 +23,7 @@ export function NewsletterBand({
   placeholder?: string;
   ctaLabel?: string;
 }) {
+  const t = useT();
   const [email, setEmail] = useState("");
   const [durum, setDurum] = useState<"bos" | "gonderiliyor" | "tamam" | "hata">("bos");
   const [hata, setHata] = useState("");
@@ -39,14 +41,14 @@ export function NewsletterBand({
       });
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok || !data.ok) {
-        setHata(data.error ?? "Sign-up is unavailable right now.");
+        setHata(data.error ? t(data.error) : t("Sign-up is unavailable right now."));
         setDurum("hata");
         return;
       }
       setDurum("tamam");
       setEmail("");
     } catch {
-      setHata("Sign-up is unavailable right now.");
+      setHata(t("Sign-up is unavailable right now."));
       setDurum("hata");
     }
   }
@@ -68,10 +70,10 @@ export function NewsletterBand({
               color: "#ffffff",
             }}
           >
-            {title}
+            {t(title)}
           </h2>
           <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed" style={{ color: "rgba(255,255,255,0.72)" }}>
-            {body}
+            {t(body)}
           </p>
         </div>
 
@@ -82,12 +84,12 @@ export function NewsletterBand({
               style={{ fontFamily: "var(--font-owners)", color: "#ffffff" }}
               role="status"
             >
-              You&apos;re in — thanks for signing up.
+              {t("You're in — thanks for signing up.")}
             </p>
           ) : (
             <form onSubmit={gonder} className="flex flex-col gap-3 sm:flex-row">
               <label htmlFor="newsletter-email" className="sr-only">
-                Email address
+                {t("Email address")}
               </label>
               <input
                 id="newsletter-email"
@@ -95,7 +97,7 @@ export function NewsletterBand({
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={placeholder}
+                placeholder={t(placeholder)}
                 className="min-w-0 flex-1 px-5 text-[15px] outline-none placeholder:text-white/45"
                 style={{
                   height: 56,
@@ -118,7 +120,7 @@ export function NewsletterBand({
                   textTransform: "uppercase",
                 }}
               >
-                {durum === "gonderiliyor" ? "Sending…" : ctaLabel}
+                {durum === "gonderiliyor" ? t("Sending…") : t(ctaLabel)}
               </button>
             </form>
           )}

@@ -16,6 +16,8 @@ const TURLER = {
   barber: { etiket: "barber", baslik: "Barber / professional application" },
   wholesale: { etiket: "wholesale", baslik: "Wholesale / distributor application" },
   ambassador: { etiket: "ambassador", baslik: "Ambassador / creator application" },
+  /* İletişim sayfasındaki form da buradan gidiyor */
+  contact: { etiket: "contact", baslik: "Contact form" },
 } as const;
 
 type Tur = keyof typeof TURLER;
@@ -37,7 +39,8 @@ export async function POST(request: Request) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
     return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
   }
-  if (!ad || !soyad) {
+  // İletişim formunda tek "ad soyad" alanı var; soyad zorunlu değil
+  if (!ad || (!soyad && tur !== "contact")) {
     return NextResponse.json({ error: "Please enter your first and last name." }, { status: 400 });
   }
 
@@ -48,6 +51,7 @@ export async function POST(request: Request) {
   // için ayrı bir yer yok, hepsi mesaj gövdesinde taşınıyor.
   const alanlar: [string, string][] = [
     ["Application", TURLER[tur].baslik],
+    ["Subject", govde.subject ?? ""],
     ["Business", govde.business ?? ""],
     ["Role", govde.role ?? ""],
     ["Website / social", govde.website ?? ""],

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ApplicationForm } from "@/components/slick/application-form";
 import { PageHero } from "@/components/slick/page-hero";
+import { T } from "@/lib/i18n/dil";
 
 export const metadata: Metadata = {
   title: "Ambassador programme",
@@ -35,10 +36,10 @@ export default function AmbassadorPage() {
                   className="uppercase"
                   style={{ fontFamily: "var(--font-owners-black)", fontSize: "15px", color: "var(--lx-ink)" }}
                 >
-                  {k.baslik}
+                  <T k={k.baslik} />
                 </p>
                 <p className="mt-2 text-[13px] leading-relaxed" style={{ color: "rgba(20,17,15,0.6)" }}>
-                  {k.metin}
+                  <T k={k.metin} />
                 </p>
               </div>
             ))}

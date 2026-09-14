@@ -6,6 +6,7 @@ import { formatMoney } from "@/lib/money";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import type { Product } from "@/types/commerce";
 import { useUiStore } from "@/store/ui-store";
+import { useT } from "@/lib/i18n/dil";
 
 export type ReelItem = {
   product: Product;
@@ -42,6 +43,7 @@ export function ActionReel({
 }) {
   const add = useShopifyCartStore((s) => s.add);
   const openCartDrawer = useUiStore((s) => s.openCartDrawer);
+  const t = useT();
   const [aktif, setAktif] = useState(0);
   const [eklenen, setEklenen] = useState<string | null>(null);
   const dokunusX = useRef<number | null>(null);
@@ -57,8 +59,8 @@ export function ActionReel({
       style={{ paddingTop: "clamp(48px, 4.4vw, 76px)", paddingBottom: "clamp(48px, 4.4vw, 76px)" }}
     >
       <div className="sg-container text-center">
-        <p className="lx-eyebrow mb-2">{eyebrow}</p>
-        <h2 className="lx-title">{title}</h2>
+        <p className="lx-eyebrow mb-2">{t(eyebrow)}</p>
+        <h2 className="lx-title">{t(title)}</h2>
       </div>
 
       {/* Dokunmatikte parmakla kaydırma — mobilde oklar kartın üstüne biniyor,
@@ -144,8 +146,8 @@ export function ActionReel({
                   <button
                     type="button"
                     disabled={!p.availableForSale}
-                    title={p.availableForSale ? "Add to cart" : "Sold out"}
-                    aria-label={p.availableForSale ? `Add ${p.title} to cart` : "Sold out"}
+                    title={p.availableForSale ? t("Add to cart") : t("Sold out")}
+                    aria-label={p.availableForSale ? t("Add {title} to cart", { title: p.title }) : t("Sold out")}
                     onClick={() => {
                       if (!p.availableForSale) return;
                       add(p);
@@ -170,12 +172,12 @@ export function ActionReel({
           );
         })}
 
-        <button type="button" aria-label="Previous" onClick={() => git(-1)} className="lx-reel-ok lx-reel-ok--sol">
+        <button type="button" aria-label={t("Previous")} onClick={() => git(-1)} className="lx-reel-ok lx-reel-ok--sol">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M15 18 9 12l6-6" />
           </svg>
         </button>
-        <button type="button" aria-label="Next" onClick={() => git(1)} className="lx-reel-ok lx-reel-ok--sag">
+        <button type="button" aria-label={t("Next")} onClick={() => git(1)} className="lx-reel-ok lx-reel-ok--sag">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="m9 18 6-6-6-6" />
           </svg>

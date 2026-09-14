@@ -1,35 +1,45 @@
 import Link from "next/link";
 import type { LegalSection } from "@/lib/legal-content";
+import { T } from "@/lib/i18n/dil";
+import { HukukiNot } from "@/components/slick/hukuki-not";
 
 type Props = {
   title: string;
   sections: LegalSection[];
   breadcrumbLabel: string;
+  /**
+   * Gizlilik / çerez / üyelik gibi hukuki metinler. İspanyolca seçiliyken
+   * gövde İngilizce kalır ve üstte bunu söyleyen bir not görünür: taslak
+   * durumundaki hukuki metnin çevirisini yayınlamak ayrı bir onay gerektirir.
+   */
+  hukuki?: boolean;
   children?: React.ReactNode;
 };
 
-export function LegalPageLayout({ title, sections, breadcrumbLabel, children }: Props) {
+export function LegalPageLayout({ title, sections, breadcrumbLabel, hukuki = false, children }: Props) {
   return (
     <div className="bg-white">
       <div className="sg-container max-w-3xl py-10 md:py-14">
         <nav className="mb-8 truncate text-[12px] text-[#666]">
           <Link href="/" className="hover:text-black">
-            Ana Sayfa
+            <T k="Home" />
           </Link>
           <span className="mx-2">/</span>
-          <span className="text-black">{breadcrumbLabel}</span>
+          <span className="text-black"><T k={breadcrumbLabel} /></span>
         </nav>
 
-        <h1 className="sg-heading text-[clamp(1.75rem,1.2rem+2vw,2.5rem)]">{title}</h1>
+        <h1 className="sg-heading text-[clamp(1.75rem,1.2rem+2vw,2.5rem)]"><T k={title} /></h1>
+
+        {hukuki ? <HukukiNot /> : null}
 
         <div className="mt-10 space-y-10">
           {sections.map((section) => (
             <section key={section.id}>
-              <h2 className="sg-nav-bold mb-4 text-[12px]">{section.title}</h2>
+              <h2 className="sg-nav-bold mb-4 text-[12px]">{hukuki ? section.title : <T k={section.title} />}</h2>
               <div className="space-y-3">
                 {section.content.map((paragraph, i) => (
                   <p key={i} className="sg-body text-[14px] text-[#444]">
-                    {paragraph}
+                    {hukuki ? paragraph : <T k={paragraph} />}
                   </p>
                 ))}
               </div>

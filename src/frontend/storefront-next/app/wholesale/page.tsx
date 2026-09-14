@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ApplicationForm } from "@/components/slick/application-form";
 import { PageHero } from "@/components/slick/page-hero";
+import { T } from "@/lib/i18n/dil";
 
 export const metadata: Metadata = {
   title: "Wholesale & distribution",
@@ -36,10 +37,10 @@ export default function WholesalePage() {
                   className="uppercase"
                   style={{ fontFamily: "var(--font-owners-black)", fontSize: "15px", color: "var(--lx-ink)" }}
                 >
-                  {k.baslik}
+                  <T k={k.baslik} />
                 </p>
                 <p className="mt-2 text-[13px] leading-relaxed" style={{ color: "rgba(20,17,15,0.6)" }}>
-                  {k.metin}
+                  <T k={k.metin} />
                 </p>
               </div>
             ))}
@@ -48,9 +49,9 @@ export default function WholesalePage() {
           <ApplicationForm type="wholesale" />
 
           <p className="mt-10 text-center text-[13px]" style={{ color: "rgba(20,17,15,0.55)" }}>
-            Working behind the chair rather than buying to resell?{" "}
+            <T k="Working behind the chair rather than buying to resell?" />{" "}
             <Link href="/professional" style={{ color: "var(--sg-red)" }}>
-              Register as a barber
+              <T k="Register as a barber" />
             </Link>
           </p>
         </div>

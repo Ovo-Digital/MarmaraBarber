@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { storefrontGetAllCollections } from "@/services/shopify/storefront-direct";
+import { T } from "@/lib/i18n/dil";
 
 export const metadata: Metadata = { title: "Collections" };
 
@@ -29,12 +30,12 @@ export default async function CollectionsPage() {
             color: "#1C1C1C",
           }}
         >
-          Collections
+          <T k="Collections" />
         </h1>
 
         {collections.length === 0 ? (
           <p className="py-16 text-center text-[14px] text-[#666]">
-            No collections available right now.
+            <T k="No collections available right now." />
           </p>
         ) : (
           <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 lg:grid-cols-4">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useT } from "@/lib/i18n/dil";
 import { useMutation } from "@tanstack/react-query";
 import { AccountField, accountInputClass, accountSelectClass } from "./account-field";
 import {
@@ -20,6 +21,7 @@ interface AccountPersonalInfoProps {
 }
 
 export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfoProps) {
+  const t = useT();
   const [firstName, setFirstName] = useState(customer.firstName ?? "");
   const [lastName, setLastName] = useState(customer.lastName ?? "");
   const [email] = useState(customer.email);
@@ -40,11 +42,11 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
     mutationFn: (payload: { firstName?: string; lastName?: string; phone?: string }) =>
       apiUpdateCustomer(payload),
     onSuccess: async () => {
-      setMessage("Your details have been updated.");
+      setMessage(t("Your details have been updated."));
       setError(null);
       await onUpdated();
     },
-    onError: (err) => setError(err instanceof Error ? err.message : "Update failed"),
+    onError: (err) => setError(err instanceof Error ? t(err.message) : t("Update failed")),
   });
 
   const handleSaveProfile = (e: React.FormEvent) => {
@@ -59,7 +61,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
       {
         onSuccess: () => {
           setPhoneEditing(false);
-          setMessage("Your phone number has been updated.");
+          setMessage(t("Your phone number has been updated."));
         },
       }
     );
@@ -71,7 +73,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
     <div className="space-y-6">
       <form onSubmit={handleSaveProfile} className="border border-[#e0e0e0] p-6 sm:p-8">
         <h2 className="text-[13px] font-semibold uppercase tracking-[0.06em] mb-8">
-          Personal details
+          {t("Personal details")}
         </h2>
 
         <div className="grid gap-8 sm:grid-cols-2">
@@ -109,7 +111,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
                   onChange={(e) => setExtra((x) => ({ ...x, birthDay: e.target.value }))}
                   className={accountSelectClass}
                 >
-                  <option value="">Day</option>
+                  <option value="">{t("Day")}</option>
                   {BIRTH_DAYS.map((d) => (
                     <option key={d} value={d}>
                       {d}
@@ -124,10 +126,10 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
                   onChange={(e) => setExtra((x) => ({ ...x, birthMonth: e.target.value }))}
                   className={accountSelectClass}
                 >
-                  <option value="">Month</option>
+                  <option value="">{t("Month")}</option>
                   {BIRTH_MONTHS.map((m) => (
                     <option key={m.value} value={m.value}>
-                      {m.label}
+                      {t(m.label)}
                     </option>
                   ))}
                 </select>
@@ -139,7 +141,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
                   onChange={(e) => setExtra((x) => ({ ...x, birthYear: e.target.value }))}
                   className={accountSelectClass}
                 >
-                  <option value="">Year</option>
+                  <option value="">{t("Year")}</option>
                   {BIRTH_YEARS.map((y) => (
                     <option key={y} value={y}>
                       {y}
@@ -152,7 +154,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
         </div>
 
         <div className="mt-8">
-          <p className="text-[11px] text-[#666] mb-3">Gender</p>
+          <p className="text-[11px] text-[#666] mb-3">{t("Gender")}</p>
           <div className="flex flex-wrap gap-6 text-[13px]">
             {(
               [
@@ -169,7 +171,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
                   onChange={() => setExtra((x) => ({ ...x, gender: value }))}
                   className="h-3.5 w-3.5 accent-black"
                 />
-                {label}
+                {t(label)}
               </label>
             ))}
           </div>
@@ -180,14 +182,14 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
           disabled={updateMutation.isPending}
           className="pf-btn-primary mt-8 w-auto px-8 !text-[10px]"
         >
-          {updateMutation.isPending ? "Saving…" : "Save"}
+          {updateMutation.isPending ? t("Saving…") : t("Save")}
         </button>
       </form>
 
       <div className="border border-[#e0e0e0] p-6 sm:p-8">
-        <h2 className="text-[13px] font-semibold mb-8">Contact details</h2>
+        <h2 className="text-[13px] font-semibold mb-8">{t("Contact details")}</h2>
 
-        <AccountField label="Telefon" required>
+        <AccountField label="Phone" required>
           {phoneEditing ? (
             <div className="flex items-end gap-2">
               <span className="pb-2 text-[13px] shrink-0">🇹🇷 +90</span>
@@ -215,7 +217,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
               disabled={updateMutation.isPending}
               className="pf-btn-primary w-auto px-6 !text-[10px]"
             >
-              Kaydet
+              {t("Save")}
             </button>
             <button
               type="button"
@@ -225,7 +227,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
               }}
               className="pf-btn-outline-dark px-6 !text-[10px]"
             >
-              Cancel
+              {t("Cancel")}
             </button>
           </div>
         ) : (
@@ -238,7 +240,7 @@ export function AccountPersonalInfo({ customer, onUpdated }: AccountPersonalInfo
               <path d="M12 20h9" />
               <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
             </svg>
-            Change phone number
+            {t("Change phone number")}
           </button>
         )}
       </div>

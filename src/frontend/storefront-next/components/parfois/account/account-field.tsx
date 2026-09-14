@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { T } from "@/lib/i18n/dil";
 
 interface AccountFieldProps {
   label: string;
@@ -14,7 +15,7 @@ export function AccountField({ label, required, children, className = "" }: Acco
         className="text-[11px] uppercase tracking-[0.14em]"
         style={{ color: "rgba(20,17,15,0.55)", fontFamily: "var(--font-owners)" }}
       >
-        {label}
+        <T k={label} />
         {required && <span style={{ color: "var(--sg-red)" }}> *</span>}
       </span>
       <div className="mt-1.5">{children}</div>

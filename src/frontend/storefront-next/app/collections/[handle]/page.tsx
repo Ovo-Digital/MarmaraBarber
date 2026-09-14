@@ -30,7 +30,8 @@ export default async function CollectionDetailPage({ params }: Props) {
   return (
     <SlickCollectionPlp
       title={data.title}
-      description={data.description || `Shop the ${data.title} range.`}
+      description={data.description || undefined}
+      descriptionCeviri={data.description ? undefined : { k: "Shop the {name} range.", v: { name: data.title } }}
       image={data.imageUrl}
       products={data.products}
     />

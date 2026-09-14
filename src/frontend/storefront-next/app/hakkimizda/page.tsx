@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { LegalPageLayout } from "@/components/slick/legal-page";
-import { LEGAL_PAGES } from "@/lib/legal-content";
+import { AboutPage } from "@/components/slick/about-page";
 
-const page = LEGAL_PAGES.hakkimizda;
-
-export const metadata: Metadata = { title: page.title };
+export const metadata: Metadata = {
+  title: "About",
+  description: "Marmara Barber — grooming made for the chair, produced in Türkiye and sold in barbershops around the world.",
+};
 
 export default function HakkimizdaPage() {
-  return <LegalPageLayout title={page.title} sections={[...page.sections]} breadcrumbLabel="About" />;
+  return <AboutPage />;
 }

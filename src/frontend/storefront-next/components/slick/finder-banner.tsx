@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { T } from "@/lib/i18n/dil";
 
 /**
  * "Ürün bulucu" bölümü — koyu zemin, alttan kırmızı ışıma, ortalanmış kurgu.
@@ -41,7 +42,7 @@ export function FinderBanner({
         style={{ paddingTop: "var(--lx-section-y)", paddingBottom: "var(--lx-section-y)" }}
       >
         <p className="lx-eyebrow" style={{ color: "var(--sg-red)" }}>
-          {eyebrow}
+          <T k={eyebrow} />
         </p>
 
         <h2
@@ -55,11 +56,11 @@ export function FinderBanner({
             color: "#ffffff",
           }}
         >
-          {title}
+          <T k={title} />
         </h2>
 
         <p className="mx-auto mt-6 max-w-[46ch] text-[15px] leading-relaxed text-white/70">
-          {body}
+          <T k={body} />
         </p>
 
         <Link
@@ -75,7 +76,7 @@ export function FinderBanner({
             textTransform: "uppercase",
           }}
         >
-          {ctaLabel}
+          <T k={ctaLabel} />
           <span aria-hidden="true" className="lx-finder-arrow">
             →
           </span>
@@ -98,7 +99,7 @@ export function FinderBanner({
                 className="text-[12px] uppercase tracking-[0.14em] text-white/75"
                 style={{ fontFamily: "var(--font-owners)" }}
               >
-                {label}
+                <T k={label} />
               </span>
             </li>
           ))}

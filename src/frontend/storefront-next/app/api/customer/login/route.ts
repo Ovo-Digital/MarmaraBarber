@@ -13,12 +13,12 @@ export async function POST(req: NextRequest) {
       cartId?: string;
     };
 
-    if (!email || !password) return apiError(new Error("E-posta ve şifre gerekli"), 400);
+    if (!email || !password) return apiError(new Error("Email and password are required."), 400);
 
     const client = createShopifyServerClient();
     const { accessToken, expiresAt } = await customerLogin(client, email, password);
     const customer = await customerGet(client, accessToken);
-    if (!customer) return apiError(new Error("Müşteri bilgisi alınamadı"), 500);
+    if (!customer) return apiError(new Error("Could not load your account."), 500);
 
     if (cartId) {
       await cartOps.cartAttachCustomer(client, cartId, accessToken);

@@ -7,6 +7,8 @@
  * İçerik prop: yalnızca markanın gerçekten arkasında durduğu ifadeler.
  * Animasyon saf CSS — kayarken JavaScript çalışmıyor, sayfayı yormuyor.
  */
+import { T } from "@/lib/i18n/dil";
+
 export function MarqueeBand({
   items = [
     "Since 1970",
@@ -55,7 +57,7 @@ export function MarqueeBand({
                   letterSpacing: "0.02em",
                 }}
               >
-                {item}
+                <T k={item} />
               </span>
               <span
                 aria-hidden="true"

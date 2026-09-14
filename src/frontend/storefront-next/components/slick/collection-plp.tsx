@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SlickProductCard } from "@/components/slick/product-card";
+import { useT } from "@/lib/i18n/dil";
 import {
   EMPTY_PLP_FILTERS,
   activeFilterChips,
@@ -21,17 +22,24 @@ import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
 import { useUiStore } from "@/store/ui-store";
 import { formatMoney } from "@/lib/money";
 
+/** Sayfanın kendi (İngilizce) metni: dile göre çevrilir. Shopify'dan gelen
+ *  koleksiyon/ürün tipi adları çevrilmez, düz `title` olarak verilir. */
+type Ceviri = { k: string; v?: Record<string, string | number> };
+
 type Props = {
   title: string;
   description?: string;
+  titleCeviri?: Ceviri;
+  descriptionCeviri?: Ceviri;
   /** Artık kullanılmıyor: bant düz mürekkep zemin (bulanık ürün kırpıntısı kaldırıldı) */
   image?: string;
   products: Product[];
 };
 
-export function SlickCollectionPlp({ title, description, image, products }: Props) {
+export function SlickCollectionPlp({ title, description, titleCeviri, descriptionCeviri, image, products }: Props) {
   // Üstteki koyu hero bandı: header şeffaf durabilir
   useKoyuUstBildir();
+  const t = useT();
 
   const facets = useMemo(() => buildPlpFacets(products), [products]);
   const [filters, setFilters] = useState<SlickPlpFilters>(EMPTY_PLP_FILTERS);
@@ -55,6 +63,25 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
   useEffect(() => {
     setVisible(PLP_PAGE_SIZE);
   }, [filters, sort]);
+
+  // Sonsuz kaydırma: listenin altındaki görünmez işaret ekrana yaklaşınca
+  // bir sonraki sayfa açılıyor. Ürünlerin hepsi zaten bellekte; ağ isteği yok.
+  const sonIsaret = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const el = sonIsaret.current;
+    if (!el || !canLoadMore) return;
+    const gozcu = new IntersectionObserver(
+      (girdiler) => {
+        if (girdiler.some((g) => g.isIntersecting)) {
+          setVisible((v) => Math.min(v + PLP_PAGE_SIZE, filtered.length));
+        }
+      },
+      // Ekranın 600px altına gelmeden yüklensin; kullanıcı boşluk görmesin
+      { rootMargin: "0px 0px 600px 0px" },
+    );
+    gozcu.observe(el);
+    return () => gozcu.disconnect();
+  }, [canLoadMore, filtered.length, visible]);
 
   useEffect(() => {
     if (sheetOpen) {
@@ -87,8 +114,8 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
     <div className="bg-white pb-20">
       {/* 1. Collection header */}
       <CollectionHeader
-        title={title}
-        description={description}
+        title={titleCeviri ? t(titleCeviri.k, titleCeviri.v) : title}
+        description={descriptionCeviri ? t(descriptionCeviri.k, descriptionCeviri.v) : description}
         image={image}
         count={products.length}
       />
@@ -102,7 +129,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
               className="sg-nav flex items-center gap-2 border border-black/20 px-3 py-2 text-[11px] lg:hidden"
               onClick={() => setSheetOpen(true)}
             >
-              Filtrele
+              {t("Filter")}
               {hasActiveFilters(filters) ? (
                 <span className="bg-black px-1.5 py-0.5 text-[9px] text-white">
                   {chips.length}
@@ -110,7 +137,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
               ) : null}
             </button>
             <p className="hidden text-[13px] text-[#666] lg:block">
-              {filtered.length} / {products.length} products
+              {t("{n} / {total} products", { n: filtered.length, total: products.length })}
             </p>
           </div>
 
@@ -118,7 +145,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
             <div className="hidden items-center gap-1 sm:flex">
               <button
                 type="button"
-                aria-label="Grid view"
+                aria-label={t("Grid view")}
                 onClick={() => setView("grid")}
                 className={`p-2 ${view === "grid" ? "opacity-100" : "opacity-40"}`}
               >
@@ -126,7 +153,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
               </button>
               <button
                 type="button"
-                aria-label="List view"
+                aria-label={t("List view")}
                 onClick={() => setView("list")}
                 className={`p-2 ${view === "list" ? "opacity-100" : "opacity-40"}`}
               >
@@ -151,7 +178,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
               </button>
             ))}
             <button type="button" onClick={clearAll} className="sg-nav text-[10px] underline">
-              Clear filters
+              {t("Clear filters")}
             </button>
           </div>
         )}
@@ -192,7 +219,7 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
                     color: "var(--lx-ink)",
                   }}
                 >
-                  Filters
+                  {t("Filters")}
                 </span>
                 <span aria-hidden="true" className="text-[11px]" style={{ color: "rgba(20,17,15,0.5)" }}>
                   ▸
@@ -218,17 +245,16 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
                 )}
 
                 {canLoadMore && (
-                  <div className="mt-12 text-center">
-                    <p className="mb-4 text-[13px] text-[#666]">
-                      Showing {shown.length} of {filtered.length}
+                  <div
+                    ref={sonIsaret}
+                    className="mt-12 flex flex-col items-center gap-3"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    <span className="lx-yukleniyor-cubuk" aria-hidden="true" style={{ background: "rgba(20,17,15,0.1)" }} />
+                    <p className="text-[13px] text-[#666]">
+                      {t("Showing {n} of {total}", { n: shown.length, total: filtered.length })}
                     </p>
-                    <button
-                      type="button"
-                      className="sg-btn"
-                      onClick={() => setVisible((v) => v + PLP_PAGE_SIZE)}
-                    >
-                      Load more
-                    </button>
                   </div>
                 )}
               </>
@@ -243,12 +269,12 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
           <button
             type="button"
             className="absolute inset-0 bg-black/45"
-            aria-label="Kapat"
+            aria-label={t("Close")}
             onClick={() => setSheetOpen(false)}
           />
           <div className="absolute inset-x-0 bottom-0 flex max-h-[88vh] flex-col bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-black/10 px-4 py-4">
-              <h2 className="sg-nav text-[13px]">Filtrele</h2>
+              <h2 className="sg-nav text-[13px]">{t("Filter")}</h2>
               <button type="button" className="text-2xl leading-none" onClick={() => setSheetOpen(false)}>
                 ×
               </button>
@@ -263,10 +289,10 @@ export function SlickCollectionPlp({ title, description, image, products }: Prop
             </div>
             <div className="flex gap-3 border-t border-black/10 p-4">
               <button type="button" className="sg-btn flex-1 !py-3" onClick={() => setDraft(EMPTY_PLP_FILTERS)}>
-                Temizle
+                {t("Clear")}
               </button>
               <button type="button" className="sg-btn-red flex-1 !py-3" onClick={applyDraft}>
-                {draftPreviewCount} Ürünü Göster
+                {t("Show {n} products", { n: draftPreviewCount })}
               </button>
             </div>
           </div>
@@ -287,6 +313,7 @@ function CollectionHeader({
   image?: string;
   count: number;
 }) {
+  const t = useT();
   return (
     <section
       data-dark-top
@@ -298,7 +325,7 @@ function CollectionHeader({
           sade zemin hem daha lüks hem başlığı öne çıkarıyor. */}
       <div className="sg-container relative py-16 md:py-24">
         <p className="lx-eyebrow" style={{ color: "rgba(255,255,255,0.55)" }}>
-          Collection
+          {t("Collection")}
         </p>
         <h1
           className="mt-3 max-w-3xl uppercase"
@@ -317,7 +344,7 @@ function CollectionHeader({
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/70">{description}</p>
         ) : null}
         <p className="lx-eyebrow mt-7" style={{ color: "rgba(255,255,255,0.45)" }}>
-          {count} {count === 1 ? "product" : "products"}
+          {count === 1 ? t("1 product") : t("{n} products", { n: count })}
         </p>
       </div>
     </section>
@@ -325,20 +352,22 @@ function CollectionHeader({
 }
 
 function EmptyState({ onClear }: { onClear: () => void }) {
+  const t = useT();
   return (
     <div className="py-24 text-center">
-      <p className="sg-heading text-[28px]">No products match these filters</p>
+      <p className="sg-heading text-[28px]">{t("No products match these filters")}</p>
       <p className="sg-body mx-auto mt-4 max-w-md text-[#666]">
-        Clear filtersyip koleksiyondaki tüm ürünlere tekrar göz atabilirsin.
+        {t("Clear the filters to browse every product in this collection again.")}
       </p>
       <button type="button" className="sg-btn-red mt-8" onClick={onClear}>
-        Clear filters
+        {t("Clear filters")}
       </button>
     </div>
   );
 }
 
 function ListRow({ product }: { product: Product }) {
+  const t = useT();
   const add = useShopifyCartStore((s) => s.add);
   const openCartDrawer = useUiStore((s) => s.openCartDrawer);
   return (
@@ -367,7 +396,7 @@ function ListRow({ product }: { product: Product }) {
           openCartDrawer();
         }}
       >
-        {product.availableForSale ? "Add to cart" : "Sold out"}
+        {product.availableForSale ? t("Add to cart") : t("Sold out")}
       </button>
     </li>
   );
@@ -380,6 +409,7 @@ function SiralamaSecici({
   value: SlickPlpSort;
   onChange: (v: SlickPlpSort) => void;
 }) {
+  const t = useT();
   const [acik, setAcik] = useState(false);
   const kutuRef = useRef<HTMLDivElement | null>(null);
   const secili = SLICK_SORT_OPTIONS.find((o) => o.value === value);
@@ -410,7 +440,7 @@ function SiralamaSecici({
           border: "1px solid rgba(20,17,15,0.22)",
         }}
       >
-        <span className="truncate">{secili?.label ?? "Sort"}</span>
+        <span className="truncate">{t(secili?.label ?? "Sort")}</span>
         <span
           aria-hidden="true"
           className="text-[9px]"
@@ -454,7 +484,7 @@ function SiralamaSecici({
                     color: isActive ? "var(--sg-red)" : "rgba(255,255,255,0.8)",
                   }}
                 >
-                  {o.label}
+                  {t(o.label)}
                 </button>
               </li>
             );
@@ -475,6 +505,7 @@ function FiltreBolumu({
   children: React.ReactNode;
   acikBasla?: boolean;
 }) {
+  const t = useT();
   const [acik, setAcik] = useState(acikBasla);
 
   return (
@@ -495,7 +526,7 @@ function FiltreBolumu({
             color: "var(--lx-ink)",
           }}
         >
-          {baslik}
+          {t(baslik)}
         </span>
         {/* Artı/eksi: açıkken yatay çizgi, kapalıyken artı */}
         <span aria-hidden="true" className="relative block h-3 w-3 shrink-0">
@@ -579,6 +610,7 @@ function FilterPanel({
    *  Mobil çekmecede kolon kavramı yok, o yüzden verilmiyor. */
   onKapat?: () => void;
 }) {
+  const t = useT();
   const toggleArr = (key: "types" | "volumes" | "colors", item: string) => {
     const list = value[key];
     onChange({
@@ -598,13 +630,13 @@ function FilterPanel({
             aria-expanded="true"
             className="flex items-center gap-2"
           >
-            <span className="lx-filtre-baslik">Filters</span>
+            <span className="lx-filtre-baslik">{t("Filters")}</span>
             <span aria-hidden="true" className="text-[11px]" style={{ color: "rgba(20,17,15,0.5)" }}>
               ▾
             </span>
           </button>
         ) : (
-          <span className="lx-filtre-baslik">Filters</span>
+          <span className="lx-filtre-baslik">{t("Filters")}</span>
         )}
 
         {hasActiveFilters(value) && (
@@ -614,7 +646,7 @@ function FilterPanel({
             className="text-[11px] uppercase tracking-[0.12em]"
             style={{ color: "var(--sg-red)", fontFamily: "var(--font-owners)" }}
           >
-            Clear
+            {t("Clear")}
           </button>
         )}
       </div>
@@ -632,7 +664,7 @@ function FilterPanel({
                 }
                 className="w-full px-3 py-2.5 text-[13px] outline-none"
                 style={{ border: "1px solid rgba(20,17,15,0.22)", color: "var(--lx-ink)" }}
-                aria-label="Min price"
+                aria-label={t("Min price")}
               />
               <span style={{ color: "rgba(20,17,15,0.4)" }}>–</span>
               <input
@@ -645,7 +677,7 @@ function FilterPanel({
                 }
                 className="w-full px-3 py-2.5 text-[13px] outline-none"
                 style={{ border: "1px solid rgba(20,17,15,0.22)", color: "var(--lx-ink)" }}
-                aria-label="Max price"
+                aria-label={t("Max price")}
               />
             </div>
             {facets.priceMax > 0 && (
@@ -657,7 +689,7 @@ function FilterPanel({
                 onChange={(e) => onChange({ ...value, maxPrice: Number(e.target.value) })}
                 className="mt-4 w-full"
                 style={{ accentColor: "var(--sg-red)" }}
-                aria-label="Maximum price"
+                aria-label={t("Maximum price")}
               />
             )}
           </FiltreBolumu>
@@ -665,13 +697,13 @@ function FilterPanel({
           {facets.types.length > 0 && (
             <FiltreBolumu baslik="Category">
               <ul className="max-h-56 space-y-0 overflow-y-auto">
-                {facets.types.map((t) => (
-                  <li key={t.value}>
+                {facets.types.map((tip) => (
+                  <li key={tip.value}>
                     <Kutucuk
-                      isaretli={value.types.includes(t.value)}
-                      onChange={() => toggleArr("types", t.value)}
-                      etiket={t.value}
-                      adet={t.count}
+                      isaretli={value.types.includes(tip.value)}
+                      onChange={() => toggleArr("types", tip.value)}
+                      etiket={tip.value}
+                      adet={tip.count}
                     />
                   </li>
                 ))}

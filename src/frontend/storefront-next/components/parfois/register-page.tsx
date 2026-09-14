@@ -14,6 +14,7 @@ import {
 import { apiRegister } from "@/services/api/storefront-api";
 import { useAuthStore } from "@/store/auth-store";
 import { useCartStore } from "@/store/cart-store";
+import { useT } from "@/lib/i18n/dil";
 
 function formatPhoneDisplay(digits: string): string {
   const d = digits.replace(/\D/g, "").slice(0, 10);
@@ -36,6 +37,7 @@ function PasswordInput({
   onChange: (value: string) => void;
   placeholder: string;
 }) {
+  const t = useT();
   const [visible, setVisible] = useState(false);
 
   return (
@@ -48,14 +50,14 @@ function PasswordInput({
           minLength={5}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
+          placeholder={t(placeholder)}
           className={`${accountInputClass} pr-10`}
         />
         <button
           type="button"
           onClick={() => setVisible((v) => !v)}
           className="absolute right-0 top-1/2 -translate-y-1/2 p-1 text-[#999] hover:text-black"
-          aria-label={visible ? "Hide password" : "Show password"}
+          aria-label={visible ? t("Hide password") : t("Show password")}
         >
           {visible ? (
             <svg className="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
@@ -76,6 +78,7 @@ function PasswordInput({
 }
 
 export function RegisterPageClient() {
+  const t = useT();
   const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -107,7 +110,7 @@ export function RegisterPageClient() {
       setCustomer(customer);
       router.push("/account");
     },
-    onError: (err) => setError(err instanceof Error ? err.message : "Sign-up failed."),
+    onError: (err) => setError(err instanceof Error ? t(err.message) : t("Sign-up failed.")),
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -115,11 +118,11 @@ export function RegisterPageClient() {
     setError(null);
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      setError(t("Passwords do not match."));
       return;
     }
     if (phoneDigits.length < 10) {
-      setError("Enter a valid phone number.");
+      setError(t("Enter a valid phone number."));
       return;
     }
 
@@ -134,7 +137,7 @@ export function RegisterPageClient() {
             required
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="First name"
+            placeholder={t("First name")}
             className={accountInputClass}
           />
         </AccountField>
@@ -144,7 +147,7 @@ export function RegisterPageClient() {
             required
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="Last name"
+            placeholder={t("Last name")}
             className={accountInputClass}
           />
         </AccountField>
@@ -156,7 +159,7 @@ export function RegisterPageClient() {
               onChange={(e) => setBirthDay(e.target.value)}
               className={`${accountSelectClass} border-b-0`}
             >
-              <option value="">Day</option>
+              <option value="">{t("Day")}</option>
               {BIRTH_DAYS.map((d) => (
                 <option key={d} value={d}>
                   {d}
@@ -168,10 +171,10 @@ export function RegisterPageClient() {
               onChange={(e) => setBirthMonth(e.target.value)}
               className={`${accountSelectClass} border-b-0`}
             >
-              <option value="">Month</option>
+              <option value="">{t("Month")}</option>
               {BIRTH_MONTHS.map((m) => (
                 <option key={m.value} value={m.value}>
-                  {m.label}
+                  {t(m.label)}
                 </option>
               ))}
             </select>
@@ -180,7 +183,7 @@ export function RegisterPageClient() {
               onChange={(e) => setBirthYear(e.target.value)}
               className={`${accountSelectClass} border-b-0`}
             >
-              <option value="">Year</option>
+              <option value="">{t("Year")}</option>
               {BIRTH_YEARS.map((y) => (
                 <option key={y} value={y}>
                   {y}
@@ -256,7 +259,7 @@ export function RegisterPageClient() {
             textTransform: "uppercase",
           }}
         >
-          {mutation.isPending ? "Creating account…" : "Create account"}
+          {mutation.isPending ? t("Creating account…") : t("Create account")}
         </button>
       </form>
 
@@ -264,13 +267,13 @@ export function RegisterPageClient() {
         className="mt-8 flex items-center justify-between pt-6 text-[12px]"
         style={{ borderTop: "1px solid rgba(20,17,15,0.12)" }}
       >
-        <span style={{ color: "rgba(20,17,15,0.55)" }}>Already have an account?</span>
+        <span style={{ color: "rgba(20,17,15,0.55)" }}>{t("Already have an account?")}</span>
         <Link
           href="/login"
           className="uppercase tracking-[0.14em]"
           style={{ color: "var(--sg-red)", fontFamily: "var(--font-owners)" }}
         >
-          Sign in →
+          {t("Sign in")} →
         </Link>
       </div>
     </div>

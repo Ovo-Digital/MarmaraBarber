@@ -18,7 +18,7 @@ export function parseAccountSection(value: string | null): AccountSection {
 }
 
 export function formatOrderDate(iso: string): string {
-  return new Date(iso).toLocaleString("tr-TR", {
+  return new Date(iso).toLocaleString("en-US", {
     day: "numeric",
     month: "numeric",
     year: "numeric",
@@ -30,19 +30,20 @@ export function formatOrderDate(iso: string): string {
 export function formatOrderStatus(financialStatus: string, fulfillmentStatus: string): string {
   const financial = financialStatus.toUpperCase();
   if (financial === "VOIDED" || financial === "REFUNDED" || financial === "PARTIALLY_REFUNDED") {
-    return "İptal";
+    return "Cancelled";
   }
   if (fulfillmentStatus === "FULFILLED" || financial === "PAID") {
-    return "Tamamlandı";
+    return "Completed";
   }
   if (financial === "PENDING" || fulfillmentStatus === "UNFULFILLED") {
-    return "Beklemede";
+    return "Pending";
   }
-  return "İşleniyor";
+  return "Processing";
 }
 
 export function formatOrderNumber(orderNumber: number): string {
-  return `PRF-${orderNumber}`;
+  // Shopify panelindeki ve sipariş e-postalarındaki biçimle aynı
+  return `#${orderNumber}`;
 }
 
 export function formatOrderTotal(amount: number, currencyCode: string): string {

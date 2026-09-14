@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useT } from "@/lib/i18n/dil";
 import { useMemo } from "react";
 import type { TurkeyAddressSelection, TrTown } from "@/lib/tr-address";
 
@@ -34,9 +35,10 @@ async function fetchTowns(province: string) {
 export function TurkeyAddressFields({
   value,
   onChange,
-  streetLabel = "Açık Adres",
-  streetPlaceholder = "Sokak, cadde, bina no, daire",
+  streetLabel = "Street address",
+  streetPlaceholder = "Street, building no, flat",
 }: TurkeyAddressFieldsProps) {
+  const t = useT();
   const { data: provinces = [], isLoading: provincesLoading } = useQuery({
     queryKey: ["tr-provinces"],
     queryFn: fetchProvinces,
@@ -75,7 +77,7 @@ export function TurkeyAddressFields({
   return (
     <div className="grid gap-3 sm:grid-cols-2">
       <label className="block sm:col-span-1">
-        <span className="mb-1 block text-[10px] uppercase tracking-[0.1em] text-[#999]">İl</span>
+        <span className="mb-1 block text-[10px] uppercase tracking-[0.1em] text-[#999]">{t("Province")}</span>
         <select
           required
           value={value.province}
@@ -83,7 +85,7 @@ export function TurkeyAddressFields({
           onChange={(e) => onProvinceChange(e.target.value)}
           className={selectClass}
         >
-          <option value="">{provincesLoading ? "Yükleniyor..." : "İl seçin"}</option>
+          <option value="">{provincesLoading ? t("Loading…") : t("Select province")}</option>
           {provinces.map((p) => (
             <option key={p.name} value={p.name}>
               {p.name}
@@ -93,7 +95,7 @@ export function TurkeyAddressFields({
       </label>
 
       <label className="block sm:col-span-1">
-        <span className="mb-1 block text-[10px] uppercase tracking-[0.1em] text-[#999]">İlçe</span>
+        <span className="mb-1 block text-[10px] uppercase tracking-[0.1em] text-[#999]">{t("District")}</span>
         <select
           required
           value={value.town}
@@ -102,7 +104,7 @@ export function TurkeyAddressFields({
           className={selectClass}
         >
           <option value="">
-            {!value.province ? "Önce il seçin" : townsLoading ? "Yükleniyor..." : "İlçe seçin"}
+            {!value.province ? t("Select a province first") : townsLoading ? t("Loading…") : t("Select district")}
           </option>
           {towns.map((t) => (
             <option key={t.name} value={t.name}>
@@ -113,7 +115,7 @@ export function TurkeyAddressFields({
       </label>
 
       <label className="block sm:col-span-2">
-        <span className="mb-1 block text-[10px] uppercase tracking-[0.1em] text-[#999]">Mahalle</span>
+        <span className="mb-1 block text-[10px] uppercase tracking-[0.1em] text-[#999]">{t("Neighbourhood")}</span>
         <select
           required
           value={value.district}
@@ -122,7 +124,7 @@ export function TurkeyAddressFields({
           className={selectClass}
         >
           <option value="">
-            {!value.town ? "Önce ilçe seçin" : districts.length === 0 ? "Mahalle yok" : "Mahalle seçin"}
+            {!value.town ? t("Select a district first") : districts.length === 0 ? t("No neighbourhoods") : t("Select neighbourhood")}
           </option>
           {districts.map((d) => (
             <option key={d.name} value={d.name}>
@@ -133,25 +135,25 @@ export function TurkeyAddressFields({
       </label>
 
       <label className="block sm:col-span-2">
-        <span className="mb-1 block text-[10px] uppercase tracking-[0.1em] text-[#999]">{streetLabel}</span>
+        <span className="mb-1 block text-[10px] uppercase tracking-[0.1em] text-[#999]">{t(streetLabel)}</span>
         <input
           required
           type="text"
           value={value.streetLine}
           onChange={(e) => patch({ streetLine: e.target.value })}
-          placeholder={streetPlaceholder}
+          placeholder={t(streetPlaceholder)}
           className={inputClass}
         />
       </label>
 
       <label className="block sm:col-span-1">
-        <span className="mb-1 block text-[10px] uppercase tracking-[0.1em] text-[#999]">Posta Kodu</span>
+        <span className="mb-1 block text-[10px] uppercase tracking-[0.1em] text-[#999]">{t("Postal code")}</span>
         <input
           required
           type="text"
           readOnly
           value={value.zip}
-          placeholder="Mahalle seçince dolar"
+          placeholder={t("Filled in when you pick a neighbourhood")}
           className={`${inputClass} bg-[#fafafa] text-[#666]`}
         />
       </label>

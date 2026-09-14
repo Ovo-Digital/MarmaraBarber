@@ -1,6 +1,7 @@
 "use client";
 
 import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
+import { useT } from "@/lib/i18n/dil";
 
 /**
  * İç sayfaların üst bandı — koleksiyon sayfasındakiyle aynı dil.
@@ -12,15 +13,19 @@ export function PageHero({
   eyebrow,
   title,
   subline,
+  sublineV,
   children,
 }: {
   eyebrow?: string;
   title: string;
   subline?: string;
+  /** subline içindeki {n} gibi yer tutucuların değerleri */
+  sublineV?: Record<string, string | number>;
   /** Sağda duracak ek içerik (ör. çıkış yap) */
   children?: React.ReactNode;
 }) {
   useKoyuUstBildir();
+  const t = useT();
 
   return (
     <section
@@ -30,7 +35,7 @@ export function PageHero({
     >
       <div className="sg-container flex flex-wrap items-end justify-between gap-6 pb-10 pt-28 sm:pb-14 sm:pt-32">
         <div className="min-w-0">
-          {eyebrow ? <p className="lx-eyebrow mb-3">{eyebrow}</p> : null}
+          {eyebrow ? <p className="lx-eyebrow mb-3">{t(eyebrow)}</p> : null}
           <h1
             className="uppercase"
             style={{
@@ -41,11 +46,11 @@ export function PageHero({
               color: "#ffffff",
             }}
           >
-            {title}
+            {t(title)}
           </h1>
           {subline ? (
             <p className="mt-4 max-w-[52ch] text-[15px]" style={{ color: "rgba(255,255,255,0.65)" }}>
-              {subline}
+              {t(subline, sublineV)}
             </p>
           ) : null}
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { T } from "@/lib/i18n/dil";
 import type { AccountSection } from "./account-utils";
 import { ACCOUNT_SECTIONS } from "./account-utils";
 
@@ -15,7 +16,7 @@ export function AccountSidebar({ active, onSelect }: AccountSidebarProps) {
      dengesini bozuyordu. */
   return (
     <nav className="w-full shrink-0 lg:w-[230px]">
-      <p className="lx-eyebrow mb-4">Account</p>
+      <p className="lx-eyebrow mb-4"><T k="Account" /></p>
       <ul className="m-0 list-none p-0">
         {ACCOUNT_SECTIONS.map((item) => {
           const isActive = active === item.id;
@@ -35,7 +36,7 @@ export function AccountSidebar({ active, onSelect }: AccountSidebarProps) {
             return (
               <li key={item.id} style={{ borderTop: "1px solid rgba(20,17,15,0.12)" }}>
                 <Link href={item.href} className={cls} style={stil}>
-                  {item.label}
+                  <T k={item.label} />
                   {ok}
                 </Link>
               </li>
@@ -45,7 +46,7 @@ export function AccountSidebar({ active, onSelect }: AccountSidebarProps) {
           return (
             <li key={item.id} style={{ borderTop: "1px solid rgba(20,17,15,0.12)" }}>
               <button type="button" onClick={() => onSelect(item.id)} className={cls} style={stil}>
-                {item.label}
+                <T k={item.label} />
                 {ok}
               </button>
             </li>

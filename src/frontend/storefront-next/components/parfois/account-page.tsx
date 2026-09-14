@@ -11,20 +11,21 @@ import { parseAccountSection, type AccountSection } from "./account/account-util
 import { apiGetCustomer } from "@/services/api/storefront-api";
 import { useAuthStore } from "@/store/auth-store";
 import { DEMO_MUSTERI, demoModu } from "@/lib/demo-customer";
+import { T, useT } from "@/lib/i18n/dil";
 
 function AccountPasswordStub() {
   return (
     <div className="border border-[#e0e0e0] p-8 text-[12px] text-[#666]">
-      <h2 className="lx-filtre-baslik mb-4">Change password</h2>
+      <h2 className="lx-filtre-baslik mb-4"><T k="Change password" /></h2>
       <p>
-        To change your password, sign out and use the &quot;Forgot password&quot; link on the sign-in
-        page.
+        <T k="To change your password, contact us and we will send you a reset link." />
       </p>
     </div>
   );
 }
 
 export function AccountPageClient() {
+  const t = useT();
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryClient = useQueryClient();
@@ -111,7 +112,7 @@ export function AccountPageClient() {
                 color: "var(--lx-ink)",
               }}
             >
-              {[customer.firstName, customer.lastName].filter(Boolean).join(" ") || "My account"}
+              {[customer.firstName, customer.lastName].filter(Boolean).join(" ") || t("My account")}
             </h1>
             <p className="mt-2 text-[13px]" style={{ color: "rgba(20,17,15,0.55)" }}>
               {customer.email}
@@ -131,7 +132,7 @@ export function AccountPageClient() {
               fontSize: "11px",
             }}
           >
-            Sign out
+            {t("Sign out")}
           </button>
         </div>
 

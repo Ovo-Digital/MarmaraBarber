@@ -1,4 +1,5 @@
 import { RegisterPageClient } from "@/components/parfois/register-page";
+import { T } from "@/lib/i18n/dil";
 
 export default function RegisterPage() {
   return (
@@ -9,7 +10,7 @@ export default function RegisterPage() {
       >
         {/* Başlık formun üstünde; ayrı koyu bant kaldırıldı */}
         <div className="mx-auto mb-10 w-full max-w-[560px] text-center">
-          <p className="lx-eyebrow mb-3">Account</p>
+          <p className="lx-eyebrow mb-3"><T k="Account" /></p>
           <h1
             className="uppercase"
             style={{
@@ -20,10 +21,10 @@ export default function RegisterPage() {
               color: "var(--lx-ink)",
             }}
           >
-            Create account
+            <T k="Create account" />
           </h1>
           <p className="mt-3 text-[14px]" style={{ color: "rgba(20,17,15,0.55)" }}>
-            Save your details, track orders, check out faster.
+            <T k="Save your details, track orders, check out faster." />
           </p>
         </div>
         <RegisterPageClient />

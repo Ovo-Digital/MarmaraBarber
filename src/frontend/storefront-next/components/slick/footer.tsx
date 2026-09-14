@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FOOTER_COLUMNS, SITE_NAME } from "@/lib/slick-theme";
+import { DilSecici, useT } from "@/lib/i18n/dil";
 
 const SOCIAL = [
   { label: "Instagram", href: "https://www.instagram.com/marmarabarber/", icon: InstagramIcon },
@@ -11,6 +12,7 @@ const SOCIAL = [
 ];
 
 export function SlickFooter() {
+  const t = useT();
   return (
     <footer className="mt-auto border-t border-white/20 bg-black text-white">
       {/* Üst: 3 kolon link + dikey çizgi + sosyal hesaplar.
@@ -19,12 +21,12 @@ export function SlickFooter() {
         <div className="grid gap-10 sm:grid-cols-3 lg:pr-12">
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title}>
-              <h3 className="sg-nav-bold mb-4 text-[12px] text-[var(--sg-red)]">{col.title}</h3>
-              <ul className="space-y-2.5">
+              <h3 className="sg-nav-bold mb-5 text-[14px] text-[var(--sg-red)]">{t(col.title)}</h3>
+              <ul className="space-y-3">
                 {col.links.map((link) => (
                   <li key={link.href + link.label}>
-                    <Link href={link.href} className="text-[13px] text-white/85 hover:text-white">
-                      {link.label}
+                    <Link href={link.href} className="text-[15px] text-white/85 hover:text-white">
+                      {t(link.label)}
                     </Link>
                   </li>
                 ))}
@@ -36,8 +38,8 @@ export function SlickFooter() {
         <div className="hidden bg-white/25 lg:block" aria-hidden />
 
         <div className="lg:pl-12">
-          <h3 className="sg-nav-bold text-[12px] text-[var(--sg-red)]">FOLLOW</h3>
-          <div className="mt-5 flex flex-wrap items-center gap-5">
+          <h3 className="sg-nav-bold text-[14px] text-[var(--sg-red)]">{t("FOLLOW")}</h3>
+          <div className="mt-5 flex flex-wrap items-center gap-6">
             {SOCIAL.map((s) => (
               <a
                 key={s.label}
@@ -69,9 +71,10 @@ export function SlickFooter() {
           </Link>
 
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
-            <p className="text-[11px] text-white/55">
+            <p className="text-[12.5px] text-white/60">
               Copyright © {new Date().getFullYear()} {SITE_NAME}
             </p>
+            <DilSecici koyu />
           </div>
         </div>
       </div>
@@ -81,7 +84,7 @@ export function SlickFooter() {
 
 function InstagramIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
@@ -90,21 +93,21 @@ function InstagramIcon() {
 }
 function FacebookIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
       <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H7v3h3v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z" />
     </svg>
   );
 }
 function YouTubeIcon() {
   return (
-    <svg width="22" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <svg width="26" height="24" viewBox="0 0 24 24" fill="currentColor">
       <path d="M23 12.2s0-3.4-.4-5c-.2-.9-.9-1.6-1.8-1.8C18.8 5 12 5 12 5s-6.8 0-8.8.4c-.9.2-1.6.9-1.8 1.8C1 8.8 1 12.2 1 12.2s0 3.4.4 5c.2.9.9 1.6 1.8 1.8C5.2 19.4 12 19.4 12 19.4s6.8 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-5 .4-5zM9.8 15.5v-6.6l5.7 3.3-5.7 3.3z" />
     </svg>
   );
 }
 function TikTokIcon() {
   return (
-    <svg width="18" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <svg width="22" height="24" viewBox="0 0 24 24" fill="currentColor">
       <path d="M19.6 7.4c-1.5-.1-2.9-.8-3.9-1.9V15a5.4 5.4 0 1 1-5.4-5.4c.3 0 .6 0 .9.1v2.7a2.7 2.7 0 1 0 1.9 2.6V2.5h2.6c.2 2.4 2 4.4 4 4.9v2z" />
     </svg>
   );

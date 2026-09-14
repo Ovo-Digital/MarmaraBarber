@@ -1,6 +1,7 @@
 import { HeroSlider } from "@/components/slick/hero-slider";
 import type { HeroSlide } from "@/services/shopify/storefront-direct";
 import type { Product } from "@/types/commerce";
+import { T } from "@/lib/i18n/dil";
 
 /**
  * Listede okunabilir bir isim bırak: her satır zaten Marmara ürünü olduğu için
@@ -64,9 +65,9 @@ export function ProductRoller({
       {/* Başlık — görselin üzerinde */}
       <div className="pointer-events-none absolute inset-x-0 top-0">
         <div className="sg-container pt-10 text-center sm:pt-14">
-          <p className="lx-eyebrow mb-2">{eyebrow}</p>
+          <p className="lx-eyebrow mb-2"><T k={eyebrow} /></p>
           <h2 className="lx-title" style={{ color: "#ffffff" }}>
-            {title}
+            <T k={title} />
           </h2>
         </div>
       </div>

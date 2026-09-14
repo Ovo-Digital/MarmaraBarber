@@ -10,7 +10,7 @@ type RouteContext = { params: Promise<{ id: string }> };
 export async function PATCH(req: NextRequest, context: RouteContext) {
   try {
     const token = await getCustomerTokenFromCookies();
-    if (!token) return apiError(new Error("Oturum açık değil"), 401);
+    if (!token) return apiError(new Error("You are not signed in."), 401);
 
     const { id } = await context.params;
     const address = (await req.json()) as Omit<CustomerAddress, "id">;
@@ -25,7 +25,7 @@ export async function PATCH(req: NextRequest, context: RouteContext) {
 export async function DELETE(_req: NextRequest, context: RouteContext) {
   try {
     const token = await getCustomerTokenFromCookies();
-    if (!token) return apiError(new Error("Oturum açık değil"), 401);
+    if (!token) return apiError(new Error("You are not signed in."), 401);
 
     const { id } = await context.params;
     const client = createShopifyServerClient();

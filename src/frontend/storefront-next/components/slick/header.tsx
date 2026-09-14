@@ -7,6 +7,7 @@ import { useAuthStore } from "@/store/auth-store";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useUiStore } from "@/store/ui-store";
 import { formatMoney } from "@/lib/money";
+import { DilSecici, useT } from "@/lib/i18n/dil";
 
 /**
  * Hap nav'ın altında açılan kategori paneli — numaralı indeks.
@@ -51,6 +52,7 @@ function MegaPanel({
   collections: NavCollection[];
   onClose: () => void;
 }) {
+  const t = useT();
   const rows = collections.slice(0, PANEL_SATIR);
   /* Görsel geçişi için hem şimdiki hem bir önceki satır tutuluyor: alttaki
      katman eskisini gösterirken üstteki yenisi perde gibi açılıyor. */
@@ -132,7 +134,7 @@ function MegaPanel({
                         opacity: secili ? 1 : 0.7,
                       }}
                     >
-                      Shop <span aria-hidden="true">↗</span>
+                      {t("Shop")} <span aria-hidden="true">↗</span>
                     </span>
                   </Link>
                 </li>
@@ -169,7 +171,7 @@ function MegaPanel({
           style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}
         >
           <span className="text-[11px] uppercase tracking-[0.14em]" style={{ color: "rgba(255,255,255,0.55)" }}>
-            {collections.length} collections
+            {t("{n} collections", { n: collections.length })}
           </span>
           <Link
             href="/collections"
@@ -177,7 +179,7 @@ function MegaPanel({
             className="shrink-0 px-6 py-3 text-[12px] font-bold uppercase tracking-[0.06em] transition-opacity hover:opacity-80 sm:px-7 sm:text-[13px]"
             style={{ background: "#000000", color: "#ffffff" }}
           >
-            View all
+            {t("View all")}
           </Link>
         </div>
       </div>
@@ -193,6 +195,7 @@ export function SlickHeader({
   /** Sayfanın üstü açık renkliyse hap en baştan dolu siyah olur */
   dolu?: boolean;
 }) {
+  const t = useT();
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -460,7 +463,7 @@ export function SlickHeader({
           }}
           aria-hidden={searchOpen}
         >
-        <button type="button" className="p-1 lg:hidden" aria-label="Menu" onClick={() => setMenuOpen(true)}>
+        <button type="button" className="p-1 lg:hidden" aria-label={t("Menu")} onClick={() => setMenuOpen(true)}>
           <BurgerIcon />
         </button>
 
@@ -509,7 +512,7 @@ export function SlickHeader({
                       }
                     }}
                   >
-                    {item.label}
+                    {t(item.label)}
                     {active ? (
                       <span className="absolute inset-x-0 bottom-0 mx-auto h-px w-full bg-white" />
                     ) : null}
@@ -524,10 +527,13 @@ export function SlickHeader({
           className={`flex shrink-0 items-center gap-4 sm:gap-5 ${pill ? "" : "ml-auto"}`}
           onMouseEnter={scheduleCloseShop}
         >
+          {/* Dar masaüstünde menüye yer kalmıyor; orada dil seçimi footer'da */}
+          <DilSecici koyu className="hidden xl:inline-flex" />
+
           {/* Arama — imleç gelince hap arama alanına dönüşüyor */}
           <button
             type="button"
-            aria-label="Search"
+            aria-label={t("Search")}
             className="hover:opacity-70"
             onMouseEnter={() => {
               closeCartDrawer();
@@ -556,7 +562,7 @@ export function SlickHeader({
             }}
             onMouseLeave={() => setHesapAcik(false)}
           >
-            <Link href={customer ? "/account" : "/login"} aria-label="Account" className="hover:opacity-70">
+            <Link href={customer ? "/account" : "/login"} aria-label={t("Account")} className="hover:opacity-70">
               <UserIcon />
             </Link>
 
@@ -572,7 +578,7 @@ export function SlickHeader({
                     boxShadow: "0 28px 70px rgba(0,0,0,0.55)",
                   }}
                 >
-                  <p className="lx-eyebrow mb-4">Account</p>
+                  <p className="lx-eyebrow mb-4">{t("Account")}</p>
                   <ul className="m-0 list-none p-0">
                     {(customer
                       ? [
@@ -592,7 +598,7 @@ export function SlickHeader({
                           onClick={() => setHesapAcik(false)}
                           className="lx-hesap-menu block"
                         >
-                          {satir.etiket}
+                          {t(satir.etiket)}
                         </Link>
                       </li>
                     ))}
@@ -605,7 +611,7 @@ export function SlickHeader({
           {/* Sepet — imleç gelince mini sepet açılıyor; imleç ayrılınca kapanıyor */}
           <button
             type="button"
-            aria-label="Cart"
+            aria-label={t("Cart")}
             className="relative hover:opacity-70"
             onMouseEnter={() => {
               setSearchOpen(false);
@@ -656,8 +662,8 @@ export function SlickHeader({
             ref={aramaAlaniRef}
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Search products…"
-            aria-label="Search products"
+            placeholder={t("Search products…")}
+            aria-label={t("Search products")}
             tabIndex={searchOpen ? 0 : -1}
             className="min-w-0 flex-1 border-0 bg-transparent text-[16px] text-white outline-none placeholder:text-white/45"
             style={{ fontFamily: "var(--font-owners)" }}
@@ -672,7 +678,7 @@ export function SlickHeader({
             className="shrink-0 text-[11px] uppercase tracking-[0.16em] opacity-70 hover:opacity-100"
             style={{ fontFamily: "var(--font-owners)" }}
           >
-            Close
+            {t("Close")}
           </button>
         </form>
       </div>
@@ -695,7 +701,7 @@ export function SlickHeader({
                   className="px-4 py-6 text-center text-[12px] uppercase tracking-[0.14em]"
                   style={{ color: "rgba(255,255,255,0.5)" }}
                 >
-                  {araniyor ? "Searching…" : "No results"}
+                  {araniyor ? t("Searching…") : t("No results")}
                 </p>
               ) : (
                 <>
@@ -733,7 +739,7 @@ export function SlickHeader({
                                 className="mt-0.5 block text-[10px] uppercase tracking-[0.14em]"
                                 style={{ color: "rgba(255,255,255,0.45)" }}
                               >
-                                Sold out
+                                {t("Sold out")}
                               </span>
                             ) : null}
                           </span>
@@ -749,8 +755,8 @@ export function SlickHeader({
                         <button
                           type="button"
                           disabled={!urun.availableForSale || !urun.variantId}
-                          aria-label={urun.availableForSale ? `Add ${urun.title} to cart` : "Sold out"}
-                          title={urun.availableForSale ? "Add to cart" : "Sold out"}
+                          aria-label={urun.availableForSale ? t("Add {title} to cart", { title: urun.title }) : t("Sold out")}
+                          title={urun.availableForSale ? t("Add to cart") : t("Sold out")}
                           onClick={() => {
                             if (!urun.availableForSale || !urun.variantId) return;
                             /* Sepet doğrudan varyant kimliğiyle çalışıyor; öneri
@@ -807,7 +813,7 @@ export function SlickHeader({
                       fontFamily: "var(--font-owners)",
                     }}
                   >
-                    See all results
+                    {t("See all results")}
                   </Link>
                 </>
               )}
@@ -833,12 +839,12 @@ export function SlickHeader({
           <button
             type="button"
             className="absolute inset-0 bg-black/70"
-            aria-label="Close"
+            aria-label={t("Close")}
             onClick={() => setMenuOpen(false)}
           />
           <aside className="absolute inset-y-0 left-0 w-[88%] max-w-sm overflow-y-auto bg-black p-5 text-white">
             <div className="mb-6 flex items-center justify-between">
-              <span className="sg-nav text-[12px]">Menu</span>
+              <span className="sg-nav text-[12px]">{t("Menu")}</span>
               <button type="button" className="text-2xl" onClick={() => setMenuOpen(false)}>
                 ×
               </button>
@@ -853,7 +859,7 @@ export function SlickHeader({
                         className="sg-nav flex w-full items-center justify-between py-3 text-left text-[13px]"
                         onClick={() => setAccordion((a) => (a === item.label ? null : item.label))}
                       >
-                        {item.label}
+                        {t(item.label)}
                         <span>{accordion === item.label ? "−" : "+"}</span>
                       </button>
                       {accordion === item.label && (
@@ -882,12 +888,14 @@ export function SlickHeader({
                       className="sg-nav block py-3 text-[13px]"
                       onClick={() => setMenuOpen(false)}
                     >
-                      {item.label}
+                      {t(item.label)}
                     </Link>
                   )}
                 </li>
               ))}
             </ul>
+            {/* Dil seçimi mobil menünün en altında */}
+            <DilSecici koyu className="mt-8 flex" />
           </aside>
         </div>
       )}

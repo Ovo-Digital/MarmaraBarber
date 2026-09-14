@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { formatMoney } from "@/lib/money";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
+import { useT } from "@/lib/i18n/dil";
 
 /**
  * Mini sepet — sağ üstte, header'ın altında yüzen buzlu panel.
@@ -25,6 +26,7 @@ export function CartDrawer({
    *  açıldıysa açık kalır — kullanıcı fareyi çekince kaybolmasın. */
   hoverIleAcildi?: boolean;
 }) {
+  const t = useT();
   const lines = useShopifyCartStore((s) => s.lines);
   const remove = useShopifyCartStore((s) => s.remove);
   const total = useShopifyCartStore((s) => s.total);
@@ -83,7 +85,7 @@ export function CartDrawer({
       <button
         type="button"
         className={`absolute inset-0 cursor-default ${hoverIleAcildi ? "pointer-events-none" : ""}`}
-        aria-label="Close"
+        aria-label={t("Close")}
         onClick={onClose}
       />
 
@@ -102,23 +104,23 @@ export function CartDrawer({
         >
           <div className="flex items-center justify-between px-5 pt-5 sm:px-7">
             <span className="text-[11px] uppercase tracking-[0.16em]" style={{ color: "rgba(255,255,255,0.6)" }}>
-              {adet > 0 ? "Added to cart" : "Cart"}
+              {adet > 0 ? t("Added to cart") : t("Cart")}
             </span>
             <button
               type="button"
               onClick={onClose}
-              aria-label="Close"
+              aria-label={t("Close")}
               className="text-[11px] uppercase tracking-[0.16em]"
               style={{ color: "rgba(255,255,255,0.6)" }}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
 
           {lines.length === 0 ? (
             <div className="px-5 py-12 text-center sm:px-7">
               <p className="text-[14px]" style={{ color: "rgba(255,255,255,0.65)" }}>
-                Your cart is empty
+                {t("Your cart is empty")}
               </p>
               <Link
                 href="/products"
@@ -132,7 +134,7 @@ export function CartDrawer({
                   fontSize: "12px",
                 }}
               >
-                Start shopping
+                {t("Start shopping")}
               </Link>
             </div>
           ) : (
@@ -182,7 +184,7 @@ export function CartDrawer({
                       >
                         {line.variantTitle && line.variantTitle !== "Default Title"
                           ? line.variantTitle
-                          : `Qty ${line.quantity}`}
+                          : t("Qty {n}", { n: line.quantity })}
                       </p>
 
                       <button
@@ -191,7 +193,7 @@ export function CartDrawer({
                         className="mt-2.5 text-[11px] uppercase tracking-[0.14em]"
                         style={{ color: "var(--sg-red)", fontFamily: "var(--font-owners)" }}
                       >
-                        Remove
+                        {t("Remove")}
                       </button>
                     </div>
                   </li>
@@ -204,7 +206,7 @@ export function CartDrawer({
                   style={{ borderTop: "1px solid rgba(255,255,255,0.22)" }}
                 >
                   <span className="text-[11px] uppercase tracking-[0.16em]" style={{ color: "rgba(255,255,255,0.6)" }}>
-                    Subtotal • {adet} {adet === 1 ? "item" : "items"}
+                    {t("Subtotal")} • {adet === 1 ? t("1 item") : t("{n} items", { n: adet })}
                   </span>
                   <span
                     style={{ fontFamily: "var(--font-owners-black)", fontWeight: 900, fontSize: "26px", color: "#ffffff" }}
@@ -226,7 +228,7 @@ export function CartDrawer({
                         fontSize: "12px",
                       }}
                     >
-                      Checkout
+                      {t("Checkout")}
                     </a>
                   ) : null}
                   <Link
@@ -241,7 +243,7 @@ export function CartDrawer({
                       fontSize: "12px",
                     }}
                   >
-                    View cart
+                    {t("View cart")}
                   </Link>
                 </div>
               </div>

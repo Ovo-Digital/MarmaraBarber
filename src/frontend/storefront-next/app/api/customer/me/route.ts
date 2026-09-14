@@ -7,11 +7,11 @@ import { customerGet, customerUpdate } from "@/services/shopify/customer-operati
 export async function GET() {
   try {
     const token = await getCustomerTokenFromCookies();
-    if (!token) return apiError(new Error("Oturum açık değil"), 401);
+    if (!token) return apiError(new Error("You are not signed in."), 401);
 
     const client = createShopifyServerClient();
     const customer = await customerGet(client, token);
-    if (!customer) return apiError(new Error("Oturum süresi dolmuş"), 401);
+    if (!customer) return apiError(new Error("Your session has expired. Please sign in again."), 401);
 
     return apiSuccess(customer);
   } catch (error) {
@@ -22,7 +22,7 @@ export async function GET() {
 export async function PATCH(req: NextRequest) {
   try {
     const token = await getCustomerTokenFromCookies();
-    if (!token) return apiError(new Error("Oturum açık değil"), 401);
+    if (!token) return apiError(new Error("You are not signed in."), 401);
 
     const body = (await req.json()) as {
       firstName?: string;

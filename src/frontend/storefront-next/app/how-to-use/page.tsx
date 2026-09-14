@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/slick/page-hero";
+import { T } from "@/lib/i18n/dil";
 import { storefrontGetUsageGuides } from "@/services/shopify/storefront-direct";
 
 export const metadata: Metadata = {
@@ -79,7 +80,7 @@ export default async function HowToUsePage() {
         >
           {sirali.length === 0 ? (
             <p className="py-16 text-center text-[15px]" style={{ color: "rgba(20,17,15,0.55)" }}>
-              Guides are on their way.
+              <T k="Guides are on their way." />
             </p>
           ) : (
             <>
@@ -133,7 +134,7 @@ export default async function HowToUsePage() {
                             className="mb-3 text-[11px] uppercase tracking-[0.14em]"
                             style={{ color: "rgba(20,17,15,0.5)", fontFamily: "var(--font-owners)" }}
                           >
-                            Applies to · {urunler.length}
+                            <T k="Applies to" /> · {urunler.length}
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {urunler.map((u) => (

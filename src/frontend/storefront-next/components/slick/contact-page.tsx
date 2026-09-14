@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { COMPANY } from "@/lib/legal-content";
+import { PageHero } from "@/components/slick/page-hero";
+import { LxEtiket, LxHata, lxAlan, lxAlanStil } from "@/components/slick/auth-form";
+import { useT } from "@/lib/i18n/dil";
 
 const HELP_WIDE = [
   { label: "Return / Refund?", href: "/iade-ve-degisim" },
@@ -16,7 +19,7 @@ const HELP_GRID = [
   { label: "Report issue", href: "/iletisim#contact-form", icon: ReportIcon },
 ];
 
-const SUBJECTS = [
+const SUBJECTS = [ // İngilizce anahtarlar; ekranda t() ile çevriliyor
   "Order issue",
   "Return / Refund",
   "Product question",
@@ -25,162 +28,149 @@ const SUBJECTS = [
 ];
 
 export function SlickContactPage() {
-  const [sent, setSent] = useState(false);
-  const [fileCount, setFileCount] = useState(0);
-  const fileRef = useRef<HTMLInputElement>(null);
+  const t = useT();
+  const [durum, setDurum] = useState<"bos" | "gonderiliyor" | "tamam" | "hata">("bos");
+  const [hata, setHata] = useState("");
+  const [veri, setVeri] = useState({ name: "", email: "", subject: "", message: "" });
+  const yaz = (ad: keyof typeof veri, deger: string) => setVeri((v) => ({ ...v, [ad]: deger }));
+
+  /* Önceden bu form hiçbir yere göndermiyordu, yalnızca "gönderildi" yazısını
+     gösteriyordu. Artık başvuru formlarıyla aynı uçtan Shopify'a "contact"
+     etiketli müşteri mesajı olarak gidiyor. Dosya eki ve reCAPTCHA ibaresi
+     kaldırıldı: Shopify'ın iletişim formu dosya taşımıyor, sitede reCAPTCHA yok. */
+  async function gonder(e: React.FormEvent) {
+    e.preventDefault();
+    if (durum === "gonderiliyor") return;
+    setDurum("gonderiliyor");
+    setHata("");
+    const [firstName, ...kalan] = veri.name.trim().split(/\s+/);
+    try {
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "contact",
+          firstName: firstName ?? "",
+          lastName: kalan.join(" "),
+          email: veri.email,
+          subject: veri.subject,
+          message: veri.message,
+        }),
+      });
+      const cevap = (await res.json()) as { ok?: boolean; error?: string };
+      if (!res.ok || !cevap.ok) {
+        setHata(cevap.error ? t(cevap.error) : t("We couldn't send your message right now."));
+        setDurum("hata");
+        return;
+      }
+      setDurum("tamam");
+    } catch {
+      setHata(t("We couldn't send your message right now."));
+      setDurum("hata");
+    }
+  }
 
   return (
-    <div className="bg-[#fafafa]">
-      <div className="mx-auto max-w-[720px] px-4 py-10 sm:px-6 md:py-14">
-        {/* Self-service cards */}
-        <div className="grid gap-3 sm:grid-cols-2">
-          {HELP_WIDE.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="flex items-center justify-between rounded-xl border border-[#e5e5e5] bg-white px-5 py-4 text-[15px] font-semibold text-black transition hover:border-black/40"
-            >
-              <span>{item.label}</span>
-              <span className="text-[#999]" aria-hidden>
-                ›
-              </span>
-            </Link>
-          ))}
-        </div>
+    <>
+      <PageHero eyebrow="Help" title="Contact us" subline="Questions about an order, a product or working with us — we're here." />
 
-        <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {HELP_GRID.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="flex flex-col items-center justify-center gap-3 rounded-xl border border-[#e5e5e5] bg-white px-3 py-6 text-center transition hover:border-black/40"
-            >
-              <item.icon />
-              <span className="text-[13px] font-semibold text-black">{item.label}</span>
-            </Link>
-          ))}
-        </div>
+      <div className="bg-white">
+        <div className="mx-auto max-w-[760px] px-5 sm:px-6" style={{ paddingTop: "clamp(40px,5vw,72px)", paddingBottom: "clamp(64px,7vw,110px)" }}>
+          {/* Kendi kendine çözülebilecekler */}
+          <div className="grid gap-3 sm:grid-cols-2">
+            {HELP_WIDE.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="lx-yardim-kart flex items-center justify-between px-5 py-4"
+              >
+                <span className="text-[14px]" style={{ color: "var(--lx-ink)" }}>{t(item.label)}</span>
+                <span aria-hidden style={{ color: "var(--sg-red)" }}>→</span>
+              </Link>
+            ))}
+          </div>
 
-        {/* Title */}
-        <h1 className="mt-12 text-[32px] font-bold tracking-tight text-black sm:text-[36px]">
-          Contact us
-        </h1>
-        <div className="mt-5 border-b border-[#e5e5e5]" />
+          <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {HELP_GRID.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="lx-yardim-kart flex flex-col items-center justify-center gap-3 px-3 py-6 text-center"
+              >
+                <item.icon />
+                <span className="text-[11px] uppercase tracking-[0.14em]" style={{ color: "var(--lx-ink)", fontFamily: "var(--font-owners)" }}>
+                  {t(item.label)}
+                </span>
+              </Link>
+            ))}
+          </div>
 
-        {/* Form */}
-        <div id="contact-form" className="scroll-mt-28 pt-8">
-          {sent ? (
-            <div className="rounded-lg border border-[#e5e5e5] bg-white p-8 text-center">
-              <p className="text-[16px] font-semibold text-black">Message sent</p>
-              <p className="mt-2 text-[14px] text-[#666]">
-                We&apos;ll get back to you as soon as possible.
-              </p>
-              <p className="mt-4 text-[13px] text-[#888]">{COMPANY.email}</p>
-            </div>
-          ) : (
-            <form
-              className="space-y-5"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSent(true);
-              }}
-            >
-              <Field label="Full name">
-                <input
-                  type="text"
-                  required
-                  className="sg-contact-input"
-                  autoComplete="name"
-                />
-              </Field>
+          <div id="contact-form" className="scroll-mt-28 pt-14">
+            <p className="lx-eyebrow mb-2">{t("Send a message")}</p>
+            <h2 className="lx-title mb-8">{t("Write to us")}</h2>
 
-              <Field label="Email">
-                <input
-                  type="email"
-                  required
-                  placeholder="your@email.com"
-                  className="sg-contact-input"
-                  autoComplete="email"
-                />
-              </Field>
-
-              <Field label="Subject">
-                <div className="relative">
-                  <select required defaultValue="" className="sg-contact-input appearance-none pr-10">
-                    <option value="" disabled>
-                      Select a subject
-                    </option>
-                    {SUBJECTS.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </select>
-                  <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[10px] text-[#666]">
-                    ▼
-                  </span>
-                </div>
-              </Field>
-
-              <Field label="Message">
-                <textarea required rows={7} className="sg-contact-input resize-y" />
-              </Field>
-
-              <div>
-                <input
-                  ref={fileRef}
-                  type="file"
-                  multiple
-                  accept="image/*,.pdf,.png,.jpg,.jpeg"
-                  className="hidden"
-                  onChange={(e) => setFileCount(e.target.files?.length ?? 0)}
-                />
-                <button
-                  type="button"
-                  onClick={() => fileRef.current?.click()}
-                  className="flex w-full items-center justify-center gap-2 rounded-lg border border-[#e5e5e5] bg-[#f3f3f3] px-4 py-3.5 text-[14px] font-medium text-black transition hover:bg-[#ececec]"
-                >
-                  <PaperclipIcon />
-                  Attach Files
-                  {fileCount > 0 ? (
-                    <span className="text-[#666]">({fileCount})</span>
-                  ) : null}
-                </button>
-                <p className="mt-2 text-[12px] text-[#888]">
-                  Attach up to 10 files. The maximum allowed size per file is 10 MB.
+            {durum === "tamam" ? (
+              <div className="px-8 py-12 text-center" style={{ border: "1px solid rgba(20,17,15,0.14)" }}>
+                <p className="lx-eyebrow mb-3">{t("Message sent")}</p>
+                <p className="text-[15px]" style={{ color: "rgba(20,17,15,0.7)" }}>
+                  {t("We'll get back to you as soon as possible.")}
                 </p>
               </div>
+            ) : (
+              <form className="grid gap-6" onSubmit={gonder}>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <div>
+                    <LxEtiket htmlFor="c-name" zorunlu>{t("Full name")}</LxEtiket>
+                    <input id="c-name" type="text" required autoComplete="name" value={veri.name}
+                      onChange={(e) => yaz("name", e.target.value)} className={lxAlan} style={lxAlanStil} />
+                  </div>
+                  <div>
+                    <LxEtiket htmlFor="c-email" zorunlu>{t("Email")}</LxEtiket>
+                    <input id="c-email" type="email" required autoComplete="email" placeholder="you@example.com" value={veri.email}
+                      onChange={(e) => yaz("email", e.target.value)} className={lxAlan} style={lxAlanStil} />
+                  </div>
+                </div>
 
-              <button
-                type="submit"
-                className="w-full rounded-lg bg-black px-6 py-3.5 text-[15px] font-bold text-white transition hover:opacity-90"
-              >
-                Send
-              </button>
+                <div>
+                  <LxEtiket htmlFor="c-subject" zorunlu>{t("Subject")}</LxEtiket>
+                  <select id="c-subject" required value={veri.subject} onChange={(e) => yaz("subject", e.target.value)}
+                    className={`${lxAlan} appearance-none`} style={lxAlanStil}>
+                    <option value="" disabled>{t("Select a subject")}</option>
+                    {SUBJECTS.map((s) => (
+                      <option key={s} value={s}>{t(s)}</option>
+                    ))}
+                  </select>
+                </div>
 
-              <p className="text-[12px] leading-relaxed text-[#888]">
-                This site is protected by reCAPTCHA. For more information, please refer to{" "}
-                <Link href="/gizlilik-politikasi" className="text-[#2563eb] underline">
-                  Privacy Policy
-                </Link>
-                .
-              </p>
-            </form>
-          )}
+                <div>
+                  <LxEtiket htmlFor="c-message" zorunlu>{t("Message")}</LxEtiket>
+                  <textarea id="c-message" required rows={6} value={veri.message}
+                    onChange={(e) => yaz("message", e.target.value)} className={`${lxAlan} resize-y`} style={lxAlanStil} />
+                </div>
+
+                {hata ? <LxHata mesaj={hata} /> : null}
+
+                <button
+                  type="submit"
+                  disabled={durum === "gonderiliyor"}
+                  className="w-full uppercase tracking-[0.16em] disabled:opacity-60"
+                  style={{ minHeight: 54, background: "var(--sg-red)", color: "#fff", fontFamily: "var(--font-owners)", fontSize: "12px" }}
+                >
+                  {durum === "gonderiliyor" ? t("Sending…") : t("Send")}
+                </button>
+
+                <p className="text-center text-[12px]" style={{ color: "rgba(20,17,15,0.5)" }}>
+                  {t("Or email us directly:")}{" "}
+                  <a href={`mailto:${COMPANY.email}`} style={{ color: "var(--lx-ink)" }} className="underline underline-offset-4">
+                    {COMPANY.email}
+                  </a>
+                </p>
+              </form>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label className="block">
-      <span className="mb-2 block text-[14px] font-bold text-black">
-        {label} <span className="text-[var(--sg-red)]">*</span>
-      </span>
-      {children}
-    </label>
+    </>
   );
 }
 
@@ -222,17 +212,6 @@ function ReportIcon() {
       <path d="M12 11v3.5" strokeLinecap="round" />
       <circle cx="12" cy="16.5" r="0.8" fill="currentColor" stroke="none" />
       <path d="M12 4.5 14.5 8H9.5L12 4.5z" />
-    </svg>
-  );
-}
-function PaperclipIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <path
-        d="M21 12.5 12.2 21a5 5 0 0 1-7.1-7.1l9.2-9.2a3.2 3.2 0 0 1 4.5 4.5l-9.2 9.2a1.4 1.4 0 1 1-2-2l8.1-8.1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
     </svg>
   );
 }

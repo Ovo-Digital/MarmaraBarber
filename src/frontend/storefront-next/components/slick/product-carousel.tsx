@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SlickProductCard } from "@/components/slick/product-card";
 import type { Product } from "@/types/commerce";
+import { useT } from "@/lib/i18n/dil";
 
 /**
  * Otomatik kayan ürün şeridi.
@@ -38,6 +39,7 @@ export function ProductCarousel({
   const lastTsRef = useRef<number | null>(null);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const t = useT();
   const [paused, setPaused] = useState(false);
   const [canPrev, setCanPrev] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
@@ -115,8 +117,8 @@ export function ProductCarousel({
         {/* Editoryal başlık: küçük etiket üstte, büyük başlık altta, sola hizalı.
             Ortalı başlık yerine bu — lüks markalarda okuma ritmi soldan başlar. */}
         <div className="text-center">
-          {eyebrow ? <p className="lx-eyebrow mb-2">{eyebrow}</p> : null}
-          <h2 className="lx-title">{title}</h2>
+          {eyebrow ? <p className="lx-eyebrow mb-2">{t(eyebrow)}</p> : null}
+          <h2 className="lx-title">{t(title)}</h2>
         </div>
 
         <div
@@ -147,7 +149,7 @@ export function ProductCarousel({
           {/* Yuvarlak oklar — görsel hizasında, şeridin kenarlarında */}
           <button
             type="button"
-            aria-label="Previous products"
+            aria-label={t("Previous products")}
             onClick={() => scrollByCard(-1)}
             className={`lx-arrow absolute left-0 top-[36%] z-10 hidden h-11 w-11 -translate-x-1/2 items-center justify-center rounded-full md:flex ${
               canPrev ? "opacity-100" : "pointer-events-none opacity-0"
@@ -159,7 +161,7 @@ export function ProductCarousel({
           </button>
           <button
             type="button"
-            aria-label="Next products"
+            aria-label={t("Next products")}
             onClick={() => scrollByCard(1)}
             className="lx-arrow absolute right-0 top-[36%] z-10 hidden h-11 w-11 translate-x-1/2 items-center justify-center rounded-full md:flex"
           >

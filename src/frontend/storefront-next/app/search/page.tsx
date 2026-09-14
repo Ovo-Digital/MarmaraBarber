@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SlickCollectionPlp } from "@/components/slick/collection-plp";
 import { storefrontGetProductsByQuery } from "@/services/shopify/storefront-direct";
 import type { Product } from "@/types/commerce";
+import { T } from "@/lib/i18n/dil";
 
 type Props = { searchParams: Promise<{ q?: string }> };
 
@@ -27,9 +28,9 @@ export default async function SearchPage({ searchParams }: Props) {
             color: "#1C1C1C",
           }}
         >
-          Search
+          <T k="Search" />
         </h1>
-        <p className="mt-3 text-[14px] text-[#666]">Enter a search term to find products.</p>
+        <p className="mt-3 text-[14px] text-[#666]"><T k="Enter a search term to find products." /></p>
       </div>
     );
   }
@@ -56,10 +57,10 @@ export default async function SearchPage({ searchParams }: Props) {
             color: "#1C1C1C",
           }}
         >
-          {`No results for “${terim}”`}
+          <T k="No results for “{q}”" v={{ q: terim }} />
         </h1>
         <p className="mt-3 text-[14px] text-[#666]">
-          Try a different search term or browse the collections.
+          <T k="Try a different search term or browse the collections." />
         </p>
       </div>
     );
@@ -68,7 +69,7 @@ export default async function SearchPage({ searchParams }: Props) {
   return (
     <SlickCollectionPlp
       title={`“${terim}”`}
-      description={`${products.length} result${products.length === 1 ? "" : "s"}`}
+      descriptionCeviri={products.length === 1 ? { k: "1 result" } : { k: "{n} results", v: { n: products.length } }}
       image={products.find((p) => p.imageUrl)?.imageUrl}
       products={products}
     />

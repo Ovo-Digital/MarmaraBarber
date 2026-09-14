@@ -9,12 +9,13 @@ import {
   TRUST_STATS,
 } from "@/lib/slick-theme";
 import type { Product } from "@/types/commerce";
+import { T } from "@/lib/i18n/dil";
 
 /** 3. Full-bleed hero + CTA overlay */
 export function HeroBanner({
   image,
   title = "READY FOR TAKEOFF",
-  subtitle = "Partner paketini seç, berber standı hediyesiyle stokunu güçlendir.",
+  subtitle = "Professional grooming, made for the chair since 1970.",
   ctaLabel = "Shop Now",
   ctaHref = "/iletisim",
 }: {
@@ -36,10 +37,10 @@ export function HeroBanner({
       ) : null}
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/20" />
       <div className="sg-container relative flex min-h-[min(78vh,720px)] flex-col items-center justify-end pb-14 pt-24 text-center text-white md:pb-20">
-        <h1 className="sg-display max-w-3xl text-white">{title}</h1>
-        <p className="sg-subhead mt-5 max-w-md text-white/90">{subtitle}</p>
+        <h1 className="sg-display max-w-3xl text-white"><T k={title} /></h1>
+        <p className="sg-subhead mt-5 max-w-md text-white/90"><T k={subtitle} /></p>
         <Link href={ctaHref} className="sg-btn-red mt-8">
-          {ctaLabel}
+          <T k={ctaLabel} />
         </Link>
       </div>
     </section>

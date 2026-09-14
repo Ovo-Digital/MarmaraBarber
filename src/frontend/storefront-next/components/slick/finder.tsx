@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SlickProductCard } from "@/components/slick/product-card";
 import { formatMoney } from "@/lib/money";
 import type { Product } from "@/types/commerce";
+import { useT } from "@/lib/i18n/dil";
 
 /**
  * İki adımlı ürün bulucu.
@@ -14,6 +15,7 @@ import type { Product } from "@/types/commerce";
  * ya da fiyat yoktur — başka bir mağazaya bağlandığında kendi verisiyle çalışır.
  */
 export function Finder({ products }: { products: Product[] }) {
+  const t = useT();
   const [category, setCategory] = useState<string | null>(null);
   const [budget, setBudget] = useState<[number, number] | null>(null);
 
@@ -79,7 +81,7 @@ export function Finder({ products }: { products: Product[] }) {
                   color: active ? "var(--lx-ink)" : "var(--lx-stone)",
                 }}
               >
-                {label}
+                {t(label)}
               </span>
             </li>
           );
@@ -87,7 +89,7 @@ export function Finder({ products }: { products: Product[] }) {
       </ol>
 
       {step === 1 && (
-        <Adim baslik="What are you shopping for?">
+        <Adim baslik={t("What are you shopping for?")}>
           {categories.map(([name, n]) => (
             <Secenek key={name} onClick={() => setCategory(name)}>
               {name}
@@ -98,7 +100,7 @@ export function Finder({ products }: { products: Product[] }) {
       )}
 
       {step === 2 && (
-        <Adim baslik="What's your budget?">
+        <Adim baslik={t("What's your budget?")}>
           {budgets.map(([min, max]) => (
             <Secenek key={`${min}-${max}`} onClick={() => setBudget([min, max])}>
               {formatMoney(Math.floor(min), currency)} – {formatMoney(Math.ceil(max), currency)}
@@ -110,7 +112,7 @@ export function Finder({ products }: { products: Product[] }) {
       {step === 3 && (
         <div>
           <div className="mb-8 text-center">
-            <h2 className="lx-title">{results.length ? "Your matches" : "No exact match"}</h2>
+            <h2 className="lx-title">{results.length ? t("Your matches") : t("No exact match")}</h2>
             <p className="mt-3 text-[14px] text-[var(--lx-stone)]">
               {category} · {budget ? `${formatMoney(Math.floor(budget[0]), currency)} – ${formatMoney(Math.ceil(budget[1]), currency)}` : ""}
             </p>
@@ -122,7 +124,7 @@ export function Finder({ products }: { products: Product[] }) {
               }}
               className="lx-link mt-4"
             >
-              Start over
+              {t("Start over")}
             </button>
           </div>
 
@@ -134,9 +136,9 @@ export function Finder({ products }: { products: Product[] }) {
             </div>
           ) : (
             <p className="text-center text-[14px] text-[var(--lx-stone)]">
-              Nothing in that range.{" "}
+              {t("Nothing in that range.")}{" "}
               <Link href="/products" className="lx-link">
-                Browse all products
+                {t("Browse all products")}
               </Link>
             </p>
           )}

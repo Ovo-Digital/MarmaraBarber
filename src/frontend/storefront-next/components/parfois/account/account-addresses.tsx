@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useT } from "@/lib/i18n/dil";
 import { useMutation } from "@tanstack/react-query";
 import { TurkeyAddressFields } from "@/components/parfois/turkey-address-fields";
 import {
@@ -55,6 +56,7 @@ function AddressFormModal({
   isPending: boolean;
   error: string | null;
 }) {
+  const t = useT();
   const [form, setForm] = useState(initial);
   const [turkeyAddress, setTurkeyAddress] = useState(initialTurkeyAddress ?? EMPTY_TURKEY_ADDRESS);
   const [localError, setLocalError] = useState<string | null>(null);
@@ -63,7 +65,7 @@ function AddressFormModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
       <div className="max-h-[90vh] w-full max-w-[560px] overflow-y-auto bg-white p-6 sm:p-8">
         <div className="mb-6 flex items-center justify-between">
-          <h3 className="text-[14px] font-semibold">{title}</h3>
+          <h3 className="text-[14px] font-semibold">{t(title)}</h3>
           <button type="button" onClick={onClose} className="text-[20px] leading-none text-[#666] hover:text-black">
             ×
           </button>
@@ -75,7 +77,7 @@ function AddressFormModal({
             e.preventDefault();
             setLocalError(null);
             if (!isTurkeyAddressComplete(turkeyAddress)) {
-              setLocalError("Please fill in city, district, neighbourhood and street address.");
+              setLocalError(t("Please fill in city, district, neighbourhood and street address."));
               return;
             }
             const mapped = turkeyAddressToShopifyFields(turkeyAddress);
@@ -93,13 +95,13 @@ function AddressFormModal({
               required
               value={form.company ?? ""}
               onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
-              placeholder="Home, Work…"
+              placeholder={t("Home, Work…")}
               className={accountInputClass}
             />
           </AccountField>
 
           <div className="grid gap-5 sm:grid-cols-2">
-            <AccountField label="Ad" required>
+            <AccountField label="First name" required>
               <input
                 required
                 value={form.firstName}
@@ -117,11 +119,11 @@ function AddressFormModal({
             </AccountField>
           </div>
 
-          <AccountField label="E-posta">
+          <AccountField label="Email">
             <input readOnly value={customerEmail} className={`${accountInputClass} text-[#666]`} />
           </AccountField>
 
-          <AccountField label="Telefon" required>
+          <AccountField label="Phone" required>
             <div className="flex items-end gap-2">
               <span className="pb-2 text-[13px] shrink-0">🇹🇷 +90</span>
               <input
@@ -140,7 +142,7 @@ function AddressFormModal({
           )}
 
           <button type="submit" disabled={isPending} className="pf-btn-primary w-auto px-8 !text-[10px]">
-            {isPending ? "Saving…" : "Save"}
+            {isPending ? t("Saving…") : t("Save")}
           </button>
         </form>
       </div>
@@ -149,6 +151,7 @@ function AddressFormModal({
 }
 
 export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps) {
+  const t = useT();
   const [showAdd, setShowAdd] = useState(false);
   const [editing, setEditing] = useState<CustomerAddress | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
@@ -160,7 +163,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
       setFormError(null);
       await onUpdated();
     },
-    onError: (err) => setFormError(err instanceof Error ? err.message : "Adres eklenemedi"),
+    onError: (err) => setFormError(err instanceof Error ? t(err.message) : t("Could not add the address.")),
   });
 
   const updateMutation = useMutation({
@@ -171,7 +174,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
       setFormError(null);
       await onUpdated();
     },
-    onError: (err) => setFormError(err instanceof Error ? err.message : "Could not update the address."),
+    onError: (err) => setFormError(err instanceof Error ? t(err.message) : t("Could not update the address.")),
   });
 
   const deleteMutation = useMutation({
@@ -191,7 +194,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
   return (
     <div>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-[#e0e0e0] pb-4">
-        <h2 className="text-[15px] font-semibold">Addresses</h2>
+        <h2 className="text-[15px] font-semibold">{t("Addresses")}</h2>
         <button
           type="button"
           onClick={() => {
@@ -203,16 +206,16 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
           <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-white text-[12px] leading-none">
             +
           </span>
-          Yeni Ekle
+          {t("Add new")}
         </button>
       </div>
 
       {customer.addresses.length === 0 ? (
-        <p className="py-12 text-center text-[12px] text-[#666]">You have no saved addresses.</p>
+        <p className="py-12 text-center text-[12px] text-[#666]">{t("You have no saved addresses.")}</p>
       ) : (
         <div className="hidden border-b border-[#e0e0e0] pb-3 text-[11px] font-semibold text-black sm:grid sm:grid-cols-[1fr_2fr_auto] sm:gap-6">
-          <span>Address name</span>
-          <span>Address details</span>
+          <span>{t("Address name")}</span>
+          <span>{t("Address details")}</span>
           <span className="sr-only">Actions</span>
         </div>
       )}
@@ -244,7 +247,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
               </p>
               <p>{addr.country}</p>
               <p className="mt-2">
-                <span className="font-semibold">Business invoice:</span> No
+                <span className="font-semibold">{t("Business invoice:")}</span> {t("No")}
               </p>
             </div>
 
@@ -257,7 +260,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
                 }}
                 className="min-w-[88px] border border-black px-4 py-2 text-[10px] font-semibold uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
               >
-                Edit
+                {t("Edit")}
               </button>
               <button
                 type="button"
@@ -265,7 +268,7 @@ export function AccountAddresses({ customer, onUpdated }: AccountAddressesProps)
                 onClick={() => deleteMutation.mutate(addr.id)}
                 className="min-w-[88px] bg-[#999] px-4 py-2 text-[10px] font-semibold uppercase tracking-wider text-white hover:bg-[#777] transition-colors disabled:opacity-50"
               >
-                Sil
+                {t("Delete")}
               </button>
             </div>
           </li>

@@ -19,16 +19,16 @@ export default async function ProductsPage({ searchParams }: Props) {
     ? await storefrontGetProductsByQuery(`product_type:"${type.replace(/"/g, "")}"`, 250, "TITLE", false)
     : await storefrontGetProducts(250);
 
-  const title = type || "All products";
   const heroImage = products.find((p) => p.imageUrl)?.imageUrl;
 
   return (
     <SlickCollectionPlp
-      title={title}
-      description={
+      title={type || "All products"}
+      titleCeviri={type ? undefined : { k: "All products" }}
+      descriptionCeviri={
         type
-          ? `${title} kategorisindeki profesyonel berber ürünlerini incele.`
-          : "Cologne, styling, skin care, accessories and more — the full range."
+          ? { k: "Professional barber products in {type}.", v: { type } }
+          : { k: "Cologne, styling, skin care, accessories and more — the full range." }
       }
       image={heroImage}
       products={products}

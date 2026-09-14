@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { HeroSlide } from "@/services/shopify/storefront-direct";
 import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
+import { useT } from "@/lib/i18n/dil";
 
 /**
  * Tam ekran hero slider — solda dikey olarak "yuvarlanan" başlık listesi.
@@ -47,6 +48,7 @@ export function HeroSlider({
    *  verilmezse koleksiyon görselleri çapraz geçişle döner. */
   brandImage?: string;
 }) {
+  const t = useT();
   const count = slides.length;
 
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -190,7 +192,7 @@ export function HeroSlider({
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
       aria-roledescription="carousel"
-      aria-label="Featured collections"
+      aria-label={t("Featured collections")}
     >
       {brandImage ? (
         <div className="absolute inset-0 bg-black">
@@ -299,7 +301,7 @@ export function HeroSlider({
           className="absolute right-[var(--sg-gutter)] top-1/2 hidden -translate-y-1/2 px-6 py-2.5 text-[13px] font-semibold uppercase tracking-[0.06em] text-white transition-transform duration-200 hover:scale-[1.04] md:block"
           style={{ background: "var(--sg-red)", color: "#ffffff" }}
         >
-          View
+          {t("View")}
         </Link>
       </div>
 
@@ -308,7 +310,7 @@ export function HeroSlider({
         className="absolute bottom-8 left-1/2 min-h-11 -translate-x-1/2 px-7 py-3 text-[13px] font-semibold uppercase tracking-[0.06em] text-white md:hidden"
         style={{ background: "var(--sg-red)", color: "#ffffff" }}
       >
-        View
+        {t("View")}
       </Link>
 
       <span className="sr-only" aria-live="polite">

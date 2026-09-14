@@ -8,7 +8,7 @@ import type { CustomerAddress } from "@/types/customer";
 export async function POST(req: NextRequest) {
   try {
     const token = await getCustomerTokenFromCookies();
-    if (!token) return apiError(new Error("Oturum açık değil"), 401);
+    if (!token) return apiError(new Error("You are not signed in."), 401);
 
     const address = (await req.json()) as Omit<CustomerAddress, "id">;
     const client = createShopifyServerClient();

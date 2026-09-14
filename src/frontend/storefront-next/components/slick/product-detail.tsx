@@ -14,6 +14,7 @@ import { SlickProductCard } from "@/components/slick/product-card";
 import { formatMoney } from "@/lib/money";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useUiStore } from "@/store/ui-store";
+import { useT } from "@/lib/i18n/dil";
 import type { Product, ProductOption, ProductVariant } from "@/types/commerce";
 
 function isDefaultOnly(options: ProductOption[] | undefined) {
@@ -75,6 +76,7 @@ function Accordion({
 }) {
   /* Hepsi kapalı başlıyor: ilk bölüm açık gelince uzun açıklama sayfayı
      yine duvara çeviriyordu. */
+  const t = useT();
   const [open, setOpen] = useState<string | null>(null);
 
   return (
@@ -89,7 +91,7 @@ function Accordion({
               onClick={() => setOpen(isOpen ? null : item.id)}
               aria-expanded={isOpen}
             >
-              <span className="sg-nav text-[12px]">{item.title}</span>
+              <span className="sg-nav text-[12px]">{t(item.title)}</span>
               <span className="text-lg leading-none">{isOpen ? "−" : "+"}</span>
             </button>
             <div
@@ -116,6 +118,7 @@ function Lightbox({
   alt: string;
   onClose: () => void;
 }) {
+  const t = useT();
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -130,12 +133,12 @@ function Lightbox({
 
   return (
     <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/90 p-4">
-      <button type="button" className="absolute inset-0" aria-label="Kapat" onClick={onClose} />
+      <button type="button" className="absolute inset-0" aria-label={t("Close")} onClick={onClose} />
       <button
         type="button"
         onClick={onClose}
         className="absolute right-4 top-4 z-10 text-3xl text-white"
-        aria-label="Kapat"
+        aria-label={t("Close")}
       >
         ×
       </button>
@@ -156,6 +159,7 @@ function Gallery({
   active: number;
   onSelect: (i: number) => void;
 }) {
+  const t = useT();
   const [lightbox, setLightbox] = useState(false);
   const [zoomed, setZoomed] = useState(false);
   const src = images[active];
@@ -183,11 +187,11 @@ function Gallery({
                 className="absolute inset-0 h-full w-full object-contain p-6 md:p-10"
               />
             ) : (
-              <div className="flex h-full items-center justify-center text-[12px] text-[#999]">No image</div>
+              <div className="flex h-full items-center justify-center text-[12px] text-[#999]">{t("No image")}</div>
             )}
           </AnimatePresence>
           <span className="sg-nav pointer-events-none absolute bottom-3 right-3 bg-white/90 px-2 py-1 text-[9px] opacity-0 transition group-hover:opacity-100">
-            Zoom
+            {t("Zoom")}
           </span>
         </button>
       </div>
@@ -215,37 +219,23 @@ function Gallery({
   );
 }
 
+/**
+ * Stokta olmayan ürün için.
+ *
+ * Önceden burada bir "stok gelince haber ver" formu vardı; e-postayı hiçbir
+ * yere göndermiyor, yalnızca "mail atacağız" yazısını gösteriyordu. Shopify
+ * Storefront API'de stok bildirimi yok. Söz verip tutamayacağımız bir form
+ * yerine iletişim sayfasına yönlendiriyoruz.
+ */
 function NotifyForm() {
-  const [email, setEmail] = useState("");
-  const [done, setDone] = useState(false);
-  if (done) {
-    return <p className="mt-3 text-[13px] text-[#444]">Haber verildi — stok gelince mail atacağız.</p>;
-  }
+  const t = useT();
   return (
-    <form
-      className="mt-3 flex gap-2"
-      onSubmit={(e) => {
-        e.preventDefault();
-        setDone(true);
-      }}
-    >
-      <input
-        type="email"
-        required
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Your email"
-        className="min-w-0 flex-1 px-3 py-2.5 text-[13px] outline-none"
-        style={{ border: "1px solid rgba(20,17,15,0.25)", color: "var(--lx-ink)" }}
-      />
-      <button
-        type="submit"
-        className="shrink-0 px-5 uppercase tracking-[0.14em]"
-        style={{ background: "var(--lx-ink)", color: "#fff", fontFamily: "var(--font-owners)", fontSize: "11px" }}
-      >
-        Notify me
-      </button>
-    </form>
+    <p className="mt-3 text-[13px]" style={{ color: "rgba(20,17,15,0.65)" }}>
+      {t("Out of stock right now.")}{" "}
+      <Link href="/iletisim" className="underline underline-offset-4" style={{ color: "var(--lx-ink)" }}>
+        {t("Ask us about restock")}
+      </Link>
+    </p>
   );
 }
 
@@ -334,6 +324,7 @@ function YapilandirilmisAciklama({ metin }: { metin: string }) {
  * gösterilmiyor — ölçüp karar veriyoruz, tahmin etmiyoruz.
  */
 function KatlanabilirAciklama({ children }: { children: React.ReactNode }) {
+  const t = useT();
   const [acik, setAcik] = useState(false);
   const [tasiyor, setTasiyor] = useState(false);
   const kutuRef = useRef<HTMLDivElement | null>(null);
@@ -385,7 +376,7 @@ function KatlanabilirAciklama({ children }: { children: React.ReactNode }) {
               fontSize: "11px",
             }}
           >
-            {acik ? "Show less" : "Read more"}
+            {acik ? t("Show less") : t("Read more")}
           </button>
         </div>
       ) : null}
@@ -411,6 +402,7 @@ export function SlickProductDetail({
   crossSell: Product[];
   related: Product[];
 }) {
+  const t = useT();
   const options = useMemo(
     () => (isDefaultOnly(product.options) ? [] : product.options ?? []),
     [product.options],
@@ -517,13 +509,13 @@ export function SlickProductDetail({
     <div className="bg-white pb-24 lg:pb-20">
       <div className="sg-container pt-5">
         {/* 1. Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6 truncate text-[12px] text-[#666]">
+        <nav aria-label={t("Breadcrumb")} className="mb-6 truncate text-[12px] text-[#666]">
           <Link href="/" className="hover:text-black">
-            Home
+            {t("Home")}
           </Link>
           <span className="mx-2">/</span>
           <Link href={productTypeHref(product.productType)} className="hover:text-black">
-            {product.productType || "Products"}
+            {product.productType || t("Products")}
           </Link>
           <span className="mx-2">/</span>
           <span className="text-black">{product.title}</span>
@@ -568,7 +560,7 @@ export function SlickProductDetail({
               </span>
               {discount ? (
                 <span className="bg-[var(--sg-red)] px-2 py-1 text-[10px] font-bold tracking-wide text-white">
-                  -%{discount}
+                  -{discount}%
                 </span>
               ) : null}
             </div>
@@ -631,7 +623,7 @@ export function SlickProductDetail({
             {series.length > 0 ? (
               <div className="mt-8">
                 <p className="mb-3 text-[11px] uppercase tracking-[0.14em]" style={{ color: "rgba(20,17,15,0.55)", fontFamily: "var(--font-owners)" }}>
-                  More in {seriesLabel ?? "this range"}
+                  {seriesLabel ? t("More in {name}", { name: seriesLabel }) : t("More in this range")}
                   <span style={{ color: "rgba(20,17,15,0.35)" }}> · {series.length}</span>
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -659,7 +651,7 @@ export function SlickProductDetail({
                 type="button"
                 className="px-4 py-3 text-[16px]"
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
-                aria-label="Decrease"
+                aria-label={t("Decrease")}
               >
                 −
               </button>
@@ -668,7 +660,7 @@ export function SlickProductDetail({
                 type="button"
                 className="px-4 py-3 text-[16px]"
                 onClick={() => setQty((q) => q + 1)}
-                aria-label="Increase"
+                aria-label={t("Increase")}
               >
                 +
               </button>
@@ -691,12 +683,12 @@ export function SlickProductDetail({
               {adding ? (
                 <>
                   <Spinner />
-                  Adding…
+                  {t("Adding…")}
                 </>
               ) : inStock ? (
-                "Add to cart"
+                t("Add to cart")
               ) : (
-                "Sold out"
+                t("Sold out")
               )}
             </button>
             {!inStock ? <NotifyForm /> : null}
@@ -716,7 +708,7 @@ export function SlickProductDetail({
         {/* 3. Cross-sell */}
         {crossSell.length > 0 && (
           <section className="mt-16 border-t border-black/10 pt-12">
-            <h2 className="sg-section-title mb-8">Pairs well with</h2>
+            <h2 className="sg-section-title mb-8">{t("Pairs well with")}</h2>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               {crossSell.map((p) => (
                 <SlickProductCard key={p.id} product={p} />
@@ -729,7 +721,7 @@ export function SlickProductDetail({
         {descriptionHtml || plain ? (
           <section className="mt-16 pt-14" style={{ borderTop: "1px solid rgba(20,17,15,0.12)" }}>
             <div className="mb-10 text-center">
-              <p className="lx-eyebrow mb-2">The detail</p>
+              <p className="lx-eyebrow mb-2">{t("The detail")}</p>
               <h2
                 className="uppercase"
                 style={{
@@ -740,7 +732,7 @@ export function SlickProductDetail({
                   color: "var(--lx-ink)",
                 }}
               >
-                Product description
+                {t("Product description")}
               </h2>
             </div>
 
@@ -802,7 +794,7 @@ export function SlickProductDetail({
                 className="sg-btn-red shrink-0 !px-4 !py-3 text-[11px]"
                 onClick={onAdd}
               >
-                {adding ? "…" : inStock ? "Add to cart" : "Sold out"}
+                {adding ? "…" : inStock ? t("Add to cart") : t("Sold out")}
               </button>
             </div>
           </motion.div>

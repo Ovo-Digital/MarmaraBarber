@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import { AuthHydrator } from "@/components/parfois/auth-hydrator";
 import { CartDrawer } from "@/components/slick/cart-drawer";
 import { SlickFooter } from "@/components/slick/footer";
+import { DilEsitle } from "@/lib/i18n/dil";
+import { Sohbet } from "@/components/slick/sohbet";
 import { SlickHeader, type NavCollection } from "@/components/slick/header";
 import { PageTransition } from "@/components/slick/page-transition";
 import { useUiStore } from "@/store/ui-store";
@@ -75,6 +77,8 @@ export function SiteShell({
         <PageTransition>{children}</PageTransition>
       </main>
       <SlickFooter />
+      <DilEsitle />
+      <Sohbet />
       <GlobalCartDrawer />
     </>
   );

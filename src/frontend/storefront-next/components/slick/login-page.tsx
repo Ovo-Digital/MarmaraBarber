@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useT } from "@/lib/i18n/dil";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -17,6 +18,7 @@ import { useShopifyCartStore } from "@/store/shopify-cart-store";
  * hesaba bağlansın, giriş yapınca kaybolmasın.
  */
 export function LoginPage() {
+  const t = useT();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [sifre, setSifre] = useState("");
@@ -30,7 +32,7 @@ export function LoginPage() {
       setCustomer(customer);
       router.push("/account");
     },
-    onError: (e) => setHata(e instanceof Error ? e.message : "Sign-in failed."),
+    onError: (e) => setHata(e instanceof Error ? t(e.message) : t("Sign-in failed.")),
   });
 
   return (
@@ -42,7 +44,7 @@ export function LoginPage() {
           <div className="mx-auto w-full max-w-[420px]">
             {/* Başlık formun kendi üstünde: ayrı koyu bant sayfayı gereksiz uzatıyordu */}
             <div className="mb-10 text-center">
-              <p className="lx-eyebrow mb-3">Account</p>
+              <p className="lx-eyebrow mb-3">{t("Account")}</p>
               <h1
                 className="uppercase"
                 style={{
@@ -53,10 +55,10 @@ export function LoginPage() {
                   color: "var(--lx-ink)",
                 }}
               >
-                Sign in
+                {t("Sign in")}
               </h1>
               <p className="mt-3 text-[14px]" style={{ color: "rgba(20,17,15,0.55)" }}>
-                Track your orders and check out faster.
+                {t("Track your orders and check out faster.")}
               </p>
             </div>
 
@@ -76,7 +78,7 @@ export function LoginPage() {
             >
               <div>
                 <LxEtiket htmlFor="email" zorunlu>
-                  Email
+                  {t("Email")}
                 </LxEtiket>
                 <input
                   id="email"
@@ -93,7 +95,7 @@ export function LoginPage() {
 
               <div>
                 <LxEtiket htmlFor="sifre" zorunlu>
-                  Password
+                  {t("Password")}
                 </LxEtiket>
                 <input
                   id="sifre"
@@ -125,7 +127,7 @@ export function LoginPage() {
                   textTransform: "uppercase",
                 }}
               >
-                {islem.isPending ? "Signing in…" : "Sign in"}
+                {islem.isPending ? t("Signing in…") : t("Sign in")}
               </button>
             </form>
 
@@ -133,13 +135,13 @@ export function LoginPage() {
               className="mt-8 flex items-center justify-between pt-6 text-[12px]"
               style={{ borderTop: "1px solid rgba(20,17,15,0.12)" }}
             >
-              <span style={{ color: "rgba(20,17,15,0.55)" }}>New here?</span>
+              <span style={{ color: "rgba(20,17,15,0.55)" }}>{t("New here?")}</span>
               <Link
                 href="/uye-ol"
                 className="uppercase tracking-[0.14em]"
                 style={{ color: "var(--sg-red)", fontFamily: "var(--font-owners)" }}
               >
-                Create account →
+                {t("Create account")} →
               </Link>
             </div>
           </div>

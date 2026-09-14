@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     };
 
     if (!body.email || !body.password || !body.firstName || !body.lastName) {
-      return apiError(new Error("Tüm zorunlu alanları doldurun"), 400);
+      return apiError(new Error("Please fill in all required fields."), 400);
     }
 
     const client = createShopifyServerClient();
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     }
 
     const customer = await customerGet(client, accessToken);
-    if (!customer) return apiError(new Error("Müşteri bilgisi alınamadı"), 500);
+    if (!customer) return apiError(new Error("Could not load your account."), 500);
 
     if (body.cartId) {
       await cartOps.cartAttachCustomer(client, body.cartId, accessToken);

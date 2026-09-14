@@ -4,8 +4,10 @@ import Link from "next/link";
 import { formatMoney } from "@/lib/money";
 import { PageHero } from "@/components/slick/page-hero";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
+import { useT } from "@/lib/i18n/dil";
 
 export default function CartPage() {
+  const t = useT();
   const lines = useShopifyCartStore((s) => s.lines);
   const update = useShopifyCartStore((s) => s.update);
   const remove = useShopifyCartStore((s) => s.remove);
@@ -20,7 +22,7 @@ export default function CartPage() {
         <div className="bg-white py-20 text-center">
           <div className="sg-container">
             <Link href="/products" className="lx-btn inline-flex">
-              Start shopping
+              {t("Start shopping")}
             </Link>
           </div>
         </div>
@@ -35,7 +37,8 @@ export default function CartPage() {
       <PageHero
         eyebrow="Cart"
         title="Your cart"
-        subline={`${lines.length} ${lines.length === 1 ? "item" : "items"}`}
+        subline={lines.length === 1 ? "1 item" : "{n} items"}
+        sublineV={{ n: lines.length }}
       />
       <div className="bg-white py-12 md:py-16">
       <div className="sg-container max-w-5xl">
@@ -82,7 +85,7 @@ export default function CartPage() {
                     type="button"
                     className="px-3 py-2 text-[14px] hover:bg-[var(--sg-off)]"
                     onClick={() => update(line.id, line.quantity - 1)}
-                    aria-label="Azalt"
+                    aria-label={t("Decrease")}
                   >
                     −
                   </button>
@@ -93,7 +96,7 @@ export default function CartPage() {
                     type="button"
                     className="px-3 py-2 text-[14px] hover:bg-[var(--sg-off)]"
                     onClick={() => update(line.id, line.quantity + 1)}
-                    aria-label="Artır"
+                    aria-label={t("Increase")}
                   >
                     +
                   </button>
@@ -103,7 +106,7 @@ export default function CartPage() {
                   className="mt-2 text-[12px] text-[#444] underline underline-offset-2 hover:text-black"
                   onClick={() => remove(line.id)}
                 >
-                  Remove
+                  {t("Remove")}
                 </button>
               </div>
 
@@ -122,7 +125,7 @@ export default function CartPage() {
             style={{ borderTop: "1px solid rgba(20,17,15,0.15)" }}
           >
             <span className="text-[11px] uppercase tracking-[0.14em]" style={{ color: "rgba(20,17,15,0.55)" }}>
-              Total
+              {t("Total")}
             </span>
             <span
               style={{
@@ -150,7 +153,7 @@ export default function CartPage() {
                 fontSize: "12px",
               }}
             >
-              Checkout
+              {t("Checkout")}
             </a>
           ) : (
             <span
@@ -163,11 +166,11 @@ export default function CartPage() {
                 fontSize: "12px",
               }}
             >
-              Checkout
+              {t("Checkout")}
             </span>
           )}
           <Link href="/products" className="text-[12px] uppercase tracking-[0.14em]" style={{ color: "rgba(20,17,15,0.55)" }}>
-            Continue shopping
+            {t("Continue shopping")}
           </Link>
         </div>
       </div>

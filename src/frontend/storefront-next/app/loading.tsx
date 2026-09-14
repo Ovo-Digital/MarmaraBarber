@@ -13,7 +13,7 @@ export default function Loading() {
       className="flex w-full items-center justify-center"
       style={{ background: "var(--lx-ink)", minHeight: "70vh" }}
       role="status"
-      aria-label="Loading"
+      aria-label="Loading…"
     >
       <div className="flex flex-col items-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
