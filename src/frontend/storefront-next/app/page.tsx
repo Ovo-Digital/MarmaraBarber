@@ -89,6 +89,7 @@ export default async function HomePage() {
 
       {/* İçerik bandı — satışa değil, kılavuzlara ve topluluğa götürüyor */}
       <PromoBanner
+        image="/media/learn-the-craft.jpg"
         eyebrow="Guides & community"
         headline="Learn the craft."
         subline={[
