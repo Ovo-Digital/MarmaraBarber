@@ -1481,13 +1481,18 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
 }
 
-/* ── Butonlarda kaplama animasyonu ─────────────────────────────────────────
-   İmleç gelince zemin rengi butonu kaplıyor. Kayan düz bir dikdörtgen değil:
-   yumuşak bir ışıma hafifçe büyüyerek beliriyor. Blok gibi kayan geçiş
-   sunum yazılımı efektine benziyordu.
+/* ── Butonlarda imleç geçişi: bulanık ışıma ────────────────────────────────
+   İmleç gelince arkadan bulanık bir hale büyüyor, hemen ardından düz zemin
+   beliriyor ve buton 3px yükseliyor. İki katman:
+     ::before → bulanık hale (blur 16px), 0.65 → 1.18 ölçek
+     ::after  → düz zemin, 120 ms gecikmeyle
+   Kayan blok yerine yerinde büyüyen ışık; sert bir kenar hareketi yok.
 
-   `isolation: isolate` şart: katman z-index -1 ile yazının ALTINDA ama
-   butonun kendi zemininin ÜSTÜNDE kalsın diye. Olmazsa yazıyı da örtüyor. */
+   `isolation: isolate` şart: katmanlar z-index -1 ile yazının ALTINDA ama
+   butonun kendi zemininin ÜSTÜNDE kalsın diye. Olmazsa yazıyı da örtüyor.
+
+   Dolgu rengi butona göre değişiyor: koyu ve çerçeveli butonlarda marka
+   kırmızısı, zaten kırmızı olan butonlarda koyu zemin. */
 .lx-btn,
 .lx-btn-outline,
 .sg-btn,
@@ -1496,34 +1501,48 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition:
-    box-shadow 420ms var(--lx-yumusak),
-    transform 420ms var(--lx-yumusak),
-    color 300ms var(--lx-ease);
+  --lx-dolgu: radial-gradient(115% 150% at 50% 125%, #ff2a1f 0%, var(--sg-red) 45%, #a50500 100%);
+  transition: transform 420ms var(--lx-yumusak), box-shadow 420ms var(--lx-yumusak);
+}
+.sg-btn-red,
+.lx-btn-kirmizi {
+  --lx-dolgu: radial-gradient(115% 160% at 50% 130%, rgba(225, 6, 0, 0.9) 0%, var(--lx-ink) 62%);
+}
+
+.lx-btn::before,
+.lx-btn-outline::before,
+.sg-btn::before,
+.sg-btn-red::before,
+.lx-btn-kirmizi::before,
+.lx-btn::after,
+.lx-btn-outline::after,
+.sg-btn::after,
+.sg-btn-red::after,
+.lx-btn-kirmizi::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--lx-dolgu);
+  opacity: 0;
 }
 .lx-btn::before,
 .lx-btn-outline::before,
 .sg-btn::before,
 .sg-btn-red::before,
 .lx-btn-kirmizi::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  z-index: -1;
-  opacity: 0;
-  transform: scale(0.82) translateY(14%);
-  transform-origin: 50% 100%;
-  transition:
-    opacity 380ms var(--lx-yumusak),
-    transform 620ms var(--lx-yumusak);
-  /* Koyu/çerçeveli butonlarda kırmızı ışıma */
-  background: radial-gradient(115% 150% at 50% 125%, #ff2a1f 0%, var(--sg-red) 45%, #a50500 100%);
+  filter: blur(16px);
+  transform: scale(0.65);
+  transition: opacity 420ms ease, transform 620ms var(--lx-yumusak);
 }
-/* Zaten kırmızı olan butonlarda tersi: koyu zemin, altında kırmızı ışıma */
-.sg-btn-red::before,
-.lx-btn-kirmizi::before {
-  background: radial-gradient(115% 160% at 50% 130%, rgba(225, 6, 0, 0.9) 0%, var(--lx-ink) 62%);
+.lx-btn::after,
+.lx-btn-outline::after,
+.sg-btn::after,
+.sg-btn-red::after,
+.lx-btn-kirmizi::after {
+  transition: opacity 420ms ease 120ms;
 }
+
 .lx-btn:hover:not(:disabled)::before,
 .lx-btn-outline:hover:not(:disabled)::before,
 .sg-btn:hover:not(:disabled)::before,
@@ -1532,15 +1551,27 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
 .lx-btn:focus-visible::before,
 .lx-btn-outline:focus-visible::before,
 .lx-btn-kirmizi:focus-visible::before {
-  opacity: 1;
-  transform: scale(1) translateY(0);
+  opacity: 0.9;
+  transform: scale(1.18);
 }
-/* İmleçteyken hafif bir kırmızı hale: düz renk değişiminden daha canlı */
+.lx-btn:hover:not(:disabled)::after,
+.lx-btn-outline:hover:not(:disabled)::after,
+.sg-btn:hover:not(:disabled)::after,
+.sg-btn-red:hover:not(:disabled)::after,
+.lx-btn-kirmizi:hover:not(:disabled)::after,
+.lx-btn:focus-visible::after,
+.lx-btn-outline:focus-visible::after,
+.lx-btn-kirmizi:focus-visible::after {
+  opacity: 1;
+}
 .lx-btn:hover:not(:disabled),
 .lx-btn-outline:hover:not(:disabled),
+.sg-btn:hover:not(:disabled),
+.sg-btn-red:hover:not(:disabled),
 .lx-btn-kirmizi:hover:not(:disabled) {
-  box-shadow: 0 10px 30px -12px rgba(225, 6, 0, 0.55);
+  transform: translateY(-3px);
 }
+
 /* Kaplama varken saydamlık oyununa gerek yok */
 .lx-btn:hover { opacity: 1; }
 .sg-btn:hover:not(:disabled) { opacity: 1; }
@@ -1558,13 +1589,22 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
-.lx-btn-kirmizi:active:not(:disabled) { transform: scale(0.99); }
+.lx-btn-kirmizi:active:not(:disabled) { transform: translateY(-1px) scale(0.99); }
 .lx-btn-kirmizi:disabled { opacity: 0.6; cursor: not-allowed; }
 
 @media (prefers-reduced-motion: reduce) {
-  .lx-btn::before,
-  .lx-btn-outline::before,
-  .sg-btn::before,
-  .sg-btn-red::before,
-  .lx-btn-kirmizi::before { transition: opacity 1ms; transform: none; }
+  .lx-btn,
+  .lx-btn-outline,
+  .sg-btn,
+  .sg-btn-red,
+  .lx-btn-kirmizi { transition: none; }
+  .lx-btn:hover:not(:disabled),
+  .lx-btn-outline:hover:not(:disabled),
+  .sg-btn:hover:not(:disabled),
+  .sg-btn-red:hover:not(:disabled),
+  .lx-btn-kirmizi:hover:not(:disabled) { transform: none; }
+  .lx-btn::before, .lx-btn-outline::before, .sg-btn::before,
+  .sg-btn-red::before, .lx-btn-kirmizi::before { transition: opacity 1ms; transform: none; filter: none; }
+  .lx-btn::after, .lx-btn-outline::after, .sg-btn::after,
+  .sg-btn-red::after, .lx-btn-kirmizi::after { transition: opacity 1ms; }
 }
