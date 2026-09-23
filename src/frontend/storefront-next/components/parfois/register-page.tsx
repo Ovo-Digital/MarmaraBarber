@@ -4,7 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { AccountField, accountInputClass, accountSelectClass } from "@/components/parfois/account/account-field";
+import {
+  AccountField,
+  accountInputClassKoyu as accountInputClass,
+  accountSelectClassKoyu as accountSelectClass,
+} from "@/components/parfois/account/account-field";
 import {
   BIRTH_DAYS,
   BIRTH_MONTHS,
@@ -41,7 +45,7 @@ function PasswordInput({
   const [visible, setVisible] = useState(false);
 
   return (
-    <AccountField label={label} required>
+    <AccountField label={label} required koyu>
       <div className="relative">
         <input
           id={id}
@@ -56,7 +60,7 @@ function PasswordInput({
         <button
           type="button"
           onClick={() => setVisible((v) => !v)}
-          className="absolute right-0 top-1/2 -translate-y-1/2 p-1 text-[#999] hover:text-black"
+          className="absolute right-0 top-1/2 -translate-y-1/2 p-1 text-white/45 hover:text-white"
           aria-label={visible ? t("Hide password") : t("Show password")}
         >
           {visible ? (
@@ -132,7 +136,7 @@ export function RegisterPageClient() {
   return (
     <div className="mx-auto w-full max-w-[560px]">
       <form className="space-y-8" onSubmit={handleSubmit}>
-        <AccountField label="First name" required>
+        <AccountField label="First name" required koyu>
           <input
             required
             value={firstName}
@@ -142,7 +146,7 @@ export function RegisterPageClient() {
           />
         </AccountField>
 
-        <AccountField label="Last name" required>
+        <AccountField label="Last name" required koyu>
           <input
             required
             value={lastName}
@@ -152,12 +156,12 @@ export function RegisterPageClient() {
           />
         </AccountField>
 
-        <AccountField label="Date of birth">
-          <div className="grid grid-cols-3 gap-4 border-b border-[#ccc]">
+        <AccountField label="Date of birth" koyu>
+          <div className="grid grid-cols-3 gap-4 border-b border-white/20">
             <select
               value={birthDay}
               onChange={(e) => setBirthDay(e.target.value)}
-              className={`${accountSelectClass} border-b-0`}
+              className={`${accountSelectClass} lx-alan-koyu--cizgisiz`}
             >
               <option value="">{t("Day")}</option>
               {BIRTH_DAYS.map((d) => (
@@ -169,7 +173,7 @@ export function RegisterPageClient() {
             <select
               value={birthMonth}
               onChange={(e) => setBirthMonth(e.target.value)}
-              className={`${accountSelectClass} border-b-0`}
+              className={`${accountSelectClass} lx-alan-koyu--cizgisiz`}
             >
               <option value="">{t("Month")}</option>
               {BIRTH_MONTHS.map((m) => (
@@ -181,7 +185,7 @@ export function RegisterPageClient() {
             <select
               value={birthYear}
               onChange={(e) => setBirthYear(e.target.value)}
-              className={`${accountSelectClass} border-b-0`}
+              className={`${accountSelectClass} lx-alan-koyu--cizgisiz`}
             >
               <option value="">{t("Year")}</option>
               {BIRTH_YEARS.map((y) => (
@@ -193,7 +197,7 @@ export function RegisterPageClient() {
           </div>
         </AccountField>
 
-        <AccountField label="Email" required>
+        <AccountField label="Email" required koyu>
           <input
             type="email"
             required
@@ -204,9 +208,9 @@ export function RegisterPageClient() {
           />
         </AccountField>
 
-        <AccountField label="Phone" required>
-          <div className="flex items-center gap-2 border-b border-[#ccc]">
-            <span className="shrink-0 pb-2 text-[13px]">🇹🇷 +90</span>
+        <AccountField label="Phone" required koyu>
+          <div className="flex items-center gap-2 border-b border-white/20">
+            <span className="shrink-0 pb-2 text-[13px] text-white/60">🇹🇷 +90</span>
             <input
               required
               type="tel"
@@ -214,7 +218,7 @@ export function RegisterPageClient() {
               value={formatPhoneDisplay(phoneDigits)}
               onChange={(e) => setPhoneDigits(e.target.value.replace(/\D/g, "").slice(0, 10))}
               placeholder="000-000-00-00"
-              className={`${accountInputClass} border-b-0`}
+              className={`${accountInputClass} lx-alan-koyu--cizgisiz`}
             />
           </div>
         </AccountField>
@@ -239,7 +243,7 @@ export function RegisterPageClient() {
           <p
             role="alert"
             className="px-3 py-2.5 text-[13px]"
-            style={{ border: "1px solid var(--sg-red)", color: "var(--sg-red)" }}
+            style={{ border: "1px solid var(--sg-red)", color: "#fff", background: "rgba(225,6,0,0.12)" }}
           >
             {error}
           </p>
@@ -248,16 +252,8 @@ export function RegisterPageClient() {
         <button
           type="submit"
           disabled={mutation.isPending}
-          className="mt-2 w-full disabled:opacity-60"
-          style={{
-            minHeight: 52,
-            background: "var(--sg-red)",
-            color: "#ffffff",
-            fontFamily: "var(--font-owners)",
-            fontSize: "12px",
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-          }}
+          className="lx-btn-kirmizi mt-2 w-full"
+          style={{ minHeight: 52 }}
         >
           {mutation.isPending ? t("Creating account…") : t("Create account")}
         </button>
@@ -265,13 +261,13 @@ export function RegisterPageClient() {
 
       <div
         className="mt-8 flex items-center justify-between pt-6 text-[12px]"
-        style={{ borderTop: "1px solid rgba(20,17,15,0.12)" }}
+        style={{ borderTop: "1px solid rgba(255,255,255,0.14)" }}
       >
-        <span style={{ color: "rgba(20,17,15,0.55)" }}>{t("Already have an account?")}</span>
+        <span style={{ color: "rgba(255,255,255,0.55)" }}>{t("Already have an account?")}</span>
         <Link
           href="/login"
           className="uppercase tracking-[0.14em]"
-          style={{ color: "var(--sg-red)", fontFamily: "var(--font-owners)" }}
+          style={{ color: "#fff", fontFamily: "var(--font-owners)" }}
         >
           {t("Sign in")} →
         </Link>
