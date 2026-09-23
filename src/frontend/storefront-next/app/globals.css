@@ -1323,8 +1323,9 @@ a {
   height: min(560px, calc(100dvh - 120px));
   border-radius: 22px; overflow: hidden;
   background: rgba(16, 14, 13, 0.95);
-  backdrop-filter: blur(24px) saturate(130%);
-  -webkit-backdrop-filter: blur(24px) saturate(130%);
+  /* NOT: saturate() ile birlikte yazılınca derleme sırasında backdrop-filter
+     satırı tamamen düşüyordu (cam efekti hiç uygulanmıyordu). Tek blur kalsın. */
+  backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
   animation: lx-sohbet-gir 280ms cubic-bezier(.2,.9,.3,1);
@@ -1437,3 +1438,40 @@ a {
   .lx-ortak-kart:hover { border-color: var(--sg-red); transform: translateY(-2px); }
 }
 .lx-program-bos { background: var(--lx-ink); overflow: hidden; }
+
+/* ── Koyu zeminde form alanları ────────────────────────────────────────── */
+.lx-alan-koyu {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  /* Odaklanınca soldan büyüyen kırmızı çizgi. Ayrı bir eleman yerine
+     arka plan görüntüsü: alanın yüksekliği değişmiyor, zıplama olmuyor. */
+  background-image: linear-gradient(var(--sg-red), var(--sg-red));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size 340ms var(--lx-ease), border-color 240ms var(--lx-ease);
+}
+.lx-alan-koyu::placeholder { color: rgba(255, 255, 255, 0.3); }
+.lx-alan-koyu:hover { border-bottom-color: rgba(255, 255, 255, 0.4); }
+.lx-alan-koyu:focus { background-size: 100% 2px; border-bottom-color: rgba(255, 255, 255, 0.4); }
+/* Tarayıcının otomatik doldurması alana beyaz zemin basıyor; kapatılıyor */
+.lx-alan-koyu:-webkit-autofill,
+.lx-alan-koyu:-webkit-autofill:hover,
+.lx-alan-koyu:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  caret-color: #fff;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.04) inset;
+  transition: background-color 9999s ease-out;
+}
+/* Açılır listenin seçenekleri işletim sisteminin penceresinde çiziliyor:
+   orada zemin açık, yazı koyu olmalı */
+select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
+
+/* Koyu zeminde cam panel — mini sepet ve asistanla aynı dil */
+.lx-cam-panel {
+  border-radius: 22px;
+  background: rgba(16, 14, 13, 0.55);
+  backdrop-filter: blur(26px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}

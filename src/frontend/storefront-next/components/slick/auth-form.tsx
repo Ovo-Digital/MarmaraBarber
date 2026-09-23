@@ -16,20 +16,28 @@ export const lxAlanStil: React.CSSProperties = {
   color: "var(--lx-ink)",
 };
 
+/**
+ * Koyu zemindeki formlar (ör. /wholesale ortak portalı).
+ * Renkler ve odak çizgisi CSS'te: .lx-alan-koyu
+ */
+export const lxAlanKoyu = "lx-alan-koyu w-full border-0 bg-transparent py-3 text-[15px] outline-none";
+
 export function LxEtiket({
   htmlFor,
   children,
   zorunlu,
+  koyu = false,
 }: {
   htmlFor?: string;
   children: React.ReactNode;
   zorunlu?: boolean;
+  koyu?: boolean;
 }) {
   return (
     <label
       htmlFor={htmlFor}
       className="mb-1 block text-[11px] uppercase tracking-[0.14em]"
-      style={{ color: "rgba(20,17,15,0.55)", fontFamily: "var(--font-owners)" }}
+      style={{ color: koyu ? "rgba(255,255,255,0.5)" : "rgba(20,17,15,0.55)", fontFamily: "var(--font-owners)" }}
     >
       {children}
       {zorunlu ? <span style={{ color: "var(--sg-red)" }}> *</span> : null}
@@ -38,12 +46,16 @@ export function LxEtiket({
 }
 
 /** Form hatası — kırmızı, ince çerçeveli */
-export function LxHata({ mesaj }: { mesaj: string }) {
+export function LxHata({ mesaj, koyu = false }: { mesaj: string; koyu?: boolean }) {
   return (
     <p
       role="alert"
       className="px-3 py-2.5 text-[13px]"
-      style={{ border: "1px solid var(--sg-red)", color: "var(--sg-red)" }}
+      style={{
+        border: "1px solid var(--sg-red)",
+        color: koyu ? "#fff" : "var(--sg-red)",
+        background: koyu ? "rgba(225,6,0,0.12)" : "transparent",
+      }}
     >
       {mesaj}
     </p>

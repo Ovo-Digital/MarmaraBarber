@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useT } from "@/lib/i18n/dil";
-import { LxEtiket, LxHata, lxAlan, lxAlanStil } from "@/components/slick/auth-form";
+import { LxEtiket, LxHata, lxAlan, lxAlanKoyu, lxAlanStil } from "@/components/slick/auth-form";
 
 /**
  * Berber ve toptan başvuru formu.
@@ -67,11 +67,16 @@ export function ApplicationForm({
   /** Hangi program için başvuruluyor — /wholesale kademelerinden gelir,
    *  başvuru notuna eklenir. */
   program,
+  /** Koyu zeminde mi duruyor (ör. /wholesale ortak portalı) */
+  koyu = false,
 }: {
   type: "barber" | "wholesale" | "ambassador";
   program?: string;
+  koyu?: boolean;
 }) {
   const t = useT();
+  const alanSinifi = koyu ? lxAlanKoyu : lxAlan;
+  const alanStili = koyu ? undefined : lxAlanStil;
   const [veri, setVeri] = useState<Record<string, string>>({});
   const [durum, setDurum] = useState<"bos" | "gonderiliyor" | "tamam" | "hata">("bos");
   const [hata, setHata] = useState("");
@@ -107,7 +112,7 @@ export function ApplicationForm({
     return (
       <div
         className="mx-auto w-full max-w-[640px] px-8 py-14 text-center"
-        style={{ border: "1px solid rgba(20,17,15,0.14)" }}
+        style={{ border: `1px solid ${koyu ? "rgba(255,255,255,0.18)" : "rgba(20,17,15,0.14)"}` }}
       >
         <p className="lx-eyebrow mb-3">{t("Application received")}</p>
         <h2
@@ -116,12 +121,15 @@ export function ApplicationForm({
             fontFamily: "var(--font-owners-black)",
             fontWeight: 900,
             fontSize: "clamp(24px,2.6vw,34px)",
-            color: "var(--lx-ink)",
+            color: koyu ? "#fff" : "var(--lx-ink)",
           }}
         >
           {t("Thanks — we'll be in touch")}
         </h2>
-        <p className="mx-auto mt-4 max-w-[46ch] text-[14px]" style={{ color: "rgba(20,17,15,0.6)" }}>
+        <p
+          className="mx-auto mt-4 max-w-[46ch] text-[14px]"
+          style={{ color: koyu ? "rgba(255,255,255,0.65)" : "rgba(20,17,15,0.6)" }}
+        >
           {t("We review applications in the order they arrive and reply by email.")}
         </p>
       </div>
@@ -133,7 +141,7 @@ export function ApplicationForm({
       <div className="grid gap-6 sm:grid-cols-2">
         {alanlar.map((a) => (
           <div key={a.ad} className={a.genis ? "sm:col-span-2" : ""}>
-            <LxEtiket htmlFor={a.ad} zorunlu={a.zorunlu}>
+            <LxEtiket htmlFor={a.ad} zorunlu={a.zorunlu} koyu={koyu}>
               {t(a.etiket)}
             </LxEtiket>
             {a.cokSatir ? (
@@ -143,8 +151,8 @@ export function ApplicationForm({
                 value={veri[a.ad] ?? ""}
                 onChange={(e) => yaz(a.ad, e.target.value)}
                 placeholder={a.ipucu ? t(a.ipucu) : undefined}
-                className={`${lxAlan} resize-y`}
-                style={lxAlanStil}
+                className={`${alanSinifi} resize-y`}
+                style={alanStili}
               />
             ) : (
               <input
@@ -154,8 +162,8 @@ export function ApplicationForm({
                 value={veri[a.ad] ?? ""}
                 onChange={(e) => yaz(a.ad, e.target.value)}
                 placeholder={a.ipucu ? t(a.ipucu) : undefined}
-                className={lxAlan}
-                style={lxAlanStil}
+                className={alanSinifi}
+                style={alanStili}
               />
             )}
           </div>
@@ -164,7 +172,7 @@ export function ApplicationForm({
 
       {hata ? (
         <div className="mt-6">
-          <LxHata mesaj={hata} />
+          <LxHata mesaj={hata} koyu={koyu} />
         </div>
       ) : null}
 
@@ -183,7 +191,10 @@ export function ApplicationForm({
         {durum === "gonderiliyor" ? t("Sending…") : t("Submit application")}
       </button>
 
-      <p className="mt-4 text-center text-[12px]" style={{ color: "rgba(20,17,15,0.5)" }}>
+      <p
+        className="mt-4 text-center text-[12px]"
+        style={{ color: koyu ? "rgba(255,255,255,0.45)" : "rgba(20,17,15,0.5)" }}
+      >
         {t("We only use these details to review your application and get back to you.")}
       </p>
     </form>

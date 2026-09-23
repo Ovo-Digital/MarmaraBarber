@@ -23,7 +23,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { ApplicationForm } from "@/components/slick/application-form";
-import { LxEtiket, LxHata, lxAlan, lxAlanStil } from "@/components/slick/auth-form";
+import { LxEtiket, LxHata, lxAlanKoyu } from "@/components/slick/auth-form";
 import { DEMO_MUSTERI, demoGirisi } from "@/lib/demo-customer";
 import { useT } from "@/lib/i18n/dil";
 import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
@@ -250,11 +250,13 @@ export function WholesalePage() {
                     ))}
                 </div>
 
-                <div className="bg-white p-6 sm:p-10">
+                {/* Form beyaz kutuda değil, zeminin üstünde duran cam panelde:
+                    kırmızı ışıma panelin arkasından geçiyor */}
+                <div className="lx-cam-panel p-6 sm:p-10">
                   {sekme === "giris" && !musteri ? (
                     <OrtakGirisi onBasvur={() => setSekme("basvuru")} />
                   ) : (
-                    <ApplicationForm type="wholesale" program={program ?? undefined} />
+                    <ApplicationForm type="wholesale" program={program ?? undefined} koyu />
                   )}
                 </div>
 
@@ -301,31 +303,31 @@ function OrtakGirisi({ onBasvur }: { onBasvur: () => void }) {
         islem.mutate();
       }}
     >
-      <p className="text-center text-[14px]" style={{ color: "rgba(20,17,15,0.6)" }}>
+      <p className="text-center text-[14px]" style={{ color: "rgba(255,255,255,0.6)" }}>
         {t("Approved partners sign in here to order and manage their account.")}
       </p>
       <div>
-        <LxEtiket htmlFor="ws-email" zorunlu>{t("Email")}</LxEtiket>
+        <LxEtiket htmlFor="ws-email" zorunlu koyu>{t("Email")}</LxEtiket>
         <input id="ws-email" type="email" required autoComplete="email" value={email}
-          onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className={lxAlan} style={lxAlanStil} />
+          onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className={lxAlanKoyu} />
       </div>
       <div>
-        <LxEtiket htmlFor="ws-sifre" zorunlu>{t("Password")}</LxEtiket>
+        <LxEtiket htmlFor="ws-sifre" zorunlu koyu>{t("Password")}</LxEtiket>
         <input id="ws-sifre" type="password" required minLength={5} autoComplete="current-password" value={sifre}
-          onChange={(e) => setSifre(e.target.value)} placeholder="••••••••" className={lxAlan} style={lxAlanStil} />
+          onChange={(e) => setSifre(e.target.value)} placeholder="••••••••" className={lxAlanKoyu} />
       </div>
-      {hata ? <LxHata mesaj={hata} /> : null}
+      {hata ? <LxHata mesaj={hata} koyu /> : null}
       <button
         type="submit"
         disabled={islem.isPending}
         className="w-full uppercase tracking-[0.16em] disabled:opacity-60"
-        style={{ minHeight: 52, background: "var(--lx-ink)", color: "#fff", fontFamily: "var(--font-owners)", fontSize: "12px" }}
+        style={{ minHeight: 52, background: "var(--sg-red)", color: "#fff", fontFamily: "var(--font-owners)", fontSize: "12px" }}
       >
         {islem.isPending ? t("Signing in…") : t("Sign in")}
       </button>
-      <p className="text-center text-[12px]" style={{ color: "rgba(20,17,15,0.55)" }}>
+      <p className="text-center text-[12px]" style={{ color: "rgba(255,255,255,0.55)" }}>
         {t("Not a partner yet?")}{" "}
-        <button type="button" onClick={onBasvur} className="underline underline-offset-4" style={{ color: "var(--sg-red)" }}>
+        <button type="button" onClick={onBasvur} className="underline underline-offset-4" style={{ color: "#fff" }}>
           {t("Apply for wholesale")}
         </button>
       </p>
