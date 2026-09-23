@@ -1475,3 +1475,74 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
 }
+
+/* ── Butonlarda kaplama animasyonu ─────────────────────────────────────────
+   İmleç gelince zemin rengi alttan yukarı kayıp butonu kaplıyor.
+   Renk geçişi yerine kayan bir katman: hareket yönü bandın alttan yükselen
+   kırmızı ışımasıyla aynı, sayfa aynı dili konuşuyor.
+
+   `isolation: isolate` şart: katman z-index -1 ile yazının ALTINDA ama
+   butonun kendi zemininin ÜSTÜNDE kalsın diye. Olmazsa yazıyı da örtüyor. */
+.lx-btn,
+.lx-btn-outline,
+.sg-btn,
+.sg-btn-red,
+.lx-btn-kirmizi {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.lx-btn::before,
+.lx-btn-outline::before,
+.sg-btn::before,
+.sg-btn-red::before,
+.lx-btn-kirmizi::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: translateY(101%);
+  transition: transform 520ms var(--lx-ease);
+  /* Koyu/çerçeveli butonlarda kırmızı ışıma yükseliyor */
+  background: radial-gradient(120% 150% at 50% 130%, #ff2a1f 0%, var(--sg-red) 42%, #8c0400 100%);
+}
+/* Zaten kırmızı olan butonlarda tersi: koyu zemin yükseliyor, altta kırmızı ışıma kalıyor */
+.sg-btn-red::before,
+.lx-btn-kirmizi::before {
+  background: radial-gradient(120% 160% at 50% 135%, rgba(225, 6, 0, 0.95) 0%, var(--lx-ink) 58%);
+}
+.lx-btn:hover:not(:disabled)::before,
+.lx-btn-outline:hover:not(:disabled)::before,
+.sg-btn:hover:not(:disabled)::before,
+.sg-btn-red:hover:not(:disabled)::before,
+.lx-btn-kirmizi:hover:not(:disabled)::before {
+  transform: translateY(0);
+}
+/* Kaplama varken renk/saydamlık oyununa gerek yok */
+.lx-btn:hover { opacity: 1; }
+.sg-btn:hover:not(:disabled) { opacity: 1; }
+.sg-btn-red:hover { opacity: 1; }
+.lx-btn-outline:hover { background-color: transparent; color: inherit; }
+
+.lx-btn-kirmizi {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sg-red);
+  color: #fff;
+  font-family: var(--font-owners);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: transform 200ms var(--lx-ease);
+}
+.lx-btn-kirmizi:active:not(:disabled) { transform: scale(0.99); }
+.lx-btn-kirmizi:disabled { opacity: 0.6; cursor: not-allowed; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lx-btn::before,
+  .lx-btn-outline::before,
+  .sg-btn::before,
+  .sg-btn-red::before,
+  .lx-btn-kirmizi::before { transition: none; }
+}

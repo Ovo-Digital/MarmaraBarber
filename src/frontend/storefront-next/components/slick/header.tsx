@@ -583,6 +583,7 @@ export function SlickHeader({
                     {(customer
                       ? [
                           { etiket: "My account", href: "/account" },
+                          { etiket: "Partner portal", href: "/partner" },
                           { etiket: "Orders", href: "/account?section=orders" },
                           { etiket: "Addresses", href: "/account?section=addresses" },
                           { etiket: "Password", href: "/account?section=password" },

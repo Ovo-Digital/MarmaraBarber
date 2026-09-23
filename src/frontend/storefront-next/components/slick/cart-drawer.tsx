@@ -219,14 +219,8 @@ export function CartDrawer({
                   {checkoutUrl ? (
                     <a
                       href={checkoutUrl}
-                      className="flex flex-1 items-center justify-center uppercase tracking-[0.16em]"
-                      style={{
-                        minHeight: 50,
-                        background: "var(--sg-red)",
-                        color: "#ffffff",
-                        fontFamily: "var(--font-owners)",
-                        fontSize: "12px",
-                      }}
+                      className="lx-btn-kirmizi flex-1"
+                      style={{ minHeight: 50 }}
                     >
                       {t("Checkout")}
                     </a>

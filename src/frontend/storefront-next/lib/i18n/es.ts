@@ -618,4 +618,9 @@ export const ES: Record<string, string> = {
   "Student and graduate offers": "Ofertas para estudiantes y egresados",
   "Institution details required with your application": "Se requieren los datos de la institución en la solicitud",
   "Distribution": "Distribución",
+  "Sign in with your partner account to continue.": "Inicia sesión con tu cuenta de socio para continuar.",
+  "Not a partner yet": "Aún no eres socio",
+  "You're signed in as {email}. This account isn't set up for wholesale yet — apply and we'll activate it once approved.": "Iniciaste sesión como {email}. Esta cuenta aún no está habilitada para mayoreo: envía tu solicitud y la activaremos cuando se apruebe.",
+  "Prices shown are retail prices. Your partner terms are applied by our team on your order.": "Los precios mostrados son de venta al público. Nuestro equipo aplica tus condiciones de socio al procesar el pedido.",
+  "Go to partner portal": "Ir al portal de socios",
 };

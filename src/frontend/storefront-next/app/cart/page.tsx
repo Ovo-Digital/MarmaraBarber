@@ -144,14 +144,8 @@ export default function CartPage() {
           {checkoutUrl ? (
             <a
               href={checkoutUrl}
-              className="flex w-full max-w-[320px] items-center justify-center uppercase tracking-[0.16em]"
-              style={{
-                minHeight: 54,
-                background: "var(--sg-red)",
-                color: "#ffffff",
-                fontFamily: "var(--font-owners)",
-                fontSize: "12px",
-              }}
+              className="lx-btn-kirmizi w-full max-w-[320px]"
+              style={{ minHeight: 54 }}
             >
               {t("Checkout")}
             </a>

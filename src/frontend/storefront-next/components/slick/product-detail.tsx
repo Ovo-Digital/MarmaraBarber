@@ -670,14 +670,8 @@ export function SlickProductDetail({
               ref={ctaRef}
               type="button"
               disabled={!inStock || adding}
-              className="mt-4 flex w-full items-center justify-center gap-2 uppercase tracking-[0.16em] disabled:cursor-not-allowed disabled:opacity-40"
-              style={{
-                minHeight: 56,
-                background: inStock ? "var(--sg-red)" : "var(--lx-ink)",
-                color: "#fff",
-                fontFamily: "var(--font-owners)",
-                fontSize: "12px",
-              }}
+              className={`mt-4 flex w-full gap-2 disabled:cursor-not-allowed disabled:opacity-40 ${inStock ? "lx-btn-kirmizi" : "lx-btn"}`}
+              style={{ minHeight: 56 }}
               onClick={onAdd}
             >
               {adding ? (

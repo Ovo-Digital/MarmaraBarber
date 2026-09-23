@@ -179,14 +179,8 @@ export function ApplicationForm({
       <button
         type="submit"
         disabled={durum === "gonderiliyor"}
-        className="mt-8 w-full uppercase tracking-[0.16em] disabled:opacity-60"
-        style={{
-          minHeight: 54,
-          background: "var(--sg-red)",
-          color: "#fff",
-          fontFamily: "var(--font-owners)",
-          fontSize: "12px",
-        }}
+        className="lx-btn-kirmizi mt-8 w-full"
+        style={{ minHeight: 54 }}
       >
         {durum === "gonderiliyor" ? t("Sending…") : t("Submit application")}
       </button>

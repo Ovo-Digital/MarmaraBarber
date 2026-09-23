@@ -109,16 +109,8 @@ export function NewsletterBand({
               <button
                 type="submit"
                 disabled={durum === "gonderiliyor"}
-                className="shrink-0 px-9 transition-transform duration-200 hover:scale-[1.03] disabled:opacity-70"
-                style={{
-                  height: 56,
-                  background: "var(--sg-red)",
-                  color: "#ffffff",
-                  fontFamily: "var(--font-owners)",
-                  fontSize: "13px",
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                }}
+                className="lx-btn-kirmizi shrink-0 px-9"
+                style={{ height: 56, fontSize: "13px", letterSpacing: "0.14em" }}
               >
                 {durum === "gonderiliyor" ? t("Sending…") : t(ctaLabel)}
               </button>

@@ -19,7 +19,7 @@
  */
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { ApplicationForm } from "@/components/slick/application-form";
@@ -211,7 +211,16 @@ export function WholesalePage() {
         <div className="sg-container relative" style={{ paddingTop: "clamp(56px,6vw,96px)", paddingBottom: "clamp(64px,7vw,110px)" }}>
           <div className="mx-auto max-w-[720px]">
             {hydrated && musteri && ortak ? (
-              <OrtakPaneli ad={musteri.firstName} />
+              /* Ortak zaten girişli: panel /partner sayfasında */
+              <div className="lx-cam-panel p-8 text-center sm:p-12">
+                <p className="lx-eyebrow mb-3">{t("Wholesale partner")}</p>
+                <h2 className="lx-title" style={{ color: "#fff" }}>
+                  {musteri.firstName ? t("Welcome back, {name}", { name: musteri.firstName }) : t("Welcome back")}
+                </h2>
+                <Link href="/partner" className="lx-btn-kirmizi mt-8 px-10" style={{ minHeight: 52 }}>
+                  {t("Go to partner portal")}
+                </Link>
+              </div>
             ) : (
               <>
                 <div className="mb-8 text-center">
@@ -277,16 +286,21 @@ export function WholesalePage() {
 
 function OrtakGirisi({ onBasvur }: { onBasvur: () => void }) {
   const t = useT();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [sifre, setSifre] = useState("");
   const [hata, setHata] = useState<string | null>(null);
   const setCustomer = useAuthStore((s) => s.setCustomer);
   const cartId = useShopifyCartStore((s) => s.cartId);
 
-  // Başarılı girişte sayfada kalıyoruz: etikete göre panel ya da "henüz ortak değil" görünür
+  // Giriş başarılıysa ortak paneline geçiliyor; ortak olmayan hesap orada
+  // "henüz ortak değil" mesajını görüyor.
   const islem = useMutation({
     mutationFn: () => apiLogin(email, sifre, cartId ?? null),
-    onSuccess: ({ customer }) => setCustomer(customer),
+    onSuccess: ({ customer }) => {
+      setCustomer(customer);
+      router.push("/partner");
+    },
     onError: (e) => setHata(e instanceof Error ? t(e.message) : t("Sign-in failed.")),
   });
 
@@ -298,6 +312,7 @@ function OrtakGirisi({ onBasvur }: { onBasvur: () => void }) {
         setHata(null);
         if (demoGirisi(email)) {
           setCustomer(DEMO_MUSTERI);
+          router.push("/partner");
           return;
         }
         islem.mutate();
@@ -320,8 +335,8 @@ function OrtakGirisi({ onBasvur }: { onBasvur: () => void }) {
       <button
         type="submit"
         disabled={islem.isPending}
-        className="w-full uppercase tracking-[0.16em] disabled:opacity-60"
-        style={{ minHeight: 52, background: "var(--sg-red)", color: "#fff", fontFamily: "var(--font-owners)", fontSize: "12px" }}
+        className="lx-btn-kirmizi w-full"
+        style={{ minHeight: 52 }}
       >
         {islem.isPending ? t("Signing in…") : t("Sign in")}
       </button>
@@ -332,59 +347,5 @@ function OrtakGirisi({ onBasvur }: { onBasvur: () => void }) {
         </button>
       </p>
     </form>
-  );
-}
-
-function OrtakPaneli({ ad }: { ad?: string }) {
-  const t = useT();
-  const logout = useAuthStore((s) => s.logout);
-  const setCustomer = useAuthStore((s) => s.setCustomer);
-
-  const kartlar = [
-    { baslik: t("Shop the range"), metin: t("Browse and order the full catalogue."), href: "/products" },
-    { baslik: t("Your orders"), metin: t("Track orders and reorder."), href: "/account?section=orders" },
-    { baslik: t("Account details"), metin: t("Addresses and contact information."), href: "/account" },
-    { baslik: t("Talk to us"), metin: t("Stock, display or campaign questions."), href: "/iletisim" },
-  ];
-
-  return (
-    <div>
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="lx-eyebrow mb-2">{t("Wholesale partner")}</p>
-          <h2 className="lx-title" style={{ color: "#fff" }}>
-            {ad ? t("Welcome back, {name}", { name: ad }) : t("Welcome back")}
-          </h2>
-        </div>
-        <button
-          type="button"
-          onClick={async () => {
-            await logout();
-            setCustomer(null);
-          }}
-          className="lx-link"
-          style={{ color: "#fff" }}
-        >
-          {t("Sign out")}
-        </button>
-      </div>
-      <ul className="m-0 grid list-none gap-3 p-0 sm:grid-cols-2">
-        {kartlar.map((k) => (
-          <li key={k.href}>
-            <Link href={k.href} className="lx-ortak-kart flex h-full flex-col justify-between gap-6 p-6">
-              <span>
-                <span className="block uppercase" style={{ fontFamily: "var(--font-owners-black)", fontSize: 20 }}>
-                  {k.baslik}
-                </span>
-                <span className="mt-2 block text-[14px]" style={{ color: "rgba(255,255,255,0.6)" }}>
-                  {k.metin}
-                </span>
-              </span>
-              <span aria-hidden="true" style={{ color: "var(--sg-red)" }}>→</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
