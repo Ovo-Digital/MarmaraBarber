@@ -1391,3 +1391,49 @@ a {
 .lx-sekme[aria-selected="true"]::after { transform: scaleX(1); }
 .lx-avantaj { transition: background-color 260ms var(--lx-ease); }
 @media (hover: hover) { .lx-avantaj:hover { background: var(--lx-bone); } }
+
+/* ── Alttan yükselen kırmızı ışıma — "Find your formula" bandıyla aynı ──── */
+.lx-kirmizi-isik {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    85% 70% at 50% 118%,
+    rgba(225, 6, 0, 0.42) 0%,
+    rgba(225, 6, 0, 0.10) 45%,
+    rgba(225, 6, 0, 0) 72%
+  );
+}
+
+/* ── Wholesale program satırları ───────────────────────────────────────── */
+.lx-program {
+  border: 1px solid rgba(20, 17, 15, 0.12);
+  background: #fff;
+  overflow: hidden;
+  transition: border-color 260ms var(--lx-ease);
+}
+@media (hover: hover) { .lx-program:hover { border-color: rgba(20, 17, 15, 0.3); } }
+.lx-program-tik {
+  margin-top: 7px;
+  width: 14px;
+  height: 2px;
+  flex-shrink: 0;
+  background: var(--sg-red);
+}
+
+/* Sekmeler koyu zeminde */
+.lx-sekmeler--koyu { border-bottom-color: rgba(255, 255, 255, 0.2); }
+.lx-sekmeler--koyu .lx-sekme { color: rgba(255, 255, 255, 0.55); }
+.lx-sekmeler--koyu .lx-sekme:hover,
+.lx-sekmeler--koyu .lx-sekme[aria-selected="true"] { color: #fff; }
+
+/* Ortak panelindeki kartlar (koyu zemin) */
+.lx-ortak-kart {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  transition: border-color 220ms var(--lx-ease), transform 220ms var(--lx-ease);
+}
+@media (hover: hover) {
+  .lx-ortak-kart:hover { border-color: var(--sg-red); transform: translateY(-2px); }
+}
+.lx-program-bos { background: var(--lx-ink); overflow: hidden; }

@@ -62,7 +62,15 @@ const ALANLAR: Record<"barber" | "wholesale" | "ambassador", Alan[]> = {
   ],
 };
 
-export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "ambassador" }) {
+export function ApplicationForm({
+  type,
+  /** Hangi program için başvuruluyor — /wholesale kademelerinden gelir,
+   *  başvuru notuna eklenir. */
+  program,
+}: {
+  type: "barber" | "wholesale" | "ambassador";
+  program?: string;
+}) {
   const t = useT();
   const [veri, setVeri] = useState<Record<string, string>>({});
   const [durum, setDurum] = useState<"bos" | "gonderiliyor" | "tamam" | "hata">("bos");
@@ -80,7 +88,7 @@ export function ApplicationForm({ type }: { type: "barber" | "wholesale" | "amba
       const res = await fetch("/api/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...veri, type }),
+        body: JSON.stringify({ ...veri, type, program }),
       });
       const cevap = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok || !cevap.ok) {

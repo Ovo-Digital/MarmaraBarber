@@ -52,6 +52,7 @@ export async function POST(request: Request) {
   const alanlar: [string, string][] = [
     ["Application", TURLER[tur].baslik],
     ["Subject", govde.subject ?? ""],
+    ["Program", govde.program ?? ""],
     ["Business", govde.business ?? ""],
     ["Role", govde.role ?? ""],
     ["Website / social", govde.website ?? ""],

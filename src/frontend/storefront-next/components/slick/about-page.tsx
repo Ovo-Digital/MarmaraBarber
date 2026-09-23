@@ -128,11 +128,7 @@ export function AboutPage() {
 
       {/* ── 3. Dünya ──────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden text-white" style={{ background: "var(--lx-ink)" }}>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{ background: "radial-gradient(60% 55% at 70% 50%, rgba(225,6,0,0.16) 0%, rgba(225,6,0,0) 70%)" }}
-        />
+        <div aria-hidden="true" className="lx-kirmizi-isik" />
         <div className="sg-container relative grid items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]" style={{ paddingTop: "clamp(64px,8vw,120px)", paddingBottom: "clamp(64px,8vw,120px)" }}>
           <div>
             <p className="lx-eyebrow mb-3">{t("Around the world")}</p>

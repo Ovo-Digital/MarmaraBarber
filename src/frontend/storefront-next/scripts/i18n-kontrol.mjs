@@ -17,7 +17,7 @@ function tara(dir) {
     if (!/\.(tsx?|mjs)$/.test(ad)) continue;
     const kod = readFileSync(yol, "utf8");
     // t(...)/<T k> çağrıları + çalışma anında t(x.label) ile çevrilen yapılandırma metinleri
-    const desen = /\bt\(\s*("(?:[^"\\\n]|\\.)*")|<T\s+k=("(?:[^"\\\n]|\\.)*")|\b(?:etiket|ipucu|baslik|metin|cevap|dugme|cevrilecek):\s*("(?:[^"\\\n]|\\.)*")/g;
+    const desen = /\bt\(\s*("(?:[^"\\\n]|\\.)*")|<T\s+k=("(?:[^"\\\n]|\\.)*")|\b(?:etiket|ipucu|baslik|ozet|kosul|rozet|metin|cevap|dugme|cevrilecek):\s*("(?:[^"\\\n]|\\.)*")/g;
     const ekDesen = /slick-theme\.ts$/.test(yol) ? /\b(?:label|title):\s*("(?:[^"\\\n]|\\.)*")/g : null;
     const bulunanlar = [...kod.matchAll(desen), ...(ekDesen ? kod.matchAll(ekDesen) : [])];
     for (const m of bulunanlar) {
