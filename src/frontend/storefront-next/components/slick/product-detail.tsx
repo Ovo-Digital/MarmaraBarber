@@ -15,6 +15,8 @@ import { formatMoney } from "@/lib/money";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useUiStore } from "@/store/ui-store";
 import { useT } from "@/lib/i18n/dil";
+import { urunAdiParcala } from "@/lib/urun-adi";
+import { SITE_NAME } from "@/lib/slick-theme";
 import type { Product, ProductOption, ProductVariant } from "@/types/commerce";
 
 function isDefaultOnly(options: ProductOption[] | undefined) {
@@ -403,6 +405,12 @@ export function SlickProductDetail({
   related: Product[];
 }) {
   const t = useT();
+  /* Ürün adları markanın kendi isimleri ("Hangover", "No.1", "Space Wax");
+     tanım kısmı ("Edp Erkek Parfüm 100 ML") ayrı satıra iniyor. */
+  const { ad: urunAdi, detay: urunDetayi } = useMemo(
+    () => urunAdiParcala(product.title, product.productType, SITE_NAME),
+    [product.title, product.productType],
+  );
   const options = useMemo(
     () => (isDefaultOnly(product.options) ? [] : product.options ?? []),
     [product.options],
@@ -530,7 +538,7 @@ export function SlickProductDetail({
             onSelect={setActiveImage}
           />
 
-          <div className="lg:sticky lg:top-[calc(var(--sg-header-h)+1.5rem)] lg:self-start">
+          <div className="min-w-0 lg:sticky lg:top-[calc(var(--sg-header-h)+1.5rem)] lg:self-start">
             {product.productType ? <p className="lx-eyebrow mb-3">{product.productType}</p> : null}
             <h1
               className="uppercase"
@@ -544,8 +552,21 @@ export function SlickProductDetail({
                 color: "var(--lx-ink)",
               }}
             >
-              {product.title}
+              {urunAdi}
             </h1>
+            {urunDetayi ? (
+              <p
+                className="mt-3 uppercase"
+                style={{
+                  fontFamily: "var(--font-owners)",
+                  fontSize: "13px",
+                  letterSpacing: "0.16em",
+                  color: "rgba(20,17,15,0.5)",
+                }}
+              >
+                {urunDetayi}
+              </p>
+            ) : null}
 
             <div className="mt-4 flex flex-wrap items-center gap-3">
               {compareAt ? (
@@ -621,49 +642,39 @@ export function SlickProductDetail({
 
             {/* Serinin diğer ürünleri — tekstildeki renk seçici gibi */}
             {series.length > 0 ? (
-              <div className="mt-8">
-                <p className="mb-3 text-[11px] uppercase tracking-[0.14em]" style={{ color: "rgba(20,17,15,0.55)", fontFamily: "var(--font-owners)" }}>
-                  {seriesLabel ? t("More in {name}", { name: seriesLabel }) : t("More in this range")}
-                  <span style={{ color: "rgba(20,17,15,0.35)" }}> · {series.length}</span>
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {series.map((p) => (
-                    <Link
-                      key={p.handle}
-                      href={`/products/${p.handle}`}
-                      title={p.title}
-                      aria-label={p.title}
-                      className="lx-seri-kare block h-16 w-16 overflow-hidden bg-white"
-                    >
-                      {p.imageUrl ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={p.imageUrl} alt="" className="h-full w-full object-contain p-1" />
-                      ) : null}
-                    </Link>
-                  ))}
-                </div>
-              </div>
+              <SeriSeridi
+                urun={product}
+                seri={series}
+                etiket={seriesLabel}
+                tumuHref={productTypeHref(product.productType)}
+              />
             ) : null}
 
             {/* Adet */}
-            <div className="mt-8 flex max-w-[200px] items-center" style={{ border: "1px solid rgba(20,17,15,0.25)" }}>
-              <button
-                type="button"
-                className="px-4 py-3 text-[16px]"
-                onClick={() => setQty((q) => Math.max(1, q - 1))}
-                aria-label={t("Decrease")}
-              >
-                −
-              </button>
-              <span className="min-w-10 flex-1 text-center text-[14px] font-semibold">{qty}</span>
-              <button
-                type="button"
-                className="px-4 py-3 text-[16px]"
-                onClick={() => setQty((q) => q + 1)}
-                aria-label={t("Increase")}
-              >
-                +
-              </button>
+            <div className="mt-8">
+              <p className="lx-eyebrow mb-3" style={{ color: "rgba(20,17,15,0.45)" }}>
+                {t("Quantity")}
+              </p>
+              <div className="lx-adet">
+                <button
+                  type="button"
+                  className="lx-adet-dugme"
+                  onClick={() => setQty((q) => Math.max(1, q - 1))}
+                  disabled={qty <= 1}
+                  aria-label={t("Decrease")}
+                >
+                  <span aria-hidden="true">−</span>
+                </button>
+                <span className="lx-adet-sayi" aria-live="polite">{qty}</span>
+                <button
+                  type="button"
+                  className="lx-adet-dugme"
+                  onClick={() => setQty((q) => q + 1)}
+                  aria-label={t("Increase")}
+                >
+                  <span aria-hidden="true">+</span>
+                </button>
+              </div>
             </div>
 
             <button
@@ -820,4 +831,75 @@ function sanitizeHtml(html: string) {
     .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
     .replace(/on\w+="[^"]*"/gi, "")
     .replace(/on\w+='[^']*'/gi, "");
+}
+
+/**
+ * Serinin diğer ürünleri — yatay kayan şerit.
+ *
+ * Önceki hâli 64px'lik sıkışık karelerdi, ürünler seçilemiyordu. Şimdi:
+ * kareler büyüdü, bulunduğun ürün şeritte işaretli, imleç bir kareye
+ * gelince üstteki başlık o ürünün adına dönüyor (her karenin altına ad
+ * yazmak şeridi boğuyordu).
+ */
+function SeriSeridi({
+  urun,
+  seri,
+  etiket,
+  tumuHref,
+}: {
+  urun: Product;
+  seri: Product[];
+  etiket?: string;
+  tumuHref: string;
+}) {
+  const t = useT();
+  const [uzerinde, setUzerinde] = useState<Product | null>(null);
+  const hepsi = [urun, ...seri];
+
+  return (
+    <div className="mt-8">
+      <div className="mb-3 flex min-h-[18px] items-baseline gap-2">
+        <p className="truncate text-[11px] uppercase tracking-[0.14em]" style={{ color: "rgba(20,17,15,0.55)", fontFamily: "var(--font-owners)" }}>
+          {uzerinde
+            ? uzerinde.title
+            : etiket
+              ? t("More in {name}", { name: etiket })
+              : t("More in this range")}
+        </p>
+        {!uzerinde ? (
+          <span className="text-[11px]" style={{ color: "rgba(20,17,15,0.35)" }}>
+            · {seri.length}
+          </span>
+        ) : null}
+      </div>
+
+      <div className="lx-seri" onPointerLeave={() => setUzerinde(null)}>
+        {hepsi.map((p) => {
+          const aktif = p.handle === urun.handle;
+          return (
+            <Link
+              key={p.handle}
+              href={`/products/${p.handle}`}
+              title={p.title}
+              aria-label={p.title}
+              aria-current={aktif ? "true" : undefined}
+              className={`lx-seri-kare ${aktif ? "lx-seri-kare--aktif" : ""}`}
+              onPointerEnter={() => setUzerinde(p)}
+              onFocus={() => setUzerinde(p)}
+            >
+              {p.imageUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={p.imageUrl} alt="" />
+              ) : null}
+            </Link>
+          );
+        })}
+
+        <Link href={tumuHref} className="lx-seri-tumu" aria-label={t("View all")}>
+          <span aria-hidden="true">→</span>
+          <span className="lx-seri-tumu-yazi">{t("All")}</span>
+        </Link>
+      </div>
+    </div>
+  );
 }

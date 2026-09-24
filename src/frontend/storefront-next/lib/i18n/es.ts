@@ -18,6 +18,8 @@ export const ES: Record<string, string> = {
   "Shop": "Comprar",
   "View": "Ver",
   "View all": "Ver todo",
+  "All": "Todo",
+  "Quantity": "Cantidad",
   "Previous": "Anterior",
   "Next": "Siguiente",
   "Loading…": "Cargando…",
