@@ -40,7 +40,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const detail = await storefrontGetProductDetail(handle);
   if (!detail) notFound();
 
-  const { product, images, descriptionHtml, productType } = detail;
+  const { product, images, descriptionHtml, productType, sellingPlanGroups } = detail;
 
   // Benzer ürünler: önce aynı ürün tipinden, yetmezse çok satanlardan.
   // Ürün tipi Shopify'dan geldiği için mağazadan bağımsız çalışır.
@@ -77,6 +77,7 @@ export default async function ProductDetailPage({ params }: Props) {
       product={product}
       images={images}
       descriptionHtml={descriptionHtml}
+      sellingPlanGroups={sellingPlanGroups}
       crossSell={birlikte}
       related={digerleri.slice(0, 8)}
     />

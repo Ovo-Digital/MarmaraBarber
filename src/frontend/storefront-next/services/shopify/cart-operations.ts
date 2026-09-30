@@ -67,7 +67,10 @@ export async function cartAddLine(
   client: GraphQLClient,
   cartId: string,
   variantId: string,
-  quantity: number
+  quantity: number,
+  /* Abonelik seçildiyse planın kimliği. Tekrarlayan tahsilatı Shopify'ın
+     kasası yürütüyor; biz yalnızca hangi planla alındığını bildiriyoruz. */
+  sellingPlanId?: string
 ): Promise<Cart> {
   const data = await client.request<{ cartLinesAdd: Record<string, unknown> }>(
     `mutation($cartId:ID!,$lines:[CartLineInput!]!){
@@ -76,7 +79,7 @@ export async function cartAddLine(
         userErrors { message field }
       }
     }`,
-    { cartId, lines: [{ merchandiseId: variantId, quantity }] }
+    { cartId, lines: [{ merchandiseId: variantId, quantity, ...(sellingPlanId ? { sellingPlanId } : {}) }] }
   );
   extractUserErrors(data.cartLinesAdd);
   return mapCart(data.cartLinesAdd.cart as Record<string, unknown>);

@@ -57,7 +57,7 @@ type CartState = {
   error: string | null;
 
   hydrate: () => Promise<void>;
-  add: (product: Product, quantity?: number, variantId?: string) => Promise<void>;
+  add: (product: Product, quantity?: number, variantId?: string, sellingPlanId?: string) => Promise<void>;
   update: (lineId: string, quantity: number) => Promise<void>;
   remove: (lineId: string) => Promise<void>;
   clear: () => void;
@@ -123,7 +123,7 @@ export const useShopifyCartStore = create<CartState>()(
         }
       },
 
-      add: async (product, quantity = 1, variantId) => {
+      add: async (product, quantity = 1, variantId, sellingPlanId) => {
         const merchandiseId = variantId ?? product.variants[0]?.id;
         if (!merchandiseId) {
           set({ error: "Product variant not found" });
@@ -139,7 +139,7 @@ export const useShopifyCartStore = create<CartState>()(
             set({ cartId: id, checkoutUrl: created.checkoutUrl });
           }
 
-          const cart = await callCart({ op: "add", cartId: id, variantId: merchandiseId, quantity });
+          const cart = await callCart({ op: "add", cartId: id, variantId: merchandiseId, quantity, sellingPlanId });
           set({
             cartId: cart.id,
             lines: mapLines(cart),

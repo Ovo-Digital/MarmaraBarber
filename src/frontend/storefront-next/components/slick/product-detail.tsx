@@ -17,7 +17,7 @@ import { useUiStore } from "@/store/ui-store";
 import { useT } from "@/lib/i18n/dil";
 import { urunAdiParcala } from "@/lib/urun-adi";
 import { SITE_NAME } from "@/lib/slick-theme";
-import type { Product, ProductOption, ProductVariant } from "@/types/commerce";
+import type { Product, ProductOption, ProductVariant, SellingPlanGroup } from "@/types/commerce";
 
 function isDefaultOnly(options: ProductOption[] | undefined) {
   if (!options?.length) return true;
@@ -147,6 +147,117 @@ function GuvenSatiri() {
         </li>
       ))}
     </ul>
+  );
+}
+
+/**
+ * Tek seferlik alım / abonelik seçimi.
+ *
+ * Planlar Shopify'dan geliyor. Mağazada abonelik uygulaması kurulu değilse
+ * `gruplar` boş gelir ve bu bileşen HİÇBİR ŞEY çizmez — çalışmayan bir kutu
+ * gösterilmiyor. Tekrarlayan tahsilatı, kart saklamayı ve müşteri onayını
+ * Shopify'ın kasası yürütüyor; biz sepete yalnızca plan kimliğini yazıyoruz.
+ */
+function AbonelikSecimi({
+  gruplar,
+  fiyat,
+  paraBirimi,
+  secili,
+  onSec,
+}: {
+  gruplar: SellingPlanGroup[];
+  fiyat: number;
+  paraBirimi: string;
+  secili: string | null;
+  onSec: (planId: string | null) => void;
+}) {
+  const t = useT();
+  const grup = gruplar[0];
+  const planlar = useMemo(() => grup?.plans.filter((pl) => pl.recurringDeliveries) ?? [], [grup]);
+  /* Açılır listede duran plan: Shopify'daki sıranın ilki. Kendimizden
+     "en avantajlısı" seçmiyoruz — sırayı mağaza belirliyor. */
+  const [gosterilen, setGosterilen] = useState<string>(planlar[0]?.id ?? "");
+  if (planlar.length === 0) return null;
+
+  const aktifPlan = planlar.find((pl) => pl.id === gosterilen) ?? planlar[0];
+  const indirim = aktifPlan.discountPercent ?? 0;
+  const indirimliFiyat = indirim ? fiyat * (1 - indirim / 100) : fiyat;
+  const aboneSecili = secili !== null;
+
+  return (
+    <div className="mt-7 space-y-2">
+      {/* Tek seferlik */}
+      <button
+        type="button"
+        onClick={() => onSec(null)}
+        className={`lx-satin-kutu ${!aboneSecili ? "lx-satin-kutu--secili" : ""}`}
+        aria-pressed={!aboneSecili}
+      >
+        <span className="lx-satin-nokta" aria-hidden="true" />
+        <span className="flex-1 text-left">
+          <span className="block font-semibold">{t("One-time purchase")}</span>
+          <span className="block text-[13px]" style={{ color: "rgba(20,17,15,0.6)" }}>
+            {formatMoney(fiyat, paraBirimi)}
+          </span>
+        </span>
+      </button>
+
+      {/* Abonelik */}
+      <div className={`lx-satin-kutu lx-satin-kutu--blok ${aboneSecili ? "lx-satin-kutu--secili" : ""}`}>
+        <button
+          type="button"
+          onClick={() => onSec(aktifPlan.id)}
+          className="flex w-full items-center gap-3 text-left"
+          aria-pressed={aboneSecili}
+        >
+          <span className="lx-satin-nokta" aria-hidden="true" />
+          <span className="flex-1">
+            <span className="block font-semibold">{grup.name || t("Subscribe & save")}</span>
+            <span className="block text-[13px]">
+              {indirim ? (
+                <>
+                  <span className="line-through" style={{ color: "rgba(20,17,15,0.45)" }}>
+                    {formatMoney(fiyat, paraBirimi)}
+                  </span>{" "}
+                  <strong>{formatMoney(indirimliFiyat, paraBirimi)}</strong>
+                </>
+              ) : (
+                formatMoney(fiyat, paraBirimi)
+              )}
+            </span>
+          </span>
+          {indirim ? (
+            <span className="lx-satin-rozet">{t("Save {percent}%", { percent: String(Math.round(indirim)) })}</span>
+          ) : null}
+        </button>
+
+        {aboneSecili ? (
+          <div className="mt-3 pl-8">
+            <label className="sr-only" htmlFor="abonelik-siklik">
+              {t("Select frequency")}
+            </label>
+            <select
+              id="abonelik-siklik"
+              className="lx-satin-secim"
+              value={gosterilen}
+              onChange={(e) => {
+                setGosterilen(e.target.value);
+                onSec(e.target.value);
+              }}
+            >
+              {planlar.map((pl) => (
+                <option key={pl.id} value={pl.id}>
+                  {pl.name}
+                </option>
+              ))}
+            </select>
+            <p className="mt-3 text-[13px]" style={{ color: "rgba(20,17,15,0.6)" }}>
+              {t("Billed automatically each period. Skip, edit or cancel anytime from your account.")}
+            </p>
+          </div>
+        ) : null}
+      </div>
+    </div>
   );
 }
 
@@ -328,12 +439,15 @@ export function SlickProductDetail({
   product,
   images,
   descriptionHtml,
+  sellingPlanGroups = [],
   crossSell,
   related,
 }: {
   product: Product;
   images: string[];
   descriptionHtml?: string;
+  /** Shopify'daki abonelik planları. Boşsa abonelik kutusu çizilmez. */
+  sellingPlanGroups?: SellingPlanGroup[];
   crossSell: Product[];
   related: Product[];
 }) {
@@ -386,6 +500,30 @@ export function SlickProductDetail({
       : null;
   const discount = discountPercent(price, compareAt);
   const inStock = Boolean(variant?.availableForSale ?? product.availableForSale);
+  const [seciliPlan, setSeciliPlan] = useState<string | null>(null);
+
+  /* YALNIZCA TASARIM ÖNİZLEMESİ İÇİN.
+     Mağazada abonelik uygulaması kurulu olmadığı için gerçek plan gelmiyor.
+     NEXT_PUBLIC_ABONELIK_DEMO=1 iken örnek planlarla kutu çiziliyor ki
+     tasarım localde görülebilsin. Bu planların kimlikleri Shopify'da yok;
+     demo açıkken sepete ekleme plansız yapılıyor (aşağıda). Yayında bu
+     değişken tanımlı olmadığı için hiçbir şey değişmez. */
+  const demoAcik = process.env.NEXT_PUBLIC_ABONELIK_DEMO === "1";
+  const planGruplari = useMemo<SellingPlanGroup[]>(() => {
+    if (sellingPlanGroups.length > 0) return sellingPlanGroups;
+    if (!demoAcik) return [];
+    return [
+      {
+        name: "Subscribe & save",
+        plans: [
+          { id: "demo-1", name: "Delivered every month", recurringDeliveries: true, discountPercent: 10 },
+          { id: "demo-2", name: "Delivered every 2 months", recurringDeliveries: true, discountPercent: 10 },
+          { id: "demo-3", name: "Delivered every 3 months", recurringDeliveries: true, discountPercent: 15 },
+        ],
+      },
+    ];
+  }, [sellingPlanGroups, demoAcik]);
+  const demoPlan = seciliPlan?.startsWith("demo-") ?? false;
 
   const plain = useMemo(() => {
     return (descriptionHtml || "")
@@ -463,10 +601,10 @@ export function SlickProductDetail({
     if (!inStock || adding) return;
     setAdding(true);
     await new Promise((r) => setTimeout(r, 450));
-    add(product, qty, variant?.id);
+    await add(product, qty, variant?.id, demoPlan ? undefined : (seciliPlan ?? undefined));
     setAdding(false);
     openCart();
-  }, [inStock, adding, add, product, qty, variant?.id, openCart]);
+  }, [inStock, adding, add, product, qty, variant?.id, seciliPlan, demoPlan, openCart]);
 
   const valueAvailable = (opt: ProductOption, value: string) => {
     const next = { ...selected, [opt.name]: value };
@@ -605,6 +743,14 @@ export function SlickProductDetail({
               );
             })}
 
+
+            <AbonelikSecimi
+              gruplar={planGruplari}
+              fiyat={price}
+              paraBirimi={product.currencyCode}
+              secili={seciliPlan}
+              onSec={setSeciliPlan}
+            />
 
             {/* Adet */}
             <div className="mt-8">

@@ -102,3 +102,19 @@ export interface ProductListingResult {
   filters: ProductFacet[];
   totalCount: number;
 }
+
+/** Abonelik planı — Shopify'da "selling plan". Örn. "Her 2 ayda bir teslim". */
+export interface SellingPlan {
+  id: string;
+  name: string;
+  /** Tekrarlayan teslimat mı (abonelik), yoksa ön sipariş gibi tek seferlik mi */
+  recurringDeliveries: boolean;
+  /** Perakende fiyata göre yüzde indirim; yoksa undefined */
+  discountPercent?: number;
+}
+
+/** Plan grubu — örn. "Subscribe & save". Bir üründe birden çok olabilir. */
+export interface SellingPlanGroup {
+  name: string;
+  plans: SellingPlan[];
+}

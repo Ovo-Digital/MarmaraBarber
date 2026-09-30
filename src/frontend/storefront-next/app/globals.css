@@ -1661,3 +1661,65 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   overflow: hidden;
   color: var(--sg-red);
 }
+
+/* ── Ürün detayı: tek seferlik / abonelik seçimi ───────────────────────── */
+.lx-satin-kutu {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(20, 17, 15, 0.16);
+  background: rgba(20, 17, 15, 0.03);
+  padding: 16px 18px;
+  text-align: left;
+  font-size: 14px;
+  color: var(--lx-ink);
+  transition: border-color 240ms var(--lx-ease), background-color 240ms var(--lx-ease);
+}
+.lx-satin-kutu--blok { display: block; }
+.lx-satin-kutu--secili {
+  border-color: var(--lx-ink);
+  border-width: 2px;
+  background: #fff;
+  padding: 15px 17px;
+}
+@media (hover: hover) {
+  .lx-satin-kutu:hover { border-color: rgba(20, 17, 15, 0.4); }
+}
+/* Seçim noktası */
+.lx-satin-nokta {
+  position: relative;
+  display: block;
+  height: 18px;
+  width: 18px;
+  flex: 0 0 18px;
+  border: 1px solid rgba(20, 17, 15, 0.35);
+  border-radius: 50%;
+}
+.lx-satin-kutu--secili .lx-satin-nokta { border-color: var(--lx-ink); }
+.lx-satin-kutu--secili .lx-satin-nokta::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--lx-ink);
+}
+.lx-satin-rozet {
+  flex: 0 0 auto;
+  background: var(--sg-red);
+  padding: 4px 8px;
+  font-family: var(--font-owners);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.lx-satin-secim {
+  width: 100%;
+  border: 1px solid rgba(20, 17, 15, 0.22);
+  background: #fff;
+  padding: 11px 12px;
+  font-size: 14px;
+  color: var(--lx-ink);
+}

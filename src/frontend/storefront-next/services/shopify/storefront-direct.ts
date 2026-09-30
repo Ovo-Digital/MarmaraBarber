@@ -1,6 +1,6 @@
 import { createShopifyClient } from "@/lib/shopify-client";
 import type { PlpSortOption } from "@/lib/plp-filters";
-import type { Cart, Collection, Product, ProductFacet, ProductListingResult } from "@/types/commerce";
+import type { Cart, Collection, Product, ProductFacet, ProductListingResult, SellingPlanGroup } from "@/types/commerce";
 
 const PRODUCT_FRAGMENT = `
   id handle title description availableForSale productType
@@ -525,6 +525,8 @@ export type ProductDetail = {
   images: string[];
   descriptionHtml: string;
   productType: string;
+  /** Abonelik planları. Mağazada abonelik uygulaması kurulu değilse boş dizi. */
+  sellingPlanGroups: SellingPlanGroup[];
 };
 
 /**
@@ -547,6 +549,17 @@ export async function storefrontGetProductDetail(handle: string): Promise<Produc
         ${PRODUCT_FRAGMENT}
         descriptionHtml
         gallery: images(first: 10) { edges { node { url } } }
+        sellingPlanGroups(first: 5) { edges { node {
+          name
+          sellingPlans(first: 10) { edges { node {
+            id name recurringDeliveries
+            priceAdjustments {
+              adjustmentValue {
+                ... on SellingPlanPercentagePriceAdjustment { adjustmentPercentage }
+              }
+            }
+          } } }
+        } } }
       }
     }`,
     { handle },
@@ -556,6 +569,27 @@ export async function storefrontGetProductDetail(handle: string): Promise<Produc
 
   const node = data.product;
   const galeri = node.gallery.edges.map((e) => e.node.url);
+
+  /* Abonelik planları. Mağazada abonelik uygulaması yoksa bu dizi boş gelir ve
+     arayüzde abonelik kutusu hiç çizilmez — boş bir seçenek gösterilmiyor. */
+  const planGruplari: SellingPlanGroup[] = (
+    (node.sellingPlanGroups as { edges: { node: Record<string, unknown> }[] } | undefined)?.edges ?? []
+  ).map((g) => {
+    const grup = g.node;
+    const planlar = ((grup.sellingPlans as { edges: { node: Record<string, unknown> }[] })?.edges ?? []).map(
+      ({ node: pl }) => {
+        const ayar = (pl.priceAdjustments as { adjustmentValue?: { adjustmentPercentage?: number } }[] | undefined)?.[0];
+        const yuzde = ayar?.adjustmentValue?.adjustmentPercentage;
+        return {
+          id: pl.id as string,
+          name: pl.name as string,
+          recurringDeliveries: Boolean(pl.recurringDeliveries),
+          discountPercent: typeof yuzde === "number" && yuzde > 0 ? yuzde : undefined,
+        };
+      },
+    );
+    return { name: (grup.name as string) ?? "", plans: planlar };
+  }).filter((g) => g.plans.length > 0);
   const kapak = (node.featuredImage as { url?: string } | null)?.url;
 
   return {
@@ -564,6 +598,7 @@ export async function storefrontGetProductDetail(handle: string): Promise<Produc
     images: kapak ? [kapak, ...galeri.filter((u) => u !== kapak)] : galeri,
     descriptionHtml: node.descriptionHtml ?? "",
     productType: node.productType ?? "",
+    sellingPlanGroups: planGruplari,
   };
 }
 

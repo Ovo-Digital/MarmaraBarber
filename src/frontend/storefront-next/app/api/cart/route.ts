@@ -30,6 +30,8 @@ export async function POST(req: NextRequest) {
       op: string;
       cartId?: string;
       variantId?: string;
+      /** Abonelik seçildiyse Shopify'ın plan kimliği */
+      sellingPlanId?: string;
       lineId?: string;
       lineIds?: string[];
       quantity?: number;
@@ -46,7 +48,7 @@ export async function POST(req: NextRequest) {
       case "add": {
         if (!body.cartId || !body.variantId) return apiError(new Error("cartId and variantId are required"), 400);
         const cart = await maybeAttachCustomer(
-          await cartOps.cartAddLine(client, body.cartId, body.variantId, body.quantity ?? 1),
+          await cartOps.cartAddLine(client, body.cartId, body.variantId, body.quantity ?? 1, body.sellingPlanId),
           customerToken
         );
         return apiSuccess(cart);
