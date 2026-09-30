@@ -533,13 +533,18 @@ export function SlickProductDetail({
   const inStock = Boolean(variant?.availableForSale ?? product.availableForSale);
   const [seciliPlan, setSeciliPlan] = useState<string | null>(null);
 
-  /* YALNIZCA TASARIM ÖNİZLEMESİ İÇİN.
-     Mağazada abonelik uygulaması kurulu olmadığı için gerçek plan gelmiyor.
-     NEXT_PUBLIC_ABONELIK_DEMO=1 iken örnek planlarla kutu çiziliyor ki
-     tasarım localde görülebilsin. Bu planların kimlikleri Shopify'da yok;
-     demo açıkken sepete ekleme plansız yapılıyor (aşağıda). Yayında bu
-     değişken tanımlı olmadığı için hiçbir şey değişmez. */
-  const demoAcik = process.env.NEXT_PUBLIC_ABONELIK_DEMO === "1";
+  /* TASARIM ÖNİZLEMESİ — şimdilik AÇIK.
+     Shopify'da henüz abonelik planı tanımlı değil. Plan gelene kadar örnek
+     planlarla kutu çiziliyor ki tasarım her ortamda (local, Vercel) aynı
+     görünsün. Gerçek plan tanımlandığı an bu devre dışı kalır: aşağıda
+     önce Shopify'dan geleni kullanıyoruz, demo yalnızca o boşken devreye
+     giriyor.
+
+     ⚠️ CANLIYA ÇIKMADAN ÖNCE: Shopify'da plan yoksa bu değişkeni
+     NEXT_PUBLIC_ABONELIK_DEMO=0 yaparak kapat. Demo planların kimlikleri
+     Shopify'da yok; demo açıkken sepete ekleme plansız yapılıyor, yani
+     müşteri abone olduğunu sanıp normal sipariş verir. */
+  const demoAcik = process.env.NEXT_PUBLIC_ABONELIK_DEMO !== "0";
   const planGruplari = useMemo<SellingPlanGroup[]>(() => {
     if (sellingPlanGroups.length > 0) return sellingPlanGroups;
     if (!demoAcik) return [];
