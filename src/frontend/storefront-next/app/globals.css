@@ -1663,10 +1663,11 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
 }
 
 /* ── Ürün detayı: abonelik bileti ─────────────────────────────────────── */
-/* Site dili: kare kenar, sıcak nötr zemin, kırmızı yalnızca vurgu.
-   Bilet iki parça: solda kupon (oran), sağda gövde (fiyat ve sıklık).
-   Arada perfore çizgi ve üst/alt oyuk. */
-.lx-abone { display: grid; gap: 8px; }
+/* Renk mantığı: seçili olan ağır basar, seçili olmayan geri çekilir.
+   Kupon seçilmeden önce kremin üstünde çerçeveli ve sessiz duruyor;
+   seçilince sitenin buton dolgusundaki kırmızı ışımayla "damgalanıyor".
+   --bilet-zemin oyukların zemine uyması için tek yerden veriliyor. */
+.lx-abone { display: grid; gap: 10px; }
 
 .lx-abone-etiket {
   display: block;
@@ -1679,31 +1680,32 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
 }
 .lx-abone-fiyat {
   display: block;
-  margin-top: 5px;
+  margin-top: 6px;
   font-family: var(--font-owners-black);
   font-weight: 900;
-  font-size: 19px;
+  font-size: 20px;
+  letter-spacing: -0.01em;
   color: var(--lx-ink);
 }
 .lx-abone-eski {
-  margin-right: 7px;
+  margin-right: 8px;
   font-family: var(--font-geist);
   font-size: 14px;
   font-weight: 400;
   text-decoration: line-through;
-  color: rgba(20, 17, 15, 0.4);
+  color: rgba(20, 17, 15, 0.38);
 }
 
 /* Kare seçim işareti */
 .lx-abone-isaret {
   position: relative;
   display: block;
-  margin-top: 1px;
+  margin-top: 2px;
   height: 16px;
   width: 16px;
   flex: 0 0 16px;
-  border: 1px solid rgba(20, 17, 15, 0.32);
-  transition: border-color 260ms var(--lx-ease);
+  border: 1px solid rgba(20, 17, 15, 0.28);
+  transition: border-color 280ms var(--lx-ease);
 }
 .lx-abone-isaret::after {
   content: "";
@@ -1711,7 +1713,7 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   inset: 3px;
   background: var(--sg-red);
   transform: scale(0);
-  transition: transform 320ms var(--lx-yumusak);
+  transition: transform 340ms var(--lx-yumusak);
 }
 .lx-abone-tek--secili .lx-abone-isaret,
 .lx-bilet--secili .lx-abone-isaret { border-color: var(--lx-ink); }
@@ -1720,79 +1722,115 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
 
 /* Tek seferlik satırı */
 .lx-abone-tek {
+  --bilet-zemin: var(--lx-bone);
   display: flex;
   width: 100%;
   align-items: flex-start;
-  gap: 14px;
+  gap: 15px;
   border: 1px solid var(--lx-line);
-  background: var(--lx-bone);
-  padding: 17px 20px;
-  transition: background-color 320ms var(--lx-ease), border-color 320ms var(--lx-ease);
+  background: var(--bilet-zemin);
+  padding: 18px 20px;
+  transition: background-color 340ms var(--lx-ease), border-color 340ms var(--lx-ease),
+    box-shadow 420ms var(--lx-yumusak);
 }
-.lx-abone-tek--secili { background: var(--lx-paper); border-color: rgba(20, 17, 15, 0.3); }
+.lx-abone-tek--secili {
+  --bilet-zemin: var(--lx-paper);
+  border-color: rgba(20, 17, 15, 0.34);
+  box-shadow: 0 10px 26px rgba(20, 17, 15, 0.07);
+}
 @media (hover: hover) {
-  .lx-abone-tek:hover { border-color: rgba(20, 17, 15, 0.26); }
+  .lx-abone-tek:not(.lx-abone-tek--secili):hover { border-color: rgba(20, 17, 15, 0.24); }
 }
 
 /* Bilet */
 .lx-bilet {
+  --bilet-zemin: var(--lx-bone);
   display: flex;
   align-items: stretch;
   border: 1px solid var(--lx-line);
-  background: var(--lx-bone);
-  transition: background-color 320ms var(--lx-ease), border-color 320ms var(--lx-ease);
+  background: var(--bilet-zemin);
+  transition: background-color 340ms var(--lx-ease), border-color 340ms var(--lx-ease),
+    box-shadow 420ms var(--lx-yumusak);
 }
-.lx-bilet--secili { background: var(--lx-paper); border-color: rgba(20, 17, 15, 0.3); }
+.lx-bilet--secili {
+  --bilet-zemin: var(--lx-paper);
+  border-color: rgba(20, 17, 15, 0.34);
+  box-shadow: 0 14px 34px rgba(20, 17, 15, 0.1);
+}
 @media (hover: hover) {
-  .lx-bilet:hover { border-color: rgba(20, 17, 15, 0.26); }
+  .lx-bilet:not(.lx-bilet--secili):hover { border-color: rgba(20, 17, 15, 0.24); }
 }
 
-/* Sol kupon: seçilince siyahtan kırmızıya dönüyor */
+/* Sol kupon.
+   Seçilmeden önce: zeminin üstünde, ince ayraçlı, sessiz.
+   Seçilince: butonlardaki kırmızı ışımanın aynısıyla doluyor. */
 .lx-bilet-kupon {
+  position: relative;
   display: flex;
-  width: 96px;
-  flex: 0 0 96px;
+  width: 104px;
+  flex: 0 0 104px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  background: var(--lx-ink);
-  padding: 20px 8px;
-  color: #fff;
-  transition: background-color 420ms var(--lx-ease);
+  gap: 3px;
+  overflow: hidden;
+  background: transparent;
+  padding: 22px 8px;
+  color: var(--lx-ink);
+  transition: color 380ms var(--lx-ease);
 }
-.lx-bilet--secili .lx-bilet-kupon { background: var(--sg-red); }
+/* Kırmızı dolgu alttan yukarı açılıyor — damga basılır gibi */
+.lx-bilet-kupon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(115% 150% at 50% 125%, #ff2a1f 0%, var(--sg-red) 45%, #a50500 100%);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 520ms var(--lx-yumusak);
+}
+.lx-bilet--secili .lx-bilet-kupon { color: #fff; }
+.lx-bilet--secili .lx-bilet-kupon::before { transform: scaleY(1); }
+.lx-bilet-kupon > * { position: relative; }
+
 .lx-bilet-kadar {
   font-family: var(--font-owners);
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.75;
+  opacity: 0.6;
+  transition: opacity 380ms var(--lx-ease);
 }
+.lx-bilet--secili .lx-bilet-kadar { opacity: 0.8; }
 .lx-bilet-oran {
   font-family: var(--font-owners-black);
   font-weight: 900;
-  font-size: 38px;
-  line-height: 0.88;
-  letter-spacing: -0.02em;
+  font-size: 42px;
+  line-height: 0.86;
+  letter-spacing: -0.03em;
 }
 .lx-bilet-yuzde {
   font-family: var(--font-owners);
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  opacity: 0.85;
 }
 
-/* Perfore çizgi + üst/alt oyuk */
+/* Perfore çizgi + üst/alt oyuk.
+   Oyuklar SAYFANIN zeminini alıyor: biletten zımbayla delinmiş gibi
+   görünsün diye. Bilet zeminini alınca sayfanın beyazında krem daire
+   olarak duruyorlardı. */
 .lx-bilet-perfore {
   position: relative;
   width: 1px;
   flex: 0 0 1px;
-  background-image: linear-gradient(to bottom, rgba(20, 17, 15, 0.26) 55%, transparent 0);
+  background-image: linear-gradient(to bottom, rgba(20, 17, 15, 0.22) 55%, transparent 0);
   background-size: 1px 8px;
   background-repeat: repeat-y;
+  transition: background-image 340ms var(--lx-ease);
 }
 .lx-bilet-perfore::before,
 .lx-bilet-perfore::after {
@@ -1802,14 +1840,14 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background: var(--lx-paper);
+  background: #fff;
 }
 .lx-bilet-perfore::before { top: -6px; }
 .lx-bilet-perfore::after { bottom: -6px; }
 
-.lx-bilet-govde { min-width: 0; flex: 1; padding: 17px 20px; }
+.lx-bilet-govde { min-width: 0; flex: 1; padding: 18px 20px; }
 
-/* Açılıp kapanan alt bölüm: DOM'dan çıkmıyor, yüksekliği geçişle değişiyor */
+/* Açılıp kapanan alt bölüm */
 .lx-abone-ac {
   display: grid;
   grid-template-rows: 0fr;
@@ -1821,33 +1859,57 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
 /* Sıklık şeridi */
 .lx-abone-siklik { display: flex; flex-wrap: wrap; gap: 6px; }
 .lx-abone-chip {
-  border: 1px solid rgba(20, 17, 15, 0.22);
+  border: 1px solid rgba(20, 17, 15, 0.18);
   background: transparent;
-  padding: 8px 13px;
+  padding: 9px 14px;
   font-family: var(--font-owners);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--lx-ink);
-  transition: background-color 280ms var(--lx-ease), color 280ms var(--lx-ease),
-    border-color 280ms var(--lx-ease);
+  color: rgba(20, 17, 15, 0.62);
+  transition: background-color 300ms var(--lx-ease), color 300ms var(--lx-ease),
+    border-color 300ms var(--lx-ease);
 }
 .lx-abone-chip--secili { background: var(--lx-ink); border-color: var(--lx-ink); color: #fff; }
 @media (hover: hover) {
-  .lx-abone-chip:not(.lx-abone-chip--secili):hover { border-color: var(--lx-ink); }
+  .lx-abone-chip:not(.lx-abone-chip--secili):hover {
+    border-color: var(--lx-ink);
+    color: var(--lx-ink);
+  }
 }
 
+/* Özet: üstünde kısa kırmızı çizgi, sitenin madde işareti */
 .lx-abone-ozet {
-  margin-top: 14px;
+  position: relative;
+  margin-top: 18px;
+  padding-top: 14px;
   font-size: 13.5px;
   line-height: 1.55;
   color: var(--lx-ink);
 }
+.lx-abone-ozet::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  width: 22px;
+  background: var(--sg-red);
+}
 .lx-abone-not {
-  margin-top: 5px;
+  margin-top: 6px;
   font-size: 12.5px;
-  color: rgba(20, 17, 15, 0.52);
+  color: rgba(20, 17, 15, 0.5);
+}
+
+/* Küçük ekran: kupon daralıyor, şerit tek satıra sığsın */
+@media (max-width: 480px) {
+  .lx-bilet-kupon { width: 78px; flex-basis: 78px; padding: 18px 6px; }
+  .lx-bilet-oran { font-size: 32px; }
+  .lx-bilet-govde { padding: 16px 14px; }
+  .lx-abone-chip { padding: 8px 9px; font-size: 10px; letter-spacing: 0.06em; }
+  .lx-abone-siklik { gap: 5px; }
 }
 
 /* ── Abonelik seçici denemeleri (/abonelik) ───────────────────────────── */
@@ -2239,12 +2301,3 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   color: #fff;
 }
 
-/* Bilet — küçük ekran: kupon daralıyor, şeritler tek satıra sığsın diye
-   yazı ve iç boşluk kısalıyor. */
-@media (max-width: 480px) {
-  .lx-bilet-kupon { width: 74px; flex-basis: 74px; padding: 16px 6px; }
-  .lx-bilet-oran { font-size: 30px; }
-  .lx-bilet-govde { padding: 15px 14px; }
-  .lx-abone-chip { padding: 8px 9px; font-size: 10px; letter-spacing: 0.06em; }
-  .lx-abone-siklik { gap: 5px; }
-}
