@@ -197,6 +197,10 @@ function AbonelikSecimi({
 
   return (
     <div className="lx-abone mt-8">
+      {/* Find your formula bölümünün zemini: koyu ton + alttan kırmızı ışıma */}
+      <span aria-hidden="true" className="lx-kirmizi-isik" />
+
+      <div className="lx-abone-ic">
       {/* Tek seferlik */}
       <button
         type="button"
@@ -276,6 +280,7 @@ function AbonelikSecimi({
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
