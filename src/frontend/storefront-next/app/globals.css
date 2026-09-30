@@ -1662,78 +1662,13 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   color: var(--sg-red);
 }
 
-/* ── Ürün detayı: tek seferlik / abonelik seçimi ───────────────────────── */
+/* ── Ürün detayı: abonelik bileti ─────────────────────────────────────── */
 /* Site dili: kare kenar, sıcak nötr zemin, kırmızı yalnızca vurgu.
-   Seçili panel beyaza dönüyor ve sol kenarında kırmızı bir şerit açılıyor —
-   sitedeki kırmızı ayraçla aynı işaret. */
-.lx-satin { display: grid; gap: 8px; }
+   Bilet iki parça: solda kupon (oran), sağda gövde (fiyat ve sıklık).
+   Arada perfore çizgi ve üst/alt oyuk. */
+.lx-abone { display: grid; gap: 8px; }
 
-.lx-satin-kutu {
-  position: relative;
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  border: 1px solid var(--lx-line);
-  background: var(--lx-bone);
-  padding: 17px 20px 17px 22px;
-  text-align: left;
-  color: var(--lx-ink);
-  transition: background-color 320ms var(--lx-ease), border-color 320ms var(--lx-ease);
-}
-/* Sol kenardaki kırmızı şerit: kapalıyken yok, seçilince yukarıdan açılıyor */
-.lx-satin-kutu::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--sg-red);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 420ms var(--lx-yumusak);
-}
-.lx-satin-kutu--secili {
-  background: var(--lx-paper);
-  border-color: rgba(20, 17, 15, 0.26);
-}
-.lx-satin-kutu--secili::before { transform: scaleY(1); }
-@media (hover: hover) {
-  .lx-satin-kutu:hover { border-color: rgba(20, 17, 15, 0.26); }
-}
-
-.lx-satin-ust {
-  display: flex;
-  width: 100%;
-  /* Başlık hizasına: ortalayınca işaret fiyatın yanına kayıyordu */
-  align-items: flex-start;
-  gap: 14px;
-  text-align: left;
-}
-
-/* Seçim işareti kare — sitenin her yerindeki köşeli dille aynı */
-.lx-satin-nokta {
-  position: relative;
-  display: block;
-  height: 16px;
-  width: 16px;
-  flex: 0 0 16px;
-  margin-top: 1px;
-  border: 1px solid rgba(20, 17, 15, 0.32);
-  transition: border-color 260ms var(--lx-ease);
-}
-.lx-satin-kutu--secili .lx-satin-nokta { border-color: var(--lx-ink); }
-.lx-satin-nokta::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  background: var(--sg-red);
-  transform: scale(0);
-  transition: transform 320ms var(--lx-yumusak);
-}
-.lx-satin-kutu--secili .lx-satin-nokta::after { transform: scale(1); }
-
-.lx-satin-baslik {
+.lx-abone-etiket {
   display: block;
   font-family: var(--font-owners);
   font-size: 12px;
@@ -1742,7 +1677,7 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   text-transform: uppercase;
   color: var(--lx-ink);
 }
-.lx-satin-fiyat {
+.lx-abone-fiyat {
   display: block;
   margin-top: 5px;
   font-family: var(--font-owners-black);
@@ -1750,7 +1685,7 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   font-size: 19px;
   color: var(--lx-ink);
 }
-.lx-satin-eski {
+.lx-abone-eski {
   margin-right: 7px;
   font-family: var(--font-geist);
   font-size: 14px;
@@ -1758,64 +1693,161 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   text-decoration: line-through;
   color: rgba(20, 17, 15, 0.4);
 }
-.lx-satin-rozet {
-  flex: 0 0 auto;
-  align-self: flex-start;
+
+/* Kare seçim işareti */
+.lx-abone-isaret {
+  position: relative;
+  display: block;
+  margin-top: 1px;
+  height: 16px;
+  width: 16px;
+  flex: 0 0 16px;
+  border: 1px solid rgba(20, 17, 15, 0.32);
+  transition: border-color 260ms var(--lx-ease);
+}
+.lx-abone-isaret::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
   background: var(--sg-red);
-  padding: 5px 9px;
+  transform: scale(0);
+  transition: transform 320ms var(--lx-yumusak);
+}
+.lx-abone-tek--secili .lx-abone-isaret,
+.lx-bilet--secili .lx-abone-isaret { border-color: var(--lx-ink); }
+.lx-abone-tek--secili .lx-abone-isaret::after,
+.lx-bilet--secili .lx-abone-isaret::after { transform: scale(1); }
+
+/* Tek seferlik satırı */
+.lx-abone-tek {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 14px;
+  border: 1px solid var(--lx-line);
+  background: var(--lx-bone);
+  padding: 17px 20px;
+  transition: background-color 320ms var(--lx-ease), border-color 320ms var(--lx-ease);
+}
+.lx-abone-tek--secili { background: var(--lx-paper); border-color: rgba(20, 17, 15, 0.3); }
+@media (hover: hover) {
+  .lx-abone-tek:hover { border-color: rgba(20, 17, 15, 0.26); }
+}
+
+/* Bilet */
+.lx-bilet {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--lx-line);
+  background: var(--lx-bone);
+  transition: background-color 320ms var(--lx-ease), border-color 320ms var(--lx-ease);
+}
+.lx-bilet--secili { background: var(--lx-paper); border-color: rgba(20, 17, 15, 0.3); }
+@media (hover: hover) {
+  .lx-bilet:hover { border-color: rgba(20, 17, 15, 0.26); }
+}
+
+/* Sol kupon: seçilince siyahtan kırmızıya dönüyor */
+.lx-bilet-kupon {
+  display: flex;
+  width: 96px;
+  flex: 0 0 96px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: var(--lx-ink);
+  padding: 20px 8px;
+  color: #fff;
+  transition: background-color 420ms var(--lx-ease);
+}
+.lx-bilet--secili .lx-bilet-kupon { background: var(--sg-red); }
+.lx-bilet-kadar {
+  font-family: var(--font-owners);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.lx-bilet-oran {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  font-size: 38px;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+}
+.lx-bilet-yuzde {
   font-family: var(--font-owners);
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #fff;
 }
 
-/* Sıklık seçimi ve avantaj listesi — seçilince yumuşakça açılıyor */
-.lx-satin-detay {
+/* Perfore çizgi + üst/alt oyuk */
+.lx-bilet-perfore {
+  position: relative;
+  width: 1px;
+  flex: 0 0 1px;
+  background-image: linear-gradient(to bottom, rgba(20, 17, 15, 0.26) 55%, transparent 0);
+  background-size: 1px 8px;
+  background-repeat: repeat-y;
+}
+.lx-bilet-perfore::before,
+.lx-bilet-perfore::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: var(--lx-paper);
+}
+.lx-bilet-perfore::before { top: -6px; }
+.lx-bilet-perfore::after { bottom: -6px; }
+
+.lx-bilet-govde { min-width: 0; flex: 1; padding: 17px 20px; }
+
+/* Açılıp kapanan alt bölüm: DOM'dan çıkmıyor, yüksekliği geçişle değişiyor */
+.lx-abone-ac {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 420ms var(--lx-yumusak);
+  transition: grid-template-rows 460ms var(--lx-yumusak);
 }
-.lx-satin-kutu--secili .lx-satin-detay { grid-template-rows: 1fr; }
-.lx-satin-detay > div { overflow: hidden; }
+.lx-abone-ac[data-acik="true"] { grid-template-rows: 1fr; }
+.lx-abone-ac > div { overflow: hidden; }
 
-.lx-satin-secim {
-  width: 100%;
-  appearance: none;
-  border: 1px solid rgba(20, 17, 15, 0.2);
-  background: var(--lx-paper);
-  background-image: linear-gradient(45deg, transparent 50%, var(--lx-ink) 50%),
-    linear-gradient(135deg, var(--lx-ink) 50%, transparent 50%);
-  background-position: right 18px center, right 13px center;
-  background-size: 5px 5px, 5px 5px;
-  background-repeat: no-repeat;
-  padding: 12px 40px 12px 14px;
-  font-family: var(--font-geist);
-  font-size: 14px;
+/* Sıklık şeridi */
+.lx-abone-siklik { display: flex; flex-wrap: wrap; gap: 6px; }
+.lx-abone-chip {
+  border: 1px solid rgba(20, 17, 15, 0.22);
+  background: transparent;
+  padding: 8px 13px;
+  font-family: var(--font-owners);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--lx-ink);
-  transition: border-color 260ms var(--lx-ease);
+  transition: background-color 280ms var(--lx-ease), color 280ms var(--lx-ease),
+    border-color 280ms var(--lx-ease);
 }
-.lx-satin-secim:focus-visible { outline: none; border-color: var(--lx-ink); }
+.lx-abone-chip--secili { background: var(--lx-ink); border-color: var(--lx-ink); color: #fff; }
+@media (hover: hover) {
+  .lx-abone-chip:not(.lx-abone-chip--secili):hover { border-color: var(--lx-ink); }
+}
 
-.lx-satin-avantaj {
-  margin: 14px 0 0;
-  display: grid;
-  gap: 7px;
-  padding: 0;
-  list-style: none;
+.lx-abone-ozet {
+  margin-top: 14px;
   font-size: 13.5px;
-  color: rgba(20, 17, 15, 0.7);
+  line-height: 1.55;
+  color: var(--lx-ink);
 }
-.lx-satin-avantaj li { display: flex; align-items: flex-start; gap: 10px; }
-/* Sitedeki kırmızı çizgi işareti */
-.lx-satin-avantaj li::before {
-  content: "";
-  margin-top: 8px;
-  height: 2px;
-  width: 13px;
-  flex: 0 0 13px;
-  background: var(--sg-red);
+.lx-abone-not {
+  margin-top: 5px;
+  font-size: 12.5px;
+  color: rgba(20, 17, 15, 0.52);
 }
 
 /* ── Abonelik seçici denemeleri (/abonelik) ───────────────────────────── */
@@ -2205,4 +2237,14 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   font-weight: 900;
   font-size: 15px;
   color: #fff;
+}
+
+/* Bilet — küçük ekran: kupon daralıyor, şeritler tek satıra sığsın diye
+   yazı ve iç boşluk kısalıyor. */
+@media (max-width: 480px) {
+  .lx-bilet-kupon { width: 74px; flex-basis: 74px; padding: 16px 6px; }
+  .lx-bilet-oran { font-size: 30px; }
+  .lx-bilet-govde { padding: 15px 14px; }
+  .lx-abone-chip { padding: 8px 9px; font-size: 10px; letter-spacing: 0.06em; }
+  .lx-abone-siklik { gap: 5px; }
 }

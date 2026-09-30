@@ -103,14 +103,26 @@ export interface ProductListingResult {
   totalCount: number;
 }
 
+/**
+ * Abonelik indiriminin bir kademesi.
+ *
+ * Shopify bir plana birden fazla fiyat düzeltmesi bağlayabiliyor:
+ * ilk N siparişe bir oran, sonrasına başka bir oran. `siparis` null ise
+ * o kademe kalıcıdır (bundan sonraki tüm siparişler).
+ */
+export interface SellingPlanKademe {
+  siparis: number | null;
+  yuzde: number;
+}
+
 /** Abonelik planı — Shopify'da "selling plan". Örn. "Her 2 ayda bir teslim". */
 export interface SellingPlan {
   id: string;
   name: string;
   /** Tekrarlayan teslimat mı (abonelik), yoksa ön sipariş gibi tek seferlik mi */
   recurringDeliveries: boolean;
-  /** Perakende fiyata göre yüzde indirim; yoksa undefined */
-  discountPercent?: number;
+  /** Shopify'daki sırayla indirim kademeleri; indirim yoksa boş */
+  kademeler: SellingPlanKademe[];
 }
 
 /** Plan grubu — örn. "Subscribe & save". Bir üründe birden çok olabilir. */

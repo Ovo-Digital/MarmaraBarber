@@ -554,6 +554,7 @@ export async function storefrontGetProductDetail(handle: string): Promise<Produc
           sellingPlans(first: 10) { edges { node {
             id name recurringDeliveries
             priceAdjustments {
+              orderCount
               adjustmentValue {
                 ... on SellingPlanPercentagePriceAdjustment { adjustmentPercentage }
               }
@@ -578,13 +579,21 @@ export async function storefrontGetProductDetail(handle: string): Promise<Produc
     const grup = g.node;
     const planlar = ((grup.sellingPlans as { edges: { node: Record<string, unknown> }[] })?.edges ?? []).map(
       ({ node: pl }) => {
-        const ayar = (pl.priceAdjustments as { adjustmentValue?: { adjustmentPercentage?: number } }[] | undefined)?.[0];
-        const yuzde = ayar?.adjustmentValue?.adjustmentPercentage;
+        /* Kademeler Shopify'daki sırayla geliyor: önce sınırlı olanlar
+           (orderCount dolu), sonra kalıcı olan (orderCount null). Yüzde
+           dışındaki düzeltme tipleri şimdilik atlanıyor — arayüz yüzde
+           gösteriyor, tutar bazlı indirimi yanlış çevirmek istemiyoruz. */
+        const ayarlar = (pl.priceAdjustments as
+          | { orderCount?: number | null; adjustmentValue?: { adjustmentPercentage?: number } }[]
+          | undefined) ?? [];
+        const kademeler = ayarlar
+          .map((a) => ({ siparis: a.orderCount ?? null, yuzde: a.adjustmentValue?.adjustmentPercentage ?? 0 }))
+          .filter((k) => k.yuzde > 0);
         return {
           id: pl.id as string,
           name: pl.name as string,
           recurringDeliveries: Boolean(pl.recurringDeliveries),
-          discountPercent: typeof yuzde === "number" && yuzde > 0 ? yuzde : undefined,
+          kademeler,
         };
       },
     );

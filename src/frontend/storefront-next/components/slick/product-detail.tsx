@@ -151,15 +151,20 @@ function GuvenSatiri() {
 }
 
 /**
- * Tek seferlik alım / abonelik seçimi.
+ * Tek seferlik alım / abonelik seçimi — bilet tasarımı.
  *
  * Planlar Shopify'dan geliyor. Mağazada abonelik uygulaması kurulu değilse
- * `gruplar` boş gelir ve bu bileşen HİÇBİR ŞEY çizmez — çalışmayan bir kutu
- * gösterilmiyor. Tekrarlayan tahsilatı, kart saklamayı ve müşteri onayını
- * Shopify'ın kasası yürütüyor; biz sepete yalnızca plan kimliğini yazıyoruz.
+ * `gruplar` boş gelir ve bu bileşen HİÇBİR ŞEY çizmez. Tekrarlayan tahsilatı,
+ * kart saklamayı ve müşteri onayını Shopify'ın kasası yürütüyor; biz sepete
+ * yalnızca plan kimliğini yazıyoruz.
  *
- * Avantaj satırları metin olarak uydurulmuyor: indirim ve teslim sıklığı
- * seçili planın kendi verisinden yazılıyor.
+ * İndirim tek oran değil kademeli olabiliyor (ilk sipariş az, sonrakiler
+ * çok). Biletin sol bloğunda DEVAM EDEN oran duruyor, ilk siparişin oranı
+ * altta tek satırda yazıyor — iki rakamı yan yana koyup kafa karıştırmıyoruz.
+ *
+ * Teslimat sıklığı seçilince "her N ayda bir, teslimat başına şu kadar"
+ * cümlesi netleşiyor: "3 ay" etiketinin "3 aylık paket" sanılması böyle
+ * önleniyor.
  */
 function AbonelikSecimi({
   gruplar,
@@ -177,96 +182,114 @@ function AbonelikSecimi({
   const t = useT();
   const grup = gruplar[0];
   const planlar = useMemo(() => grup?.plans.filter((pl) => pl.recurringDeliveries) ?? [], [grup]);
-  /* Açılır listede duran plan: Shopify'daki sıranın ilki. Kendimizden
-     "en avantajlısı" seçmiyoruz — sırayı mağaza belirliyor. */
   const [gosterilen, setGosterilen] = useState<string>(planlar[0]?.id ?? "");
   if (planlar.length === 0) return null;
 
-  const aktifPlan = planlar.find((pl) => pl.id === gosterilen) ?? planlar[0];
-  const indirim = Math.round(aktifPlan.discountPercent ?? 0);
-  const indirimliFiyat = indirim ? fiyat * (1 - indirim / 100) : fiyat;
-  const aboneSecili = secili !== null;
+  const plan = planlar.find((pl) => pl.id === gosterilen) ?? planlar[0];
+  const kademeler = plan.kademeler;
+  /* İlk sipariş kademesi ile devam eden kademe. Tek kademe varsa ikisi aynı. */
+  const ilk = kademeler[0];
+  const devam = kademeler[kademeler.length - 1] ?? ilk;
+  const kademeliMi = Boolean(ilk && devam && ilk.yuzde !== devam.yuzde);
+  const oran = (k?: { yuzde: number }) => Math.round(k?.yuzde ?? 0);
+  const tutar = (yuzde: number) => fiyat * (1 - yuzde / 100);
+  const abone = secili !== null;
 
   return (
-    <div className="lx-satin mt-8">
-      <p className="lx-eyebrow mb-1" style={{ color: "rgba(20,17,15,0.45)" }}>
-        {t("How often")}
-      </p>
-
+    <div className="lx-abone mt-8">
       {/* Tek seferlik */}
       <button
         type="button"
         onClick={() => onSec(null)}
-        className={`lx-satin-kutu ${!aboneSecili ? "lx-satin-kutu--secili" : ""}`}
-        aria-pressed={!aboneSecili}
+        className={`lx-abone-tek ${!abone ? "lx-abone-tek--secili" : ""}`}
+        aria-pressed={!abone}
       >
-        <span className="lx-satin-ust">
-          <span className="lx-satin-nokta" aria-hidden="true" />
-          <span className="flex-1">
-            <span className="lx-satin-baslik">{t("One-time purchase")}</span>
-            <span className="lx-satin-fiyat">{formatMoney(fiyat, paraBirimi)}</span>
-          </span>
+        <span className="lx-abone-isaret" aria-hidden="true" />
+        <span className="flex-1 text-left">
+          <span className="lx-abone-etiket">{t("One-time purchase")}</span>
+          <span className="lx-abone-fiyat">{formatMoney(fiyat, paraBirimi)}</span>
         </span>
       </button>
 
-      {/* Abonelik */}
-      <div className={`lx-satin-kutu ${aboneSecili ? "lx-satin-kutu--secili" : ""}`}>
+      {/* Abonelik bileti */}
+      <div className={`lx-bilet ${abone ? "lx-bilet--secili" : ""}`}>
         <button
           type="button"
-          onClick={() => onSec(aktifPlan.id)}
-          className="lx-satin-ust"
-          aria-pressed={aboneSecili}
+          onClick={() => onSec(plan.id)}
+          className="lx-bilet-kupon"
+          aria-pressed={abone}
+          aria-label={t("Subscribe & save")}
         >
-          <span className="lx-satin-nokta" aria-hidden="true" />
-          <span className="flex-1">
-            <span className="lx-satin-baslik">{grup.name || t("Subscribe & save")}</span>
-            <span className="lx-satin-fiyat">
-              {indirim ? <span className="lx-satin-eski">{formatMoney(fiyat, paraBirimi)}</span> : null}
-              {formatMoney(indirimliFiyat, paraBirimi)}
-            </span>
-          </span>
-          {indirim ? (
-            <span className="lx-satin-rozet">{t("Save {percent}%", { percent: String(indirim) })}</span>
-          ) : null}
+          {kademeliMi ? <span className="lx-bilet-kadar">{t("up to")}</span> : null}
+          <span className="lx-bilet-oran">{oran(devam)}</span>
+          <span className="lx-bilet-yuzde">% {t("off")}</span>
         </button>
 
-        {/* Açılır bölüm her zaman DOM'da: yüksekliği geçişle açılıyor, zıplama yok */}
-        <div className="lx-satin-detay" aria-hidden={!aboneSecili}>
-          <div>
-            <div className="pt-4">
-              <label className="sr-only" htmlFor="abonelik-siklik">
-                {t("Select frequency")}
-              </label>
-              <select
-                id="abonelik-siklik"
-                className="lx-satin-secim"
-                value={gosterilen}
-                tabIndex={aboneSecili ? 0 : -1}
-                onChange={(e) => {
-                  setGosterilen(e.target.value);
-                  onSec(e.target.value);
-                }}
-              >
-                {planlar.map((pl) => (
-                  <option key={pl.id} value={pl.id}>
-                    {pl.name}
-                  </option>
-                ))}
-              </select>
+        <span className="lx-bilet-perfore" aria-hidden="true" />
 
-              <ul className="lx-satin-avantaj">
-                {indirim ? (
-                  <li>{t("{percent}% off every order", { percent: String(indirim) })}</li>
-                ) : null}
-                <li>{t("Billed and shipped automatically: {plan}", { plan: aktifPlan.name })}</li>
-                <li>{t("Manage or cancel from your account")}</li>
-              </ul>
+        <div className="lx-bilet-govde">
+          <button type="button" onClick={() => onSec(plan.id)} className="w-full text-left" aria-pressed={abone}>
+            <span className="flex items-start gap-3.5">
+              <span className="lx-abone-isaret" aria-hidden="true" />
+              <span className="flex-1">
+                <span className="lx-abone-etiket">{grup.name || t("Subscribe & save")}</span>
+                <span className="lx-abone-fiyat">
+                  <span className="lx-abone-eski">{formatMoney(fiyat, paraBirimi)}</span>
+                  {formatMoney(tutar(oran(abone ? ilk : devam)), paraBirimi)}
+                </span>
+              </span>
+            </span>
+          </button>
+
+          <div className="lx-abone-ac" data-acik={abone}>
+            <div>
+              <div className="pt-4">
+                {/* Sıklık — açılır liste yerine şerit, hepsi tek bakışta */}
+                <div className="lx-abone-siklik">
+                  {planlar.map((pl) => (
+                    <button
+                      key={pl.id}
+                      type="button"
+                      className={`lx-abone-chip ${plan.id === pl.id ? "lx-abone-chip--secili" : ""}`}
+                      onClick={() => { setGosterilen(pl.id); onSec(pl.id); }}
+                    >
+                      {siklikEtiketi(pl.name)}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Ne ödeyeceği, tek cümlede */}
+                <p className="lx-abone-ozet">
+                  {kademeliMi
+                    ? t("{first} on your first order, then {rest} — {plan}", {
+                        first: formatMoney(tutar(oran(ilk)), paraBirimi),
+                        rest: formatMoney(tutar(oran(devam)), paraBirimi),
+                        plan: plan.name.toLowerCase(),
+                      })
+                    : t("{price} per delivery — {plan}", {
+                        price: formatMoney(tutar(oran(devam)), paraBirimi),
+                        plan: plan.name.toLowerCase(),
+                      })}
+                </p>
+                <p className="lx-abone-not">{t("Cancel or change anytime from your account.")}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+/**
+ * Sıklık şeridindeki kısa etiket: Delivered every 2 months → 2 months.
+ * Sayı yoksa başına 1 ekleniyor (month tek başına kaldığında 1 month),
+ * böylece şeritteki üç etiket aynı biçimde okunuyor.
+ */
+function siklikEtiketi(planAdi: string): string {
+  const kalan = planAdi.replace(/^Delivered every\s*/i, "").trim();
+  if (!kalan) return planAdi;
+  return /^\d/.test(kalan) ? kalan : `1 ${kalan}`;
 }
 
 function productTypeHref(type?: string) {
@@ -520,13 +543,18 @@ export function SlickProductDetail({
   const planGruplari = useMemo<SellingPlanGroup[]>(() => {
     if (sellingPlanGroups.length > 0) return sellingPlanGroups;
     if (!demoAcik) return [];
+    /* A modeli: ilk sipariş %5, ikinciden itibaren %15 */
+    const kademeler = [
+      { siparis: 1, yuzde: 5 },
+      { siparis: null, yuzde: 15 },
+    ];
     return [
       {
         name: "Subscribe & save",
         plans: [
-          { id: "demo-1", name: "Delivered every month", recurringDeliveries: true, discountPercent: 10 },
-          { id: "demo-2", name: "Delivered every 2 months", recurringDeliveries: true, discountPercent: 10 },
-          { id: "demo-3", name: "Delivered every 3 months", recurringDeliveries: true, discountPercent: 15 },
+          { id: "demo-1", name: "Delivered every month", recurringDeliveries: true, kademeler },
+          { id: "demo-2", name: "Delivered every 2 months", recurringDeliveries: true, kademeler },
+          { id: "demo-3", name: "Delivered every 3 months", recurringDeliveries: true, kademeler },
         ],
       },
     ];
