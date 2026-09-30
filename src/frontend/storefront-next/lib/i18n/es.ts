@@ -20,6 +20,7 @@ export const ES: Record<string, string> = {
   "View all": "Ver todo",
   "All": "Todo",
   "Quantity": "Cantidad",
+  "GMP standards": "Normas GMP",
   "1 review": "1 reseña",
   "{count} reviews": "{count} reseñas",
   "Details": "Detalles",

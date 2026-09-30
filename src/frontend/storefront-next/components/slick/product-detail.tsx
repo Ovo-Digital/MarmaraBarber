@@ -109,6 +109,47 @@ function Yildizlar({ puan }: { puan: number }) {
   );
 }
 
+/**
+ * Sepet butonunun altındaki güven satırı.
+ *
+ * Üç madde de markanın kendi doğrulanmış bilgisi: 1970'ten beri üretim,
+ * Türkiye'deki kendi tesisleri, GMP standardı. Referans sitedeki "30 gün
+ * garanti" gibi bizde karşılığı olmayan bir vaat YAZILMADI.
+ */
+function GuvenSatiri() {
+  const t = useT();
+  const maddeler = [
+    { id: "since", yazi: "Since 1970", ikon: <path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z" /> },
+    { id: "made", yazi: "Made in Türkiye", ikon: <><path d="M3 21h18" /><path d="M5 21V8l7-5 7 5v13" /><path d="M9 21v-6h6v6" /></> },
+    { id: "gmp", yazi: "GMP standards", ikon: <><circle cx="12" cy="12" r="9" /><path d="m8.5 12.5 2.5 2.5 4.5-5" /></> },
+  ];
+
+  return (
+    <ul className="mt-7 m-0 grid list-none grid-cols-3 gap-2 p-0">
+      {maddeler.map((m) => (
+        <li key={m.id} className="flex flex-col items-center gap-2 text-center">
+          <svg
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--lx-ink)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            {m.ikon}
+          </svg>
+          <span className="text-[12px] leading-tight" style={{ color: "rgba(20,17,15,0.7)" }}>
+            {t(m.yazi)}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function productTypeHref(type?: string) {
   if (!type) return "/products";
   return `/products?type=${encodeURIComponent(type)}`;
@@ -287,17 +328,12 @@ export function SlickProductDetail({
   product,
   images,
   descriptionHtml,
-  series = [],
-  seriesLabel,
   crossSell,
   related,
 }: {
   product: Product;
   images: string[];
   descriptionHtml?: string;
-  /** Serinin diğer ürünleri — küçük görsellerle, renk seçici gibi */
-  series?: Product[];
-  seriesLabel?: string;
   crossSell: Product[];
   related: Product[];
 }) {
@@ -522,13 +558,6 @@ export function SlickProductDetail({
               ) : null}
             </div>
 
-            {/* Üstte yalnızca iki satır: tamamı aşağıdaki "Details" bölümünde.
-                Ham Shopify metni burada duvar gibi duruyordu. */}
-            {plain ? (
-              <p className="mt-5 line-clamp-3 text-[15px] leading-relaxed" style={{ color: "rgba(20,17,15,0.7)" }}>
-                {plain}
-              </p>
-            ) : null}
 
             {/* Varyant seçiciler */}
             {options.map((opt) => {
@@ -576,15 +605,6 @@ export function SlickProductDetail({
               );
             })}
 
-            {/* Serinin diğer ürünleri — tekstildeki renk seçici gibi */}
-            {series.length > 0 ? (
-              <SeriSeridi
-                urun={product}
-                seri={series}
-                etiket={seriesLabel}
-                tumuHref={productTypeHref(product.productType)}
-              />
-            ) : null}
 
             {/* Adet */}
             <div className="mt-8">
@@ -617,8 +637,8 @@ export function SlickProductDetail({
               ref={ctaRef}
               type="button"
               disabled={!inStock || adding}
-              className={`mt-4 flex w-full gap-2 disabled:cursor-not-allowed disabled:opacity-40 ${inStock ? "lx-btn-kirmizi" : "lx-btn"}`}
-              style={{ minHeight: 56 }}
+              className="lx-btn mt-4 flex w-full gap-2 disabled:cursor-not-allowed disabled:opacity-40"
+              style={{ minHeight: 60 }}
               onClick={onAdd}
             >
               {adding ? (
@@ -633,6 +653,8 @@ export function SlickProductDetail({
               )}
             </button>
             {!inStock ? <NotifyForm /> : null}
+
+            <GuvenSatiri />
 
             {/* Açıklama artık sayfanın dibinde duvar gibi değil, burada
                 bölüm bölüm açılıyor — referans sayfadaki düzen bu. */}
@@ -722,75 +744,4 @@ function swatchColor(value: string) {
   let hash = 0;
   for (let i = 0; i < value.length; i++) hash = (hash + value.charCodeAt(i) * (i + 1)) % palette.length;
   return palette[hash];
-}
-
-/**
- * Serinin diğer ürünleri — yatay kayan şerit.
- *
- * Önceki hâli 64px'lik sıkışık karelerdi, ürünler seçilemiyordu. Şimdi:
- * kareler büyüdü, bulunduğun ürün şeritte işaretli, imleç bir kareye
- * gelince üstteki başlık o ürünün adına dönüyor (her karenin altına ad
- * yazmak şeridi boğuyordu).
- */
-function SeriSeridi({
-  urun,
-  seri,
-  etiket,
-  tumuHref,
-}: {
-  urun: Product;
-  seri: Product[];
-  etiket?: string;
-  tumuHref: string;
-}) {
-  const t = useT();
-  const [uzerinde, setUzerinde] = useState<Product | null>(null);
-  const hepsi = [urun, ...seri];
-
-  return (
-    <div className="mt-8">
-      <div className="mb-3 flex min-h-[18px] items-baseline gap-2">
-        <p className="truncate text-[11px] uppercase tracking-[0.14em]" style={{ color: "rgba(20,17,15,0.55)", fontFamily: "var(--font-owners)" }}>
-          {uzerinde
-            ? uzerinde.title
-            : etiket
-              ? t("More in {name}", { name: etiket })
-              : t("More in this range")}
-        </p>
-        {!uzerinde ? (
-          <span className="text-[11px]" style={{ color: "rgba(20,17,15,0.35)" }}>
-            · {seri.length}
-          </span>
-        ) : null}
-      </div>
-
-      <div className="lx-seri" onPointerLeave={() => setUzerinde(null)}>
-        {hepsi.map((p) => {
-          const aktif = p.handle === urun.handle;
-          return (
-            <Link
-              key={p.handle}
-              href={`/products/${p.handle}`}
-              title={p.title}
-              aria-label={p.title}
-              aria-current={aktif ? "true" : undefined}
-              className={`lx-seri-kare ${aktif ? "lx-seri-kare--aktif" : ""}`}
-              onPointerEnter={() => setUzerinde(p)}
-              onFocus={() => setUzerinde(p)}
-            >
-              {p.imageUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={p.imageUrl} alt="" />
-              ) : null}
-            </Link>
-          );
-        })}
-
-        <Link href={tumuHref} className="lx-seri-tumu" aria-label={t("View all")}>
-          <span aria-hidden="true">→</span>
-          <span className="lx-seri-tumu-yazi">{t("All")}</span>
-        </Link>
-      </div>
-    </div>
-  );
 }
