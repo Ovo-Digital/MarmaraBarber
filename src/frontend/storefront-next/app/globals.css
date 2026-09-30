@@ -1709,3 +1709,23 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   font-size: 17px;
   color: var(--lx-ink);
 }
+
+/* ── Ürün puanı yıldızları ─────────────────────────────────────────────── */
+/* İki kat üst üste: altta boş yıldızlar, üstte kırmızı olanlar puan kadar
+   genişlikte kırpılmış. Böylece 4.6 gibi ara değerler de doğru görünüyor. */
+.lx-yildiz {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.lx-yildiz-bos { color: rgba(20, 17, 15, 0.2); }
+.lx-yildiz-dolu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  color: var(--sg-red);
+}

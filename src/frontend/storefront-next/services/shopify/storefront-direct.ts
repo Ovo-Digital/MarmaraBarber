@@ -8,6 +8,10 @@ const PRODUCT_FRAGMENT = `
   images(first: 2) { edges { node { url } } }
   priceRange { minVariantPrice { amount currencyCode } }
   compareAtPriceRange { minVariantPrice { amount } }
+  metafields(identifiers:[
+    {namespace:"reviews", key:"rating"},
+    {namespace:"reviews", key:"rating_count"}
+  ]) { key value }
   variants(first: 10) {
     edges {
       node {
@@ -34,6 +38,25 @@ function mapProduct(node: Record<string, unknown>): Product {
   );
   const compareAtPrice = compareRaw > price ? compareRaw : null;
 
+  /* Puan Shopify'ın standart `reviews` metafield'ından geliyor — uydurulmuyor.
+     `rating` bir JSON: {"value":"4.6","scale_min":"1.0","scale_max":"5.0"}.
+     Yorum yoksa alan hiç gelmiyor ya da sayı 0; o zaman undefined bırakıyoruz
+     ki arayüzde yıldız satırı hiç çıkmasın. */
+  const metafields = (node.metafields as ({ key: string; value: string } | null)[] | undefined) ?? [];
+  const mf = (key: string) => metafields.find((m) => m?.key === key)?.value;
+  const reviewCountRaw = Number(mf("rating_count") ?? 0);
+  const reviewCount = Number.isFinite(reviewCountRaw) && reviewCountRaw > 0 ? reviewCountRaw : undefined;
+  let rating: number | undefined;
+  if (reviewCount) {
+    try {
+      const parsed = JSON.parse(mf("rating") ?? "{}") as { value?: string };
+      const v = Number(parsed.value);
+      if (Number.isFinite(v) && v > 0) rating = v;
+    } catch {
+      /* metafield beklenen JSON değilse puan gösterme */
+    }
+  }
+
   const featured = (node.featuredImage as { url?: string } | null)?.url;
   // Hover'da gösterilecek 2. görsel: kapak görselinden farklı olan ilk görsel.
   const secondaryImageUrl = images.map((e) => e.node.url).find((url) => url !== featured);
@@ -47,6 +70,8 @@ function mapProduct(node: Record<string, unknown>): Product {
     productType: (node.productType as string) || undefined,
     imageUrl: featured,
     secondaryImageUrl,
+    rating,
+    reviewCount,
     price,
     compareAtPrice,
     currencyCode: priceRange?.minVariantPrice?.currencyCode ?? "TRY",

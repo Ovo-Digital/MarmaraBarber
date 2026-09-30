@@ -477,7 +477,12 @@ export function SlickHeader({
           <img
             src="/brand/marmara-logo.png"
             alt={SITE_NAME}
-            className={`w-auto object-contain brightness-0 invert ${pill ? "h-7 sm:h-8" : "h-11 sm:h-12"}`}
+            /* Logo büyüdü ama çubuk büyümedi: negatif dikey boşluk, fazladan
+               yüksekliği yerleşimden düşüyor. Görsel boy 44px, yerleşimdeki
+               payı hâlâ 32px — hap yüksekliği 54px'te sabit kalıyor. */
+            className={`w-auto object-contain brightness-0 invert ${
+              pill ? "-my-1.5 h-10 sm:-my-1.5 sm:h-11" : "h-14 sm:h-16"
+            }`}
           />
         </Link>
 

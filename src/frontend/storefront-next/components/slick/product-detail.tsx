@@ -53,17 +53,60 @@ function discountPercent(price: number, compareAt?: number | null) {
 }
 
 /**
- * Açıklamadan bölüm çıkar.
+ * Açıklamayı BÜYÜK HARFLİ başlıklarına göre bloklara ayırır.
  *
- * Bulunamayan bölüm için metin UYDURULMUYOR — önceden "profesyonel formül,
- * ambalajı inceleyin" gibi cümleler yazılıyordu; hiçbiri Shopify'dan gelmiyordu.
- * Bölüm yoksa hiç gösterilmiyor.
+ * Shopify açıklamaları "ÖZELLİKLERİ", "KOKU HİKAYESİ" gibi büyük harfli
+ * satırlarla bölünmüş durumda. Bunlar akordeon başlığı, altındaki satırlar
+ * da gövdesi oluyor. Başlıksız bir giriş metni varsa başlığı boş kalır;
+ * çağıran taraf ona kendi adını verir.
  */
-function extractSections(html: string, plain: string) {
-  const text = plain || html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-  const usage = text.match(/(?:NASIL KULLANILIR|Kullanım|How to use)[:\s]+(.{40,320})/i)?.[1] ?? "";
-  const ingredients = text.match(/(?:İçindekiler|Ingredients|INCI)[:\s]+(.{40,320})/i)?.[1] ?? "";
-  return { usage: usage.trim(), ingredients: ingredients.trim() };
+function aciklamaBloklari(metin: string): { baslik: string; satirlar: string[] }[] {
+  const bloklar: { baslik: string; satirlar: string[] }[] = [];
+  for (const ham of metin.split("\n")) {
+    const satir = ham.trim();
+    if (!satir) continue;
+    const buyukHarfli =
+      satir.length <= 40 && satir === satir.toLocaleUpperCase("tr") && /[A-ZÇĞİÖŞÜ]/.test(satir);
+    if (buyukHarfli) bloklar.push({ baslik: satir, satirlar: [] });
+    else if (bloklar.length === 0) bloklar.push({ baslik: "", satirlar: [satir] });
+    else bloklar[bloklar.length - 1].satirlar.push(satir);
+  }
+  return bloklar.filter((b) => b.satirlar.length > 0);
+}
+
+/** Akordeon gövdesi: satırlar paragraf, "Etiket: değer" olanlar kırmızı maddeli. */
+function BlokMetni({ satirlar }: { satirlar: string[] }) {
+  return (
+    <div className="space-y-2">
+      {satirlar.map((satir, i) => {
+        const ayrac = satir.indexOf(":");
+        if (!(ayrac > 0 && ayrac < 42)) return <p key={i}>{satir}</p>;
+        return (
+          <p key={i} className="relative pl-[18px]">
+            <span
+              aria-hidden="true"
+              className="absolute left-0 top-[8px] block h-[5px] w-[5px]"
+              style={{ background: "var(--sg-red)" }}
+            />
+            <span style={{ color: "var(--lx-ink)", fontWeight: 700 }}>{satir.slice(0, ayrac)}</span>
+            {satir.slice(ayrac + 1)}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Puan yıldızları — yarım yıldız dahil. Yalnızca gerçek yorum varken çiziliyor. */
+function Yildizlar({ puan }: { puan: number }) {
+  return (
+    <span className="lx-yildiz" aria-hidden="true">
+      <span className="lx-yildiz-bos">★★★★★</span>
+      <span className="lx-yildiz-dolu" style={{ width: `${Math.max(0, Math.min(5, puan)) * 20}%` }}>
+        ★★★★★
+      </span>
+    </span>
+  );
 }
 
 function productTypeHref(type?: string) {
@@ -74,11 +117,10 @@ function productTypeHref(type?: string) {
 function Accordion({
   items,
 }: {
-  items: { id: string; title: string; body: string }[];
+  items: { id: string; title: string; body: React.ReactNode }[];
 }) {
   /* Hepsi kapalı başlıyor: ilk bölüm açık gelince uzun açıklama sayfayı
      yine duvara çeviriyordu. */
-  const t = useT();
   const [open, setOpen] = useState<string | null>(null);
 
   return (
@@ -93,7 +135,7 @@ function Accordion({
               onClick={() => setOpen(isOpen ? null : item.id)}
               aria-expanded={isOpen}
             >
-              <span className="sg-nav text-[12px]">{t(item.title)}</span>
+              <span className="sg-nav text-[12px]">{item.title}</span>
               <span className="text-lg leading-none">{isOpen ? "−" : "+"}</span>
             </button>
             <div
@@ -101,7 +143,7 @@ function Accordion({
               style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
             >
               <div className="overflow-hidden">
-                <p className="sg-body pb-4 text-[14px] text-[#444]">{item.body}</p>
+                <div className="sg-body pb-5 text-[14px] leading-[1.62] text-[#444]">{item.body}</div>
               </div>
             </div>
           </div>
@@ -241,151 +283,6 @@ function NotifyForm() {
   );
 }
 
-
-/**
- * Düz metin açıklamayı yapılandırıp gösterir.
- *
- * Ürünlerin bir kısmında açıklama gerçek HTML (başlık, liste), bir kısmında
- * ise <pre> içinde düz metin. İkincisi tek parça daktilo yazısı gibi
- * görünüyor ve satırlar sarmıyordu.
- *
- * Burada satırlar okunuyor: tamamı BÜYÜK HARF olan kısa satır başlık,
- * "Etiket: değer" biçimindeki satır madde, kalanı paragraf sayılıyor.
- */
-function YapilandirilmisAciklama({ metin }: { metin: string }) {
-  const satirlar = metin
-    .split("\n")
-    .map((l) => l.trim())
-    .filter((l) => l.length > 0);
-
-  const bloklar: { baslik: string; satirlar: string[] }[] = [];
-  for (const satir of satirlar) {
-    const buyukHarfli =
-      satir.length <= 40 && satir === satir.toLocaleUpperCase("tr") && /[A-ZÇĞİÖŞÜ]/.test(satir);
-    if (buyukHarfli) bloklar.push({ baslik: satir, satirlar: [] });
-    else if (bloklar.length === 0) bloklar.push({ baslik: "", satirlar: [satir] });
-    else bloklar[bloklar.length - 1].satirlar.push(satir);
-  }
-
-  return (
-    <div className="mx-auto max-w-[760px]">
-      {bloklar.map((b, i) => (
-        <section key={`${b.baslik}-${i}`} className={i === 0 ? "" : "mt-8"}>
-          {b.baslik ? (
-            <h3
-              className="mb-4 pb-2 uppercase"
-              style={{
-                fontFamily: "var(--font-owners-black)",
-                fontWeight: 900,
-                fontSize: "15px",
-                letterSpacing: "0.06em",
-                color: "var(--lx-ink)",
-                borderBottom: "1px solid rgba(20,17,15,0.12)",
-              }}
-            >
-              {b.baslik}
-            </h3>
-          ) : null}
-
-          <div className="space-y-1.5">
-            {b.satirlar.map((satir, j) => {
-              const ayrac = satir.indexOf(":");
-              const etiketli = ayrac > 0 && ayrac < 42;
-              if (!etiketli) {
-                return (
-                  <p key={j} className="text-[14.5px] leading-[1.62]" style={{ color: "rgba(20,17,15,0.72)" }}>
-                    {satir}
-                  </p>
-                );
-              }
-              return (
-                <p key={j} className="relative pl-[18px] text-[14.5px] leading-[1.62]" style={{ color: "rgba(20,17,15,0.72)" }}>
-                  <span
-                    aria-hidden="true"
-                    className="absolute left-0 top-[8px] block h-[5px] w-[5px]"
-                    style={{ background: "var(--sg-red)" }}
-                  />
-                  <span style={{ color: "var(--lx-ink)", fontWeight: 700 }}>{satir.slice(0, ayrac)}</span>
-                  {satir.slice(ayrac + 1)}
-                </p>
-              );
-            })}
-          </div>
-        </section>
-      ))}
-    </div>
-  );
-}
-
-
-/**
- * Uzun açıklamayı kısaltıp "Read more" ile açar.
- *
- * Kapalıyken sabit bir yüksekliğe kırpılıyor ve alt kenar beyaza soluyor;
- * metnin devamı olduğu böylece anlaşılıyor. İçerik zaten kısaysa düğme
- * gösterilmiyor — ölçüp karar veriyoruz, tahmin etmiyoruz.
- */
-function KatlanabilirAciklama({ children }: { children: React.ReactNode }) {
-  const t = useT();
-  const [acik, setAcik] = useState(false);
-  const [tasiyor, setTasiyor] = useState(false);
-  const kutuRef = useRef<HTMLDivElement | null>(null);
-  const KAPALI_YUKSEKLIK = 340;
-
-  useEffect(() => {
-    const el = kutuRef.current;
-    if (!el) return;
-    const olc = () => setTasiyor(el.scrollHeight > KAPALI_YUKSEKLIK + 40);
-    olc();
-    const gozlemci = new ResizeObserver(olc);
-    gozlemci.observe(el);
-    return () => gozlemci.disconnect();
-  }, [children]);
-
-  return (
-    <div>
-      {/* Solma metnin KUTUSUNA ait; dıştaki sarmalayıcıya konunca düğmenin
-          üstünü de kapatıyordu. */}
-      <div
-        className="relative"
-        style={{
-          maxHeight: acik || !tasiyor ? "none" : KAPALI_YUKSEKLIK,
-          overflow: acik || !tasiyor ? "visible" : "hidden",
-        }}
-      >
-        <div ref={kutuRef}>{children}</div>
-
-        {tasiyor && !acik ? (
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
-            style={{ background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, #fff 88%)" }}
-          />
-        ) : null}
-      </div>
-
-      {tasiyor ? (
-        <div className="mt-6 text-center">
-          <button
-            type="button"
-            onClick={() => setAcik((a) => !a)}
-            className="px-7 uppercase tracking-[0.14em]"
-            style={{
-              minHeight: 46,
-              border: "1px solid rgba(20,17,15,0.25)",
-              color: "var(--lx-ink)",
-              fontFamily: "var(--font-owners)",
-              fontSize: "11px",
-            }}
-          >
-            {acik ? t("Show less") : t("Read more")}
-          </button>
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
 export function SlickProductDetail({
   product,
   images,
@@ -462,11 +359,7 @@ export function SlickProductDetail({
       .replace(/\s+/g, " ")
       .trim() || product.description;
   }, [descriptionHtml, product.description]);
-  const sections = useMemo(() => extractSections(descriptionHtml || "", plain), [descriptionHtml, plain]);
 
-  /* Bazı ürünlerde açıklama gerçek HTML (başlık/liste), bazılarında <pre>
-     içinde düz metin. İkisi farklı gösterilmeli. */
-  const zenginHtml = /<(h[1-6]|ul|ol|p)\b/i.test(descriptionHtml ?? "");
   const satirliMetin = useMemo(
     () =>
       (descriptionHtml || product.description || "")
@@ -479,6 +372,38 @@ export function SlickProductDetail({
         .replace(/&quot;/g, '"'),
     [descriptionHtml, product.description],
   );
+
+  /* Satın alma sütunundaki akordeonlar.
+     Başlıklar Shopify açıklamasındaki büyük harfli satırlardan geliyor, biz
+     başlık uydurmuyoruz. Hiç bölüm yoksa tüm metin tek "Details" başlığında
+     toplanıyor. Kargo bölümünün metni sitedeki kargo sayfasının kendi metni —
+     gün/ücret gibi uydurma rakam yok. */
+  const akordeonlar = useMemo(() => {
+    const bloklar = aciklamaBloklari(satirliMetin);
+    const items: { id: string; title: string; body: React.ReactNode }[] = bloklar.map((b, i) => ({
+      id: `blok-${i}`,
+      title: b.baslik || t("Details"),
+      body: <BlokMetni satirlar={b.satirlar} />,
+    }));
+
+    if (items.length === 0 && plain.trim()) {
+      items.push({ id: "details", title: t("Details"), body: <p>{plain}</p> });
+    }
+
+    items.push({
+      id: "shipping",
+      title: t("Shipping"),
+      body: (
+        <div className="space-y-2">
+          <p>{t("Carriers, delivery areas, lead times and shipping rates are set per market and are shown at checkout before you pay.")}</p>
+          <Link href="/kargo-ve-teslimat" className="lx-link inline-block">
+            {t("Shipping & delivery")}
+          </Link>
+        </div>
+      ),
+    });
+    return items;
+  }, [satirliMetin, plain, t]);
 
   // Varyant görseline geç
   useEffect(() => {
@@ -539,6 +464,17 @@ export function SlickProductDetail({
           />
 
           <div className="min-w-0 lg:sticky lg:top-[calc(var(--sg-header-h)+1.5rem)] lg:self-start">
+            {/* Puan yalnızca Shopify'da gerçek yorum varsa çıkıyor; yoksa satır hiç yok. */}
+            {product.reviewCount && product.rating ? (
+              <a href="#yorumlar" className="mb-3 flex items-center gap-2 no-underline">
+                <Yildizlar puan={product.rating} />
+                <span className="text-[13px] font-semibold" style={{ color: "var(--lx-ink)" }}>
+                  {product.reviewCount === 1
+                    ? t("1 review")
+                    : t("{count} reviews", { count: String(product.reviewCount) })}
+                </span>
+              </a>
+            ) : null}
             {product.productType ? <p className="lx-eyebrow mb-3">{product.productType}</p> : null}
             <h1
               className="uppercase"
@@ -589,7 +525,7 @@ export function SlickProductDetail({
             {/* Üstte yalnızca iki satır: tamamı aşağıdaki "Details" bölümünde.
                 Ham Shopify metni burada duvar gibi duruyordu. */}
             {plain ? (
-              <p className="mt-5 line-clamp-2 text-[15px] leading-relaxed" style={{ color: "rgba(20,17,15,0.7)" }}>
+              <p className="mt-5 line-clamp-3 text-[15px] leading-relaxed" style={{ color: "rgba(20,17,15,0.7)" }}>
                 {plain}
               </p>
             ) : null}
@@ -698,14 +634,10 @@ export function SlickProductDetail({
             </button>
             {!inStock ? <NotifyForm /> : null}
 
-            <div className="mt-2">
-              <Accordion
-                items={[
-                  /* "Details" kaldırıldı: aşağıdaki tam açıklamayla aynı metindi */
-                  { id: "usage", title: "How to use", body: sections.usage },
-                  { id: "ingredients", title: "Ingredients", body: sections.ingredients },
-                ].filter((b) => b.body.trim().length > 0)}
-              />
+            {/* Açıklama artık sayfanın dibinde duvar gibi değil, burada
+                bölüm bölüm açılıyor — referans sayfadaki düzen bu. */}
+            <div className="mt-6">
+              <Accordion items={akordeonlar} />
             </div>
           </div>
         </div>
@@ -722,42 +654,8 @@ export function SlickProductDetail({
           </section>
         )}
 
-        {/* 4. Detaylı açıklama */}
-        {descriptionHtml || plain ? (
-          <section className="mt-16 pt-14" style={{ borderTop: "1px solid rgba(20,17,15,0.12)" }}>
-            <div className="mb-10 text-center">
-              <p className="lx-eyebrow mb-2">{t("The detail")}</p>
-              <h2
-                className="uppercase"
-                style={{
-                  fontFamily: "var(--font-owners-black)",
-                  fontWeight: 900,
-                  fontSize: "clamp(24px,2.6vw,36px)",
-                  lineHeight: 1.02,
-                  color: "var(--lx-ink)",
-                }}
-              >
-                {t("Product description")}
-              </h2>
-            </div>
-
-            {/* Açıklama uzun olabiliyor; kapalıyken kısaltılıp altı soluyor */}
-            <KatlanabilirAciklama>
-              {zenginHtml ? (
-                <div
-                  className="lx-pdp-metin mx-auto max-w-[760px]"
-                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(descriptionHtml ?? "") }}
-                />
-              ) : satirliMetin.trim() ? (
-                <YapilandirilmisAciklama metin={satirliMetin} />
-              ) : (
-                <p className="mx-auto max-w-[760px] text-[15px] leading-[1.75]" style={{ color: "rgba(20,17,15,0.72)" }}>
-                  {plain}
-                </p>
-              )}
-            </KatlanabilirAciklama>
-          </section>
-        ) : null}
+        {/* Detaylı açıklama artık satın alma sütunundaki akordeonlarda:
+            aynı metni sayfanın dibinde ikinci kez göstermiyoruz. */}
 
       </div>
 
@@ -824,13 +722,6 @@ function swatchColor(value: string) {
   let hash = 0;
   for (let i = 0; i < value.length; i++) hash = (hash + value.charCodeAt(i) * (i + 1)) % palette.length;
   return palette[hash];
-}
-
-function sanitizeHtml(html: string) {
-  return html
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
-    .replace(/on\w+="[^"]*"/gi, "")
-    .replace(/on\w+='[^']*'/gi, "");
 }
 
 /**
