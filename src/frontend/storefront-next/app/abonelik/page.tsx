@@ -1,14 +1,22 @@
 "use client";
 
 /**
- * Abonelik bloğunun ÇERÇEVE denemeleri — seçim yapmak için iç sayfa.
+ * Abonelik bloğu — fikir denemeleri. Seçim yapmak için iç sayfa.
  * Menüde yok, siteden bağlantı verilmiyor.
  *
- * Bilet tasarımı ve kademeli fiyat mantığı seçildi; burada değişen tek şey
- * bloğun beyaz ürün sayfasına nasıl oturduğu.
+ * Önceki turda indirim kutunun içinde küçük bir rakamdı ve kimsenin
+ * dikkatini çekmiyordu. Burada indirim bloğun kahramanı.
  */
 
-import { AbonelikBlok, type Kademe, type Plan } from "@/components/slick/abonelik-cerceve";
+import {
+  DevRakam,
+  IsikHuzmesi,
+  NeonMuhur,
+  ParlayanSerit,
+  SayanRakam,
+  type Kademe,
+  type Plan,
+} from "@/components/slick/abonelik-fikir";
 
 const PLANLAR: Plan[] = [
   { id: "p1", name: "Delivered every month", kisa: "1 month" },
@@ -22,83 +30,70 @@ const KADEMELER: Kademe[] = [
   { siparis: null, yuzde: 15 },
 ];
 
-const FIYAT = 349;
-const PARA = "TRY";
+const ORTAK = { fiyat: 349, paraBirimi: "TRY", planlar: PLANLAR, kademeler: KADEMELER };
 
-const DENEMELER = [
+const FIKIRLER = [
   {
-    ad: "A — Krem panel",
+    ad: "1 — Dev rakam",
     aciklama:
-      "Blok, sayfanın zaten kullandığı sıcak krem zemine oturuyor. Beyazdan ayrılıyor ama kopmuyor; seçilen kutu beyaza dönerek öne çıkıyor. En sakin ayrım.",
-    cerceve: "ac--krem",
-    isima: false,
+      "Kutu yok. İndirim sayfadaki en büyük tipografi ve üstünden düzenli aralıklarla ışık geçiyor. Seçim satırları altta, ince çizgilerle ayrılmış. Hiçbir şey kutuya hapsedilmemiş.",
+    Govde: DevRakam,
   },
   {
-    ad: "B — Panelsiz",
+    ad: "2 — Neon mühür",
     aciklama:
-      "Hiç panel yok. İki seçenek doğrudan beyaz sayfanın üstünde duruyor, sayfanın geri kalanıyla aynı dilde. Renk sadece kuponda. En bütünleşik hâli.",
-    cerceve: "ac--panelsiz",
-    isima: false,
+      "Yuvarlak bir damga, hafif eğik, çıkartma gibi bloğun üstüne binmiş. Arkasında nefes alan kırmızı hale var. Koyu zeminde duruyor, gözle görülür şekilde parlıyor.",
+    Govde: NeonMuhur,
   },
   {
-    ad: "C — Koyu, yukarı doğru eriyen",
+    ad: "3 — Dönen ışık huzmesi",
     aciklama:
-      "Koyu zemin duruyor ama sert bir dikdörtgen olarak başlamıyor: üst kenarı beyazdan kreme, oradan koyuya eriyor. Alttan kırmızı ışıma geliyor. Koyunun gücü var, kopukluğu yok.",
-    cerceve: "ac--erisen",
-    isima: true,
+      "Kart sakin ve beyaz, ama kenarında sürekli dönen bir ışık huzmesi var. Kutu gürültüsü yok; hareketi gören göz kendiliğinden duruyor. En incelikli dikkat çekme yöntemi.",
+    Govde: IsikHuzmesi,
   },
   {
-    ad: "D — Kırmızı panel",
+    ad: "4 — Parlayan şerit",
     aciklama:
-      "Zemin doğrudan marka kırmızısı, yazılar beyaz, kupon koyu. En yüksek sesli seçenek. Sayfada başka kırmızı zemin olmadığı için dikkat tamamen buraya geliyor.",
-    cerceve: "ac--kirmizi",
-    isima: false,
+      "Üstte tam genişlik kırmızı şerit; üzerinden belirli aralıklarla bir parlama geçiyor. Altı bembeyaz ve sakin. Kampanya hissi en yüksek olan.",
+    Govde: ParlayanSerit,
   },
   {
-    ad: "E — Beyaz kart + kırmızı üst şerit",
+    ad: "5 — Sayan rakam",
     aciklama:
-      "Beyaz kart, üstünde ince kırmızı şerit ve yumuşak gölge. Sayfadan kopmadan yükseliyor. Kırmızı şerit bloğu işaretliyor, zemini ele geçirmiyor.",
-    cerceve: "ac--kart",
-    isima: false,
+      "Rakam ekrana girince sıfırdan sayarak yükseliyor, arkasında kırmızı hale bir kez açılıyor. Hareket bir kere oluyor, sonra sakinleşiyor — sürekli oynamıyor ama kaçırılmıyor.",
+    Govde: SayanRakam,
   },
 ];
 
-export default function AbonelikCerceveDenemeleri() {
+export default function AbonelikFikirleri() {
   return (
-    <main style={{ background: "#fff", minHeight: "100vh", padding: "clamp(28px,5vw,64px) 0 120px" }}>
-      <div className="mx-auto w-full max-w-[680px] px-5">
+    <main style={{ background: "#fff", minHeight: "100vh", padding: "clamp(28px,5vw,64px) 0 140px" }}>
+      <div className="mx-auto w-full max-w-[620px] px-5">
         <p className="lx-eyebrow mb-3">Deneme</p>
         <h1
           className="uppercase"
           style={{ fontFamily: "var(--font-owners-black)", fontWeight: 900, fontSize: "clamp(28px,4vw,46px)", lineHeight: 1.03, color: "var(--lx-ink)" }}
         >
-          Abonelik bloğu · çerçeve
+          Abonelik · yeni bakış
         </h1>
         <p className="mt-4 text-[15px] leading-relaxed" style={{ color: "rgba(20,17,15,0.65)" }}>
-          Bilet tasarımı ve kademeli fiyat aynı. Değişen tek şey bloğun beyaz ürün
-          sayfasına nasıl oturduğu. Hepsi çalışıyor — tıkla, sıklığı değiştir.
-          Beğendiğinin harfini söyle.
+          İndirim artık kutunun içinde küçük bir rakam değil, bloğun kahramanı.
+          Genişlik ürün sayfasındaki sütunla aynı. Hepsi çalışıyor — tıkla,
+          sıklığı değiştir. Beğendiğinin numarasını söyle.
         </p>
 
-        {DENEMELER.map(({ ad, aciklama, cerceve, isima }) => (
-          <section key={ad} className="mt-14 border-t pt-10" style={{ borderColor: "rgba(20,17,15,0.12)" }}>
+        {FIKIRLER.map(({ ad, aciklama, Govde }) => (
+          <section key={ad} className="mt-16 border-t pt-10" style={{ borderColor: "rgba(20,17,15,0.12)" }}>
             <h2
               className="uppercase"
               style={{ fontFamily: "var(--font-owners-black)", fontWeight: 900, fontSize: "20px", color: "var(--lx-ink)" }}
             >
               {ad}
             </h2>
-            <p className="mb-8 mt-3 text-[14px] leading-relaxed" style={{ color: "rgba(20,17,15,0.6)" }}>
+            <p className="mb-10 mt-3 text-[14px] leading-relaxed" style={{ color: "rgba(20,17,15,0.6)" }}>
               {aciklama}
             </p>
-            <AbonelikBlok
-              cerceve={cerceve}
-              isima={isima}
-              fiyat={FIYAT}
-              paraBirimi={PARA}
-              planlar={PLANLAR}
-              kademeler={KADEMELER}
-            />
+            <Govde {...ORTAK} />
           </section>
         ))}
       </div>
