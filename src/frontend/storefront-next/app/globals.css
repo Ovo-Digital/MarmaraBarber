@@ -2156,3 +2156,53 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
 }
 .av-cizelge-ay--dolu { color: var(--lx-ink); }
 .av-cizelge-ay--dolu .av-cizelge-nokta { background: var(--sg-red); transform: scale(1.5); }
+
+/* 07 — kademeli indirim çizelgesi */
+.av-kademe-not {
+  margin-left: 10px;
+  font-family: var(--font-geist);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.5);
+}
+.av-kademe { margin: 0; padding: 0; list-style: none; }
+.av-kademe-adim {
+  position: relative;
+  display: grid;
+  grid-template-columns: 18px 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* Açılırken adımlar sırayla beliriyor */
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 420ms var(--lx-ease), transform 480ms var(--lx-yumusak);
+}
+.av-kademe-adim[data-acik="true"] { opacity: 1; transform: none; }
+.av-kademe-adim:last-child { border-bottom: 0; }
+.av-kademe-cizgi { height: 2px; width: 14px; background: var(--sg-red); }
+.av-kademe-donem {
+  font-family: var(--font-owners);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+.av-kademe-oran {
+  font-family: var(--font-owners);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--sg-red);
+}
+.av-kademe-fiyat {
+  min-width: 82px;
+  text-align: right;
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  font-size: 15px;
+  color: #fff;
+}

@@ -13,6 +13,9 @@ import { formatMoney } from "@/lib/money";
 
 export type Plan = { id: string; name: string; kisa: string; indirim: number };
 
+/** Kademeli indirim: hangi dönemde yüzde kaç. Son kademe "ve sonrası". */
+export type Kademe = { donem: string; yuzde: number };
+
 export type VaryantProps = {
   fiyat: number;
   paraBirimi: string;
@@ -305,6 +308,82 @@ export function TeslimatCizelgesi({ fiyat, paraBirimi, planlar, secili, onSec }:
                   </button>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+/* ────────────────────────────────────────────────────────────────────────
+   07 — KADEMELİ İNDİRİM
+   Abonelik tek bir orana değil, artan bir çizelgeye bağlı: ilk ay az,
+   sonraki aylar daha çok. Müşteri ne kazanacağını ay ay görüyor; bu da
+   "ilk siparişi indirimli al, iptal et" davranışını kırıyor.
+   ──────────────────────────────────────────────────────────────────────── */
+export function KademeliIndirim({
+  fiyat,
+  paraBirimi,
+  planlar,
+  secili,
+  onSec,
+  kademeler,
+}: VaryantProps & { kademeler: Kademe[] }) {
+  const [plan, setPlan] = useState(planlar[0]);
+  const abone = secili !== null;
+  const sonKademe = kademeler[kademeler.length - 1];
+
+  return (
+    <div className="grid gap-2">
+      <button type="button" onClick={() => onSec(null)} className={`av-sade ${!abone ? "av-sade--secili" : ""}`}>
+        <span className="av-isaret" aria-hidden="true" />
+        <span className="flex-1 text-left">
+          <span className="av-etiket">One-time purchase</span>
+          <span className="av-fiyat">{para(fiyat, paraBirimi)}</span>
+        </span>
+      </button>
+
+      <div className={`av-koyu ${abone ? "av-koyu--secili" : ""}`}>
+        <span aria-hidden="true" className="lx-kirmizi-isik" />
+        <button type="button" onClick={() => onSec(plan.id)} className="av-koyu-ust">
+          <span className="av-isaret av-isaret--koyu" aria-hidden="true" />
+          <span className="flex-1 text-left">
+            <span className="av-etiket" style={{ color: "#fff" }}>Subscribe &amp; save</span>
+            <span className="av-fiyat" style={{ color: "#fff" }}>
+              {para(indirimli(fiyat, kademeler[0].yuzde), paraBirimi)}
+              <span className="av-kademe-not">then up to −{sonKademe.yuzde}%</span>
+            </span>
+          </span>
+        </button>
+
+        <div className="av-ac" data-acik={abone}>
+          <div>
+            <div className="pt-5">
+              {/* Kademe çizelgesi: her dönemde ne ödeyeceği */}
+              <ol className="av-kademe">
+                {kademeler.map((k, i) => (
+                  <li key={k.donem} className="av-kademe-adim" style={{ transitionDelay: `${i * 70}ms` }} data-acik={abone}>
+                    <span className="av-kademe-cizgi" aria-hidden="true" />
+                    <span className="av-kademe-donem">{k.donem}</span>
+                    <span className="av-kademe-oran">−{k.yuzde}%</span>
+                    <span className="av-kademe-fiyat">{para(indirimli(fiyat, k.yuzde), paraBirimi)}</span>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="av-chip-satir mt-5">
+                {planlar.map((p) => (
+                  <button key={p.id} type="button" className={`av-chip av-chip--koyu ${plan.id === p.id ? "av-chip--secili" : ""}`}
+                    onClick={() => { setPlan(p); onSec(p.id); }}>
+                    {p.kisa}
+                  </button>
+                ))}
+              </div>
+              <p className="mt-4 text-[13px]" style={{ color: "rgba(255,255,255,0.55)" }}>
+                {plan.name} · discount grows with every order · cancel anytime
+              </p>
             </div>
           </div>
         </div>

@@ -8,11 +8,13 @@
 import { useState } from "react";
 import {
   Bilet,
+  KademeliIndirim,
   KayanSekme,
   KoyuPanel,
   NumaraliListe,
   SiklikKartlari,
   TeslimatCizelgesi,
+  type Kademe,
   type Plan,
   type VaryantProps,
 } from "@/components/slick/abonelik-varyant";
@@ -21,6 +23,13 @@ const PLANLAR: Plan[] = [
   { id: "p1", name: "Delivered every month", kisa: "1 mo", indirim: 10 },
   { id: "p2", name: "Delivered every 2 months", kisa: "2 mo", indirim: 10 },
   { id: "p3", name: "Delivered every 3 months", kisa: "3 mo", indirim: 15 },
+];
+
+/* Volkan'ın istediği model: ilk ay %5, ikinci %10, üçüncüden sonra %15 */
+const KADEMELER: Kademe[] = [
+  { donem: "1st order", yuzde: 5 },
+  { donem: "2nd order", yuzde: 10 },
+  { donem: "3rd order onwards", yuzde: 15 },
 ];
 
 const FIYAT = 349;
@@ -62,6 +71,12 @@ const DENEMELER: { ad: string; aciklama: string; Govde: (p: VaryantProps) => Rea
     aciklama:
       "Sıklığı yazıyla değil çizelgeyle anlatıyor: on iki ay noktalarla diziliyor, teslimat düşen aylar kırmızıya dönüyor. Sıklığı değiştirince noktalar yeniden diziliyor — ne aldığını görüyorsun.",
     Govde: TeslimatCizelgesi,
+  },
+  {
+    ad: "07 — Kademeli indirim",
+    aciklama:
+      "Abonelik tek bir orana değil artan bir çizelgeye bağlı: 1. sipariş %5, 2. sipariş %10, 3. ve sonrası %15. Müşteri ne kazanacağını sipariş sipariş görüyor — bu da indirimi kapıp iptal etme davranışını kırıyor. Çizelge satırları sırayla beliriyor.",
+    Govde: (p) => <KademeliIndirim {...p} kademeler={KADEMELER} />,
   },
 ];
 
