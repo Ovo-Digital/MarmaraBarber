@@ -157,6 +157,9 @@ function GuvenSatiri() {
  * `gruplar` boş gelir ve bu bileşen HİÇBİR ŞEY çizmez — çalışmayan bir kutu
  * gösterilmiyor. Tekrarlayan tahsilatı, kart saklamayı ve müşteri onayını
  * Shopify'ın kasası yürütüyor; biz sepete yalnızca plan kimliğini yazıyoruz.
+ *
+ * Avantaj satırları metin olarak uydurulmuyor: indirim ve teslim sıklığı
+ * seçili planın kendi verisinden yazılıyor.
  */
 function AbonelikSecimi({
   gruplar,
@@ -180,12 +183,16 @@ function AbonelikSecimi({
   if (planlar.length === 0) return null;
 
   const aktifPlan = planlar.find((pl) => pl.id === gosterilen) ?? planlar[0];
-  const indirim = aktifPlan.discountPercent ?? 0;
+  const indirim = Math.round(aktifPlan.discountPercent ?? 0);
   const indirimliFiyat = indirim ? fiyat * (1 - indirim / 100) : fiyat;
   const aboneSecili = secili !== null;
 
   return (
-    <div className="mt-7 space-y-2">
+    <div className="lx-satin mt-8">
+      <p className="lx-eyebrow mb-1" style={{ color: "rgba(20,17,15,0.45)" }}>
+        {t("How often")}
+      </p>
+
       {/* Tek seferlik */}
       <button
         type="button"
@@ -193,69 +200,70 @@ function AbonelikSecimi({
         className={`lx-satin-kutu ${!aboneSecili ? "lx-satin-kutu--secili" : ""}`}
         aria-pressed={!aboneSecili}
       >
-        <span className="lx-satin-nokta" aria-hidden="true" />
-        <span className="flex-1 text-left">
-          <span className="block font-semibold">{t("One-time purchase")}</span>
-          <span className="block text-[13px]" style={{ color: "rgba(20,17,15,0.6)" }}>
-            {formatMoney(fiyat, paraBirimi)}
+        <span className="lx-satin-ust">
+          <span className="lx-satin-nokta" aria-hidden="true" />
+          <span className="flex-1">
+            <span className="lx-satin-baslik">{t("One-time purchase")}</span>
+            <span className="lx-satin-fiyat">{formatMoney(fiyat, paraBirimi)}</span>
           </span>
         </span>
       </button>
 
       {/* Abonelik */}
-      <div className={`lx-satin-kutu lx-satin-kutu--blok ${aboneSecili ? "lx-satin-kutu--secili" : ""}`}>
+      <div className={`lx-satin-kutu ${aboneSecili ? "lx-satin-kutu--secili" : ""}`}>
         <button
           type="button"
           onClick={() => onSec(aktifPlan.id)}
-          className="flex w-full items-center gap-3 text-left"
+          className="lx-satin-ust"
           aria-pressed={aboneSecili}
         >
           <span className="lx-satin-nokta" aria-hidden="true" />
           <span className="flex-1">
-            <span className="block font-semibold">{grup.name || t("Subscribe & save")}</span>
-            <span className="block text-[13px]">
-              {indirim ? (
-                <>
-                  <span className="line-through" style={{ color: "rgba(20,17,15,0.45)" }}>
-                    {formatMoney(fiyat, paraBirimi)}
-                  </span>{" "}
-                  <strong>{formatMoney(indirimliFiyat, paraBirimi)}</strong>
-                </>
-              ) : (
-                formatMoney(fiyat, paraBirimi)
-              )}
+            <span className="lx-satin-baslik">{grup.name || t("Subscribe & save")}</span>
+            <span className="lx-satin-fiyat">
+              {indirim ? <span className="lx-satin-eski">{formatMoney(fiyat, paraBirimi)}</span> : null}
+              {formatMoney(indirimliFiyat, paraBirimi)}
             </span>
           </span>
           {indirim ? (
-            <span className="lx-satin-rozet">{t("Save {percent}%", { percent: String(Math.round(indirim)) })}</span>
+            <span className="lx-satin-rozet">{t("Save {percent}%", { percent: String(indirim) })}</span>
           ) : null}
         </button>
 
-        {aboneSecili ? (
-          <div className="mt-3 pl-8">
-            <label className="sr-only" htmlFor="abonelik-siklik">
-              {t("Select frequency")}
-            </label>
-            <select
-              id="abonelik-siklik"
-              className="lx-satin-secim"
-              value={gosterilen}
-              onChange={(e) => {
-                setGosterilen(e.target.value);
-                onSec(e.target.value);
-              }}
-            >
-              {planlar.map((pl) => (
-                <option key={pl.id} value={pl.id}>
-                  {pl.name}
-                </option>
-              ))}
-            </select>
-            <p className="mt-3 text-[13px]" style={{ color: "rgba(20,17,15,0.6)" }}>
-              {t("Billed automatically each period. Skip, edit or cancel anytime from your account.")}
-            </p>
+        {/* Açılır bölüm her zaman DOM'da: yüksekliği geçişle açılıyor, zıplama yok */}
+        <div className="lx-satin-detay" aria-hidden={!aboneSecili}>
+          <div>
+            <div className="pt-4">
+              <label className="sr-only" htmlFor="abonelik-siklik">
+                {t("Select frequency")}
+              </label>
+              <select
+                id="abonelik-siklik"
+                className="lx-satin-secim"
+                value={gosterilen}
+                tabIndex={aboneSecili ? 0 : -1}
+                onChange={(e) => {
+                  setGosterilen(e.target.value);
+                  onSec(e.target.value);
+                }}
+              >
+                {planlar.map((pl) => (
+                  <option key={pl.id} value={pl.id}>
+                    {pl.name}
+                  </option>
+                ))}
+              </select>
+
+              <ul className="lx-satin-avantaj">
+                {indirim ? (
+                  <li>{t("{percent}% off every order", { percent: String(indirim) })}</li>
+                ) : null}
+                <li>{t("Billed and shipped automatically: {plan}", { plan: aktifPlan.name })}</li>
+                <li>{t("Manage or cancel from your account")}</li>
+              </ul>
+            </div>
           </div>
-        ) : null}
+        </div>
       </div>
     </div>
   );
