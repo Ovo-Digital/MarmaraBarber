@@ -29,6 +29,13 @@ const WHEEL_SETTLE_MS = 210;
 /** Tek bir tekerlek olayının hedefi en fazla kaç satır ilerletebileceği —
  *  sert/ani girdilerde listenin fırlamasını engeller */
 const WHEEL_MAX_STEP = 0.62;
+/** Dokunmada kaç piksel parmak hareketi bir satıra denk gelsin.
+ *  Tekerlekten küçük: parmak mesafesi kısadır, aynı oran ağır hissettirir. */
+const TOUCH_PER_ROW = 64;
+/** Parmak kalktıktan sonra savrulma: son hızın kaç satır daha taşıyacağı */
+const FLICK_CARPAN = 7;
+/** Bu mesafenin altındaki hareket kaydırma değil, dokunma sayılır (bağlantı açılır) */
+const DOKUNMA_ESIGI = 8;
 
 const mod = (n: number, m: number) => ((n % m) + m) % m;
 
@@ -161,6 +168,94 @@ export function HeroSlider({
 
     section.addEventListener("wheel", onWheel, { passive: false });
     return () => section.removeEventListener("wheel", onWheel);
+  }, [count, goTo]);
+
+  /**
+   * Dokunma: mobilde tekerlek olayı yoktur, bu liste parmakla da akmalı.
+   *
+   * Parmak listenin üzerindeyse ve hareket DİKEYSE sayfanın kaymasını
+   * engelleyip listeyi sürüklüyoruz. Yatay hareket ya da listenin dışı
+   * sayfaya bırakılıyor — yoksa kullanıcı sayfayı aşağı kaydıramaz hâle gelir.
+   *
+   * Yön kararı ilk birkaç pikselde bir kez veriliyor ve hareket bitene kadar
+   * değişmiyor; her karede yeniden karar verilirse parmak hafif eğik gittiğinde
+   * kontrol sayfayla liste arasında gidip gelir.
+   *
+   * Parmak kalkınca son hız kadar savruluyor, sonra en yakın satıra oturuyor.
+   */
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || count < 2) return;
+
+    let baslangicY = 0;
+    let baslangicX = 0;
+    let sonY = 0;
+    let sonZaman = 0;
+    let hiz = 0;
+    /** null = henüz karar verilmedi */
+    let dikeyMi: boolean | null = null;
+    let listedeMi = false;
+
+    const onStart = (e: TouchEvent) => {
+      const d = e.touches[0];
+      if (!d) return;
+      const box = rollerRef.current?.getBoundingClientRect();
+      listedeMi = Boolean(
+        box && d.clientX >= box.left && d.clientX <= box.right &&
+        d.clientY >= box.top && d.clientY <= box.bottom,
+      );
+      baslangicY = sonY = d.clientY;
+      baslangicX = d.clientX;
+      sonZaman = performance.now();
+      hiz = 0;
+      dikeyMi = null;
+      if (settleTimer.current) clearTimeout(settleTimer.current);
+    };
+
+    const onMove = (e: TouchEvent) => {
+      if (!listedeMi) return;
+      const d = e.touches[0];
+      if (!d) return;
+
+      if (dikeyMi === null) {
+        const dx = Math.abs(d.clientX - baslangicX);
+        const dy = Math.abs(d.clientY - baslangicY);
+        if (dx < DOKUNMA_ESIGI && dy < DOKUNMA_ESIGI) return; // henüz belli değil
+        dikeyMi = dy > dx;
+        if (!dikeyMi) { listedeMi = false; return; } // yatay: sayfaya bırak
+      }
+
+      e.preventDefault();
+
+      const fark = sonY - d.clientY; // aşağı sürükleme = listeyi geri al
+      const simdi = performance.now();
+      const gecen = Math.max(1, simdi - sonZaman);
+      hiz = fark / gecen; // piksel/ms
+      sonY = d.clientY;
+      sonZaman = simdi;
+
+      goTo(targetRef.current + fark / TOUCH_PER_ROW);
+    };
+
+    const onEnd = () => {
+      if (!listedeMi || dikeyMi !== true) { listedeMi = false; return; }
+      listedeMi = false;
+
+      // Savrulma: son hız kadar ilerlet, sonra en yakın satıra otur
+      const savrulma = Math.max(-3, Math.min(3, hiz * FLICK_CARPAN));
+      goTo(Math.round(targetRef.current + savrulma));
+    };
+
+    section.addEventListener("touchstart", onStart, { passive: true });
+    section.addEventListener("touchmove", onMove, { passive: false });
+    section.addEventListener("touchend", onEnd, { passive: true });
+    section.addEventListener("touchcancel", onEnd, { passive: true });
+    return () => {
+      section.removeEventListener("touchstart", onStart);
+      section.removeEventListener("touchmove", onMove);
+      section.removeEventListener("touchend", onEnd);
+      section.removeEventListener("touchcancel", onEnd);
+    };
   }, [count, goTo]);
 
   if (!count) return null;
