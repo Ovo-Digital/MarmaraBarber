@@ -71,6 +71,13 @@ export function AboutPage() {
     }
   }, []);
   const [secili, setSecili] = useState<string | null>(null);
+  /* Etikette yazacak ad: merkezlerde şehir, pazarlarda çevrilmiş ülke adı. */
+  const seciliAd =
+    MERKEZLER.find((m) => m.id === secili)?.sehir ??
+    (() => {
+      const p = PAZARLAR.find((x) => x.kod === secili);
+      return p ? t(p.ulke) : null;
+    })();
 
   const kim = bolum("who");
   const vizyon = bolum("vision");
@@ -198,7 +205,7 @@ export function AboutPage() {
 
           {/* Mobilde küre listenin üstünde: listeden seçince dönüşü görülsün */}
           <div ref={kureRef} className="order-first lg:order-none">
-            <AboutGlobe hedef={hedef} secili={secili} />
+            <AboutGlobe hedef={hedef} secili={secili} seciliAd={seciliAd} />
           </div>
         </div>
       </section>

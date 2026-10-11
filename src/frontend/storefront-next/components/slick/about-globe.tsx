@@ -28,10 +28,13 @@ const KIRMIZI = "#e10600";
 export function AboutGlobe({
   hedef,
   secili,
+  seciliAd,
 }: {
   hedef?: [number, number] | null;
   /** Listede seçili olanın kodu (pazar) ya da id'si (merkez) */
   secili?: string | null;
+  /** Etikette yazacak ad — çevrilmiş hâliyle sayfadan geliyor */
+  seciliAd?: string | null;
 }) {
   const t = useT();
   /* useT her render'da yeni fonksiyon döndürüyor. Çizim döngüsü onu ref'ten
@@ -63,6 +66,8 @@ export function AboutGlobe({
   seciliRef.current = secili ?? null;
   const hedefRef = useRef<[number, number] | null>(null);
   hedefRef.current = hedef ?? null;
+  const adRef = useRef<string | null>(null);
+  adRef.current = seciliAd ?? null;
   /* Seçimin ne zaman değiştiği: halkalar ve logo o andan itibaren açılıyor */
   const secimAni = useRef(0);
 
@@ -277,39 +282,70 @@ export function AboutGlobe({
           ctx.strokeStyle = KIRMIZI;
           ctx.stroke();
 
-          // Logo: ülkenin ÜST kenarının üzerinde dursun, üstüne binmesin
+          /* Etiket: solda daire içinde logo, sağında yer adı — hap biçiminde.
+             Ülkenin ÜST kenarının üzerinde duruyor; sabit yükseklik
+             verilince Avustralya gibi büyük ülkelerde ortaya düşüp
+             okunmuyordu, bu yüzden sınırı ölçüp üstüne koyuyoruz. */
           const l = logo.current;
-          if (l) {
-            const en = Math.min(124, boyut * 0.28);
-            const boy = (l.height / l.width) * en;
-            /* Ülkenin ekrandaki sınırları: logoyu onun üstüne koyuyoruz.
-               Sabit bir yükseklik verseydik Avustralya gibi büyük ülkelerde
-               logo ülkenin ortasına düşüp okunmaz hâle geliyordu. */
+          const ad = (adRef.current ?? "").toLocaleUpperCase("tr");
+          if (l && ad) {
+            /* Hap yüksekliği: marka işareti yazı biçiminde olduğu için
+               küçük dairede okunmuyor, bu yüzden Kozabiat'takinden biraz
+               daha iri tutuluyor. */
+            const h = Math.max(44, Math.min(58, boyut * 0.125));
+            const dolgu = h * 0.13;
+            const cap = h - dolgu * 2;
+            const bosluk = h * 0.28;
+            ctx.font = `900 ${Math.round(h * 0.38)}px "Owners Narrow Black", "Owners", sans-serif`;
+            ctx.textBaseline = "middle";
+            const yazi = ctx.measureText(ad).width;
+            const en = dolgu + cap + bosluk + yazi + h * 0.46;
+
             const sinir = seciliUlke ? yol.bounds(seciliUlke as never) : null;
             const ustY = sinir ? Math.min(sinir[0][1], p[1]) : p[1];
-            const hedefY = ustY - 26 - boy;
+            const hedefY = ustY - 24 - h;
             const ly = p[1] + (hedefY - p[1]) * giris;
+            const lx = p[0] - en / 2;
 
-            // Noktadan logoya ince çizgi
+            // Noktadan etikete ince çizgi
             ctx.beginPath();
             ctx.moveTo(p[0], p[1] - 9);
-            ctx.lineTo(p[0], ly + boy + 10);
+            ctx.lineTo(p[0], ly + h + 8);
             ctx.strokeStyle = `rgba(255,255,255,${0.4 * giris})`;
             ctx.lineWidth = 1;
             ctx.stroke();
 
             ctx.globalAlpha = giris;
-            // Arkasında koyu zemin: kıtaların üstünde de okunsun
-            const pad = 12;
+
+            // Hap gövdesi
             ctx.beginPath();
-            ctx.rect(p[0] - en / 2 - pad, ly - pad * 0.7, en + pad * 2, boy + pad * 1.4);
-            ctx.fillStyle = "rgba(10,9,8,0.72)";
+            if (typeof ctx.roundRect === "function") ctx.roundRect(lx, ly, en, h, h / 2);
+            else ctx.rect(lx, ly, en, h);
+            ctx.fillStyle = "rgba(10,9,8,0.92)";
             ctx.fill();
-            ctx.strokeStyle = "rgba(255,255,255,0.14)";
+            ctx.strokeStyle = "rgba(255,255,255,0.3)";
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+
+            // Soldaki daire + içinde logo
+            const cx = lx + dolgu + cap / 2;
+            const cy = ly + h / 2;
+            ctx.beginPath();
+            ctx.arc(cx, cy, cap / 2, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255,255,255,0.08)";
+            ctx.fill();
+            ctx.strokeStyle = "rgba(255,255,255,0.22)";
             ctx.lineWidth = 1;
             ctx.stroke();
 
-            ctx.drawImage(l, p[0] - en / 2, ly, en, boy);
+            const lw = cap * 0.9;
+            const lh = (l.height / l.width) * lw;
+            ctx.drawImage(l, cx - lw / 2, cy - lh / 2, lw, lh);
+
+            // Yer adı
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText(ad, lx + dolgu + cap + bosluk, cy + 1);
+
             ctx.globalAlpha = 1;
           }
         }
