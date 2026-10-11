@@ -222,6 +222,23 @@ export function AboutGlobe({
         ctx.stroke();
       }
 
+      /* Seçili ülkenin etrafında ışıma. Ayrı bir geçişte çiziliyor çünkü
+         gölge ayarı açıkken bütün ülkeleri çizmek her karede pahalı. */
+      if (seciliUlke) {
+        const nabiz = (Math.sin(zaman / 520) + 1) / 2;
+        ctx.save();
+        ctx.shadowColor = "rgba(255,70,55,0.95)";
+        ctx.shadowBlur = 18 + nabiz * 16;
+        ctx.beginPath();
+        yol(seciliUlke as never);
+        ctx.strokeStyle = "rgba(255,255,255,0.95)";
+        ctx.lineWidth = 1.8;
+        /* Aynı yol üst üste çizilince hale güçleniyor */
+        ctx.stroke();
+        ctx.stroke();
+        ctx.restore();
+      }
+
       // Kenar parıltısı
       ctx.beginPath();
       yol({ type: "Sphere" });
@@ -262,20 +279,9 @@ export function AboutGlobe({
           const gecen = Math.max(0, (zaman - secimAni.current) / 1000);
           const giris = Math.max(0, Math.min(1, gecen / 0.5)); // 0→1 yarım saniyede
 
-          // Üç halka sırayla açılıp soluyor
-          for (let i = 0; i < 3; i++) {
-            const faz = ((gecen * 0.55 + i / 3) % 1);
-            const r = 10 + faz * 46;
-            ctx.beginPath();
-            ctx.arc(p[0], p[1], r, 0, Math.PI * 2);
-            ctx.strokeStyle = `rgba(255,255,255,${(1 - faz) * 0.5 * giris})`;
-            ctx.lineWidth = 1.4;
-            ctx.stroke();
-          }
-
-          // Sabit iç halka
+          // Küçük işaret noktası — vurgu artık ülkenin etrafındaki ışımada
           ctx.beginPath();
-          ctx.arc(p[0], p[1], 7 * giris, 0, Math.PI * 2);
+          ctx.arc(p[0], p[1], 5 * giris, 0, Math.PI * 2);
           ctx.fillStyle = "#ffffff";
           ctx.fill();
           ctx.lineWidth = 2;
@@ -301,16 +307,22 @@ export function AboutGlobe({
             const yazi = ctx.measureText(ad).width;
             const en = dolgu + cap + bosluk + yazi + h * 0.46;
 
+            /* Etiket ülkenin üst kenarının hemen üstünde durur.
+               AMA sınır kutusu yanıltıcı olabiliyor: ABD'de Alaska yüzünden
+               kutunun tepesi çok yukarıda kalıyor ve etiket kürenin tepesine
+               fırlıyordu. Bu yüzden işaretten yukarı çıkabileceği mesafe
+               bir hap boyu civarıyla sınırlı. */
             const sinir = seciliUlke ? yol.bounds(seciliUlke as never) : null;
-            const ustY = sinir ? Math.min(sinir[0][1], p[1]) : p[1];
-            const hedefY = ustY - 24 - h;
+            const enYukari = p[1] - h * 1.3;
+            const ustY = sinir ? Math.max(Math.min(sinir[0][1], p[1]), enYukari) : p[1] - h * 0.6;
+            const hedefY = ustY - 14 - h;
             const ly = p[1] + (hedefY - p[1]) * giris;
             const lx = p[0] - en / 2;
 
             // Noktadan etikete ince çizgi
             ctx.beginPath();
-            ctx.moveTo(p[0], p[1] - 9);
-            ctx.lineTo(p[0], ly + h + 8);
+            ctx.moveTo(p[0], p[1] - 7);
+            ctx.lineTo(p[0], ly + h + 7);
             ctx.strokeStyle = `rgba(255,255,255,${0.4 * giris})`;
             ctx.lineWidth = 1;
             ctx.stroke();
@@ -325,6 +337,26 @@ export function AboutGlobe({
             ctx.fill();
             ctx.strokeStyle = "rgba(255,255,255,0.3)";
             ctx.lineWidth = 1.2;
+            ctx.stroke();
+
+            // Hapın altında aşağı bakan küçük kuyruk — hangi yere ait olduğu belli olsun
+            const ku = h * 0.22;
+            ctx.beginPath();
+            ctx.moveTo(p[0] - ku, ly + h - 1);
+            ctx.lineTo(p[0] + ku, ly + h - 1);
+            ctx.lineTo(p[0], ly + h + ku * 1.1);
+            ctx.closePath();
+            ctx.fillStyle = "rgba(10,9,8,0.92)";
+            ctx.fill();
+            ctx.strokeStyle = "rgba(255,255,255,0.3)";
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+            /* Kuyruğun hapla birleştiği yerdeki çizgiyi kapat */
+            ctx.beginPath();
+            ctx.moveTo(p[0] - ku + 1, ly + h - 1);
+            ctx.lineTo(p[0] + ku - 1, ly + h - 1);
+            ctx.strokeStyle = "rgba(10,9,8,0.92)";
+            ctx.lineWidth = 2;
             ctx.stroke();
 
             // Soldaki daire + içinde logo
