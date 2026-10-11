@@ -29,12 +29,15 @@ export function AboutGlobe({
   hedef,
   secili,
   seciliAd,
+  onSecim,
 }: {
   hedef?: [number, number] | null;
   /** Listede seçili olanın kodu (pazar) ya da id'si (merkez) */
   secili?: string | null;
   /** Etikette yazacak ad — çevrilmiş hâliyle sayfadan geliyor */
   seciliAd?: string | null;
+  /** Küre üzerinde bir yere tıklanınca sayfa listeyi de güncellesin */
+  onSecim?: (kod: string, koordinat: [number, number]) => void;
 }) {
   const t = useT();
   /* useT her render'da yeni fonksiyon döndürüyor. Çizim döngüsü onu ref'ten
@@ -68,6 +71,10 @@ export function AboutGlobe({
   hedefRef.current = hedef ?? null;
   const adRef = useRef<string | null>(null);
   adRef.current = seciliAd ?? null;
+  /* Çizim/olay efekti yalnızca harita yüklenince kuruluyor; geri çağrıyı
+     ref'ten okuyoruz ki her render'da olaylar baştan bağlanmasın. */
+  const onSecimRef = useRef(onSecim);
+  onSecimRef.current = onSecim;
   /* Seçimin ne zaman değiştiği: halkalar ve logo o andan itibaren açılıyor */
   const secimAni = useRef(0);
 
@@ -393,13 +400,45 @@ export function AboutGlobe({
       return { x: e.clientX - r.left, y: e.clientY - r.top };
     };
 
+    /* Parmağın/imlecin bastığı yer: bırakırken buradan ne kadar uzaklaştığına
+       bakıp sürükleme mi tıklama mı olduğuna karar veriyoruz. */
+    let basNoktasi: { x: number; y: number; zaman: number } | null = null;
+
     const bas = (e: PointerEvent) => {
       d.surukleniyor = true;
       d.animasyon = null;
-      d.son = { ...konum(e), zaman: performance.now() };
+      const k = konum(e);
+      d.son = { ...k, zaman: performance.now() };
+      basNoktasi = { ...k, zaman: performance.now() };
       d.hiz = [0, 0];
       tuval.setPointerCapture(e.pointerId);
       setIpucu(null);
+    };
+
+    /** Verilen ekran noktasının altındaki yer — önce merkezler, sonra pazarlar */
+    const altindakiYer = (k: { x: number; y: number }) => {
+      const kureUstunde = Math.hypot(k.x - boyut / 2, k.y - boyut / 2) <= projeksiyon.scale();
+      if (!kureUstunde) return null;
+      const yer = projeksiyon.invert?.([k.x, k.y]);
+      if (!yer) return null;
+
+      /* Merkez noktalarının yakalama yarıçapı küre boyutuyla orantılı.
+         Sabit 14 piksel verilince küçük ekranda bu alan coğrafi olarak
+         çok genişliyor ve Türkiye'ye dokunulsa bile İstanbul seçiliyordu. */
+      const yakalama = Math.max(9, projeksiyon.scale() * 0.042);
+      for (const m of MERKEZLER) {
+        const p = projeksiyon(m.koordinat);
+        if (p && Math.hypot(p[0] - k.x, p[1] - k.y) < yakalama && geoDistance(m.koordinat, [-d.rot[0], -d.rot[1]]) < Math.PI / 2) {
+          return { kod: m.id, koordinat: m.koordinat };
+        }
+      }
+      for (const u of d.ulkeler) {
+        const pazar = vurgulu.current.get(String(u.id).padStart(3, "0"));
+        if (pazar && geoContains(u as never, yer)) {
+          return { kod: pazar.kod, koordinat: pazar.koordinat };
+        }
+      }
+      return null;
     };
 
     const oynat = (e: PointerEvent) => {
@@ -427,6 +466,7 @@ export function AboutGlobe({
         const p = projeksiyon(m.koordinat);
         if (p && Math.hypot(p[0] - k.x, p[1] - k.y) < 12 && geoDistance(m.koordinat, [-d.rot[0], -d.rot[1]]) < Math.PI / 2) {
           setIpucu({ x: k.x, y: k.y, baslik: m.sehir, not: tRef.current(m.rol) });
+          tuval.style.cursor = "pointer";
           return;
         }
       }
@@ -434,16 +474,29 @@ export function AboutGlobe({
         const pazar = vurgulu.current.get(String(u.id).padStart(3, "0"));
         if (pazar && geoContains(u as never, yer)) {
           setIpucu({ x: k.x, y: k.y, baslik: tRef.current(pazar.ulke), not: tRef.current(pazar.not) });
+          tuval.style.cursor = "pointer";
           return;
         }
       }
       setIpucu(null);
+      tuval.style.cursor = "grab";
     };
 
     const birak = (e: PointerEvent) => {
       d.surukleniyor = false;
       d.bosta = performance.now() + 2500;
       if (tuval.hasPointerCapture(e.pointerId)) tuval.releasePointerCapture(e.pointerId);
+
+      /* Tıklama mı sürükleme mi: 6 pikselden az oynadıysa ve kısa sürdüyse
+         tıklama sayılıyor. Yoksa küreyi her döndürüşte ülke seçilirdi. */
+      const k = konum(e);
+      const b = basNoktasi;
+      basNoktasi = null;
+      if (!b) return;
+      if (Math.hypot(k.x - b.x, k.y - b.y) > 6 || performance.now() - b.zaman > 600) return;
+
+      const bulunan = altindakiYer(k);
+      if (bulunan) onSecimRef.current?.(bulunan.kod, bulunan.koordinat);
     };
 
     tuval.addEventListener("pointerdown", bas);

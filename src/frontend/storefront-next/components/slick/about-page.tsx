@@ -60,10 +60,12 @@ export function AboutPage() {
   /* Listeden seçince: küreyi döndür, işaretle ve KÜÇÜK EKRANDA küreye kaydır.
      Mobilde küre listenin üstünde kalıyor; kaydırmazsak kullanıcı bastığı
      şeyin bir karşılığı olduğunu göremiyor. */
-  const sec = useCallback((kod: string, koordinat: [number, number]) => {
+  const sec = useCallback((kod: string, koordinat: [number, number], kaydir = true) => {
     setHedef([...koordinat]);
     setSecili(kod);
-    if (window.matchMedia("(max-width: 1023px)").matches) {
+    /* Küreye tıklanarak seçildiyse kaydırmıyoruz: küre zaten ekranda,
+       yeniden ortalamak yerinde duran görüntüyü sarsıyor. */
+    if (kaydir && window.matchMedia("(max-width: 1023px)").matches) {
       kureRef.current?.scrollIntoView({
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
         block: "center",
@@ -205,7 +207,12 @@ export function AboutPage() {
 
           {/* Mobilde küre listenin üstünde: listeden seçince dönüşü görülsün */}
           <div ref={kureRef} className="order-first lg:order-none">
-            <AboutGlobe hedef={hedef} secili={secili} seciliAd={seciliAd} />
+            <AboutGlobe
+              hedef={hedef}
+              secili={secili}
+              seciliAd={seciliAd}
+              onSecim={(kod, koordinat) => sec(kod, koordinat, false)}
+            />
           </div>
         </div>
       </section>
