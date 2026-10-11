@@ -25,6 +25,8 @@ function tara(dir) {
       if (!(m[1] ?? m[2] ?? m[3]) || (m[1] ?? m[2] ?? m[3]) === "\"\"") continue;
       try { s = JSON.parse(m[1] ?? m[2] ?? m[3]); } catch { continue; }
       if (yol.endsWith("i18n/dil.tsx")) continue; // yorumlardaki örnekler
+      // Revize Modu ekibe özel ve her zaman Türkçe; çeviriye girmez.
+      if (yol.includes("/api/revize/") || yol.endsWith("slick/revize.tsx")) continue;
       if (!kullanilan.has(s)) kullanilan.set(s, yol.replace(kok, ""));
     }
   }

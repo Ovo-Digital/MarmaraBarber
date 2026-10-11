@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { SiteShell } from "@/components/slick/site-shell";
+import { RevizeModu } from "@/components/slick/revize";
 import { QueryProvider } from "@/providers/query-provider";
 import { storefrontGetHeroSlides } from "@/services/shopify/storefront-direct";
 import "./globals.css";
@@ -38,12 +39,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     navCollections = [];
   }
 
+  /* Revize Modu yalnızca bu değişken tanımlıyken çizilir; yayında
+     tanımsız bırakılır ve müşteri düğmeyi hiç görmez. */
+  const revizeAcik = process.env.NEXT_PUBLIC_REVIZE === "1";
+
   return (
-    <html lang="en">
+    <html lang="tr">
       <body className="flex min-h-screen flex-col antialiased">
         <QueryProvider>
           <SiteShell navCollections={navCollections}>{children}</SiteShell>
         </QueryProvider>
+        {revizeAcik ? <RevizeModu /> : null}
       </body>
     </html>
   );
