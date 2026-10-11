@@ -9,7 +9,7 @@
  */
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AboutGlobe } from "@/components/slick/about-globe";
 import { IHRACAT, MERKEZLER, PAZARLAR } from "@/lib/about-presence";
 import { LEGAL_PAGES } from "@/lib/legal-content";
@@ -55,6 +55,21 @@ export function AboutPage() {
   useKoyuUstBildir();
   const t = useT();
   const [hedef, setHedef] = useState<[number, number] | null>(null);
+  const kureRef = useRef<HTMLDivElement | null>(null);
+
+  /* Listeden seçince: küreyi döndür, işaretle ve KÜÇÜK EKRANDA küreye kaydır.
+     Mobilde küre listenin üstünde kalıyor; kaydırmazsak kullanıcı bastığı
+     şeyin bir karşılığı olduğunu göremiyor. */
+  const sec = useCallback((kod: string, koordinat: [number, number]) => {
+    setHedef([...koordinat]);
+    setSecili(kod);
+    if (window.matchMedia("(max-width: 1023px)").matches) {
+      kureRef.current?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "center",
+      });
+    }
+  }, []);
   const [secili, setSecili] = useState<string | null>(null);
 
   const kim = bolum("who");
@@ -147,7 +162,7 @@ export function AboutPage() {
                 <li key={m.id}>
                   <button
                     type="button"
-                    onClick={() => { setHedef([...m.koordinat]); setSecili(m.id); }}
+                    onClick={() => sec(m.id, m.koordinat)}
                     className={`lx-kure-satir ${secili === m.id ? "lx-kure-satir--secili" : ""}`}
                   >
                     <span className="lx-kure-nokta lx-kure-nokta--merkez" aria-hidden="true" />
@@ -166,7 +181,7 @@ export function AboutPage() {
                 <li key={p.kod}>
                   <button
                     type="button"
-                    onClick={() => { setHedef([...p.koordinat]); setSecili(p.kod); }}
+                    onClick={() => sec(p.kod, p.koordinat)}
                     className={`lx-kure-satir ${secili === p.kod ? "lx-kure-satir--secili" : ""}`}
                   >
                     <span className="lx-kure-nokta" aria-hidden="true" />
@@ -182,8 +197,8 @@ export function AboutPage() {
           </div>
 
           {/* Mobilde küre listenin üstünde: listeden seçince dönüşü görülsün */}
-          <div className="order-first lg:order-none">
-            <AboutGlobe hedef={hedef} />
+          <div ref={kureRef} className="order-first lg:order-none">
+            <AboutGlobe hedef={hedef} secili={secili} />
           </div>
         </div>
       </section>

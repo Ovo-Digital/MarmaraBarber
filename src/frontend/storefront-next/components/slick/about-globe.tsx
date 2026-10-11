@@ -25,7 +25,14 @@ type Ulke = { id?: string | number; properties: { name: string }; geometry: Geom
 
 const KIRMIZI = "#e10600";
 
-export function AboutGlobe({ hedef }: { hedef?: [number, number] | null }) {
+export function AboutGlobe({
+  hedef,
+  secili,
+}: {
+  hedef?: [number, number] | null;
+  /** Listede seçili olanın kodu (pazar) ya da id'si (merkez) */
+  secili?: string | null;
+}) {
   const t = useT();
   /* useT her render'da yeni fonksiyon döndürüyor. Çizim döngüsü onu ref'ten
      okuyor; yoksa her ipucu değişiminde küre baştan kurulurdu. */
@@ -50,6 +57,38 @@ export function AboutGlobe({ hedef }: { hedef?: [number, number] | null }) {
   // Vurgulu ülke kodları hızlı arama için
   const vurgulu = useRef(new Map(PAZARLAR.map((p) => [p.kod, p])));
 
+  /* Çizim döngüsü seçimi ref'ten okuyor; state'e bağlasak her seçimde
+     küre baştan kurulur, dönüş animasyonu kesilirdi. */
+  const seciliRef = useRef<string | null>(null);
+  seciliRef.current = secili ?? null;
+  const hedefRef = useRef<[number, number] | null>(null);
+  hedefRef.current = hedef ?? null;
+  /* Seçimin ne zaman değiştiği: halkalar ve logo o andan itibaren açılıyor */
+  const secimAni = useRef(0);
+
+  /* Marka logosu beyaza boyanmış hâlde bir kez hazırlanıyor.
+     Dosya siyah çizim; her karede filtre uygulamak pahalı, bu yüzden
+     tek seferlik ayrı bir tuvale beyaz olarak basılıyor. */
+  const logo = useRef<HTMLCanvasElement | null>(null);
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/brand/marmara-logo.png";
+    img.onload = () => {
+      const en = 180;
+      const boy = Math.round((img.height / img.width) * en);
+      const c = document.createElement("canvas");
+      c.width = en;
+      c.height = boy;
+      const x = c.getContext("2d");
+      if (!x) return;
+      x.drawImage(img, 0, 0, en, boy);
+      x.globalCompositeOperation = "source-in";
+      x.fillStyle = "#ffffff";
+      x.fillRect(0, 0, en, boy);
+      logo.current = c;
+    };
+  }, []);
+
   // Harita verisi: ~100 KB, sayfa ilk açılışında değil küre görünümde yükleniyor
   useEffect(() => {
     let iptal = false;
@@ -64,6 +103,10 @@ export function AboutGlobe({ hedef }: { hedef?: [number, number] | null }) {
       iptal = true;
     };
   }, []);
+
+  useEffect(() => {
+    secimAni.current = performance.now();
+  }, [secili]);
 
   // Listeden seçilen noktaya dön
   useEffect(() => {
@@ -148,14 +191,29 @@ export function AboutGlobe({ hedef }: { hedef?: [number, number] | null }) {
       ctx.lineWidth = 0.6;
       ctx.stroke();
 
+      const sec = seciliRef.current;
+      let seciliUlke: Ulke | null = null;
       for (const u of d.ulkeler) {
-        const pazar = vurgulu.current.get(String(u.id).padStart(3, "0"));
+        const kod = String(u.id).padStart(3, "0");
+        const pazar = vurgulu.current.get(kod);
+        const secildi = Boolean(sec) && kod === sec;
+        if (secildi) seciliUlke = u;
         ctx.beginPath();
         yol(u as never);
-        ctx.fillStyle = pazar ? "rgba(225,6,0,0.82)" : "rgba(255,255,255,0.13)";
+        ctx.fillStyle = secildi
+          ? "rgba(255,52,38,0.95)"
+          : pazar
+            ? "rgba(225,6,0,0.82)"
+            : "rgba(255,255,255,0.13)";
         ctx.fill();
-        ctx.strokeStyle = pazar ? "rgba(255,120,110,0.9)" : "rgba(255,255,255,0.22)";
-        ctx.lineWidth = 0.5;
+        /* Seçili ülkenin çevresi kalın beyaz: hangi ülke olduğu kürenin
+           uzağından da okunsun. */
+        ctx.strokeStyle = secildi
+          ? "rgba(255,255,255,0.95)"
+          : pazar
+            ? "rgba(255,120,110,0.9)"
+            : "rgba(255,255,255,0.22)";
+        ctx.lineWidth = secildi ? 1.8 : 0.5;
         ctx.stroke();
       }
 
@@ -184,6 +242,77 @@ export function AboutGlobe({ hedef }: { hedef?: [number, number] | null }) {
         ctx.lineWidth = 2;
         ctx.strokeStyle = KIRMIZI;
         ctx.stroke();
+      }
+
+      /* Seçili yerin üstünde: açılan halkalar + marka logosu.
+         Nokta kürenin arka yüzündeyse hiç çizilmiyor, yoksa logo
+         dünyanın öbür tarafında havada duruyormuş gibi görünürdü. */
+      const nokta = hedefRef.current;
+      if (nokta && geoDistance(nokta, onYuz) < Math.PI / 2 - 0.05) {
+        const p = projeksiyon(nokta);
+        if (p) {
+          /* Seçim anı bir efektte yazılıyor, bu kare ondan önce
+             zamanlanmış olabiliyor; eksiye düşerse yarıçap negatif
+             çıkıp çizim hata veriyordu. Sıfırın altına indirmiyoruz. */
+          const gecen = Math.max(0, (zaman - secimAni.current) / 1000);
+          const giris = Math.max(0, Math.min(1, gecen / 0.5)); // 0→1 yarım saniyede
+
+          // Üç halka sırayla açılıp soluyor
+          for (let i = 0; i < 3; i++) {
+            const faz = ((gecen * 0.55 + i / 3) % 1);
+            const r = 10 + faz * 46;
+            ctx.beginPath();
+            ctx.arc(p[0], p[1], r, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(255,255,255,${(1 - faz) * 0.5 * giris})`;
+            ctx.lineWidth = 1.4;
+            ctx.stroke();
+          }
+
+          // Sabit iç halka
+          ctx.beginPath();
+          ctx.arc(p[0], p[1], 7 * giris, 0, Math.PI * 2);
+          ctx.fillStyle = "#ffffff";
+          ctx.fill();
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = KIRMIZI;
+          ctx.stroke();
+
+          // Logo: ülkenin ÜST kenarının üzerinde dursun, üstüne binmesin
+          const l = logo.current;
+          if (l) {
+            const en = Math.min(124, boyut * 0.28);
+            const boy = (l.height / l.width) * en;
+            /* Ülkenin ekrandaki sınırları: logoyu onun üstüne koyuyoruz.
+               Sabit bir yükseklik verseydik Avustralya gibi büyük ülkelerde
+               logo ülkenin ortasına düşüp okunmaz hâle geliyordu. */
+            const sinir = seciliUlke ? yol.bounds(seciliUlke as never) : null;
+            const ustY = sinir ? Math.min(sinir[0][1], p[1]) : p[1];
+            const hedefY = ustY - 26 - boy;
+            const ly = p[1] + (hedefY - p[1]) * giris;
+
+            // Noktadan logoya ince çizgi
+            ctx.beginPath();
+            ctx.moveTo(p[0], p[1] - 9);
+            ctx.lineTo(p[0], ly + boy + 10);
+            ctx.strokeStyle = `rgba(255,255,255,${0.4 * giris})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            ctx.globalAlpha = giris;
+            // Arkasında koyu zemin: kıtaların üstünde de okunsun
+            const pad = 12;
+            ctx.beginPath();
+            ctx.rect(p[0] - en / 2 - pad, ly - pad * 0.7, en + pad * 2, boy + pad * 1.4);
+            ctx.fillStyle = "rgba(10,9,8,0.72)";
+            ctx.fill();
+            ctx.strokeStyle = "rgba(255,255,255,0.14)";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            ctx.drawImage(l, p[0] - en / 2, ly, en, boy);
+            ctx.globalAlpha = 1;
+          }
+        }
       }
 
       kare = requestAnimationFrame(ciz);
