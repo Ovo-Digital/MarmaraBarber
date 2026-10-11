@@ -31,47 +31,48 @@ type Mesaj =
 
 type Konu = { id: string; dugme: string; kelimeler: RegExp; cevap: string; baglantilar: Baglanti[] };
 
-/* Kelimeler İngilizce + İspanyolca (+ Türkçe, TR mağazası için). */
+/* Kelimeler Türkçe + İngilizce. Kullanıcı hangi dilde yazarsa yazsın
+   aynı konuya düşsün diye ikisi birlikte aranıyor. */
 const KONULAR: Konu[] = [
   {
     id: "takip",
     dugme: "Track my order",
-    kelimeler: /track|where is my order|order status|tracking|rastrear|seguimiento|mi pedido|sipariş(im)? nerede|takip/i,
+    kelimeler: /sipariş(im)? nerede|takip|kargom|nerede kaldı|track|where is my order|order status|tracking/i,
     cevap: "You'll find your orders and their status in your account. Tracking details are also emailed to you when the parcel ships.",
     baglantilar: [{ etiket: "My account", href: "/account?section=orders" }, { etiket: "Contact us", href: "/iletisim" }],
   },
   {
     id: "kargo",
     dugme: "Shipping & delivery",
-    kelimeler: /ship|deliver|carrier|how long|envío|envio|entrega|kargo|teslimat/i,
+    kelimeler: /kargo|teslimat|gönderim|ne zaman gelir|ücretsiz kargo|ship|deliver|carrier|how long/i,
     cevap: "Shipping rates, carriers and delivery times depend on where you order from and are shown at checkout before you pay.",
     baglantilar: [{ etiket: "Shipping & delivery", href: "/kargo-ve-teslimat" }],
   },
   {
     id: "iade",
     dugme: "Returns",
-    kelimeler: /return|refund|exchange|devoluci|reembolso|cambio|iade|değişim/i,
+    kelimeler: /iade|değişim|geri gönder|para iadesi|return|refund|exchange/i,
     cevap: "Unopened products in their original packaging can be returned. Opened cosmetics can't be returned unless they're faulty. The full conditions are here:",
     baglantilar: [{ etiket: "Returns & exchanges", href: "/iade-ve-degisim" }],
   },
   {
     id: "kullanim",
     dugme: "How to use a product",
-    kelimeler: /how (do i|to) use|apply|instructions|cómo (se )?usa|aplicar|nasıl kullan/i,
+    kelimeler: /nasıl kullan|kullanım|nasıl sürül|uygulan|how (do i|to) use|apply|instructions/i,
     cevap: "Every product's instructions are collected on one page, grouped by type.",
     baglantilar: [{ etiket: "How to use", href: "/how-to-use" }],
   },
   {
     id: "toptan",
     dugme: "Wholesale & pros",
-    kelimeler: /wholesale|distribut|bulk|trade|stockist|barber registration|mayoreo|distribuidor|profesional|toptan|bayi/i,
+    kelimeler: /toptan|bayi|distribütör|berber kayd|profesyonel|wholesale|distribut|bulk|trade|stockist/i,
     cevap: "Shops and distributors can apply for wholesale; barbers can register for trade access.",
     baglantilar: [{ etiket: "Wholesale", href: "/wholesale" }, { etiket: "Barber registration", href: "/professional" }],
   },
   {
     id: "insan",
     dugme: "Talk to a person",
-    kelimeler: /human|person|agent|someone|contact|email|phone|persona|humano|contacto|insan|iletişim|müşteri hizmet/i,
+    kelimeler: /insan|iletişim|müşteri hizmet|yetkili|birine|human|person|agent|someone|contact|email|phone/i,
     cevap: "Send us a message and the team will get back to you by email.",
     baglantilar: [{ etiket: "Contact us", href: "/iletisim" }],
   },

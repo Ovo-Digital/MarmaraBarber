@@ -1215,7 +1215,7 @@ a {
 }
 .lx-sepet-btn--eklendi { background: var(--sg-red); }
 
-/* ── Dil seçici (EN / ES) ─────────────────────────────────────────────── */
+/* ── Dil seçici (TR / EN) ─────────────────────────────────────────────── */
 /* display burada YOK: katmansız kural Tailwind'in hidden / xl:inline-flex
    sınıflarını eziyordu, dil seçici dar ekranda başlıkta görünüyordu. */
 .lx-dil {

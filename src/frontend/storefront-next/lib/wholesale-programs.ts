@@ -13,7 +13,7 @@
  * dosyayı public/media/ altına koyup yolunu yazmak yeterli:
  *     gorsel: "/media/wholesale-barbershop.jpg"
  *
- * Metinler İngilizce anahtar; ekranda t() ile çevriliyor (lib/i18n/es.ts).
+ * Metinler İngilizce anahtar; ekranda t() ile çevriliyor (lib/i18n/tr.ts).
  */
 
 export type Program = {

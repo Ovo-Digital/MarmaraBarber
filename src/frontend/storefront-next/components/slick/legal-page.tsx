@@ -8,7 +8,7 @@ type Props = {
   sections: LegalSection[];
   breadcrumbLabel: string;
   /**
-   * Gizlilik / çerez / üyelik gibi hukuki metinler. İspanyolca seçiliyken
+   * Gizlilik / çerez / üyelik gibi hukuki metinler. Türkçe seçiliyken
    * gövde İngilizce kalır ve üstte bunu söyleyen bir not görünür: taslak
    * durumundaki hukuki metnin çevirisini yayınlamak ayrı bir onay gerektirir.
    */

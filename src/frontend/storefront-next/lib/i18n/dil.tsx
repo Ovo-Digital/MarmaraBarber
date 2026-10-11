@@ -1,14 +1,18 @@
 "use client";
 
 /**
- * Dil seçimi (İngilizce / İspanyolca).
+ * Dil seçimi (Türkçe / İngilizce). Varsayılan Türkçe.
  *
- * Seçim tarayıcıda saklanıyor (localStorage). Sunucu her zaman İngilizce
- * çiziyor; sayfa tarayıcıda açıldıktan sonra kayıtlı dil İspanyolcaysa metinler
+ * Sözlük anahtarları İngilizce metnin kendisi; Türkçe karşılıklar
+ * lib/i18n/tr.ts içinde. "en" seçiliyken anahtar olduğu gibi gösteriliyor,
+ * bu yüzden İngilizce için ayrı dosya yok.
+ *
+ * Seçim tarayıcıda saklanıyor (localStorage). Sunucu HER ZAMAN varsayılan
+ * dili çiziyor; sayfa açıldıktan sonra kayıtlı dil farklıysa metinler
  * değişiyor. Böylece sayfalar önbellekli (ISR) kalabiliyor.
  *
  * Neden ilk çizimde doğrudan kayıtlı dili kullanmıyoruz: sunucuda localStorage
- * yok. Sunucu "en", tarayıcı "es" çizerse React iki çıktının farklı olduğunu
+ * yok. Sunucu "tr", tarayıcı "en" çizerse React iki çıktının farklı olduğunu
  * görüp hidrasyon hatası veriyor.
  *
  * Ürün adları ve açıklamaları Shopify'dan geliyor ve burada çevrilmiyor.
@@ -17,26 +21,29 @@
 import { useEffect, useState } from "react";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { ES } from "@/lib/i18n/es";
+import { TR } from "@/lib/i18n/tr";
 
-export type Dil = "en" | "es";
+export type Dil = "tr" | "en";
+
+/** Varsayılan dil — sunucunun çizdiği dil de budur. */
+export const VARSAYILAN: Dil = "tr";
 
 export const DILLER: { kod: Dil; kisa: string; ad: string }[] = [
+  { kod: "tr", kisa: "TR", ad: "Türkçe" },
   { kod: "en", kisa: "EN", ad: "English" },
-  { kod: "es", kisa: "ES", ad: "Español" },
 ];
 
 const useDilStore = create<{ dil: Dil; setDil: (d: Dil) => void }>()(
-  persist((set) => ({ dil: "en", setDil: (dil) => set({ dil }) }), { name: "marmara-dil" }),
+  persist((set) => ({ dil: VARSAYILAN, setDil: (dil) => set({ dil }) }), { name: "marmara-dil" }),
 );
 
-/** Hidrasyon tamamlanana kadar "en" döner, sonra kayıtlı dili. */
+/** Hidrasyon tamamlanana kadar varsayılan dili döner, sonra kayıtlıyı. */
 export function useDil(): [Dil, (d: Dil) => void] {
   const kayitli = useDilStore((s) => s.dil);
   const setDil = useDilStore((s) => s.setDil);
   const [hazir, setHazir] = useState(false);
   useEffect(() => setHazir(true), []);
-  return [hazir ? kayitli : "en", setDil];
+  return [hazir ? kayitli : VARSAYILAN, setDil];
 }
 
 /** Geliştirmede sözlükte olmayan metni bir kez konsola yazar */
@@ -44,17 +51,17 @@ const bildirilen = new Set<string>();
 function eksikBildir(metinEn: string) {
   if (bildirilen.has(metinEn)) return;
   bildirilen.add(metinEn);
-  console.warn(`[i18n] es eksik: ${JSON.stringify(metinEn)}`);
+  console.warn(`[i18n] tr eksik: ${JSON.stringify(metinEn)}`);
 }
 
 /**
- * Anahtar, metnin İngilizce hâlinin kendisi. İspanyolca karşılığı
- * lib/i18n/es.ts içinde; bulunamazsa İngilizcesi gösterilir.
+ * Anahtar, metnin İngilizce hâlinin kendisi. Türkçe karşılığı
+ * lib/i18n/tr.ts içinde; bulunamazsa İngilizcesi gösterilir.
  * Eksikleri bulmak için: node scripts/i18n-kontrol.mjs
  */
 function cevir(dil: Dil, metinEn: string, degerler?: Record<string, string | number>) {
-  if (dil === "es" && !(metinEn in ES) && process.env.NODE_ENV !== "production") eksikBildir(metinEn);
-  let metin = dil === "es" ? (ES[metinEn] ?? metinEn) : metinEn;
+  if (dil === "tr" && !(metinEn in TR) && process.env.NODE_ENV !== "production") eksikBildir(metinEn);
+  let metin = dil === "tr" ? (TR[metinEn] ?? metinEn) : metinEn;
   if (degerler) {
     for (const [k, v] of Object.entries(degerler)) metin = metin.replaceAll(`{${k}}`, String(v));
   }
@@ -83,7 +90,7 @@ export function DilEsitle() {
   return null;
 }
 
-/** EN / ES seçici. `koyu`: koyu zeminde beyaz yazı. */
+/** TR / EN seçici. `koyu`: koyu zeminde beyaz yazı. */
 export function DilSecici({ koyu = false, className = "" }: { koyu?: boolean; className?: string }) {
   const [dil, setDil] = useDil();
   const t = useT();

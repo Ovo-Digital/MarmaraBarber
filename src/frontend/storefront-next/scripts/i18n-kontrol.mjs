@@ -1,12 +1,12 @@
 // Arayüzde t("...") / <T k="..."> ile kullanılan her İngilizce metnin
-// lib/i18n/es.ts içinde İspanyolca karşılığı var mı? Eksikleri listeler.
+// lib/i18n/tr.ts içinde Türkçe karşılığı var mı? Eksikleri listeler.
 //   node scripts/i18n-kontrol.mjs
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 const kok = new URL("..", import.meta.url).pathname;
-const es = readFileSync(join(kok, "lib/i18n/es.ts"), "utf8");
-const sozluk = new Set([...es.matchAll(/^\s*("(?:[^"\\\n]|\\.)*")\s*:/gm)].map((m) => JSON.parse(m[1])));
+const sozlukKaynak = readFileSync(join(kok, "lib/i18n/tr.ts"), "utf8");
+const sozluk = new Set([...sozlukKaynak.matchAll(/^\s*("(?:[^"\\\n]|\\.)*")\s*:/gm)].map((m) => JSON.parse(m[1])));
 
 const kullanilan = new Map();
 function tara(dir) {
