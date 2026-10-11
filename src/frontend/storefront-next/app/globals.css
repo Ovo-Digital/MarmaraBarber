@@ -2250,8 +2250,8 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
 }
 
 /* ── Revize Modu ──────────────────────────────────────────────────────── */
-/* Ekibin site üzerinde not bırakması için; yayında NEXT_PUBLIC_REVIZE
-   tanımsız olduğu için hiç çizilmez. Site diliyle aynı: kare kenar,
+/* Ekibin site üzerinde not bırakması için; sunucuda GITHUB_TOKEN yoksa
+   bileşen hiç çizilmez. Site diliyle aynı: kare kenar,
    sıcak nötr, kırmızı yalnızca vurgu. */
 [data-revize] {
   position: fixed;

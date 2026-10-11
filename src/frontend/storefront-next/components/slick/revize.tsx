@@ -11,8 +11,8 @@
  * Neden yalnızca açıkken dinliyoruz: kapalıyken hiçbir olay bağlanmıyor,
  * site normal çalışıyor. Mod kapalıysa bu bileşen sadece düğmeyi çiziyor.
  *
- * Yayına çıkarken NEXT_PUBLIC_REVIZE tanımsız bırakılır; o zaman bileşen
- * hiç çizilmez ve müşteri bu düğmeyi görmez.
+ * Bileşeni layout çiziyor ve yalnızca sunucuda GITHUB_TOKEN tanımlıysa
+ * çiziyor; yani düğme ancak gerçekten not gönderebileceği zaman görünüyor.
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";

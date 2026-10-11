@@ -39,9 +39,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     navCollections = [];
   }
 
-  /* Revize Modu yalnızca bu değişken tanımlıyken çizilir; yayında
-     tanımsız bırakılır ve müşteri düğmeyi hiç görmez. */
-  const revizeAcik = process.env.NEXT_PUBLIC_REVIZE === "1";
+  /* Revize Modu, notu yazacak GITHUB_TOKEN tanımlıysa çizilir.
+     Ayrı bir anahtar yok: düğme ancak gerçekten gönderebileceği zaman
+     görünsün, "bastım bir şey olmadı" durumu oluşmasın.
+     Yayına çıkarken token kaldırılır — zaten müşteriye açık bir sitede
+     GitHub belirteci durmamalı. REVIZE_KAPALI=1 ile elle de kapatılır.
+     Bu bir sunucu bileşeni, o yüzden değişken tarayıcıya sızmıyor. */
+  const revizeAcik =
+    Boolean(process.env.GITHUB_TOKEN) && process.env.REVIZE_KAPALI !== "1";
 
   return (
     <html lang="tr">
