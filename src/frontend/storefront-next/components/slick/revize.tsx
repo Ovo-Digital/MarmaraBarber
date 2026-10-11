@@ -51,7 +51,7 @@ type Not = {
   hedef: { tur: string; metin: string; secici: string };
   gorseller: Gorsel[];
 };
-type Kisi = { ad: string; rol: string; soz: boolean };
+type Kisi = { ad: string; rol: string };
 type Depo = { kisi: Kisi | null; notlar: Not[] };
 
 function depoOku(): Depo {
@@ -233,7 +233,7 @@ export function RevizeModu() {
       const r = await fetch("/api/revize", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kisi: { ad: kisi.ad, rol: kisi.rol }, soz: kisi.soz, notlar: hazir }),
+        body: JSON.stringify({ kisi: { ad: kisi.ad, rol: kisi.rol }, notlar: hazir }),
       });
       const j = await r.json();
       if (!r.ok) throw new Error(j.error || "Gönderilemedi");
@@ -369,18 +369,13 @@ export function RevizeModu() {
 function KimlikFormu({ onTamam }: { onTamam: (k: Kisi) => void }) {
   const [ad, setAd] = useState("");
   const [rol, setRol] = useState("");
-  const [soz, setSoz] = useState(false);
   const hazir = ad.trim().length > 1 && rol.trim().length > 1;
   return (
     <>
       <input className="rv-alan" placeholder="Ad soyad" value={ad} onChange={(e) => setAd(e.target.value)} />
       <input className="rv-alan" placeholder="Göreviniz" value={rol} onChange={(e) => setRol(e.target.value)} />
-      <label className="rv-satir">
-        <input type="checkbox" checked={soz} onChange={(e) => setSoz(e.target.checked)} />
-        Volkan Koçkan ile halısaha maçı için bir daha dalga geçmeyeceğime söz veriyorum.
-      </label>
       <div className="rv-dugmeler">
-        <button type="button" className="rv-btn" disabled={!hazir} onClick={() => onTamam({ ad: ad.trim(), rol: rol.trim(), soz })}>
+        <button type="button" className="rv-btn" disabled={!hazir} onClick={() => onTamam({ ad: ad.trim(), rol: rol.trim() })}>
           Başla
         </button>
       </div>

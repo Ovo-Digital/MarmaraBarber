@@ -65,7 +65,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Sunucuda GITHUB_TOKEN tanımlı değil." }, { status: 503 });
   }
 
-  let govde: { kisi?: { ad?: string; rol?: string }; notlar?: Not[]; soz?: boolean } | null = null;
+  let govde: { kisi?: { ad?: string; rol?: string }; notlar?: Not[] } | null = null;
   try {
     govde = await req.json();
   } catch {
@@ -126,7 +126,6 @@ export async function POST(req: Request) {
   const kalsin = notlar.filter((n) => n.eylem === "kalsin");
   const ozet = [
     `**Kimden:** ${kim} (${rol || "—"}) · ${zaman}`,
-    `**Halısaha sözü:** ${govde.soz ? "verildi ✅" : "verilmedi ❌"}`,
     `**Toplam:** ${notlar.length} not · ${issuelar.length} aksiyon · ${kalsin.length} "kalsın"`,
     kalsin.length
       ? `### Kalsın dedikleri\n${kalsin
