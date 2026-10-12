@@ -79,6 +79,7 @@ export const ES: Record<string, string> = {
   "PROS": "PRO",
   "WHOLESALE": "MAYOREO",
   "PARTNER": "PARTNER",
+  "AMBASSADOR": "EMBAJADOR",
   "Partner": "Partner",
   "ABOUT": "NOSOTROS",
   "CONTACT": "CONTACTO",

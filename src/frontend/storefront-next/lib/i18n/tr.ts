@@ -79,6 +79,7 @@ export const TR: Record<string, string> = {
   "PROS": "PROFESYONELLER",
   "WHOLESALE": "TOPTAN",
   "PARTNER": "PARTNER",
+  "AMBASSADOR": "MARKA ELÇİSİ",
   "Partner": "Partner",
   "ABOUT": "HAKKIMIZDA",
   "CONTACT": "İLETİŞİM",

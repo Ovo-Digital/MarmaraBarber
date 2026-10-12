@@ -269,12 +269,6 @@ export function WholesalePage() {
                   )}
                 </div>
 
-                <p className="mt-8 text-center text-[13px]" style={{ color: "rgba(255,255,255,0.6)" }}>
-                  {t("Working behind the chair rather than buying to resell?")}{" "}
-                  <Link href="/professional" style={{ color: "var(--sg-red)" }}>
-                    {t("Register as a barber")}
-                  </Link>
-                </p>
               </>
             )}
           </div>
