@@ -2485,3 +2485,53 @@ body.rv-acik [data-revize] { cursor: auto; }
   color: #fff;
   cursor: pointer;
 }
+
+/* ── Hakkımızda: ülke etiketleri ──────────────────────────────────────── */
+/* 62 ülke alt alta liste olunca sol sütun kürenin birkaç katı uzunluğa
+   çıkıyordu. Akan etiketler hem sığıyor hem tek bakışta okunuyor. */
+.lx-ulkeler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* Uzun listede kendi içinde kayma: sayfa aşağı doğru şişmesin */
+  max-height: 268px;
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+.lx-ulkeler::-webkit-scrollbar { width: 3px; }
+.lx-ulkeler::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.22); }
+
+.lx-ulke {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 6px 10px;
+  font-size: 12px;
+  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.72);
+  transition: background-color 220ms var(--lx-ease), border-color 220ms var(--lx-ease),
+    color 220ms var(--lx-ease);
+}
+@media (hover: hover) {
+  .lx-ulke:hover { border-color: rgba(255, 255, 255, 0.5); color: #fff; }
+}
+.lx-ulke--secili {
+  background: var(--sg-red);
+  border-color: var(--sg-red);
+  color: #fff;
+}
+/* Rolü doğrulanmış pazarlar: küçük kırmızı nokta */
+.lx-ulke-nokta {
+  display: block;
+  height: 5px;
+  width: 5px;
+  background: var(--sg-red);
+}
+.lx-ulke--secili .lx-ulke-nokta { background: #fff; }
+.lx-ulke--pazar { border-color: rgba(255, 255, 255, 0.32); color: #fff; }

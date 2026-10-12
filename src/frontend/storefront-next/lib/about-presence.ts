@@ -56,7 +56,13 @@ export const PAZARLAR: Pazar[] = [
  * İkisi de yoksa ülke listede ve sayıda var ama haritada boyanmıyor:
  *   Malta ve Mauritius bu çözünürlükteki haritada hiç çizilmiyor.
  */
-export type IhracatUlkesi = { kod?: string; atlasAd?: string; ulke: string };
+export type IhracatUlkesi = {
+  kod?: string;
+  atlasAd?: string;
+  /** Haritada hiç çizilmeyen küçük adalar için; küre buraya uçsun diye */
+  koordinat?: [number, number];
+  ulke: string;
+};
 
 export const IHRACAT_ULKELERI: IhracatUlkesi[] = [
   { kod: "276", ulke: "Almanya" },
@@ -100,8 +106,8 @@ export const IHRACAT_ULKELERI: IhracatUlkesi[] = [
   { kod: "440", ulke: "Litvanya" },
   { kod: "422", ulke: "Lübnan" },
   { kod: "348", ulke: "Macaristan" },
-  { ulke: "Malta" },
-  { ulke: "Mauritius" },
+  { koordinat: [14.44, 35.94], ulke: "Malta" },
+  { koordinat: [57.55, -20.28], ulke: "Mauritius" },
   { kod: "484", ulke: "Meksika" },
   { kod: "498", ulke: "Moldova" },
   { kod: "558", ulke: "Nikaragua" },

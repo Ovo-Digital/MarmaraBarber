@@ -14,8 +14,8 @@
  *  - `hedef` değişince küre o noktaya yumuşakça dönüyor (yandaki listeden seçim).
  */
 
-import { useEffect, useRef, useState } from "react";
-import { geoContains, geoDistance, geoGraticule10, geoOrthographic, geoPath, geoInterpolate } from "d3-geo";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { geoCentroid, geoContains, geoDistance, geoGraticule10, geoOrthographic, geoPath, geoInterpolate } from "d3-geo";
 import { feature } from "topojson-client";
 import type { FeatureCollection, Geometry } from "geojson";
 import { IHRACAT_ULKELERI, MERKEZLER, PAZARLAR } from "@/lib/about-presence";
@@ -30,6 +30,7 @@ export function AboutGlobe({
   secili,
   seciliAd,
   onSecim,
+  seciliKod,
 }: {
   hedef?: [number, number] | null;
   /** Listede seçili olanın kodu (pazar) ya da id'si (merkez) */
@@ -38,6 +39,8 @@ export function AboutGlobe({
   seciliAd?: string | null;
   /** Küre üzerinde bir yere tıklanınca sayfa listeyi de güncellesin */
   onSecim?: (kod: string, koordinat: [number, number]) => void;
+  /** Koordinatı olmayan ülke: haritadaki şeklin merkezine uçulsun */
+  seciliKod?: string | null;
 }) {
   const t = useT();
   /* useT her render'da yeni fonksiyon döndürüyor. Çizim döngüsü onu ref'ten
@@ -76,6 +79,10 @@ export function AboutGlobe({
   seciliRef.current = secili ?? null;
   const hedefRef = useRef<[number, number] | null>(null);
   hedefRef.current = hedef ?? null;
+  /* Koordinatı dışarıdan gelmeyen ülkelerde merkez burada hesaplanıyor;
+     etiket hapı ve işaret noktası da bu değere bakıyor, yoksa seçim
+     yapılıyor ama hiçbir işaret çıkmıyordu. */
+  const hesaplananRef = useRef<[number, number] | null>(null);
   const adRef = useRef<string | null>(null);
   adRef.current = seciliAd ?? null;
   /* Çizim/olay efekti yalnızca harita yüklenince kuruluyor; geri çağrıyı
@@ -127,13 +134,43 @@ export function AboutGlobe({
     secimAni.current = performance.now();
   }, [secili]);
 
+  const ucus = useCallback((koordinat: [number, number]) => {
+    const d = durum.current;
+    d.animasyon = { bas: [...d.rot], son: [-koordinat[0], -koordinat[1] * 0.85], baslangic: performance.now() };
+    d.hiz = [0, 0];
+  }, []);
+
   // Listeden seçilen noktaya dön
   useEffect(() => {
     if (!hedef) return;
-    const d = durum.current;
-    d.animasyon = { bas: [...d.rot], son: [-hedef[0], -hedef[1] * 0.85], baslangic: performance.now() };
-    d.hiz = [0, 0];
-  }, [hedef]);
+    ucus(hedef);
+  }, [hedef, ucus]);
+
+  /* Koordinatı verilmeyen ülkeler: haritadaki şeklin ağırlık merkezine uç.
+     62 ülke için elle koordinat girmek hem zahmetli hem hataya açık;
+     merkez zaten harita verisinden çıkarılabiliyor. Harita yüklenmeden
+     çalışamayacağı için `hazir` bekleniyor. */
+  useEffect(() => {
+    if (!hazir || !seciliKod) {
+      if (!seciliKod) hesaplananRef.current = null;
+      return;
+    }
+    if (hedef) {
+      hesaplananRef.current = null;
+      return;
+    }
+    const u = durum.current.ulkeler.find((x) => {
+      const kod = String(x.id).padStart(3, "0");
+      const ad = (x as unknown as { properties?: { name?: string } }).properties?.name ?? "";
+      return kod === seciliKod || ad === seciliKod;
+    });
+    if (!u) return;
+    const m = geoCentroid(u as never) as [number, number];
+    if (Number.isFinite(m[0]) && Number.isFinite(m[1])) {
+      hesaplananRef.current = m;
+      ucus(m);
+    }
+  }, [hazir, seciliKod, hedef, ucus]);
 
   useEffect(() => {
     const tuval = tuvalRef.current;
@@ -217,27 +254,23 @@ export function AboutGlobe({
         const pazar = vurgulu.current.get(kod);
         const ad = (u as unknown as { properties?: { name?: string } }).properties?.name ?? "";
         const ihracat = ihracatKod.current.has(kod) || ihracatAd.current.has(ad);
-        const secildi = Boolean(sec) && kod === sec;
+        const secildi = Boolean(sec) && (kod === sec || ad === sec);
         if (secildi) seciliUlke = u;
         ctx.beginPath();
         yol(u as never);
         ctx.fillStyle = secildi
           ? "rgba(255,52,38,0.95)"
-          : pazar
+          : pazar || ihracat
             ? "rgba(225,6,0,0.82)"
-            : ihracat
-              ? "rgba(225,6,0,0.36)"
-              : "rgba(255,255,255,0.13)";
+            : "rgba(255,255,255,0.13)";
         ctx.fill();
         /* Seçili ülkenin çevresi kalın beyaz: hangi ülke olduğu kürenin
            uzağından da okunsun. */
         ctx.strokeStyle = secildi
           ? "rgba(255,255,255,0.95)"
-          : pazar
+          : pazar || ihracat
             ? "rgba(255,120,110,0.9)"
-            : ihracat
-              ? "rgba(255,120,110,0.45)"
-              : "rgba(255,255,255,0.22)";
+            : "rgba(255,255,255,0.22)";
         ctx.lineWidth = secildi ? 1.8 : 0.5;
         ctx.stroke();
       }
@@ -289,7 +322,7 @@ export function AboutGlobe({
       /* Seçili yerin üstünde: açılan halkalar + marka logosu.
          Nokta kürenin arka yüzündeyse hiç çizilmiyor, yoksa logo
          dünyanın öbür tarafında havada duruyormuş gibi görünürdü. */
-      const nokta = hedefRef.current;
+      const nokta = hedefRef.current ?? hesaplananRef.current;
       if (nokta && geoDistance(nokta, onYuz) < Math.PI / 2 - 0.05) {
         const p = projeksiyon(nokta);
         if (p) {

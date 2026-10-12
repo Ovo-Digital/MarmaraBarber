@@ -11,7 +11,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AboutGlobe } from "@/components/slick/about-globe";
-import { IHRACAT, MERKEZLER, PAZARLAR } from "@/lib/about-presence";
+import { IHRACAT, IHRACAT_ULKELERI, MERKEZLER, PAZARLAR, type IhracatUlkesi } from "@/lib/about-presence";
 import { LEGAL_PAGES } from "@/lib/legal-content";
 import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
 import { useT } from "@/lib/i18n/dil";
@@ -60,8 +60,9 @@ export function AboutPage() {
   /* Listeden seçince: küreyi döndür, işaretle ve KÜÇÜK EKRANDA küreye kaydır.
      Mobilde küre listenin üstünde kalıyor; kaydırmazsak kullanıcı bastığı
      şeyin bir karşılığı olduğunu göremiyor. */
-  const sec = useCallback((kod: string, koordinat: [number, number], kaydir = true) => {
-    setHedef([...koordinat]);
+  const sec = useCallback((kod: string, koordinat?: [number, number], kaydir = true) => {
+    /* Koordinat yoksa küre, ülkenin harita üzerindeki merkezine kendisi uçuyor. */
+    setHedef(koordinat ? [...koordinat] : null);
     setSecili(kod);
     /* Küreye tıklanarak seçildiyse kaydırmıyoruz: küre zaten ekranda,
        yeniden ortalamak yerinde duran görüntüyü sarsıyor. */
@@ -74,8 +75,15 @@ export function AboutPage() {
   }, []);
   const [secili, setSecili] = useState<string | null>(null);
   /* Etikette yazacak ad: merkezlerde şehir, pazarlarda çevrilmiş ülke adı. */
+  /* İç pazar (Türkiye) ihracat listesinde yok; başa kendimiz koyuyoruz. */
+  const icPazar = PAZARLAR.find((p) => p.not === "Home market");
+  const ulkeler: IhracatUlkesi[] = icPazar
+    ? [{ kod: icPazar.kod, koordinat: icPazar.koordinat, ulke: t(icPazar.ulke) }, ...IHRACAT_ULKELERI]
+    : IHRACAT_ULKELERI;
+
   const seciliAd =
     MERKEZLER.find((m) => m.id === secili)?.sehir ??
+    IHRACAT_ULKELERI.find((u) => (u.kod ?? u.atlasAd ?? u.ulke) === secili)?.ulke ??
     (() => {
       const p = PAZARLAR.find((x) => x.kod === secili);
       return p ? t(p.ulke) : null;
@@ -182,27 +190,41 @@ export function AboutPage() {
               ))}
             </ul>
 
-            <p className="mt-8 text-[11px] uppercase tracking-[0.16em]" style={{ color: "rgba(255,255,255,0.45)" }}>
-              {t("Where you'll find us")}
-            </p>
-            <ul className="mt-3 m-0 list-none p-0">
-              {PAZARLAR.map((p) => (
-                <li key={p.kod}>
-                  <button
-                    type="button"
-                    onClick={() => sec(p.kod, p.koordinat)}
-                    className={`lx-kure-satir ${secili === p.kod ? "lx-kure-satir--secili" : ""}`}
-                  >
-                    <span className="lx-kure-nokta" aria-hidden="true" />
-                    <span className="flex-1 text-left">{t(p.ulke)}</span>
-                    <span className="text-[11px] uppercase tracking-[0.14em] opacity-60">{t(p.not)}</span>
-                  </button>
-                </li>
-              ))}
+            {/* Ülkeler alt alta uzun bir liste değil, akan etiketler hâlinde:
+                62 satır sol sütunu kürenin birkaç katı uzunluğa çıkarıyordu.
+                Rolü doğrulanmış pazarlar (ana pazar, resmî distribütör…) kırmızı
+                noktayla ayrılıyor; rolü etiketin üstünde yazıyor. */}
+            <div className="mt-8 flex items-baseline justify-between gap-4">
+              <p className="text-[11px] uppercase tracking-[0.16em]" style={{ color: "rgba(255,255,255,0.45)" }}>
+                {t("Where we are")}
+              </p>
+              <p className="text-[11px] tracking-[0.1em]" style={{ color: "rgba(255,255,255,0.35)" }}>
+                {t("Exports to {n} countries · {k} continents", { n: IHRACAT.ulke, k: IHRACAT.kita })}
+              </p>
+            </div>
+
+            {/* İç pazar listede ilk sırada: başlık "Neredeyiz", ihracat dosyasında
+                Türkiye yok çünkü kendine ihracat yapılmıyor. Sayı satırı yine
+                ihracat sayısını veriyor, karışmasın diye "ihracat" yazıyor. */}
+            <ul className="lx-ulkeler mt-4">
+              {ulkeler.map((u) => {
+                const anahtar = u.kod ?? u.atlasAd ?? u.ulke;
+                const pazar = PAZARLAR.find((p) => p.kod === u.kod);
+                return (
+                  <li key={anahtar}>
+                    <button
+                      type="button"
+                      title={pazar ? t(pazar.not) : undefined}
+                      onClick={() => sec(anahtar, u.koordinat ?? pazar?.koordinat)}
+                      className={`lx-ulke ${secili === anahtar ? "lx-ulke--secili" : ""} ${pazar ? "lx-ulke--pazar" : ""}`}
+                    >
+                      {pazar ? <span className="lx-ulke-nokta" aria-hidden="true" /> : null}
+                      {u.ulke}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
-            <p className="mt-5 text-[13px]" style={{ color: "rgba(255,255,255,0.5)" }}>
-              {t("…and barbershops and distributors across {n} countries on {k} continents.", { n: IHRACAT.ulke, k: IHRACAT.kita })}
-            </p>
           </div>
 
           {/* Mobilde küre listenin üstünde: listeden seçince dönüşü görülsün */}
@@ -210,6 +232,7 @@ export function AboutPage() {
             <AboutGlobe
               hedef={hedef}
               secili={secili}
+              seciliKod={secili}
               seciliAd={seciliAd}
               onSecim={(kod, koordinat) => sec(kod, koordinat, false)}
             />
