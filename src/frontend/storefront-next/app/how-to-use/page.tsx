@@ -40,19 +40,40 @@ export default async function HowToUsePage() {
   }
 
   /* Neredeyse aynı metinleri birleştir.
-     Bazı açıklamalarda aynı cümle bir yerde tam, başka yerde yarım bitiyor;
-     birebir karşılaştırma bunları iki ayrı blok sayıyordu. Noktalama ve
-     büyük/küçük harf atılıp biri diğerinin başlangıcıysa tek blok yapılıyor
-     ve uzun olan metin tutuluyor. */
-  const sadelestir = (t: string) =>
-    t.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, "").replace(/\s+/g, " ").trim();
+     Aynı tarif bazı ürünlerde başka kelimelerle yazılmış: "Elleri Temizleme:
+     Ellerinizi avuç içlerine sıkarak ovun…" ile "El Temizliği: Avuç içlerinize
+     sıkarak ellerinizi ovalayın…" aynı şey. Baştan karşılaştırma bunları
+     ayrı blok sayıyordu; sayfada aynı tarif iki kez çıkıyor, araya görseller
+     girdiği için okuma da bölünüyordu.
+
+     Ölçüt: kelime kümelerinin örtüşmesi. İkisinin ortak kelime oranı %58'i
+     geçiyorsa tek blok sayılıyor ve UZUN olan metin tutuluyor — kısa olan
+     çoğu zaman eksik yazılmış hâli. Eşik, gerçekten farklı tarifleri
+     birleştirmeyecek kadar yüksek tutuldu. */
+  const kelimeler = (t: string) =>
+    new Set(
+      t
+        .toLocaleLowerCase("tr")
+        .replace(/[^\p{L}\p{N} ]/gu, " ")
+        .split(/\s+/)
+        .filter((w) => w.length > 2),
+    );
+
+  const benzer = (a: string, b: string) => {
+    const ka = kelimeler(a);
+    const kb = kelimeler(b);
+    if (!ka.size || !kb.size) return false;
+    let ortak = 0;
+    for (const w of ka) if (kb.has(w)) ortak++;
+    return ortak / Math.min(ka.size, kb.size) > 0.58;
+  };
 
   for (const [tip, metinler] of gruplar) {
+    // Uzundan kısaya: tutulan metin her zaman en dolu olanı olsun
     const girisler = [...metinler.entries()].sort((a, b) => b[0].length - a[0].length);
     const birlesik = new Map<string, typeof kartlar>();
     for (const [metin, urunler] of girisler) {
-      const sade = sadelestir(metin);
-      const esles = [...birlesik.keys()].find((m) => sadelestir(m).startsWith(sade));
+      const esles = [...birlesik.keys()].find((m) => benzer(m, metin));
       if (esles) birlesik.get(esles)!.push(...urunler);
       else birlesik.set(metin, [...urunler]);
     }
