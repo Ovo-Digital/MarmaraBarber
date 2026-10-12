@@ -113,14 +113,14 @@ function Yildizlar({ puan }: { puan: number }) {
  * Sepet butonunun altındaki güven satırı.
  *
  * Üç madde de markanın kendi doğrulanmış bilgisi: 1970'ten beri üretim,
- * Türkiye'deki kendi tesisleri, GMP standardı. Referans sitedeki "30 gün
+ * kendi tesislerinde üretim, GMP standardı. Referans sitedeki "30 gün
  * garanti" gibi bizde karşılığı olmayan bir vaat YAZILMADI.
  */
 function GuvenSatiri() {
   const t = useT();
   const maddeler = [
     { id: "since", yazi: "Since 1970", ikon: <path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z" /> },
-    { id: "made", yazi: "Made in Türkiye", ikon: <><path d="M3 21h18" /><path d="M5 21V8l7-5 7 5v13" /><path d="M9 21v-6h6v6" /></> },
+    { id: "made", yazi: "Own production", ikon: <><path d="M3 21h18" /><path d="M5 21V8l7-5 7 5v13" /><path d="M9 21v-6h6v6" /></> },
     { id: "gmp", yazi: "GMP standards", ikon: <><circle cx="12" cy="12" r="9" /><path d="m8.5 12.5 2.5 2.5 4.5-5" /></> },
   ];
 
@@ -141,7 +141,10 @@ function GuvenSatiri() {
           >
             {m.ikon}
           </svg>
-          <span className="text-[12px] leading-tight" style={{ color: "rgba(20,17,15,0.7)" }}>
+          <span
+            className="text-[12px] leading-tight"
+            style={{ fontFamily: "var(--font-owners)", fontWeight: 700, letterSpacing: "0.04em", color: "var(--lx-ink)" }}
+          >
             {t(m.yazi)}
           </span>
         </li>
@@ -897,8 +900,9 @@ export function SlickProductDetail({
                 ) : null}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="sg-product-title truncate text-[11px]">{product.title}</p>
-                <p className="sg-price text-[14px]">{formatMoney(price, product.currencyCode)}</p>
+                {/* Fiyat burada tekrar yazılmıyor: sayfanın üstünde zaten var,
+                    dar çubukta ürün adına yer bırakıyor. */}
+                <p className="sg-product-title truncate text-[12px]">{product.title}</p>
               </div>
               <button
                 type="button"

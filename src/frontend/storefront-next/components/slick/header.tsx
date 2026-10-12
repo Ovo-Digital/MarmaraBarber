@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { MAIN_NAV, SITE_NAME } from "@/lib/slick-theme";
 import { useAuthStore } from "@/store/auth-store";
@@ -200,6 +201,19 @@ export function SlickHeader({
   const [shopOpen, setShopOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [hesapAcik, setHesapAcik] = useState(false);
+
+  /* Sayfa değişince açık olan her şey kapansın.
+     Bağlantıların kendi onClick'ine güvenemiyoruz: sayfa geçiş perdesi
+     tıklamayı YAKALAMA aşamasında durduruyor (stopPropagation), o yüzden
+     bağlantının üstündeki kapatma kodu hiç çalışmıyordu — mobil menü
+     seçim yapıldıktan sonra açık kalıyor, yeni sayfa altında görünüyordu. */
+  const pathname = usePathname();
+  useEffect(() => {
+    setMenuOpen(false);
+    setShopOpen(false);
+    setSearchOpen(false);
+    setHesapAcik(false);
+  }, [pathname]);
   const aramaAlaniRef = useRef<HTMLInputElement | null>(null);
   const [oneriler, setOneriler] = useState<AramaOnerisi[]>([]);
   const [araniyor, setAraniyor] = useState(false);

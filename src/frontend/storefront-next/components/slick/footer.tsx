@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { FOOTER_COLUMNS, SITE_NAME } from "@/lib/slick-theme";
 import { DilSecici, useT } from "@/lib/i18n/dil";
 
@@ -11,6 +12,37 @@ const SOCIAL = [
   { label: "TikTok", href: "https://www.tiktok.com/", icon: TikTokIcon },
 ];
 
+/**
+ * Alt bilgi sütunu. Küçük ekranda başlık bir düğme, liste katlanıyor;
+ * sm ve üstünde düğme yok, liste hep açık.
+ */
+function FooterSutun({ baslik, children }: { baslik: string; children: React.ReactNode }) {
+  const [acik, setAcik] = useState(false);
+  return (
+    <div className="border-b border-white/12 py-4 sm:border-0 sm:py-0">
+      <button
+        type="button"
+        className="flex w-full items-center justify-between sm:pointer-events-none sm:mb-5 sm:block"
+        aria-expanded={acik}
+        onClick={() => setAcik((a) => !a)}
+      >
+        <h3 className="sg-nav-bold text-[14px] text-[var(--sg-red)]">{baslik}</h3>
+        <span aria-hidden="true" className="text-lg leading-none text-white/60 sm:hidden">
+          {acik ? "−" : "+"}
+        </span>
+      </button>
+      <div
+        className="grid transition-[grid-template-rows] duration-300 ease-out sm:!grid-rows-[1fr]"
+        style={{ gridTemplateRows: acik ? "1fr" : "0fr" }}
+      >
+        <div className="overflow-hidden">
+          <ul className="space-y-3 pt-4 sm:pt-0">{children}</ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function SlickFooter() {
   const t = useT();
   return (
@@ -18,20 +50,20 @@ export function SlickFooter() {
       {/* Üst: 3 kolon link + dikey çizgi + sosyal hesaplar.
           Bülten kaydı sayfanın hemen üstündeki bantta — iki form üst üste olmasın. */}
       <div className="sg-container grid gap-10 py-10 lg:grid-cols-[1.35fr_1px_1fr] lg:gap-0 lg:py-12">
-        <div className="grid gap-10 sm:grid-cols-3 lg:pr-12">
+        {/* Mobilde sütunlar katlanıyor: üç sütun 18 bağlantı demek ve
+            küçük ekranda hepsi alt alta dizilip sayfayı uzatıyordu.
+            sm ve üstünde her zaman açık, başlıklar tıklanmıyor. */}
+        <div className="grid gap-0 sm:grid-cols-3 sm:gap-10 lg:pr-12">
           {FOOTER_COLUMNS.map((col) => (
-            <div key={col.title}>
-              <h3 className="sg-nav-bold mb-5 text-[14px] text-[var(--sg-red)]">{t(col.title)}</h3>
-              <ul className="space-y-3">
-                {col.links.map((link) => (
-                  <li key={link.href + link.label}>
-                    <Link href={link.href} className="text-[15px] text-white/85 hover:text-white">
-                      {t(link.label)}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <FooterSutun key={col.title} baslik={t(col.title)}>
+              {col.links.map((link) => (
+                <li key={link.href + link.label}>
+                  <Link href={link.href} className="text-[15px] text-white/85 hover:text-white">
+                    {t(link.label)}
+                  </Link>
+                </li>
+              ))}
+            </FooterSutun>
           ))}
         </div>
 

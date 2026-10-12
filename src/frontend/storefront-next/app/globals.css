@@ -1215,10 +1215,11 @@ a {
 }
 .lx-sepet-btn--eklendi { background: var(--sg-red); }
 
-/* ── Dil seçici (TR / EN) ─────────────────────────────────────────────── */
-/* display burada YOK: katmansız kural Tailwind'in hidden / xl:inline-flex
-   sınıflarını eziyordu, dil seçici dar ekranda başlıkta görünüyordu. */
+/* ── Dil seçici (TR / EN / ES) ────────────────────────────────────────── */
+/* Küre ikonu + seçili dilin kısaltması; tıklayınca açılan küçük liste.
+   Üç dil yan yana yazılınca üst menüde yer kalmıyordu. */
 .lx-dil {
+  position: relative;
   align-items: center;
   font-family: var(--font-owners);
   font-size: 11px;
@@ -1226,15 +1227,64 @@ a {
   color: var(--lx-ink);
 }
 .lx-dil--koyu { color: #fff; }
-.lx-dil-ayrac { margin: 0 6px; opacity: 0.35; }
-.lx-dil-dugme {
-  padding: 4px 1px;
-  opacity: 0.5;
-  border-bottom: 1px solid transparent;
-  transition: opacity 200ms var(--lx-ease), border-color 200ms var(--lx-ease);
+
+.lx-dil-ac {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 2px;
+  opacity: 0.75;
+  transition: opacity 200ms var(--lx-ease);
 }
-.lx-dil-dugme:hover { opacity: 0.85; }
-.lx-dil-dugme[aria-pressed="true"] { opacity: 1; border-bottom-color: var(--sg-red); }
+.lx-dil-ac:hover,
+.lx-dil-ac[aria-expanded="true"] { opacity: 1; }
+.lx-dil-kisa { font-weight: 700; }
+
+.lx-dil-liste {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: 60;
+  margin: 0;
+  min-width: 158px;
+  list-style: none;
+  border: 1px solid rgba(20, 17, 15, 0.14);
+  background: #fff;
+  padding: 6px;
+  box-shadow: 0 18px 44px rgba(20, 17, 15, 0.18);
+}
+.lx-dil--koyu .lx-dil-liste {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: var(--lx-ink);
+}
+
+.lx-dil-secenek {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  text-align: left;
+  font-family: var(--font-geist);
+  font-size: 13px;
+  letter-spacing: 0;
+  color: var(--lx-ink);
+  transition: background-color 200ms var(--lx-ease);
+}
+.lx-dil--koyu .lx-dil-secenek { color: #fff; }
+.lx-dil-secenek:hover { background: var(--lx-bone); }
+.lx-dil--koyu .lx-dil-secenek:hover { background: rgba(255, 255, 255, 0.08); }
+.lx-dil-secenek--secili { font-weight: 600; }
+.lx-dil-kod {
+  min-width: 24px;
+  font-family: var(--font-owners);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(20, 17, 15, 0.45);
+}
+.lx-dil--koyu .lx-dil-kod { color: rgba(255, 255, 255, 0.5); }
+.lx-dil-secenek--secili .lx-dil-kod { color: var(--sg-red); }
 
 /* İletişim sayfası yardım kartları — ince çerçeve, imleçte kırmızı */
 .lx-yardim-kart {

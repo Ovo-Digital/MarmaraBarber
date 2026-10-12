@@ -82,9 +82,12 @@ export function FinderBanner({
           </span>
         </Link>
 
-        <ol className="mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+        {/* Üç adım EŞİT sütunlarda. Önce esnek bir satırdı: etiket uzunlukları
+            farklı olduğu için adımlar farklı genişlikte çıkıyor, mobilde alt
+            alta düşünce rakamlar da aynı hizaya gelmiyordu. */}
+        <ol className="mx-auto mt-12 grid max-w-[760px] grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-3">
           {steps.map((label, i) => (
-            <li key={label} className="flex items-center gap-3">
+            <li key={label} className="flex items-center justify-start gap-3 sm:justify-center">
               <span
                 className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[13px]"
                 style={{

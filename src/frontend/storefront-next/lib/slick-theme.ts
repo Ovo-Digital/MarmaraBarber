@@ -72,7 +72,7 @@ export const MAIN_NAV: NavItem[] = [
   { label: "BUNDLE & SAVE", href: "/collections/paketler" },
   { label: "HOW TO USE", href: "/how-to-use" },
   { label: "PROS", href: "/professional" },
-  { label: "WHOLESALE", href: "/wholesale" },
+  { label: "PARTNER", href: "/wholesale" },
   { label: "ABOUT", href: "/hakkimizda" },
   { label: "CONTACT", href: "/iletisim" },
 ];
@@ -193,7 +193,7 @@ export const FOOTER_COLUMNS = [
       { label: "Collections", href: "/collections" },
       { label: "Find your formula", href: "/finder" },
       { label: "How to use", href: "/how-to-use" },
-      { label: "Wholesale", href: "/wholesale" },
+      { label: "Partner", href: "/wholesale" },
       { label: "Barber registration", href: "/professional" },
       { label: "Ambassadors", href: "/ambassador" },
     ],

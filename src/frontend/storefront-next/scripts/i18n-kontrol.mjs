@@ -1,11 +1,13 @@
 // Arayüzde t("...") / <T k="..."> ile kullanılan her İngilizce metnin
-// lib/i18n/tr.ts içinde Türkçe karşılığı var mı? Eksikleri listeler.
+// lib/i18n/tr.ts ve es.ts içinde karşılığı var mı? Eksikleri listeler.
 //   node scripts/i18n-kontrol.mjs
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 const kok = new URL("..", import.meta.url).pathname;
 const sozlukKaynak = readFileSync(join(kok, "lib/i18n/tr.ts"), "utf8");
+const esKaynak = readFileSync(join(kok, "lib/i18n/es.ts"), "utf8");
+const esSozluk = new Set([...esKaynak.matchAll(/^\s*("(?:[^"\\\n]|\\.)*")\s*:/gm)].map((m) => JSON.parse(m[1])));
 const sozluk = new Set([...sozlukKaynak.matchAll(/^\s*("(?:[^"\\\n]|\\.)*")\s*:/gm)].map((m) => JSON.parse(m[1])));
 
 const kullanilan = new Map();
@@ -34,8 +36,10 @@ function tara(dir) {
 ["app", "components", "lib"].forEach((d) => tara(join(kok, d)));
 
 const eksik = [...kullanilan].filter(([s]) => !sozluk.has(s));
+const esEksik = [...kullanilan].filter(([s]) => !esSozluk.has(s));
 const fazla = [...sozluk].filter((s) => !kullanilan.has(s));
-console.log(`kullanılan: ${kullanilan.size}  ·  sözlükte: ${sozluk.size}  ·  eksik: ${eksik.length}`);
-for (const [s, f] of eksik) console.log(`  EKSİK  ${JSON.stringify(s)}   (${f})`);
+console.log(`kullanılan: ${kullanilan.size}  ·  tr: ${sozluk.size}, eksik ${eksik.length}  ·  es: ${esSozluk.size}, eksik ${esEksik.length}`);
+for (const [s, f] of eksik) console.log(`  TR EKSİK  ${JSON.stringify(s)}   (${f})`);
+for (const [s, f] of esEksik) console.log(`  ES EKSİK  ${JSON.stringify(s)}   (${f})`);
 if (fazla.length) console.log(`kullanılmayan çeviri: ${fazla.length}`);
-process.exit(eksik.length ? 1 : 0);
+process.exit(eksik.length + esEksik.length ? 1 : 0);

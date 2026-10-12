@@ -73,11 +73,13 @@ export const TR: Record<string, string> = {
 
   // ── Gezinme ───────────────────────────────────────────────────────────
   "SHOP": "ÜRÜNLER",
-  "BUNDLE & SAVE": "SET AL, KAZAN",
+  "BUNDLE & SAVE": "SETLER",
   "Bundle & Save": "Set al, kazan",
   "HOW TO USE": "NASIL KULLANILIR",
   "PROS": "PROFESYONELLER",
   "WHOLESALE": "TOPTAN",
+  "PARTNER": "PARTNER",
+  "Partner": "Partner",
   "ABOUT": "HAKKIMIZDA",
   "CONTACT": "İLETİŞİM",
   "COLOGNE": "KOLONYA",

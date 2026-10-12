@@ -356,7 +356,11 @@ export function HeroSlider({
             const opacity = isActive
               ? 1
               : Math.max(0.12, 0.55 - (distance - 0.5) * 0.24);
-            const blur = Math.min(4, distance * 1.25);
+            /* Ortadaki satır HİÇ bulanıklaşmaz. Önce uzaklıkla orantılıydı
+               ve aktif satır da 0.5 satıra kadar uzaklaşabildiği için
+               kayarken okunan yazı yumuşuyordu. Bulanıklık artık yalnızca
+               merkezden çıkmış satırlara, 0.5'ten sonra başlıyor. */
+            const blur = isActive ? 0 : Math.min(4, (distance - 0.5) * 1.7);
 
             return (
               <Link
@@ -382,7 +386,9 @@ export function HeroSlider({
                   letterSpacing: "0",
                   color: isActive ? "var(--sg-red)" : "#ffffff",
                   opacity,
-                  filter: blur > 0.05 ? `blur(${blur}px)` : undefined,
+                  /* Eşik 0.05 değil 0.4: altındaki değerler gözle görülmüyor
+                     ama filtre katmanı açıldığı için yazıyı yumuşatıyordu. */
+                  filter: blur > 0.4 ? `blur(${blur}px)` : undefined,
                 }}
               >
                 {slide.title}

@@ -1,11 +1,11 @@
 "use client";
 
 /**
- * Dil seçimi (Türkçe / İngilizce). Varsayılan Türkçe.
+ * Dil seçimi (Türkçe / İngilizce / İspanyolca). Varsayılan Türkçe.
  *
- * Sözlük anahtarları İngilizce metnin kendisi; Türkçe karşılıklar
- * lib/i18n/tr.ts içinde. "en" seçiliyken anahtar olduğu gibi gösteriliyor,
- * bu yüzden İngilizce için ayrı dosya yok.
+ * Sözlük anahtarları İngilizce metnin kendisi; karşılıklar lib/i18n/tr.ts
+ * ve lib/i18n/es.ts içinde. "en" seçiliyken anahtar olduğu gibi
+ * gösteriliyor, bu yüzden İngilizce için ayrı dosya yok.
  *
  * Seçim tarayıcıda saklanıyor (localStorage). Sunucu HER ZAMAN varsayılan
  * dili çiziyor; sayfa açıldıktan sonra kayıtlı dil farklıysa metinler
@@ -18,12 +18,13 @@
  * Ürün adları ve açıklamaları Shopify'dan geliyor ve burada çevrilmiyor.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { ES } from "@/lib/i18n/es";
 import { TR } from "@/lib/i18n/tr";
 
-export type Dil = "tr" | "en";
+export type Dil = "tr" | "en" | "es";
 
 /** Varsayılan dil — sunucunun çizdiği dil de budur. */
 export const VARSAYILAN: Dil = "tr";
@@ -31,7 +32,11 @@ export const VARSAYILAN: Dil = "tr";
 export const DILLER: { kod: Dil; kisa: string; ad: string }[] = [
   { kod: "tr", kisa: "TR", ad: "Türkçe" },
   { kod: "en", kisa: "EN", ad: "English" },
+  { kod: "es", kisa: "ES", ad: "Español" },
 ];
+
+/** Dil kodu → sözlük. "en" yok: anahtarın kendisi zaten İngilizce. */
+const SOZLUKLER: Partial<Record<Dil, Record<string, string>>> = { tr: TR, es: ES };
 
 const useDilStore = create<{ dil: Dil; setDil: (d: Dil) => void }>()(
   persist((set) => ({ dil: VARSAYILAN, setDil: (dil) => set({ dil }) }), { name: "marmara-dil" }),
@@ -51,17 +56,18 @@ const bildirilen = new Set<string>();
 function eksikBildir(metinEn: string) {
   if (bildirilen.has(metinEn)) return;
   bildirilen.add(metinEn);
-  console.warn(`[i18n] tr eksik: ${JSON.stringify(metinEn)}`);
+  console.warn(`[i18n] eksik: ${JSON.stringify(metinEn)}`);
 }
 
 /**
- * Anahtar, metnin İngilizce hâlinin kendisi. Türkçe karşılığı
- * lib/i18n/tr.ts içinde; bulunamazsa İngilizcesi gösterilir.
+ * Anahtar, metnin İngilizce hâlinin kendisi. Karşılıkları lib/i18n/tr.ts
+ * ve lib/i18n/es.ts içinde; bulunamazsa İngilizcesi gösterilir.
  * Eksikleri bulmak için: node scripts/i18n-kontrol.mjs
  */
 function cevir(dil: Dil, metinEn: string, degerler?: Record<string, string | number>) {
-  if (dil === "tr" && !(metinEn in TR) && process.env.NODE_ENV !== "production") eksikBildir(metinEn);
-  let metin = dil === "tr" ? (TR[metinEn] ?? metinEn) : metinEn;
+  const sozluk = SOZLUKLER[dil];
+  if (sozluk && !(metinEn in sozluk) && process.env.NODE_ENV !== "production") eksikBildir(metinEn);
+  let metin = sozluk ? (sozluk[metinEn] ?? metinEn) : metinEn;
   if (degerler) {
     for (const [k, v] of Object.entries(degerler)) metin = metin.replaceAll(`{${k}}`, String(v));
   }
@@ -90,27 +96,80 @@ export function DilEsitle() {
   return null;
 }
 
-/** TR / EN seçici. `koyu`: koyu zeminde beyaz yazı. */
+/**
+ * Dil seçici — küre ikonu, tıklayınca üç dil açılır.
+ *
+ * Üç dil yan yana yazılınca üst menüde yer kalmıyordu; ikon tek bir
+ * düğme kadar yer kaplıyor. Seçili dilin kısaltması ikonun yanında
+ * duruyor ki menü açılmadan da hangi dilde olunduğu görülsün.
+ *
+ * `koyu`: koyu zeminde beyaz yazı.
+ */
 export function DilSecici({ koyu = false, className = "" }: { koyu?: boolean; className?: string }) {
   const [dil, setDil] = useDil();
   const t = useT();
+  const [acik, setAcik] = useState(false);
+  const kutu = useRef<HTMLDivElement | null>(null);
+  const simdiki = DILLER.find((d) => d.kod === dil) ?? DILLER[0];
+
+  /* Dışarı tıklayınca ve Esc ile kapansın — menü açık kalıp
+     sayfanın üstünde takılı durmasın. */
+  useEffect(() => {
+    if (!acik) return;
+    const disari = (e: MouseEvent) => {
+      if (!kutu.current?.contains(e.target as Node)) setAcik(false);
+    };
+    const tus = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setAcik(false);
+    };
+    document.addEventListener("pointerdown", disari);
+    document.addEventListener("keydown", tus);
+    return () => {
+      document.removeEventListener("pointerdown", disari);
+      document.removeEventListener("keydown", tus);
+    };
+  }, [acik]);
+
   return (
-    <div role="group" aria-label={t("Language")} className={`lx-dil ${koyu ? "lx-dil--koyu" : ""} ${className || "inline-flex"}`}>
-      {DILLER.map((d, i) => (
-        <span key={d.kod} className="inline-flex items-center">
-          {i > 0 ? <span aria-hidden="true" className="lx-dil-ayrac">/</span> : null}
-          <button
-            type="button"
-            lang={d.kod}
-            aria-pressed={dil === d.kod}
-            title={d.ad}
-            onClick={() => setDil(d.kod)}
-            className="lx-dil-dugme"
-          >
-            {d.kisa}
-          </button>
-        </span>
-      ))}
+    <div ref={kutu} className={`lx-dil ${koyu ? "lx-dil--koyu" : ""} ${className || "relative inline-flex"}`}>
+      <button
+        type="button"
+        className="lx-dil-ac"
+        aria-haspopup="listbox"
+        aria-expanded={acik}
+        aria-label={`${t("Language")}: ${simdiki.ad}`}
+        onClick={() => setAcik((a) => !a)}
+      >
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18" />
+          <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z" />
+        </svg>
+        <span className="lx-dil-kisa">{simdiki.kisa}</span>
+      </button>
+
+      {acik ? (
+        <ul className="lx-dil-liste" role="listbox" aria-label={t("Language")}>
+          {DILLER.map((d) => (
+            <li key={d.kod}>
+              <button
+                type="button"
+                lang={d.kod}
+                role="option"
+                aria-selected={dil === d.kod}
+                className={`lx-dil-secenek ${dil === d.kod ? "lx-dil-secenek--secili" : ""}`}
+                onClick={() => {
+                  setDil(d.kod);
+                  setAcik(false);
+                }}
+              >
+                <span className="lx-dil-kod">{d.kisa}</span>
+                <span>{d.ad}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   );
 }
