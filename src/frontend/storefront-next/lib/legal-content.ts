@@ -28,7 +28,7 @@ export const LEGAL_PAGES = {
         content: [
           "Marmara Barber was founded in 1992 in Feriköy, Istanbul.",
           "With large-scale production capacity, we manufacture both our own brands and private label products, and we are among the leading manufacturers in Türkiye. Our range covers colognes, fragrances, room sprays, cream colognes, shave gels, lotions, hair care and styling products, beard oil and textiles.",
-          "We export to 54 countries across 6 continents.",
+          "We export to 62 countries across 6 continents.",
           "Our products are manufactured to GMP good manufacturing practice standards, under a quality management system.",
         ],
       },

@@ -18,7 +18,7 @@ import { useEffect, useRef, useState } from "react";
 import { geoContains, geoDistance, geoGraticule10, geoOrthographic, geoPath, geoInterpolate } from "d3-geo";
 import { feature } from "topojson-client";
 import type { FeatureCollection, Geometry } from "geojson";
-import { MERKEZLER, PAZARLAR } from "@/lib/about-presence";
+import { IHRACAT_ULKELERI, MERKEZLER, PAZARLAR } from "@/lib/about-presence";
 import { useT } from "@/lib/i18n/dil";
 
 type Ulke = { id?: string | number; properties: { name: string }; geometry: Geometry; type: "Feature" };
@@ -62,6 +62,13 @@ export function AboutGlobe({
 
   // Vurgulu ülke kodları hızlı arama için
   const vurgulu = useRef(new Map(PAZARLAR.map((p) => [p.kod, p])));
+
+  /* İhracat yapılan ülkeler: kürede daha soluk boyanıyor.
+     Bir kısmının sayısal kodu yok (Kosova, KKTC), onlar haritadaki adıyla
+     eşleşiyor. Malta ve Mauritius bu çözünürlükte çizilmediği için
+     listede var ama kürede boyanmıyor. */
+  const ihracatKod = useRef(new Set(IHRACAT_ULKELERI.map((u) => u.kod).filter(Boolean) as string[]));
+  const ihracatAd = useRef(new Set(IHRACAT_ULKELERI.map((u) => u.atlasAd).filter(Boolean) as string[]));
 
   /* Çizim döngüsü seçimi ref'ten okuyor; state'e bağlasak her seçimde
      küre baştan kurulur, dönüş animasyonu kesilirdi. */
@@ -208,6 +215,8 @@ export function AboutGlobe({
       for (const u of d.ulkeler) {
         const kod = String(u.id).padStart(3, "0");
         const pazar = vurgulu.current.get(kod);
+        const ad = (u as unknown as { properties?: { name?: string } }).properties?.name ?? "";
+        const ihracat = ihracatKod.current.has(kod) || ihracatAd.current.has(ad);
         const secildi = Boolean(sec) && kod === sec;
         if (secildi) seciliUlke = u;
         ctx.beginPath();
@@ -216,7 +225,9 @@ export function AboutGlobe({
           ? "rgba(255,52,38,0.95)"
           : pazar
             ? "rgba(225,6,0,0.82)"
-            : "rgba(255,255,255,0.13)";
+            : ihracat
+              ? "rgba(225,6,0,0.36)"
+              : "rgba(255,255,255,0.13)";
         ctx.fill();
         /* Seçili ülkenin çevresi kalın beyaz: hangi ülke olduğu kürenin
            uzağından da okunsun. */
@@ -224,7 +235,9 @@ export function AboutGlobe({
           ? "rgba(255,255,255,0.95)"
           : pazar
             ? "rgba(255,120,110,0.9)"
-            : "rgba(255,255,255,0.22)";
+            : ihracat
+              ? "rgba(255,120,110,0.45)"
+              : "rgba(255,255,255,0.22)";
         ctx.lineWidth = secildi ? 1.8 : 0.5;
         ctx.stroke();
       }

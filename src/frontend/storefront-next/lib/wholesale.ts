@@ -37,5 +37,5 @@ export const ORTAK_AVANTAJLARI: { baslik: string; metin: string }[] = [
   { baslik: "A direct contact", metin: "One person to talk to for stock, display and campaign questions." },
   { baslik: "Full range", metin: "Cologne, styling, skin and beard care, accessories — one supplier." },
   { baslik: "Own production", metin: "Manufactured in our own facilities to GMP standards." },
-  { baslik: "Since 1970", metin: "A barber brand with its own production, exporting to 54 countries." },
+  { baslik: "Since 1970", metin: "A barber brand with its own production, exporting to 62 countries." },
 ];
