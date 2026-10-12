@@ -2486,52 +2486,58 @@ body.rv-acik [data-revize] { cursor: auto; }
   cursor: pointer;
 }
 
-/* ── Hakkımızda: ülke etiketleri ──────────────────────────────────────── */
-/* 62 ülke alt alta liste olunca sol sütun kürenin birkaç katı uzunluğa
-   çıkıyordu. Akan etiketler hem sığıyor hem tek bakışta okunuyor. */
-.lx-ulkeler {
+/* ── Hakkımızda: ülkeler, kıta kıta ──────────────────────────────────── */
+/* 63 ülke kutu içinde yan yana dizilince karmaşık görünüyordu.
+   Kutu yok: kıta başlığı + ince ayraçlarla akan metin. */
+.lx-kitalar { display: grid; gap: 18px; }
+
+.lx-kita-baslik {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  /* Uzun listede kendi içinde kayma: sayfa aşağı doğru şişmesin */
-  max-height: 268px;
-  overflow-y: auto;
-  padding-right: 6px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-owners);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sg-red);
 }
-.lx-ulkeler::-webkit-scrollbar { width: 3px; }
-.lx-ulkeler::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.22); }
+.lx-kita-sayi {
+  font-family: var(--font-geist);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.35);
+}
+.lx-kita-baslik::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.lx-kita-ulkeler {
+  margin-top: 8px;
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.72);
+}
+.lx-kita-ayrac { margin: 0 7px; color: rgba(255, 255, 255, 0.25); }
 
 .lx-ulke {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  padding: 6px 10px;
-  font-size: 12px;
-  line-height: 1.1;
-  color: rgba(255, 255, 255, 0.72);
-  transition: background-color 220ms var(--lx-ease), border-color 220ms var(--lx-ease),
-    color 220ms var(--lx-ease);
+  border-bottom: 1px solid transparent;
+  color: inherit;
+  transition: color 200ms var(--lx-ease), border-color 200ms var(--lx-ease);
 }
 @media (hover: hover) {
-  .lx-ulke:hover { border-color: rgba(255, 255, 255, 0.5); color: #fff; }
+  /* Seçili olan hariç: imleç üstüne gelince seçili ülke beyaza dönüp
+     hangisinin seçili olduğu kayboluyordu (hover kuralı daha baskın). */
+  .lx-ulke:not(.lx-ulke--secili):hover {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.45);
+  }
 }
-.lx-ulke--secili {
-  background: var(--sg-red);
-  border-color: var(--sg-red);
-  color: #fff;
-}
-/* Rolü doğrulanmış pazarlar: küçük kırmızı nokta */
-.lx-ulke-nokta {
-  display: block;
-  height: 5px;
-  width: 5px;
-  background: var(--sg-red);
-}
-.lx-ulke--secili .lx-ulke-nokta { background: #fff; }
-.lx-ulke--pazar { border-color: rgba(255, 255, 255, 0.32); color: #fff; }
+.lx-ulke--secili { color: var(--sg-red); border-bottom-color: var(--sg-red); font-weight: 600; }
+/* Rolü doğrulanmış pazarlar beyaz: iç pazar, resmî distribütör… */
+.lx-ulke--pazar { color: #fff; }
+.lx-ulke--pazar.lx-ulke--secili { color: var(--sg-red); }

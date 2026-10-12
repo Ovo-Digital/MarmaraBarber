@@ -11,7 +11,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AboutGlobe } from "@/components/slick/about-globe";
-import { IHRACAT, IHRACAT_ULKELERI, MERKEZLER, PAZARLAR, type IhracatUlkesi } from "@/lib/about-presence";
+import { IHRACAT, IHRACAT_ULKELERI, MERKEZLER, PAZARLAR, kitayaGore, type IhracatUlkesi } from "@/lib/about-presence";
 import { LEGAL_PAGES } from "@/lib/legal-content";
 import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
 import { useT } from "@/lib/i18n/dil";
@@ -78,7 +78,12 @@ export function AboutPage() {
   /* İç pazar (Türkiye) ihracat listesinde yok; başa kendimiz koyuyoruz. */
   const icPazar = PAZARLAR.find((p) => p.not === "Home market");
   const ulkeler: IhracatUlkesi[] = icPazar
-    ? [{ kod: icPazar.kod, koordinat: icPazar.koordinat, ulke: t(icPazar.ulke) }, ...IHRACAT_ULKELERI]
+    ? [
+        /* Türkiye ihracat dosyasında yok; kıtası burada veriliyor.
+           Merkez İstanbul'da, Avrupa yakasında. */
+        { kod: icPazar.kod, koordinat: icPazar.koordinat, kita: "Avrupa", ulke: t(icPazar.ulke) },
+        ...IHRACAT_ULKELERI,
+      ]
     : IHRACAT_ULKELERI;
 
   const seciliAd =
@@ -206,25 +211,38 @@ export function AboutPage() {
             {/* İç pazar listede ilk sırada: başlık "Neredeyiz", ihracat dosyasında
                 Türkiye yok çünkü kendine ihracat yapılmıyor. Sayı satırı yine
                 ihracat sayısını veriyor, karışmasın diye "ihracat" yazıyor. */}
-            <ul className="lx-ulkeler mt-4">
-              {ulkeler.map((u) => {
-                const anahtar = u.kod ?? u.atlasAd ?? u.ulke;
-                const pazar = PAZARLAR.find((p) => p.kod === u.kod);
-                return (
-                  <li key={anahtar}>
-                    <button
-                      type="button"
-                      title={pazar ? t(pazar.not) : undefined}
-                      onClick={() => sec(anahtar, u.koordinat ?? pazar?.koordinat)}
-                      className={`lx-ulke ${secili === anahtar ? "lx-ulke--secili" : ""} ${pazar ? "lx-ulke--pazar" : ""}`}
-                    >
-                      {pazar ? <span className="lx-ulke-nokta" aria-hidden="true" /> : null}
-                      {u.ulke}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
+            {/* Kıta kıta gruplanmış, kutusuz metin. 63 ülke kutu içinde
+                yan yana dizilince göz yoruyordu; başlık + sakin metin hem
+                daha kısa hem taranabilir. Ülke adları yine tıklanabilir. */}
+            <div className="lx-kitalar mt-4">
+              {kitayaGore(ulkeler).map(([kita, liste]) => (
+                <section key={kita} className="lx-kita">
+                  <p className="lx-kita-baslik">
+                    {kita}
+                    <span className="lx-kita-sayi">{liste.length}</span>
+                  </p>
+                  <p className="lx-kita-ulkeler">
+                    {liste.map((u, i) => {
+                      const anahtar = u.kod ?? u.atlasAd ?? u.ulke;
+                      const pazar = PAZARLAR.find((p) => p.kod === u.kod);
+                      return (
+                        <span key={anahtar}>
+                          {i > 0 ? <span aria-hidden="true" className="lx-kita-ayrac">·</span> : null}
+                          <button
+                            type="button"
+                            title={pazar ? t(pazar.not) : undefined}
+                            onClick={() => sec(anahtar, u.koordinat ?? pazar?.koordinat)}
+                            className={`lx-ulke ${secili === anahtar ? "lx-ulke--secili" : ""} ${pazar ? "lx-ulke--pazar" : ""}`}
+                          >
+                            {u.ulke}
+                          </button>
+                        </span>
+                      );
+                    })}
+                  </p>
+                </section>
+              ))}
+            </div>
           </div>
 
           {/* Mobilde küre listenin üstünde: listeden seçince dönüşü görülsün */}
