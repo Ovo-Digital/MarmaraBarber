@@ -1,6 +1,7 @@
 import { RegisterPageClient } from "@/components/parfois/register-page";
 import { T } from "@/lib/i18n/dil";
 import { KoyuUst } from "@/components/slick/koyu-ust";
+import { UyelikSecim } from "@/components/slick/uyelik-secim";
 
 export default function RegisterPage() {
   return (
@@ -31,6 +32,13 @@ export default function RegisterPage() {
               <T k="Save your details, track orders, check out faster." />
             </p>
           </div>
+
+          {/* İki hesap türü en başta ayrılıyor: berber başvuru veriyor,
+              müşteri doğrudan hesap açıyor */}
+          <div className="mb-10">
+            <UyelikSecim aktif="musteri" />
+          </div>
+
           <RegisterPageClient />
         </div>
       </div>

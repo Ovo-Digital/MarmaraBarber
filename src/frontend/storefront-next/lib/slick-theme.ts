@@ -193,6 +193,7 @@ export const FOOTER_COLUMNS = [
       { label: "Collections", href: "/collections" },
       { label: "Find your formula", href: "/finder" },
       { label: "How to use", href: "/how-to-use" },
+      { label: "Barber programme", href: "/berber" },
       { label: "Partner", href: "/wholesale" },
       { label: "Ambassadors", href: "/ambassador" },
     ],

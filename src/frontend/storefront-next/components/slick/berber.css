@@ -1,0 +1,479 @@
+/* Berber programı — stand kurma bölümü, kademe kartları ve panel.
+   NEDEN AYRI DOSYA: globals.css zaten çok uzun; bu bölüm kendi içinde
+   kapalı duruyor ve bileşenle birlikte okunuyor. */
+
+/* ── Üç adım şeridi ─────────────────────────────────────────────────────── */
+.brb-adimlar {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.brb-adim {
+  display: block;
+  padding: 20px 22px 22px;
+  background: rgba(16, 14, 13, 0.82);
+  transition: background 0.35s ease;
+}
+.brb-adim-no {
+  display: block;
+  font-family: var(--font-owners);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.35s ease;
+}
+.brb-adim-baslik {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 17px;
+  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.35s ease;
+}
+.brb-adim-metin {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.4);
+}
+/* Sıradaki adım: kırmızı numara, beyaz başlık, hafif aydınlanan zemin */
+.brb-adim[data-aktif] { background: rgba(225, 6, 0, 0.1); }
+.brb-adim[data-aktif] .brb-adim-no { color: var(--sg-red); }
+.brb-adim[data-aktif] .brb-adim-baslik { color: #fff; }
+.brb-adim[data-aktif] .brb-adim-metin { color: rgba(255, 255, 255, 0.62); }
+/* Geçilmiş adım: numara yerine onay */
+.brb-adim[data-bitti] .brb-adim-baslik { color: rgba(255, 255, 255, 0.75); }
+.brb-adim[data-bitti] .brb-adim-no { color: var(--sg-red); }
+.brb-adim[data-bitti] .brb-adim-no::after { content: " ✓"; }
+
+/* ── Stand ──────────────────────────────────────────────────────────────── */
+.brb-stand {
+  position: relative;
+  /* Stand kolonun tamamını kaplamıyor: tezgâh üstü bir teşhir gibi dursun,
+     üç rafın tamamı ekrana sığsın */
+  max-width: 460px;
+  margin-inline: auto;
+  padding: 0 clamp(10px, 2vw, 22px) 26px;
+  border-left: 2px solid rgba(255, 255, 255, 0.16);
+  border-right: 2px solid rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+}
+/* Standın tepe plakası — mağazadaki başlık kartonu */
+.brb-stand-tepe {
+  margin: 0 calc(-1 * clamp(10px, 2vw, 22px));
+  padding: 14px 18px;
+  background: var(--sg-red);
+  text-align: center;
+}
+.brb-stand-tepe span {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(15px, 1.8vw, 22px);
+  color: #fff;
+}
+.brb-raf { position: relative; padding-top: clamp(10px, 1.4vw, 16px); }
+.brb-raf-yuvalar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1.4vw, 16px);
+  align-items: end;
+}
+/* Rafın tahtası: üstte ince ışık, altta gölge — üzerine bir şey konmuş gibi */
+.brb-raf-tahta {
+  display: block;
+  height: 10px;
+  margin: 0 calc(-1 * clamp(10px, 2vw, 22px));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0 2px, rgba(255, 255, 255, 0.09) 2px 100%);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.5);
+}
+.brb-stand-ayak {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 0;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.brb-yuva {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.brb-yuva-bos {
+  display: block;
+  width: 100%;
+  height: 72%;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+}
+/* Sıradaki boş yuva kırmızı ve nefes alıyor: ürün buraya gelecek */
+.brb-yuva[data-hedef] .brb-yuva-bos {
+  border-color: rgba(225, 6, 0, 0.6);
+  animation: brb-nefes 2.4s ease-in-out infinite;
+}
+@keyframes brb-nefes {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+.brb-yuva-dugme {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.brb-yuva-gorsel {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  /* Rafa oturmuş gibi: altına yere düşen gölge */
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.55));
+  animation: brb-otur 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes brb-otur {
+  from { transform: translateY(-10px) scale(1.06); }
+  to { transform: none; }
+}
+.brb-yuva-harf {
+  font-family: var(--font-owners-black);
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+/* Çıkarma düğmesi yalnızca imleç gelince */
+.brb-yuva-cikar {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sg-red);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.brb-yuva-dugme:hover .brb-yuva-cikar,
+.brb-yuva-dugme:focus-visible .brb-yuva-cikar {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Ürün listesi ───────────────────────────────────────────────────────── */
+.brb-oran {
+  font-family: var(--font-owners);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  background: var(--sg-red);
+  color: #fff;
+}
+.brb-liste {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-height: clamp(320px, 46vh, 520px);
+  overflow-y: auto;
+  /* Alt kenar yumuşuyor: listenin devamı olduğu anlaşılsın */
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 26px), transparent 100%);
+}
+.brb-urun {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 28px;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: rgba(16, 14, 13, 0.86);
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+.brb-urun:hover:not(:disabled) { background: rgba(225, 6, 0, 0.12); }
+.brb-urun:disabled { cursor: not-allowed; opacity: 0.45; }
+.brb-urun[data-standta] { background: rgba(225, 6, 0, 0.08); }
+.brb-urun-gorsel {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.05);
+}
+.brb-urun-gorsel img { width: 100%; height: 100%; object-fit: contain; }
+.brb-urun-orta { min-width: 0; }
+.brb-urun-ad {
+  display: block;
+  font-family: var(--font-owners);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.brb-urun-fiyat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 13px;
+}
+.brb-urun-fiyat b { color: var(--sg-red); font-weight: 600; }
+.brb-urun-fiyat s { color: rgba(255, 255, 255, 0.35); }
+.brb-urun-ok {
+  font-family: var(--font-owners);
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: right;
+}
+.brb-urun[data-standta] .brb-urun-ok { color: var(--sg-red); }
+
+/* ── Toplam kutusu ──────────────────────────────────────────────────────── */
+.brb-toplam {
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+.brb-toplam-etiket {
+  font-family: var(--font-owners);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.brb-toplam-sayi {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1;
+  color: #fff;
+}
+.brb-toplam-not {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Uçan kopya: ekranın üstünde, hiçbir şeyi tıklamıyor */
+.brb-ucus {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 70;
+  pointer-events: none;
+}
+.brb-ucus img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.6));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brb-yuva[data-hedef] .brb-yuva-bos { animation: none; opacity: 0.8; }
+  .brb-yuva-gorsel { animation: none; }
+}
+
+/* ── Kademe kartları ────────────────────────────────────────────────────── */
+.brb-kademeler {
+  display: grid;
+  gap: 1px;
+  background: rgba(20, 17, 15, 0.12);
+  border: 1px solid rgba(20, 17, 15, 0.12);
+}
+@media (min-width: 900px) {
+  .brb-kademeler { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.brb-kademe {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(26px, 3vw, 40px) clamp(22px, 2.4vw, 36px) clamp(26px, 3vw, 38px);
+  background: #fff;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+/* Öne çıkan kademe koyu: sayfanın ortasında duran karta göz kendiliğinden gider */
+.brb-kademe[data-one] {
+  background: var(--lx-ink);
+  color: #fff;
+}
+.brb-kademe-rozet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 7px 12px;
+  background: var(--sg-red);
+  color: #fff;
+  font-family: var(--font-owners);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.brb-kademe-ad {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(26px, 2.8vw, 38px);
+  line-height: 1;
+  color: var(--lx-ink);
+}
+.brb-kademe[data-one] .brb-kademe-ad { color: #fff; }
+/* Oranın kendisi başlıktan büyük: kararı veren sayı o */
+.brb-kademe-oran {
+  display: block;
+  margin-top: 18px;
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  font-size: clamp(54px, 6.5vw, 86px);
+  line-height: 0.9;
+  color: var(--sg-red);
+}
+.brb-kademe-oran small {
+  font-size: 0.42em;
+  letter-spacing: 0.04em;
+}
+.brb-kademe-ozet {
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(20, 17, 15, 0.62);
+}
+.brb-kademe[data-one] .brb-kademe-ozet { color: rgba(255, 255, 255, 0.65); }
+.brb-kademe-liste { margin: 26px 0 0; padding: 0; list-style: none; flex: 1; }
+.brb-kademe-liste li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 9px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  border-top: 1px solid rgba(20, 17, 15, 0.1);
+  color: var(--lx-ink);
+}
+.brb-kademe[data-one] .brb-kademe-liste li {
+  border-top-color: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.86);
+}
+.brb-kademe-tik {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 6px;
+  background: var(--sg-red);
+}
+.brb-kademe-esik {
+  margin-top: 22px;
+  font-family: var(--font-owners);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(20, 17, 15, 0.55);
+}
+.brb-kademe[data-one] .brb-kademe-esik { color: rgba(255, 255, 255, 0.55); }
+/* İçinde bulunulan kademe: panelde ve programda kırmızı çerçeveyle işaretli */
+.brb-kademe[data-benim] { outline: 2px solid var(--sg-red); outline-offset: -2px; }
+
+/* ── Sadakat puanı ──────────────────────────────────────────────────────── */
+.brb-puan-kart {
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+.brb-puan-sayi {
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  font-size: clamp(44px, 6vw, 82px);
+  line-height: 0.92;
+  color: #fff;
+}
+.brb-puan-sayi small {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-owners);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+/* İlerleme çubuğu — bir sonraki kademeye ne kadar kaldığı */
+.brb-cubuk {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+.brb-cubuk span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--sg-red);
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Üyelik yolu seçimi (müşteri / berber) ──────────────────────────────── */
+.brb-yol {
+  display: grid;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+@media (min-width: 560px) {
+  .brb-yol { grid-template-columns: 1fr 1fr; }
+}
+.brb-yol-kart {
+  position: relative;
+  display: block;
+  padding: 18px 20px 20px;
+  background: rgba(16, 14, 13, 0.6);
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+a.brb-yol-kart:hover { background: rgba(225, 6, 0, 0.14); }
+/* Bulunulan yol: kırmızı üst çizgi, tam beyaz başlık */
+.brb-yol-kart[data-secili] {
+  background: rgba(225, 6, 0, 0.12);
+  box-shadow: inset 0 2px 0 var(--sg-red);
+}
+.brb-yol-baslik {
+  display: block;
+  font-family: var(--font-owners-black);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.62);
+}
+.brb-yol-kart[data-secili] .brb-yol-baslik { color: #fff; }
+.brb-yol-metin {
+  display: block;
+  margin-top: 6px;
+  padding-right: 22px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.45);
+}
+.brb-yol-ok {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  color: var(--sg-red);
+}

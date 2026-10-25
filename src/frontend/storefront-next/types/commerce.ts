@@ -58,7 +58,11 @@ export interface Cart {
   checkoutUrl: string;
   lines: CartLine[];
   totalAmount: number;
+  /** İndirimler inmeden önceki ara toplam — kademe kazancını göstermek için */
+  subtotalAmount?: number;
   currencyCode: string;
+  /** Sepete uygulanan indirim kodları. `applicable` false ise Shopify kabul etmedi. */
+  discountCodes?: { code: string; applicable: boolean }[];
 }
 
 export interface ApiResponse<T> {

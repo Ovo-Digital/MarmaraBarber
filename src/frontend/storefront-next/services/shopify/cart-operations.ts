@@ -15,13 +15,19 @@ export const CART_LINE_FRAGMENT = `
 `;
 
 export function mapCart(cart: Record<string, unknown>): Cart {
-  const total = (cart.cost as { totalAmount: { amount: string; currencyCode: string } }).totalAmount;
+  const cost = cart.cost as {
+    totalAmount: { amount: string; currencyCode: string };
+    subtotalAmount?: { amount: string };
+  };
+  const total = cost.totalAmount;
   const lines = (cart.lines as { edges: { node: Record<string, unknown> }[] }).edges;
   return {
     id: cart.id as string,
     checkoutUrl: cart.checkoutUrl as string,
     totalAmount: parseFloat(total.amount),
+    subtotalAmount: cost.subtotalAmount ? parseFloat(cost.subtotalAmount.amount) : undefined,
     currencyCode: total.currencyCode,
+    discountCodes: (cart.discountCodes as { code: string; applicable: boolean }[] | undefined) ?? [],
     lines: lines.map(({ node }) => {
       const merch = node.merchandise as Record<string, unknown>;
       const price = merch.price as { amount: string };
@@ -43,7 +49,8 @@ export function mapCart(cart: Record<string, unknown>): Cart {
 
 const CART_FIELDS = `
   id checkoutUrl
-  cost { totalAmount { amount currencyCode } }
+  cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }
+  discountCodes { code applicable }
   lines(first: 50) { edges { node { ${CART_LINE_FRAGMENT} } } }
 `;
 
@@ -138,4 +145,57 @@ export async function cartAttachCustomer(
   );
   extractUserErrors(data.cartBuyerIdentityUpdate);
   return mapCart(data.cartBuyerIdentityUpdate.cart as Record<string, unknown>);
+}
+
+/**
+ * Sepetteki müşterinin berber kademesini okur ve o kademenin indirim kodunu
+ * sepete uygular.
+ *
+ * Etiket SUNUCUDA okunuyor: tarayıcıdan gelen "ben altın üyeyim" bilgisine
+ * güvenmiyoruz. Zaten kod Shopify'da müşteri segmentine kısıtlı olduğu için
+ * yanlış kod gönderilse de uygulanmaz; `applicable` alanı sonucu söylüyor.
+ *
+ * Berber değilse ve sepette kademe kodu kalmışsa (çıkış yapılmış olabilir)
+ * kod temizleniyor — yoksa indirim hesapta asılı kalırdı.
+ */
+export async function cartKademeIndirimi(
+  client: GraphQLClient,
+  cartId: string,
+  customerAccessToken?: string,
+): Promise<Cart | null> {
+  const { KADEMELER, kademeBul } = await import("@/lib/berber");
+
+  let etiketler: string[] = [];
+  if (customerAccessToken) {
+    const d = await client.request<{ customer: { tags?: string[] } | null }>(
+      `query($t:String!){ customer(customerAccessToken:$t){ tags } }`,
+      { t: customerAccessToken },
+    );
+    etiketler = d.customer?.tags ?? [];
+  }
+
+  const kademe = kademeBul({ tags: etiketler });
+  const tumKodlar = KADEMELER.map((k) => k.indirimKodu);
+
+  /* Sepette duran kodlara bak: değişiklik yoksa boşuna istek atma. */
+  const mevcut = await cartGet(client, cartId);
+  const duran = (mevcut?.discountCodes ?? []).map((d) => d.code);
+  const korunan = duran.filter((c) => !tumKodlar.includes(c));
+  const istenen = kademe ? [...korunan, kademe.indirimKodu] : korunan;
+
+  const ayni =
+    istenen.length === duran.length && istenen.every((c) => duran.includes(c));
+  if (ayni) return mevcut;
+
+  const data = await client.request<{ cartDiscountCodesUpdate: Record<string, unknown> }>(
+    `mutation($cartId:ID!,$codes:[String!]!){
+      cartDiscountCodesUpdate(cartId:$cartId,discountCodes:$codes){
+        cart { ${CART_FIELDS} }
+        userErrors { message field }
+      }
+    }`,
+    { cartId, codes: istenen },
+  );
+  extractUserErrors(data.cartDiscountCodesUpdate);
+  return mapCart(data.cartDiscountCodesUpdate.cart as Record<string, unknown>);
 }

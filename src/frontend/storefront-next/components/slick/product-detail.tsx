@@ -12,6 +12,7 @@ import {
 import { ProductCarousel } from "@/components/slick/product-carousel";
 import { SlickProductCard } from "@/components/slick/product-card";
 import { formatMoney } from "@/lib/money";
+import { BerberFiyat } from "@/components/slick/berber-fiyat";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useUiStore } from "@/store/ui-store";
 import { useT } from "@/lib/i18n/dil";
@@ -739,6 +740,9 @@ export function SlickProductDetail({
                 </span>
               ) : null}
             </div>
+
+            {/* Girişli berber kendi kademe fiyatını burada görüyor */}
+            <BerberFiyat fiyat={price} paraBirimi={product.currencyCode} />
 
 
             {/* Varyant seçiciler */}

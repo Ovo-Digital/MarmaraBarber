@@ -15,8 +15,9 @@ export const DEMO_MUSTERI: Customer = {
   firstName: "Demo",
   lastName: "User",
   phone: "555-000-00-00",
-  // Geliştirmede /wholesale ortak panelini görebilmek için
-  tags: ["wholesale-partner"],
+  /* Geliştirmede /wholesale ortak panelini ve /berber/panel kademe ekranını
+     görebilmek için. Üretimde bu müşteri hiç var olmuyor. */
+  tags: ["wholesale-partner", "berber-gumus"],
   addresses: [
     {
       id: "gid://demo/Address/1",
@@ -32,13 +33,33 @@ export const DEMO_MUSTERI: Customer = {
     },
   ],
   orders: [
+    /* Kademe ilerlemesi ekranda bir şey göstersin diye iki büyük sipariş:
+       son 12 ayın toplamı Gümüş eşiğini geçiyor, Altın'a yol görünüyor. */
+    {
+      orderNumber: 1008,
+      processedAt: "2026-03-14T09:00:00Z",
+      financialStatus: "PAID",
+      fulfillmentStatus: "FULFILLED",
+      totalPrice: 9800,
+      currencyCode: "TRY",
+      statusUrl: "#",
+    },
+    {
+      orderNumber: 1026,
+      processedAt: "2026-06-19T11:30:00Z",
+      financialStatus: "PAID",
+      fulfillmentStatus: "FULFILLED",
+      totalPrice: 16400,
+      currencyCode: "TRY",
+      statusUrl: "#",
+    },
     {
       orderNumber: 1042,
       processedAt: "2026-08-21T10:24:00Z",
       financialStatus: "PAID",
       fulfillmentStatus: "FULFILLED",
       totalPrice: 84.5,
-      currencyCode: "USD",
+      currencyCode: "TRY",
       statusUrl: "#",
     },
     {
@@ -47,7 +68,7 @@ export const DEMO_MUSTERI: Customer = {
       financialStatus: "PAID",
       fulfillmentStatus: "UNFULFILLED",
       totalPrice: 129,
-      currencyCode: "USD",
+      currencyCode: "TRY",
       statusUrl: "#",
     },
   ],

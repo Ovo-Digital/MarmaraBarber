@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { formatMoney } from "@/lib/money";
+import { BerberSepetNotu } from "@/components/slick/berber-sepet-notu";
 import { PageHero } from "@/components/slick/page-hero";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useT } from "@/lib/i18n/dil";
@@ -120,9 +121,12 @@ export default function CartPage() {
 
         {/* Total + Checkout — sağa hizalı (Slick) */}
         <div className="mt-10 flex flex-col items-end gap-5">
+          {/* Berber kademesi indirimi — toplamın hemen üstünde */}
+          <div className="w-full max-w-[320px] pt-5" style={{ borderTop: "1px solid rgba(20,17,15,0.15)" }}>
+            <BerberSepetNotu />
+          </div>
           <div
-            className="flex w-full max-w-[320px] items-baseline justify-between pt-5"
-            style={{ borderTop: "1px solid rgba(20,17,15,0.15)" }}
+            className="flex w-full max-w-[320px] items-baseline justify-between"
           >
             <span className="text-[11px] uppercase tracking-[0.14em]" style={{ color: "rgba(20,17,15,0.55)" }}>
               {t("Total")}

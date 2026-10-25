@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { formatMoney } from "@/lib/money";
+import { BerberSepetNotu } from "@/components/slick/berber-sepet-notu";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useT } from "@/lib/i18n/dil";
 
@@ -201,9 +202,12 @@ export function CartDrawer({
               </ul>
 
               <div className="px-5 pb-5 sm:px-7 sm:pb-6">
+                {/* Berber kademesi indirimi — Shopify'ın sepete indirdiği tutar */}
+                <div className="pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.22)" }}>
+                  <BerberSepetNotu koyu />
+                </div>
                 <div
-                  className="flex flex-wrap items-end justify-between gap-4 pt-4"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.22)" }}
+                  className="flex flex-wrap items-end justify-between gap-4"
                 >
                   <span className="text-[11px] uppercase tracking-[0.16em]" style={{ color: "rgba(255,255,255,0.6)" }}>
                     {t("Subtotal")} • {adet === 1 ? t("1 item") : t("{n} items", { n: adet })}
