@@ -70,7 +70,6 @@ export const MAIN_NAV: NavItem[] = [
     ],
   },
   { label: "BUNDLE & SAVE", href: "/collections/paketler" },
-  { label: "AMBASSADOR", href: "/ambassador" },
   { label: "PARTNER", href: "/wholesale" },
   { label: "ABOUT", href: "/hakkimizda" },
   { label: "CONTACT", href: "/iletisim" },
@@ -192,7 +191,6 @@ export const FOOTER_COLUMNS = [
       { label: "Collections", href: "/collections" },
       { label: "Find your formula", href: "/finder" },
       { label: "Partner", href: "/wholesale" },
-      { label: "Ambassadors", href: "/ambassador" },
     ],
   },
   {
