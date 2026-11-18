@@ -96,8 +96,6 @@ export default async function HomePage() {
           "How every product is used, straight from the chair.",
           "Technique, routines and the barbers behind them.",
         ]}
-        ctaLabel="Explore"
-        ctaHref="/how-to-use"
       />
 
       {/* Beyaz — iki koyu bölümün arasında ürün şeridi */}
