@@ -3,6 +3,7 @@ import {
   HeroBanner,
 } from "@/components/slick/home-sections";
 import { HeroSlider } from "@/components/slick/hero-slider";
+import { PromoBanner } from "@/components/slick/promo-banner";
 import { ProductRoller } from "@/components/slick/product-roller";
 import { FinderBanner } from "@/components/slick/finder-banner";
 import { NewsletterBand } from "@/components/slick/newsletter-band";
@@ -85,6 +86,19 @@ export default async function HomePage() {
 
       {/* Beyaz — koyu hero'dan sonra sayfa nefes alsın */}
       <EssentialsSection products={essentials} />
+
+      {/* İçerik bandı — satışa değil, kılavuzlara ve topluluğa götürüyor */}
+      <PromoBanner
+        image="/media/learn-the-craft.jpg"
+        eyebrow="Guides & community"
+        headline="Learn the craft."
+        subline={[
+          "How every product is used, straight from the chair.",
+          "Technique, routines and the barbers behind them.",
+        ]}
+        ctaLabel="Explore"
+        ctaHref="/how-to-use"
+      />
 
       {/* Beyaz — iki koyu bölümün arasında ürün şeridi */}
       <div className="bg-white">
