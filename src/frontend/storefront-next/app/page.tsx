@@ -86,12 +86,6 @@ export default async function HomePage() {
       {/* Beyaz — koyu hero'dan sonra sayfa nefes alsın */}
       <EssentialsSection products={essentials} />
 
-      {/* Koyu bölüm iki beyaz ürün şeridinin arasına alındı. Eskiden burada
-          kılavuz bandı vardı; o kaldırılınca iki beyaz şerit üst üste bindi ve
-          aralarında ölü bir boşluk kaldı. Yeni içerik uydurmak yerine mevcut
-          koyu bölüm yukarı taşındı. */}
-      <FinderBanner />
-
       {/* Beyaz — iki koyu bölümün arasında ürün şeridi */}
       <div className="bg-white">
         <ProductCarousel title="New in" eyebrow="Just landed" products={newArrivals} />
@@ -105,6 +99,7 @@ export default async function HomePage() {
       />
 
       <MarqueeBand />
+      <FinderBanner />
 
       {/* Video şeridi — videolar public/media/ altına konup HOME_REEL_MEDIA'ya
           yazılınca kendiliğinden devreye giriyor; o zamana kadar ürün görselleri */}
