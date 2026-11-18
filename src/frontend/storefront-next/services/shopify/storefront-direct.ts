@@ -759,9 +759,13 @@ export async function storefrontGetCollectionIndex(limit = 14): Promise<Collecti
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   Kullanım kılavuzu — /how-to-use sayfası
+   Kullanım kılavuzu verisi.
    Açıklamasında "nasıl kullanılır" bölümü OLAN ürünler. Metin uydurulmuyor;
    bölümü olmayan ürün listelenmiyor.
+
+   NOT (2026-11-19): /how-to-use sayfası kaldırıldı, bu fonksiyonu çağıran
+   kimse yok. Ürün sayfasında kullanım bölümü istenirse hazır duruyor;
+   istenmezse lib/urun-metni.ts ile birlikte silinebilir.
    ────────────────────────────────────────────────────────────────────────── */
 export type KullanimKarti = {
   handle: string;
