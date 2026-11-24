@@ -23,7 +23,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { ApplicationForm } from "@/components/slick/application-form";
-import { QuickMeeting } from "@/components/slick/quick-meeting";
+import { GorusmeTakvimi } from "@/components/slick/gorusme-takvim";
 import { LxEtiket, LxHata, lxAlanKoyu } from "@/components/slick/auth-form";
 import { DEMO_MUSTERI, demoGirisi } from "@/lib/demo-customer";
 import { useT } from "@/lib/i18n/dil";
@@ -34,7 +34,7 @@ import { apiLogin } from "@/services/api/storefront-api";
 import { useAuthStore } from "@/store/auth-store";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 
-type Sekme = "giris" | "basvuru";
+type Sekme = "giris" | "basvuru" | "gorusme";
 
 export function WholesalePage() {
   // Sayfanın üstü koyu: başlık şeffaf durup bandın üzerinde yüzsün
@@ -227,7 +227,11 @@ export function WholesalePage() {
                 <div className="mb-8 text-center">
                   <p className="lx-eyebrow mb-2">{t("Partner portal")}</p>
                   <h2 className="lx-title" style={{ color: "#fff" }}>
-                    {sekme === "giris" ? t("Partner sign in") : t("Become a partner")}
+                    {sekme === "giris"
+                      ? t("Partner sign in")
+                      : sekme === "gorusme"
+                        ? t("Book a meeting")
+                        : t("Become a partner")}
                   </h2>
                   {sekme === "basvuru" && program ? (
                     <p className="mt-3 text-[14px]" style={{ color: "rgba(255,255,255,0.6)" }}>
@@ -250,6 +254,9 @@ export function WholesalePage() {
                     [
                       ["basvuru", t("Apply")],
                       ["giris", t("Partner sign in")],
+                      /* Volkan 25 Kas: toplantı da portalın içinde, girişin
+                         yanında bir sekme olsun. */
+                      ["gorusme", t("Book a meeting")],
                     ] as [Sekme, string][]
                   )
                     .filter(([id]) => !(musteri && id === "giris"))
@@ -263,7 +270,9 @@ export function WholesalePage() {
                 {/* Form beyaz kutuda değil, zeminin üstünde duran cam panelde:
                     kırmızı ışıma panelin arkasından geçiyor */}
                 <div className="lx-cam-panel p-6 sm:p-10">
-                  {sekme === "giris" && !musteri ? (
+                  {sekme === "gorusme" ? (
+                    <GorusmeTakvimi />
+                  ) : sekme === "giris" && !musteri ? (
                     <OrtakGirisi onBasvur={() => setSekme("basvuru")} />
                   ) : (
                     <ApplicationForm type="wholesale" program={program ?? undefined} koyu />
@@ -276,10 +285,6 @@ export function WholesalePage() {
         </div>
       </section>
 
-      {/* ── 4. Hızlı görüşme ──────────────────────────────────────────
-          Formu doldurmaya hazır olmayan kişi burada sadece numarasını
-          bırakıyor. Girişli ortağa gösterilmiyor: onun zaten hattı var. */}
-      {hydrated && musteri && ortak ? null : <QuickMeeting />}
     </>
   );
 }

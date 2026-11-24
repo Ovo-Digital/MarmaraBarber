@@ -2770,3 +2770,199 @@ body.rv-acik [data-revize] { cursor: auto; }
     transform: translateY(-4px) scale(1.04);
   }
 }
+
+/* ── Görüşme takvimi ─────────────────────────────────────────────────
+   Ölçüler KANAR sunumundan: 44px hücre, 6px aralık, 12px yarıçap;
+   yuvarlak oklar .kp-nav'dan (44×44, hover'da açık zemin); saat hapları
+   .amb-scents / .ed-tabs hap ölçüsünden. Katmansız — Tailwind ezmesin. */
+
+/* Adım çubuğu */
+.lx-tk-adimlar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+}
+.lx-tk-adim {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid transparent;
+  background: none;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  font-family: var(--font-owners);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 300ms ease, border-color 300ms ease;
+}
+.lx-tk-adim[data-durum="aktif"] {
+  color: #fff;
+  border-bottom-color: var(--sg-red);
+}
+.lx-tk-adim[data-durum="bitti"] {
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+.lx-tk-adim[data-durum="bitti"]:hover {
+  color: #fff;
+}
+
+/* Panel geçişi: giden sola, gelen sağdan */
+.lx-tk-panel {
+  animation: lxTkGir 550ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1)) 80ms both;
+}
+@keyframes lxTkGir {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lx-tk-panel {
+    animation-duration: 150ms;
+    animation-delay: 0ms;
+  }
+  @keyframes lxTkGir {
+    from { opacity: 0; transform: none; }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+/* Seçim özeti hapı */
+.lx-tk-ozet {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-owners);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  transition: border-color 300ms ease, transform 300ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1));
+}
+.lx-tk-ozet:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Yuvarlak ay okları */
+.lx-takvim-ok {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #fff;
+  transition: background 300ms ease, color 300ms ease, border-color 300ms ease;
+}
+.lx-takvim-ok:hover:not(:disabled) {
+  background: #f2efe8;
+  border-color: #f2efe8;
+  color: #121212;
+}
+.lx-takvim-ok:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Gün hücresi */
+.lx-takvim-gun {
+  position: relative;
+  aspect-ratio: 1;
+  min-height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-geist);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  transition: border-color 300ms ease, background 300ms ease;
+}
+.lx-takvim-gun:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.lx-takvim-gun:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+.lx-takvim-gun[data-secili="e"] {
+  background: var(--sg-red);
+  border-color: var(--sg-red);
+  font-weight: 700;
+}
+/* Bugünün işareti: hücrenin altında 4px nokta */
+.lx-takvim-gun[data-bugun="e"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--sg-red);
+  transform: translateX(-50%);
+}
+.lx-takvim-gun[data-bugun="e"][data-secili="e"]::after {
+  background: #fff;
+}
+
+/* Saat hapı */
+.lx-takvim-saat {
+  height: 48px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-geist);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  transition: color 300ms ease, border-color 300ms ease, background 300ms ease,
+    transform 300ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1));
+}
+.lx-takvim-saat:hover:not(:disabled) {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+.lx-takvim-saat[data-secili="e"] {
+  background: var(--sg-red);
+  border-color: var(--sg-red);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Takvim formundaki alanlar */
+.lx-tk-alan {
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #1a1a1a;
+  color: #fff;
+  font-family: var(--font-geist);
+  font-size: 15px;
+  padding: 0 16px;
+  width: 100%;
+  transition: border-color 250ms ease;
+}
+.lx-tk-alan:focus {
+  outline: none;
+  border-color: var(--sg-red);
+}

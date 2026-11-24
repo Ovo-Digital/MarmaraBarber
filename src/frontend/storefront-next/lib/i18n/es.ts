@@ -860,4 +860,19 @@ export const ES: Record<string, string> = {
   "Sound on": "Activar sonido",
   "Mute": "Silenciar",
   "Production facilities": "Plantas de producción",
+
+  // ── Görüşme takvimi ────────────────────────────────────────────────
+  "Book a meeting": "Reservar una reunión",
+  "Time": "Hora",
+  "Pick a day": "Elige un día",
+  "Pick a time": "Elige una hora",
+  "Who are we calling?": "¿A quién llamamos?",
+  "Previous month": "Mes anterior",
+  "Next month": "Mes siguiente",
+  "Weekdays only. Pick a day at least a day ahead.": "Solo días laborables. Elige un día con al menos un día de antelación.",
+  "Times are Türkiye time (GMT+3).": "Horario de Türkiye (GMT+3).",
+  "Request this slot": "Solicitar esta hora",
+  "This is a request, not a confirmed booking — we'll come back to you to lock it in.": "Es una solicitud, no una reserva confirmada — te contactaremos para cerrarla.",
+  "Request received.": "Hemos recibido tu solicitud.",
+  "We'll confirm {date} at {time} by phone — if it doesn't work we'll suggest another slot.": "Te confirmaremos el {date} a las {time} por teléfono — si no te viene bien, te propondremos otra hora.",
 };

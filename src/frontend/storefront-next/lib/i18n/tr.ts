@@ -879,4 +879,19 @@ export const TR: Record<string, string> = {
   "Sound on": "Sesi aç",
   "Mute": "Sesi kapat",
   "Production facilities": "Üretim tesisi",
+
+  // ── Görüşme takvimi ────────────────────────────────────────────────
+  "Book a meeting": "Toplantı ayarla",
+  "Time": "Saat",
+  "Pick a day": "Gün seç",
+  "Pick a time": "Saat seç",
+  "Who are we calling?": "Kimi arayalım?",
+  "Previous month": "Önceki ay",
+  "Next month": "Sonraki ay",
+  "Weekdays only. Pick a day at least a day ahead.": "Sadece hafta içi. En erken yarından itibaren seçebilirsin.",
+  "Times are Türkiye time (GMT+3).": "Saatler Türkiye saatine göre (GMT+3).",
+  "Request this slot": "Bu saati talep et",
+  "This is a request, not a confirmed booking — we'll come back to you to lock it in.": "Bu bir taleptir, kesinleşmiş randevu değil — teyit için size döneceğiz.",
+  "Request received.": "Talebin bize ulaştı.",
+  "We'll confirm {date} at {time} by phone — if it doesn't work we'll suggest another slot.": "{date} {time} için telefonla teyit edeceğiz — uymazsa başka bir saat önereceğiz.",
 };

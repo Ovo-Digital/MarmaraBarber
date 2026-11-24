@@ -298,3 +298,25 @@ export const FINDER_ALANLAR: FinderAlan[] = [
     ],
   },
 ];
+
+/**
+ * Hızlı görüşme takvimi.
+ *
+ * Mağazanın görüşme saatleri burada; takvimde gün ve saat buradan üretiliyor.
+ * Kodun içine tarih ya da saat yazılmıyor — ABD distribütörü devraldığında
+ * kendi saatlerini bu dosyadan değiştiriyor.
+ *
+ * Takvim gerçek bir randevu sistemine BAĞLI DEĞİL: seçilen gün/saat talep
+ * olarak düşüyor, kesinleşmesi için geri dönüş yapılıyor. Ekranda da böyle
+ * yazıyor — "randevunuz onaylandı" denmiyor.
+ */
+export const GORUSME_AYARLARI = {
+  /** Görüşme yapılan günler. 0 Pazar … 6 Cumartesi */
+  gunler: [1, 2, 3, 4, 5],
+  /** Seçilebilen saatler (mağazanın yerel saati) */
+  saatler: ["10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"],
+  /** Bugünden kaç gün ileriye kadar seçilebilir */
+  ileriGun: 30,
+  /** En erken kaç saat sonrasına randevu istenebilir */
+  enErkenSaat: 24,
+};
