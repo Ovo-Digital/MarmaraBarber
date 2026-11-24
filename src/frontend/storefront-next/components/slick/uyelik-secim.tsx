@@ -21,9 +21,16 @@ export function UyelikSecim({
   aktif,
   /** Giriş sayfasında mı — başlıklar "giriş yap" diye değişiyor */
   giris = false,
+  /**
+   * Verilirse kartlar bağlantı değil düğme olur ve seçim AYNI SAYFADA
+   * yapılır. Üye ol ekranında böyle: berberi uzun tanıtım sayfasına
+   * atmak yerine formu yerinde değiştiriyoruz.
+   */
+  onSec,
 }: {
   aktif: "musteri" | "berber";
   giris?: boolean;
+  onSec?: (yol: "musteri" | "berber") => void;
 }) {
   const t = useT();
 
@@ -48,20 +55,41 @@ export function UyelikSecim({
 
   return (
     <div className="brb-yol" role="group" aria-label={t("Account type")}>
-      {yollar.map((y) =>
-        y.kod === aktif ? (
-          <span key={y.kod} className="brb-yol-kart" data-secili="" aria-current="page">
+      {yollar.map((y) => {
+        const secili = y.kod === aktif;
+        const ic = (
+          <>
             <span className="brb-yol-baslik">{y.baslik}</span>
             <span className="brb-yol-metin">{y.metin}</span>
+            {secili ? null : <span aria-hidden="true" className="brb-yol-ok">→</span>}
+          </>
+        );
+
+        if (onSec) {
+          return (
+            <button
+              key={y.kod}
+              type="button"
+              onClick={() => onSec(y.kod)}
+              className="brb-yol-kart"
+              data-secili={secili ? "" : undefined}
+              aria-pressed={secili}
+            >
+              {ic}
+            </button>
+          );
+        }
+
+        return secili ? (
+          <span key={y.kod} className="brb-yol-kart" data-secili="" aria-current="page">
+            {ic}
           </span>
         ) : (
           <Link key={y.kod} href={y.href} className="brb-yol-kart">
-            <span className="brb-yol-baslik">{y.baslik}</span>
-            <span className="brb-yol-metin">{y.metin}</span>
-            <span aria-hidden="true" className="brb-yol-ok">→</span>
+            {ic}
           </Link>
-        ),
-      )}
+        );
+      })}
     </div>
   );
 }

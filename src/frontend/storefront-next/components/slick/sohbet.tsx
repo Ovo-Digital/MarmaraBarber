@@ -56,18 +56,11 @@ const KONULAR: Konu[] = [
     baglantilar: [{ etiket: "Returns & exchanges", href: "/iade-ve-degisim" }],
   },
   {
-    id: "kullanim",
-    dugme: "How to use a product",
-    kelimeler: /nasıl kullan|kullanım|nasıl sürül|uygulan|how (do i|to) use|apply|instructions/i,
-    cevap: "Every product's instructions are collected on one page, grouped by type.",
-    baglantilar: [{ etiket: "How to use", href: "/how-to-use" }],
-  },
-  {
     id: "toptan",
     dugme: "Wholesale & pros",
     kelimeler: /toptan|bayi|distribütör|berber kayd|profesyonel|wholesale|distribut|bulk|trade|stockist/i,
     cevap: "Shops and distributors can apply for wholesale; barbers can register for trade access.",
-    baglantilar: [{ etiket: "Wholesale", href: "/wholesale" }, { etiket: "Ambassadors", href: "/ambassador" }],
+    baglantilar: [{ etiket: "Partner", href: "/wholesale" }],
   },
   {
     id: "insan",

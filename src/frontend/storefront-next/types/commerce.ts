@@ -16,6 +16,8 @@ export interface Product {
   currencyCode: string;
   availableForSale: boolean;
   productType?: string;
+  /** Shopify ürün etiketleri — vegan gibi rozetler buradan geliyor */
+  tags?: string[];
   options?: ProductOption[];
   variants: ProductVariant[];
   rating?: number;

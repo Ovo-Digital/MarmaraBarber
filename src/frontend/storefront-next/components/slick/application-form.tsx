@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useT } from "@/lib/i18n/dil";
 import { LxEtiket, LxHata, lxAlan, lxAlanKoyu, lxAlanStil } from "@/components/slick/auth-form";
+import "@/components/slick/berber.css";
 
 /**
  * Berber ve toptan başvuru formu.
@@ -84,9 +85,33 @@ export function ApplicationForm({
   const alanlar = ALANLAR[type];
   const yaz = (ad: string, deger: string) => setVeri((v) => ({ ...v, [ad]: deger }));
 
+  /* İş ortağı başvurusunda tek bir şey isteniyor: vergi kimlik numarası.
+     Belge yükletmiyoruz, kod sormuyoruz — VKN işletmenin kayıtlı olduğunu
+     göstermeye yetiyor, elimizde kimlik taşıyan belge arşivi birikmiyor. */
+  const dogrulamaIster = type === "barber" || type === "wholesale";
+
   async function gonder(e: React.FormEvent) {
     e.preventDefault();
     if (durum === "gonderiliyor") return;
+
+    /* VKN asıl kanıt; eksik ya da hatalıysa göndermiyoruz ki panele
+       sorgulanamayacak bir başvuru düşmesin. Türkiye'de vergi kimlik
+       numarası 10 hane; şahıs işletmelerinde TC kimlik numarası (11 hane)
+       vergi numarası yerine geçiyor, ikisi de kabul ediliyor. */
+    if (dogrulamaIster) {
+      const vkn = (veri.taxNumber ?? "").replace(/\D/g, "");
+      if (!vkn) {
+        setHata(t("Please enter your tax number."));
+        setDurum("hata");
+        return;
+      }
+      if (vkn.length !== 10 && vkn.length !== 11) {
+        setHata(t("A tax number is 10 digits; a personal ID number is 11."));
+        setDurum("hata");
+        return;
+      }
+    }
+
     setDurum("gonderiliyor");
     setHata("");
     try {
@@ -130,14 +155,61 @@ export function ApplicationForm({
           className="mx-auto mt-4 max-w-[46ch] text-[14px]"
           style={{ color: koyu ? "rgba(255,255,255,0.65)" : "rgba(20,17,15,0.6)" }}
         >
-          {t("We review applications in the order they arrive and reply by email.")}
+          {dogrulamaIster
+            ? t("We check your code against the official record and come back the same business day.")
+            : t("We review applications in the order they arrive and reply by email.")}
         </p>
+        {dogrulamaIster ? (
+          <p
+            className="mx-auto mt-6 max-w-[46ch] text-[13px]"
+            style={{ color: koyu ? "rgba(255,255,255,0.5)" : "rgba(20,17,15,0.5)" }}
+          >
+            {t("Until it is approved your account stays on retail pricing.")}
+          </p>
+        ) : null}
       </div>
     );
   }
 
   return (
     <form onSubmit={gonder} className="mx-auto w-full max-w-[640px]">
+      {dogrulamaIster ? (
+        <fieldset className="brb-dog mb-10 border-0 p-0" data-koyu={koyu ? "" : undefined}>
+          <legend className="brb-dog-baslik">{t("Verify your business")}</legend>
+          <p className="brb-dog-giris">
+            {t(
+              "Partner pricing is for registered businesses, so we ask for your tax number and check it against the official record.",
+            )}
+          </p>
+
+          <div className="mt-7">
+            <LxEtiket htmlFor="taxNumber" zorunlu koyu={koyu}>
+              {t("Tax number")}
+            </LxEtiket>
+            <input
+              id="taxNumber"
+              inputMode="numeric"
+              autoComplete="off"
+              maxLength={11}
+              placeholder="1234567890"
+              value={veri.taxNumber ?? ""}
+              onChange={(e) => yaz("taxNumber", e.target.value.replace(/\D/g, ""))}
+              className={alanSinifi}
+              style={alanStili}
+            />
+            <p className="brb-dog-nerede">
+              {t("10 digits. Sole traders can use their personal ID number instead.")}
+            </p>
+          </div>
+
+          <p className="brb-dog-kvkk">
+            {t(
+              "We check this number against the official record and keep only the result — no documents are uploaded or stored.",
+            )}
+          </p>
+        </fieldset>
+      ) : null}
+
       <div className="grid gap-6 sm:grid-cols-2">
         {alanlar.map((a) => (
           <div key={a.ad} className={a.genis ? "sm:col-span-2" : ""}>

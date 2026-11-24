@@ -2,8 +2,34 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { FOOTER_COLUMNS, SITE_NAME } from "@/lib/slick-theme";
+import { FOOTER_COLUMNS, FOOTER_NEWSLETTER, SITE_NAME } from "@/lib/slick-theme";
 import { DilSecici, useT } from "@/lib/i18n/dil";
+import { OvoImza } from "@/components/slick/ovo-imza";
+import { NewsletterBand } from "@/components/slick/newsletter-band";
+
+/* Ölçüler slickgorilla.co.uk alt bilgisinden gerçek tarayıcıda okundu
+   (hesaplanmış stil, 2026-11-24): başlık Owners 28/36.4 w800 kırmızı,
+   bağlantı Owners 15/19.5 w500 beyaz, telif Geist 13/16.9 w400 beyaz. */
+
+/** Alt bilgi sütun başlığı */
+const BASLIK_STILI: React.CSSProperties = {
+  fontFamily: "var(--font-owners)",
+  fontWeight: 800,
+  fontSize: "28px",
+  lineHeight: "36.4px",
+  letterSpacing: "normal",
+  color: "var(--sg-red)",
+};
+
+/** Alt bilgi bağlantısı */
+const BAGLANTI_STILI: React.CSSProperties = {
+  fontFamily: "var(--font-owners)",
+  fontWeight: 500,
+  fontSize: "15px",
+  lineHeight: "19.5px",
+  letterSpacing: "normal",
+  color: "#ffffff",
+};
 
 const SOCIAL = [
   { label: "Instagram", href: "https://www.instagram.com/marmarabarber/", icon: InstagramIcon },
@@ -22,11 +48,13 @@ function FooterSutun({ baslik, children }: { baslik: string; children: React.Rea
     <div className="border-b border-white/12 py-4 sm:border-0 sm:py-0">
       <button
         type="button"
-        className="flex w-full items-center justify-between sm:pointer-events-none sm:mb-5 sm:block"
+        className="flex w-full items-center justify-between sm:pointer-events-none sm:mb-[13px] sm:block"
         aria-expanded={acik}
         onClick={() => setAcik((a) => !a)}
       >
-        <h3 className="sg-nav-bold text-[14px] text-[var(--sg-red)]">{baslik}</h3>
+        <h3 className="uppercase" style={BASLIK_STILI}>
+          {baslik}
+        </h3>
         <span aria-hidden="true" className="text-lg leading-none text-white/60 sm:hidden">
           {acik ? "−" : "+"}
         </span>
@@ -36,7 +64,7 @@ function FooterSutun({ baslik, children }: { baslik: string; children: React.Rea
         style={{ gridTemplateRows: acik ? "1fr" : "0fr" }}
       >
         <div className="overflow-hidden">
-          <ul className="space-y-3 pt-4 sm:pt-0">{children}</ul>
+          <ul className="space-y-2 pt-4 sm:pt-0">{children}</ul>
         </div>
       </div>
     </div>
@@ -58,7 +86,7 @@ export function SlickFooter() {
             <FooterSutun key={col.title} baslik={t(col.title)}>
               {col.links.map((link) => (
                 <li key={link.href + link.label}>
-                  <Link href={link.href} className="text-[15px] text-white/85 hover:text-white">
+                  <Link href={link.href} className="hover:opacity-70" style={BAGLANTI_STILI}>
                     {t(link.label)}
                   </Link>
                 </li>
@@ -69,9 +97,16 @@ export function SlickFooter() {
 
         <div className="hidden bg-white/25 lg:block" aria-hidden />
 
+        {/* Sağ sütun: bülten kaydı + sosyal hesaplar — Slick Gorilla'daki düzen. */}
         <div className="lg:pl-12">
-          <h3 className="sg-nav-bold text-[14px] text-[var(--sg-red)]">{t("FOLLOW")}</h3>
-          <div className="mt-5 flex flex-wrap items-center gap-6">
+          <NewsletterBand
+            varyant="footer"
+            title={FOOTER_NEWSLETTER.title}
+            body={FOOTER_NEWSLETTER.body}
+            placeholder="Your email"
+            ctaLabel="Subscribe"
+          />
+          <div className="mt-8 flex flex-wrap items-center gap-7">
             {SOCIAL.map((s) => (
               <a
                 key={s.label}
@@ -88,25 +123,28 @@ export function SlickFooter() {
         </div>
       </div>
 
-      {/* Alt: ortada marka işareti, altında copyright / dil */}
-      <div className="sg-container pb-7 pt-2">
+      {/* Alt: ortada marka işareti, altında copyright / dil / Ovo imzası.
+          md altında alt boşluk geniş: sağ alttaki sabit sohbet düğmesi
+          (16px + 56px) dar ekranda imzanın üstüne biniyordu. */}
+      <div className="sg-container pb-24 pt-2 md:pb-7">
         <div className="flex flex-col items-center gap-4">
-          {/* İşaretin üzerine gelince kırmızı bir parıltı yayılıyor */}
-          <Link href="/" aria-label={SITE_NAME} className="lx-parilti inline-block w-fit">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/brand/marmara-logo.png"
-              alt={SITE_NAME}
-              draggable={false}
-              className="h-auto w-[120px] select-none sm:w-[150px]"
-            />
-          </Link>
-
+          {/* Ovo Digital imzası telif satırında. Sağ alt köşede sohbet düğmesi
+              sabit durduğu için köşeye değil, ortalanmış bu satıra kondu.
+              Mobilde satır alt alta dizildiği için imza en alta iner. */}
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
-            <p className="text-[12.5px] text-white/60">
+            <p
+              style={{
+                fontFamily: "var(--font-geist)",
+                fontWeight: 400,
+                fontSize: "13px",
+                lineHeight: "16.9px",
+                color: "#ffffff",
+              }}
+            >
               Copyright © {new Date().getFullYear()} {SITE_NAME}
             </p>
             <DilSecici koyu />
+            <OvoImza />
           </div>
         </div>
       </div>

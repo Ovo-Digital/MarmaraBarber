@@ -477,3 +477,221 @@ a.brb-yol-kart:hover { background: rgba(225, 6, 0, 0.14); }
   bottom: 18px;
   color: var(--sg-red);
 }
+
+/* ─── Doğrulama bloğu (başvuru formu) ─────────────────────────────────────
+   Üç yol kart olarak duruyor, seçilen kart kırmızı kenarla belli oluyor.
+   Radyo düğmesi görsel olarak gizli ama klavye ve ekran okuyucu için
+   yerinde — kartın tamamı etiket olduğu için tıklama her yerden çalışıyor.
+   Koyu zemin (ör. /wholesale portalı) data-koyu ile ayrılıyor.         */
+.brb-dog {
+  --brb-dog-yazi: var(--lx-ink, #14110f);
+  --brb-dog-soluk: rgba(20, 17, 15, 0.58);
+  --brb-dog-cizgi: rgba(20, 17, 15, 0.16);
+  --brb-dog-zemin: rgba(20, 17, 15, 0.02);
+}
+.brb-dog[data-koyu] {
+  --brb-dog-yazi: #fff;
+  --brb-dog-soluk: rgba(255, 255, 255, 0.6);
+  --brb-dog-cizgi: rgba(255, 255, 255, 0.18);
+  --brb-dog-zemin: rgba(255, 255, 255, 0.03);
+}
+
+.brb-dog-baslik {
+  display: block;
+  padding: 0;
+  font-family: var(--font-owners), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sg-red, #e01b24);
+}
+.brb-dog-giris {
+  margin: 10px 0 0;
+  max-width: 52ch;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--brb-dog-soluk);
+}
+
+.brb-dog-yollar {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+@media (min-width: 640px) {
+  .brb-dog-yollar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.brb-dog-yol {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 16px 18px;
+  border: 1px solid var(--brb-dog-cizgi);
+  background: var(--brb-dog-zemin);
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.brb-dog-yol:hover {
+  border-color: var(--sg-red, #e01b24);
+}
+.brb-dog-yol[data-secili] {
+  border-color: var(--sg-red, #e01b24);
+  box-shadow: inset 0 0 0 1px var(--sg-red, #e01b24);
+}
+/* Odak kartın tamamında görünsün: radyo gizli, dış çizgi onun yerine geçiyor */
+.brb-dog-yol:focus-within {
+  outline: 2px solid var(--sg-red, #e01b24);
+  outline-offset: 2px;
+}
+
+.brb-dog-radyo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.brb-dog-yol-ad {
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--brb-dog-yazi);
+}
+.brb-dog-yol-metin {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--brb-dog-soluk);
+}
+
+.brb-dog-nerede {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--brb-dog-soluk);
+}
+.brb-dog-kvkk {
+  margin: 20px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--brb-dog-cizgi);
+  max-width: 56ch;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--brb-dog-soluk);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brb-dog-yol {
+    transition: none;
+  }
+}
+
+/* ─── Başvuru durumu şeridi ───────────────────────────────────────────────
+   Üç adım yan yana; geçilen adım soluk, bulunulan adım kırmızı numarayla
+   belli. Mobilde alt alta diziliyor.                                    */
+.brb-bsv {
+  --brb-bsv-yazi: var(--lx-ink, #14110f);
+  --brb-bsv-soluk: rgba(20, 17, 15, 0.58);
+  --brb-bsv-cizgi: rgba(20, 17, 15, 0.16);
+  max-width: 820px;
+  padding: 26px 24px 28px;
+  border: 1px solid var(--brb-bsv-cizgi);
+}
+.brb-bsv[data-koyu] {
+  --brb-bsv-yazi: #fff;
+  --brb-bsv-soluk: rgba(255, 255, 255, 0.6);
+  --brb-bsv-cizgi: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.brb-bsv-ust {
+  margin: 0;
+  font-family: var(--font-owners), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sg-red, #e01b24);
+}
+.brb-bsv-email {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--brb-bsv-soluk);
+}
+
+.brb-bsv-adimlar {
+  display: grid;
+  gap: 1px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  background: var(--brb-bsv-cizgi);
+}
+@media (min-width: 720px) {
+  .brb-bsv-adimlar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.brb-bsv-adim {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 18px 18px 20px;
+  background: var(--lx-ink, #14110f);
+}
+.brb-bsv:not([data-koyu]) .brb-bsv-adim {
+  background: #fff;
+}
+/* Henüz gelinmemiş adımlar iyice soluk: göz bulunduğu yere gitsin */
+.brb-bsv-adim {
+  opacity: 0.42;
+}
+.brb-bsv-adim[data-gecti],
+.brb-bsv-adim[data-suanki] {
+  opacity: 1;
+}
+
+.brb-bsv-no {
+  font-family: var(--font-owners), system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--brb-bsv-soluk);
+}
+.brb-bsv-adim[data-suanki] .brb-bsv-no {
+  color: var(--sg-red, #e01b24);
+}
+.brb-bsv-ad {
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--brb-bsv-yazi);
+}
+.brb-bsv-aciklama {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--brb-bsv-soluk);
+}
+
+.brb-bsv-metin {
+  margin: 10px 0 0;
+  max-width: 52ch;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--brb-bsv-soluk);
+}
+.brb-bsv-not {
+  margin: 18px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--brb-bsv-soluk);
+}

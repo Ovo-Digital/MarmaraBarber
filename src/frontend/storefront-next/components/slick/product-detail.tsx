@@ -18,6 +18,8 @@ import { useUiStore } from "@/store/ui-store";
 import { useT } from "@/lib/i18n/dil";
 import { urunAdiParcala } from "@/lib/urun-adi";
 import { SITE_NAME } from "@/lib/slick-theme";
+import { kullanimAdimlari, ozellikMaddeleri } from "@/lib/urun-metni";
+import { NasilKullanilir, NeIseYarar, UrunSSS } from "@/components/slick/product-slick-sections";
 import type { Product, ProductOption, ProductVariant, SellingPlanGroup } from "@/types/commerce";
 
 function isDefaultOnly(options: ProductOption[] | undefined) {
@@ -117,34 +119,54 @@ function Yildizlar({ puan }: { puan: number }) {
  * kendi tesislerinde üretim, GMP standardı. Referans sitedeki "30 gün
  * garanti" gibi bizde karşılığı olmayan bir vaat YAZILMADI.
  */
-function GuvenSatiri() {
+function GuvenSatiri({ etiketler }: { etiketler?: string[] }) {
   const t = useT();
+
+  /* Vegan rozeti ÜRÜN ETİKETİNDEN geliyor: Shopify'da ürüne "vegan"
+     etiketi eklenince çıkıyor, kodda ürün listesi yok. Etiket yoksa
+     rozet de yok — doğrulanmamış bir vaat ekranda durmaz. */
+  const vegan = (etiketler ?? []).some((e) => /vegan|cruelty/i.test(e));
+
   const maddeler = [
     { id: "since", yazi: "Since 1970", ikon: <path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z" /> },
     { id: "made", yazi: "Own production", ikon: <><path d="M3 21h18" /><path d="M5 21V8l7-5 7 5v13" /><path d="M9 21v-6h6v6" /></> },
-    { id: "gmp", yazi: "GMP standards", ikon: <><circle cx="12" cy="12" r="9" /><path d="m8.5 12.5 2.5 2.5 4.5-5" /></> },
+    vegan
+      ? { id: "vegan", yazi: "Vegan & cruelty free", ikon: <path d="M20 4c0 9-5 13-11 13H5c0-8 5-11 11-11-3 2-6 4-8 9" /> }
+      : { id: "gmp", yazi: "GMP standards", ikon: <><circle cx="12" cy="12" r="9" /><path d="m8.5 12.5 2.5 2.5 4.5-5" /></> },
   ];
 
   return (
-    <ul className="mt-7 m-0 grid list-none grid-cols-3 gap-2 p-0">
+    <ul className="mt-7 m-0 grid list-none grid-cols-3 gap-3 p-0">
       {maddeler.map((m) => (
-        <li key={m.id} className="flex flex-col items-center gap-2 text-center">
-          <svg
-            width="26"
-            height="26"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--lx-ink)"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            {m.ikon}
-          </svg>
+        <li key={m.id} className="flex flex-col items-center gap-3 text-center">
+          {/* Slick'te ikon daire içinde — çizgi 1.6px, daire 52px */}
           <span
-            className="text-[12px] leading-tight"
-            style={{ fontFamily: "var(--font-owners)", fontWeight: 700, letterSpacing: "0.04em", color: "var(--lx-ink)" }}
+            aria-hidden="true"
+            className="flex items-center justify-center rounded-full"
+            style={{ width: 52, height: 52, border: "1.6px solid var(--lx-ink)" }}
+          >
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--lx-ink)"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              {m.ikon}
+            </svg>
+          </span>
+          <span
+            style={{
+              /* slickgorilla.co.uk ürün sayfasından okundu: Owners 16/20.8 w500 */
+              fontFamily: "var(--font-owners)",
+              fontWeight: 500,
+              fontSize: "16px",
+              lineHeight: "20.8px",
+              color: "var(--lx-ink)",
+            }}
           >
             {t(m.yazi)}
           </span>
@@ -519,6 +541,12 @@ export function SlickProductDetail({
     return list;
   }, [images, product.imageUrl]);
 
+  /* Slick düzenindeki alt bölümlerin içeriği — ürünün Shopify
+     açıklamasından ayıklanıyor. Bölüm yoksa dizi boş kalıyor ve ilgili
+     bölüm ekranda hiç görünmüyor. */
+  const slickAdimlar = useMemo(() => kullanimAdimlari(product.description), [product.description]);
+  const slickMaddeler = useMemo(() => ozellikMaddeleri(product.description), [product.description]);
+
   const [activeImage, setActiveImage] = useState(0);
   const [qty, setQty] = useState(1);
   const [adding, setAdding] = useState(false);
@@ -848,7 +876,7 @@ export function SlickProductDetail({
             </button>
             {!inStock ? <NotifyForm /> : null}
 
-            <GuvenSatiri />
+            <GuvenSatiri etiketler={product.tags} />
 
             {/* Açıklama artık sayfanın dibinde duvar gibi değil, burada
                 bölüm bölüm açılıyor — referans sayfadaki düzen bu. */}
@@ -875,7 +903,13 @@ export function SlickProductDetail({
 
       </div>
 
-      {/* 6. Related carousel */}
+      {/* 6. Slick düzenindeki alt bölümler — hepsi açıklamadan okunuyor,
+          veri yoksa bölüm hiç çizilmiyor */}
+      <NasilKullanilir adimlar={slickAdimlar} gorsel={gallery[0]} baslik={product.title} />
+      <NeIseYarar maddeler={slickMaddeler} tamAciklama={product.description} />
+      <UrunSSS />
+
+      {/* 7. Related carousel */}
       {related.length > 0 && (
         <div className="mt-8 bg-[var(--sg-off)]">
           <ProductCarousel
@@ -886,7 +920,7 @@ export function SlickProductDetail({
         </div>
       )}
 
-      {/* 7. Sticky mobile ATC */}
+      {/* 8. Sticky mobile ATC */}
       <AnimatePresence>
         {!ctaVisible && (
           <motion.div

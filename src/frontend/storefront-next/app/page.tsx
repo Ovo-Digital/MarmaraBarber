@@ -6,7 +6,6 @@ import { HeroSlider } from "@/components/slick/hero-slider";
 import { PromoBanner } from "@/components/slick/promo-banner";
 import { ProductRoller } from "@/components/slick/product-roller";
 import { FinderBanner } from "@/components/slick/finder-banner";
-import { NewsletterBand } from "@/components/slick/newsletter-band";
 import { MarqueeBand } from "@/components/slick/marquee-band";
 import { ActionReel } from "@/components/slick/action-reel";
 import { ProductCarousel } from "@/components/slick/product-carousel";
@@ -15,7 +14,7 @@ import {
   storefrontGetBestSellers,
   storefrontGetNewArrivals,
 } from "@/services/shopify/storefront-direct";
-import { HOME_REEL_MEDIA } from "@/lib/slick-theme";
+import { HOME_REEL_MEDIA, RANGE_TYPE_PRIORITY } from "@/lib/slick-theme";
 
 /** Hero koleksiyonları Shopify'dan geliyor; 5 dakikada bir tazele. */
 export const revalidate = 300;
@@ -69,11 +68,16 @@ export default async function HomePage() {
       posterUrl: HOME_REEL_MEDIA[product.handle]?.poster,
     }));
 
-  const chosen = new Set(oneOfEachType.map((p) => p.handle));
-  const rollerProducts = [
-    ...oneOfEachType,
-    ...bestSellers.filter((p) => !chosen.has(p.handle)),
-  ];
+  /* "Ürün yelpazesi" şeridi şekillendirici ürünlerle açılsın: liste altı tane
+     kolonya olmasın diye RANGE_TYPE_PRIORITY'deki tipler öne alınıyor, kalanlar
+     kendi sırasıyla arkadan geliyor. Sıra ayar dosyasından, kodda ürün sabit değil. */
+  const oncelik = (p: { productType?: string | null }) => {
+    const i = RANGE_TYPE_PRIORITY.indexOf((p.productType || "").trim());
+    return i === -1 ? RANGE_TYPE_PRIORITY.length : i;
+  };
+  const rollerProducts = [...bestSellers]
+    .filter((p) => Boolean(p.imageUrl))
+    .sort((a, b) => oncelik(a) - oncelik(b));
 
   return (
     <div className="w-full bg-white">
@@ -87,17 +91,17 @@ export default async function HomePage() {
       {/* Beyaz — koyu hero'dan sonra sayfa nefes alsın */}
       <EssentialsSection products={essentials} />
 
-      {/* İçerik bandı — satışa değil, kılavuzlara ve topluluğa götürüyor */}
+      {/* İçerik bandı — iş ortaklığına götürüyor */}
       <PromoBanner
         image="/media/learn-the-craft.jpg"
-        eyebrow="Guides & community"
-        headline="Learn the craft."
+        eyebrow="Partnership"
+        headline="Become a partner."
         subline={[
-          "How every product is used, straight from the chair.",
-          "Technique, routines and the barbers behind them.",
+          "Partner pricing on the whole range, from your first order.",
+          "Stand support, the barber programme and new drops first.",
         ]}
-        ctaLabel="Explore"
-        ctaHref="/how-to-use"
+        ctaLabel="Become a partner"
+        ctaHref="/wholesale"
       />
 
       {/* Beyaz — iki koyu bölümün arasında ürün şeridi */}
@@ -119,7 +123,6 @@ export default async function HomePage() {
           yazılınca kendiliğinden devreye giriyor; o zamana kadar ürün görselleri */}
       <ActionReel items={reelItems} />
 
-      <NewsletterBand />
 
       {/* Marka hikayesi — görseli public/brand/ altına koyup image prop'una ver */}
     </div>

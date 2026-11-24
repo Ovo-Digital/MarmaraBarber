@@ -21,8 +21,9 @@ export function PromoBanner({
   eyebrow?: string;
   headline: string;
   subline?: string[];
-  ctaLabel: string;
-  ctaHref: string;
+  /** Buton isteğe bağlı: verilmezse bant bağlantısız durur */
+  ctaLabel?: string;
+  ctaHref?: string;
 }) {
   return (
     <section className="relative w-full overflow-hidden" style={{ background: "var(--lx-ink)" }}>
@@ -85,13 +86,11 @@ export function PromoBanner({
           </p>
         ) : null}
 
-        <Link
-          href={ctaHref}
-          className="lx-btn-outline mt-9"
-          style={{ color: "#FFFFFF" }}
-        >
-          <T k={ctaLabel} />
-        </Link>
+        {ctaLabel && ctaHref ? (
+          <Link href={ctaHref} className="lx-btn-outline mt-9" style={{ color: "#FFFFFF" }}>
+            <T k={ctaLabel} />
+          </Link>
+        ) : null}
       </div>
     </section>
   );

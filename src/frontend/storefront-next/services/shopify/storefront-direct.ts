@@ -3,7 +3,7 @@ import type { PlpSortOption } from "@/lib/plp-filters";
 import type { Cart, Collection, Product, ProductFacet, ProductListingResult, SellingPlanGroup } from "@/types/commerce";
 
 const PRODUCT_FRAGMENT = `
-  id handle title description availableForSale productType
+  id handle title description availableForSale productType tags
   featuredImage { url }
   images(first: 2) { edges { node { url } } }
   priceRange { minVariantPrice { amount currencyCode } }
@@ -68,6 +68,7 @@ function mapProduct(node: Record<string, unknown>): Product {
     description: (node.description as string) ?? "",
     availableForSale: node.availableForSale as boolean,
     productType: (node.productType as string) || undefined,
+    tags: (node.tags as string[] | undefined) ?? undefined,
     imageUrl: featured,
     secondaryImageUrl,
     rating,

@@ -17,7 +17,9 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { KADEMELER } from "@/lib/berber";
+import { basvuruDurumu } from "@/lib/berber-dogrulama";
 import { berberDurumu, DONEM_AY } from "@/lib/berber-puan";
+import { BerberBasvuruDurumu } from "@/components/slick/berber-basvuru-durumu";
 import { useT } from "@/lib/i18n/dil";
 import { formatMoney } from "@/lib/money";
 import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
@@ -35,6 +37,9 @@ export function BerberPanel() {
 
   const durum = berberDurumu(musteri);
   const kademe = durum.kademe;
+  /* Kademesi yok ama başvurusu sırada olabilir: "berber değilsin" demek
+     yerine başvurunun nerede olduğunu gösteriyoruz. */
+  const basvuru = basvuruDurumu(musteri);
 
   const kartlar = [
     { baslik: "Build your stand", metin: "Pick the products, see the stand, order it in one go.", href: "/berber#portal" },
@@ -57,6 +62,11 @@ export function BerberPanel() {
             metin={t("Sign in with your barber account to continue.")}
             eylem={{ etiket: t("Barber sign in"), href: "/berber?tab=login#portal" }}
           />
+        ) : !kademe && basvuru !== "yok" ? (
+          <div className="max-w-[860px]">
+            <p className="lx-eyebrow mb-6">{t("Barber panel")}</p>
+            <BerberBasvuruDurumu durum={basvuru} email={musteri.email} />
+          </div>
         ) : !kademe ? (
           <Durum
             baslik={t("Not a barber partner yet")}

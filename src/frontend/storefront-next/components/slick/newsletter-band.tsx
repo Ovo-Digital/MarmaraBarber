@@ -17,11 +17,14 @@ export function NewsletterBand({
   body = "New drops, limited runs and barber-chair know-how. No noise, just the good stuff.",
   placeholder = "Your email address",
   ctaLabel = "Sign up",
+  varyant = "bant",
 }: {
   title?: string;
   body?: string;
   placeholder?: string;
   ctaLabel?: string;
+  /** "bant" = sayfa genişliğinde kendi bölümü · "footer" = alt bilgi sütunu */
+  varyant?: "bant" | "footer";
 }) {
   const t = useT();
   const [email, setEmail] = useState("");
@@ -53,31 +56,56 @@ export function NewsletterBand({
     }
   }
 
-  return (
-    <section className="w-full bg-black text-white">
-      <div
-        className="sg-container grid items-center gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-16"
-        style={{ paddingTop: "clamp(52px, 5vw, 88px)", paddingBottom: "clamp(52px, 5vw, 88px)" }}
-      >
-        <div>
-          <h2
-            className="uppercase"
-            style={{
-              fontFamily: "var(--font-owners-black)",
-              fontWeight: 900,
-              fontSize: "clamp(28px, 3.6vw, 52px)",
-              lineHeight: 1.02,
-              color: "#ffffff",
-            }}
-          >
-            {t(title)}
-          </h2>
-          <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed" style={{ color: "rgba(255,255,255,0.72)" }}>
-            {t(body)}
-          </p>
-        </div>
+  const footer = varyant === "footer";
 
-        <div>
+  const icerik = (
+    <>
+      <div>
+        <h2
+          className="uppercase"
+          style={
+            footer
+              ? {
+                  /* slickgorilla.co.uk alt bilgisinden okunan hesaplanmış stil:
+                     Owners 28/36.4 w800, kırmızı. */
+                  fontFamily: "var(--font-owners)",
+                  fontWeight: 800,
+                  fontSize: "28px",
+                  lineHeight: "36.4px",
+                  letterSpacing: "normal",
+                  color: "var(--sg-red)",
+                }
+              : {
+                  fontFamily: "var(--font-owners-black)",
+                  fontWeight: 900,
+                  fontSize: "clamp(28px, 3.6vw, 52px)",
+                  lineHeight: 1.02,
+                  color: "#ffffff",
+                }
+          }
+        >
+          {t(title)}
+        </h2>
+        <p
+          className={footer ? "mt-[14px] max-w-[46ch]" : "mt-4 max-w-[52ch] text-[15px] leading-relaxed"}
+          style={
+            footer
+              ? {
+                  /* Slick: gövde metni Geist 16/24 w300, tam beyaz */
+                  fontFamily: "var(--font-geist)",
+                  fontWeight: 300,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "#ffffff",
+                }
+              : { color: "rgba(255,255,255,0.72)" }
+          }
+        >
+          {t(body)}
+        </p>
+      </div>
+
+      <div className={footer ? "mt-7" : undefined}>
           {durum === "tamam" ? (
             <p
               className="text-[13px] uppercase tracking-[0.14em]"
@@ -98,12 +126,16 @@ export function NewsletterBand({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t(placeholder)}
-                className="min-w-0 flex-1 px-5 text-[15px] outline-none placeholder:text-white/45"
+                className="min-w-0 flex-1 px-5 outline-none placeholder:text-white/45"
                 style={{
                   height: 56,
                   background: "transparent",
                   color: "#ffffff",
                   border: "1px solid rgba(255,255,255,0.45)",
+                  /* Slick'in alanı: Owners 13px w500 */
+                  fontFamily: footer ? "var(--font-owners)" : undefined,
+                  fontWeight: footer ? 500 : undefined,
+                  fontSize: footer ? "13px" : "15px",
                 }}
               />
               <button
@@ -117,12 +149,25 @@ export function NewsletterBand({
             </form>
           )}
 
-          {durum === "hata" ? (
-            <p className="mt-3 text-[13px]" style={{ color: "#ffffff" }} role="alert">
-              {hata}
-            </p>
-          ) : null}
-        </div>
+        {durum === "hata" ? (
+          <p className="mt-3 text-[13px]" style={{ color: "#ffffff" }} role="alert">
+            {hata}
+          </p>
+        ) : null}
+      </div>
+    </>
+  );
+
+  // Alt bilgi içinde kendi zemini/boşluğu olmadan, sütun olarak duruyor.
+  if (footer) return <div>{icerik}</div>;
+
+  return (
+    <section className="w-full bg-black text-white">
+      <div
+        className="sg-container grid items-center gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-16"
+        style={{ paddingTop: "clamp(52px, 5vw, 88px)", paddingBottom: "clamp(52px, 5vw, 88px)" }}
+      >
+        {icerik}
       </div>
     </section>
   );

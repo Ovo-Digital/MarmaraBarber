@@ -846,6 +846,33 @@ a {
   .lx-parilti:hover img { transition: none; transform: none; }
 }
 
+/* ── Ovo Digital imzası (footer en alt satır) ─────────────────────────────
+   Kaynak: ~/Desktop/ovo-digital-imza/imza-12-*.html — kurallar birebir.
+   Mıknatıs efekti components/slick/ovo-imza.tsx içinde (--tx/--ty/--x/--y/--o).
+   Açık zemin için <a>'ya .ovo-light eklenir; Marmara footer'ı siyah → koyu sürüm. */
+.ovo-b12{--ovo-lime:#b4fb07;--x:50%;--y:50%;--o:0;--tx:0px;--ty:0px;position:relative;display:inline-flex;padding:1px;border-radius:12px;color:inherit;text-decoration:none;line-height:1;white-space:nowrap;background:rgba(255,255,255,.13);transform:translate(var(--tx),var(--ty));transition:transform .35s cubic-bezier(.2,.9,.25,1)}
+.ovo-b12::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(90px circle at var(--x) var(--y),var(--ovo-lime),transparent 70%);opacity:var(--o)}
+.ovo-b12__i{position:relative;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:11px;background:#101010;overflow:hidden}
+.ovo-b12__i::before{content:"";position:absolute;inset:0;background:radial-gradient(70px circle at var(--x) var(--y),rgba(180,251,7,.16),transparent 70%);opacity:var(--o)}
+.ovo-b12__m{position:relative;height:12px;width:auto;fill:var(--ovo-lime)}
+.ovo-b12__t{position:relative;display:grid;height:16px;overflow:hidden;font-size:13px;color:#f1f1ed}
+.ovo-b12__t>span{grid-area:1/1;line-height:16px;transition:transform .5s cubic-bezier(.65,0,.35,1)}
+.ovo-b12__t>span+span{transform:translateY(100%)}
+.ovo-b12__t i{font-style:normal;opacity:.55}
+.ovo-b12__t b{font-weight:600}
+.ovo-b12__t>span+span b{color:var(--ovo-lime)}
+.ovo-b12:hover .ovo-b12__t>span,.ovo-b12:focus-visible .ovo-b12__t>span{transform:translateY(-100%)}
+.ovo-b12:hover .ovo-b12__t>span+span,.ovo-b12:focus-visible .ovo-b12__t>span+span{transform:none}
+.ovo-b12__a{position:relative;width:11px;height:11px;fill:none;stroke:#f1f1ed;stroke-width:1.6;stroke-linecap:round;opacity:.45;transition:transform .35s,opacity .3s,stroke .3s}
+.ovo-b12:hover .ovo-b12__a,.ovo-b12:focus-visible .ovo-b12__a{transform:translate(2px,-2px);opacity:1;stroke:var(--ovo-lime)}
+.ovo-b12.ovo-light{background:rgba(0,0,0,.14)}
+.ovo-b12.ovo-light .ovo-b12__i{background:#fff}
+.ovo-b12.ovo-light .ovo-b12__i::before{background:radial-gradient(70px circle at var(--x) var(--y),rgba(180,251,7,.45),transparent 70%)}
+.ovo-b12.ovo-light .ovo-b12__m{fill:#111}
+.ovo-b12.ovo-light .ovo-b12__t,.ovo-b12.ovo-light .ovo-b12__t>span+span b{color:#111}
+.ovo-b12.ovo-light .ovo-b12__a,.ovo-b12.ovo-light:hover .ovo-b12__a{stroke:#111}
+@media (prefers-reduced-motion:reduce){.ovo-b12,.ovo-b12 *{transition:none!important}}
+
 /* Header araması — hap arama alanına dönüşürken içerik yumuşak gelsin */
 @keyframes lx-arama-gir {
   from { opacity: 0; transform: translateY(4px); }
@@ -1835,12 +1862,16 @@ select.lx-alan-koyu option { color: var(--lx-ink); background: #fff; }
   position: absolute;
   inset: 0;
   background: radial-gradient(115% 150% at 50% 125%, #ff2a1f 0%, var(--sg-red) 45%, #a50500 100%);
-  transform: scaleY(0);
+  /* Oran ilk açılışta da kırmızı duruyor: sayfaya girerken indirim görünür
+     olsun, seçime bağlı kalmasın. Seçilince sadece parlaklığı artıyor. */
+  transform: scaleY(1);
   transform-origin: bottom;
-  transition: transform 520ms var(--lx-yumusak);
+  filter: saturate(0.82) brightness(0.86);
+  transition: filter 420ms var(--lx-ease);
 }
+.lx-bilet-kupon { color: #fff; }
 .lx-bilet--secili .lx-bilet-kupon { color: #fff; }
-.lx-bilet--secili .lx-bilet-kupon::before { transform: scaleY(1); }
+.lx-bilet--secili .lx-bilet-kupon::before { filter: none; }
 .lx-bilet-kupon > * { position: relative; }
 
 .lx-bilet-kadar {
@@ -2511,10 +2542,31 @@ body.rv-acik [data-revize] { cursor: auto; }
 }
 .lx-kita-baslik::after {
   content: "";
+  order: 2;
   flex: 1;
   height: 1px;
   background: rgba(255, 255, 255, 0.12);
 }
+/* Başlık artık bir düğme: tam genişlik, sola yaslı, imleç el. */
+.lx-kita-baslik {
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  transition: color 200ms var(--lx-ease);
+}
+.lx-kita-baslik:hover { color: #fff; }
+.lx-kita-sayi { order: 1; }
+/* Artı/eksi en sağda */
+.lx-kita-ok {
+  order: 3;
+  flex: 0 0 auto;
+  font-family: var(--font-geist);
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+.lx-kita[data-acik="true"] .lx-kita-ok { color: #fff; }
 
 .lx-kita-ulkeler {
   margin-top: 8px;
@@ -2541,3 +2593,33 @@ body.rv-acik [data-revize] { cursor: auto; }
 /* Rolü doğrulanmış pazarlar beyaz: iç pazar, resmî distribütör… */
 .lx-ulke--pazar { color: #fff; }
 .lx-ulke--pazar.lx-ulke--secili { color: var(--sg-red); }
+
+/* ── Pill buton — KANAR sunumunun .kit-btn dili ───────────────────────
+   Yarıçap 99px, 14px/700, hover'da 2px yukarı. Koyu zeminde kırmızı dolu.
+   Katmansız yazıldı: Tailwind yardımcı sınıfları bunu ezemesin. */
+.lx-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 99px;
+  border: 1px solid var(--sg-red);
+  background: var(--sg-red);
+  color: #fff;
+  font-family: var(--font-owners);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 300ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1)), filter 300ms ease;
+}
+.lx-pill:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+.lx-pill:disabled {
+  opacity: 0.6;
+  transform: none;
+  cursor: default;
+}

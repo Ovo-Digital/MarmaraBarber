@@ -27,6 +27,8 @@ import { ApplicationForm } from "@/components/slick/application-form";
 import { LxEtiket, LxHata, lxAlanKoyu } from "@/components/slick/auth-form";
 import { BerberStand } from "@/components/slick/berber-stand";
 import { KADEMELER, kademeBul } from "@/lib/berber";
+import { basvuruDurumu } from "@/lib/berber-dogrulama";
+import { BerberBasvuruDurumu } from "@/components/slick/berber-basvuru-durumu";
 import { berberDurumu, DONEM_AY, PUAN_KURU } from "@/lib/berber-puan";
 import { DEMO_MUSTERI, demoGirisi } from "@/lib/demo-customer";
 import { useT } from "@/lib/i18n/dil";
@@ -54,6 +56,10 @@ export function BerberPage({ urunler }: { urunler: Product[] }) {
   }, [params]);
 
   const kademe = kademeBul(musteri);
+  /* Basvurusu sirada olan adama tekrar form gostermiyoruz: ikinci kez
+     doldurup panele ayni basvuruyu iki kere dusurmesin. */
+  const basvuru = basvuruDurumu(musteri);
+  const basvuruSurecte = Boolean(musteri) && !kademe && basvuru !== "yok";
   const berber = Boolean(kademe);
   const durum = berberDurumu(musteri);
 
@@ -244,7 +250,11 @@ export function BerberPage({ urunler }: { urunler: Product[] }) {
                   </h2>
                 </div>
 
-                {hydrated && musteri && !berber ? (
+                {hydrated && basvuruSurecte ? (
+                  <BerberBasvuruDurumu durum={basvuru} email={musteri?.email} />
+                ) : null}
+
+                {hydrated && musteri && !berber && !basvuruSurecte ? (
                   <p
                     className="mb-6 px-4 py-3 text-center text-[13px]"
                     style={{ border: "1px solid rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.75)" }}
@@ -253,7 +263,7 @@ export function BerberPage({ urunler }: { urunler: Product[] }) {
                   </p>
                 ) : null}
 
-                <div role="tablist" aria-label={t("Barber portal")} className="lx-sekmeler lx-sekmeler--koyu mb-8">
+                {basvuruSurecte ? null : <><div role="tablist" aria-label={t("Barber portal")} className="lx-sekmeler lx-sekmeler--koyu mb-8">
                   {(
                     [
                       ["basvuru", t("Apply")],
@@ -274,7 +284,7 @@ export function BerberPage({ urunler }: { urunler: Product[] }) {
                   ) : (
                     <ApplicationForm type="barber" koyu />
                   )}
-                </div>
+                </div></>}
 
                 <p className="mt-6 text-center text-[13px]" style={{ color: "rgba(255,255,255,0.5)" }}>
                   {t("Buying for yourself, not for a shop?")}{" "}

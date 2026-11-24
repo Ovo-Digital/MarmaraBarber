@@ -11,7 +11,17 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AboutGlobe } from "@/components/slick/about-globe";
-import { IHRACAT, IHRACAT_ULKELERI, MERKEZLER, PAZARLAR, kitayaGore, type IhracatUlkesi } from "@/lib/about-presence";
+import {
+  IHRACAT,
+  IHRACAT_ULKELERI,
+  MERKEZLER,
+  PAZARLAR,
+  RAKAMLAR,
+  URETIM_TESISI,
+  kitayaGore,
+  type IhracatUlkesi,
+  type Rakam,
+} from "@/lib/about-presence";
 import { LEGAL_PAGES } from "@/lib/legal-content";
 import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
 import { useT } from "@/lib/i18n/dil";
@@ -74,6 +84,8 @@ export function AboutPage() {
     }
   }, []);
   const [secili, setSecili] = useState<string | null>(null);
+  /* Açık duran kıta — aynı anda bir tanesi açık, liste kısa kalsın. */
+  const [acikKita, setAcikKita] = useState<string | null>(null);
   /* Etikette yazacak ad: merkezlerde şehir, pazarlarda çevrilmiş ülke adı. */
   /* İç pazar (Türkiye) ihracat listesinde yok; başa kendimiz koyuyoruz. */
   const icPazar = PAZARLAR.find((p) => p.not === "Home market");
@@ -214,14 +226,27 @@ export function AboutPage() {
             {/* Kıta kıta gruplanmış, kutusuz metin. 63 ülke kutu içinde
                 yan yana dizilince göz yoruyordu; başlık + sakin metin hem
                 daha kısa hem taranabilir. Ülke adları yine tıklanabilir. */}
+            {/* Kıtalar kapalı başlıyor: başlığa basınca o kıtanın ülkeleri
+                açılıyor. 62 ülke tek seferde açık durunca sol sütun kürenin
+                birkaç katı uzuyordu. */}
             <div className="lx-kitalar mt-4">
-              {kitayaGore(ulkeler).map(([kita, liste]) => (
-                <section key={kita} className="lx-kita">
-                  <p className="lx-kita-baslik">
+              {kitayaGore(ulkeler).map(([kita, liste]) => {
+                const acik = acikKita === kita;
+                return (
+                <section key={kita} className="lx-kita" data-acik={acik}>
+                  <button
+                    type="button"
+                    className="lx-kita-baslik"
+                    aria-expanded={acik}
+                    onClick={() => setAcikKita(acik ? null : kita)}
+                  >
                     {kita}
                     <span className="lx-kita-sayi">{liste.length}</span>
-                  </p>
-                  <p className="lx-kita-ulkeler">
+                    <span aria-hidden="true" className="lx-kita-ok">
+                      {acik ? "−" : "+"}
+                    </span>
+                  </button>
+                  <p className="lx-kita-ulkeler" hidden={!acik}>
                     {liste.map((u, i) => {
                       const anahtar = u.kod ?? u.atlasAd ?? u.ulke;
                       const pazar = PAZARLAR.find((p) => p.kod === u.kod);
@@ -241,7 +266,8 @@ export function AboutPage() {
                     })}
                   </p>
                 </section>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -257,6 +283,17 @@ export function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* ── 3b. Rakamlar ─────────────────────────────────────────────────
+          İki ayrı siyah bölüm sayfanın yarısını yiyordu; marka ve üretim
+          rakamları tek bölümde, ikinci satır daha küçük puntoyla. */}
+      <RakamBolumu
+        eyebrow={t("The numbers")}
+        baslik={t("Built in our own facility, used in 62 countries.")}
+        rakamlar={RAKAMLAR}
+        altEtiket={t("Production")}
+        altRakamlar={URETIM_TESISI}
+      />
 
       {/* ── 4. Vizyon / Misyon ───────────────────────────────────────── */}
       <section style={{ background: "var(--lx-bone)" }}>
@@ -299,6 +336,136 @@ export function AboutPage() {
           </div>
         </section>
       ) : null}
+    </div>
+  );
+}
+
+/**
+ * "Rakamlar" bölümü — ortada etiket + başlık, altında büyük kırmızı sayılar.
+ *
+ * `deger: null` olan satır hiç çizilmiyor: markadan gelmeyen bir rakamın
+ * yerine sıfır ya da tahmin yazmıyoruz. Hiçbiri dolu değilse bölüm de yok.
+ */
+/**
+ * Rakam bölümü — Slick Gorilla'nın "THE NUMBERS" alanının karşılığı.
+ *
+ * Tek siyah bölüm: üstte marka rakamları, altında (varsa) üretim rakamları
+ * daha küçük puntoyla. Önce iki ayrı bölümdü ve sayfada devasa bir boşluk
+ * açıyordu; Volkan "daha ufağını yap" dedi (24 Kas).
+ *
+ * Tipografi Slick'in alt bilgisinden okunan ölçülerle aynı aileyi kullanıyor:
+ * başlıklar Owners, etiketler Geist.
+ *
+ * Değeri `null` olan rakam HİÇ ÇİZİLMEZ — markadan gelmeyen sayı uydurulmaz.
+ */
+function RakamBolumu({
+  eyebrow,
+  baslik,
+  rakamlar,
+  altEtiket,
+  altRakamlar,
+}: {
+  eyebrow: string;
+  baslik: string;
+  rakamlar: Rakam[];
+  altEtiket?: string;
+  altRakamlar?: Rakam[];
+}) {
+  const dolu = rakamlar.filter((r) => r.deger !== null && r.deger !== undefined);
+  const altDolu = (altRakamlar ?? []).filter((r) => r.deger !== null && r.deger !== undefined);
+  /* Tek rakamla bölüm kurulmuyor: ekranda boş bir alan gibi duruyor. */
+  if (dolu.length < 2) return null;
+
+  return (
+    <section className="bg-black text-white">
+      <div
+        className="sg-container text-center"
+        style={{ paddingTop: "clamp(40px,4.2vw,64px)", paddingBottom: "clamp(40px,4.2vw,64px)" }}
+      >
+        <p className="lx-eyebrow mb-2">{eyebrow}</p>
+        <h2
+          className="mx-auto max-w-[26ch] uppercase"
+          style={{
+            fontFamily: "var(--font-owners)",
+            fontWeight: 800,
+            fontSize: "clamp(20px, 2.2vw, 28px)",
+            lineHeight: 1.3,
+            color: "#ffffff",
+          }}
+        >
+          {baslik}
+        </h2>
+
+        <dl
+          className="mx-auto mt-7 grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-4"
+          style={{ maxWidth: 900 }}
+        >
+          {dolu.map((r) => (
+            <Rakamlar key={r.etiket} rakam={r} boy="buyuk" />
+          ))}
+        </dl>
+
+        {altDolu.length >= 2 ? (
+          <div className="mx-auto mt-9 border-t border-white/15 pt-7" style={{ maxWidth: 900 }}>
+            {altEtiket ? (
+              <p
+                className="mb-5 uppercase"
+                style={{
+                  fontFamily: "var(--font-owners)",
+                  fontWeight: 800,
+                  fontSize: "13px",
+                  letterSpacing: "0.14em",
+                  color: "var(--sg-red)",
+                }}
+              >
+                {altEtiket}
+              </p>
+            ) : null}
+            <dl className="grid grid-cols-3 gap-x-4 gap-y-6">
+              {altDolu.map((r) => (
+                <Rakamlar key={r.etiket} rakam={r} boy="kucuk" />
+              ))}
+            </dl>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+/** Tek rakam + etiketi. `boy` iki ölçek: marka rakamları ve üretim rakamları. */
+function Rakamlar({ rakam, boy }: { rakam: Rakam; boy: "buyuk" | "kucuk" }) {
+  const t = useT();
+  const buyuk = boy === "buyuk";
+  return (
+    <div className="px-1">
+      <dd
+        style={{
+          fontFamily: "var(--font-owners-black)",
+          fontWeight: 900,
+          fontSize: buyuk ? "clamp(28px, 3vw, 42px)" : "clamp(20px, 2vw, 28px)",
+          lineHeight: 1,
+          letterSpacing: "-0.02em",
+          color: "var(--sg-red)",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {typeof rakam.deger === "number" ? <Sayac hedef={rakam.deger} /> : rakam.deger}
+        {rakam.son ?? ""}
+      </dd>
+      <dt
+        className="mt-2 uppercase"
+        style={{
+          fontFamily: "var(--font-geist)",
+          fontWeight: 400,
+          fontSize: buyuk ? "11px" : "10px",
+          lineHeight: 1.35,
+          letterSpacing: "0.14em",
+          color: "rgba(255,255,255,0.6)",
+        }}
+      >
+        {t(rakam.etiket)}
+      </dt>
     </div>
   );
 }

@@ -1,0 +1,415 @@
+/* PARTNER sayfası taslağı.
+   Projede .sg-* kuralları katmansız tanımlı ve Tailwind'i yeniyor, bu yüzden
+   kritik ölçüler burada kendi sınıflarıyla duruyor. */
+
+.pt-giris {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: 86svh;
+  overflow: hidden;
+  background: var(--lx-ink, #14110f);
+}
+.pt-giris-foto {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+}
+.pt-giris-perde {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(20, 17, 15, 0.45) 0%, rgba(20, 17, 15, 0.3) 40%, rgba(20, 17, 15, 0.97) 100%);
+}
+.pt-giris-ic {
+  position: relative;
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+
+/* Tek dev başlık: KANAR'ın dili fonttan değil ölçüden geliyor */
+.pt-dev {
+  margin: 0;
+  max-width: 14ch;
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(42px, 7.2vw, 118px);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.pt-giris-alt {
+  margin: 22px 0 0;
+  max-width: 44ch;
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ── İki yol ──────────────────────────────────────────────────────────── */
+.pt-yollar {
+  display: grid;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+@media (min-width: 860px) {
+  .pt-yollar {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pt-yol {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  overflow: hidden;
+  min-height: clamp(260px, 32vw, 420px);
+  padding: 0;
+  border: 0;
+  text-align: left;
+  background: var(--lx-ink, #14110f);
+  cursor: pointer;
+}
+.pt-yol-foto {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.04);
+  transform: scale(1.02);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pt-yol:hover .pt-yol-foto {
+  transform: scale(1.06);
+}
+
+/* Fotoğrafsız kart: dev gri numara değil, sade koyu yüzey + kırmızı ışıma */
+.pt-yol-koyu {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: block;
+  background:
+    radial-gradient(120% 90% at 78% 110%, rgba(225, 7, 1, 0.3) 0%, rgba(225, 7, 1, 0) 62%),
+    #100e0d;
+}
+
+.pt-yol-perde {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(20, 17, 15, 0.25) 0%, rgba(20, 17, 15, 0.86) 100%);
+}
+.pt-yol[data-secili] .pt-yol-perde {
+  background: linear-gradient(180deg, rgba(20, 17, 15, 0.2) 0%, rgba(20, 17, 15, 0.9) 100%);
+  box-shadow: inset 0 -4px 0 var(--sg-red, #e10701);
+}
+
+.pt-yol-ic {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  justify-content: flex-end;
+  padding: clamp(24px, 3vw, 44px);
+}
+.pt-yol-baslik {
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(22px, 2.6vw, 40px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.pt-yol-metin {
+  max-width: 34ch;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+/* ── Seçilen yolun içeriği ────────────────────────────────────────────── */
+.pt-icerik {
+  background: var(--lx-ink, #14110f);
+  padding-block: clamp(56px, 7vw, 110px);
+}
+.pt-bos,
+.pt-yakinda-metin {
+  max-width: 46ch;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+}
+.pt-yakinda-metin {
+  margin-top: 14px;
+}
+
+.pt-baslik {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(26px, 3.2vw, 52px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* 3a. Hesaplayıcı */
+.pt-hesap-govde {
+  display: grid;
+  gap: clamp(28px, 4vw, 64px);
+  margin-top: clamp(28px, 3vw, 48px);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .pt-hesap-govde {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pt-surgu {
+  display: block;
+}
+.pt-surgu + .pt-surgu {
+  margin-top: 30px;
+}
+.pt-surgu-ust {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.66);
+}
+.pt-surgu-ust b {
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 26px;
+  color: #fff;
+}
+.pt-surgu input[type="range"] {
+  width: 100%;
+  height: 2px;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+.pt-surgu input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--sg-red, #e10701);
+  cursor: grab;
+}
+.pt-surgu input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--sg-red, #e10701);
+  cursor: grab;
+}
+.pt-surgu input[type="range"]:focus-visible {
+  outline: 2px solid var(--sg-red, #e10701);
+  outline-offset: 6px;
+}
+
+.pt-varsayim {
+  margin: 26px 0 0;
+  max-width: 42ch;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.pt-hesap-sag {
+  padding: clamp(26px, 3vw, 44px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+.pt-sonuc {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pt-sonuc-rakam {
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(34px, 4.6vw, 68px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--sg-red, #e10701);
+  font-variant-numeric: tabular-nums;
+}
+.pt-sonuc-ad {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.66);
+}
+.pt-sonuc-alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.pt-sonuc-alt b {
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 3b. Kit — AÇIK zemin.
+   Shopify ürün fotoğrafları beyaz fonlu; koyu zeminde beyaz kutu gibi
+   duruyorlar. Bölümü açığa alınca fon kayboluyor, ürün kalıyor. Sayfaya da
+   ritim geliyor: koyu giriş → koyu kartlar → koyu hesap → AÇIK kit → koyu akış. */
+.pt-kit {
+  margin-top: 0;
+  padding-block: clamp(56px, 7vw, 110px);
+  background: #f4f1ec;
+  color: var(--lx-ink, #14110f);
+}
+.pt-kit .pt-baslik {
+  color: var(--lx-ink, #14110f);
+}
+.pt-kit-ust {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+.pt-kit-tutar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(22px, 2.4vw, 34px);
+  color: var(--lx-ink, #14110f);
+  font-variant-numeric: tabular-nums;
+}
+.pt-kit-tutar small {
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(20, 17, 15, 0.5);
+}
+
+.pt-kit-liste {
+  display: grid;
+  gap: 1px;
+  margin: clamp(24px, 3vw, 40px) 0 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(2, 1fr);
+  background: rgba(20, 17, 15, 0.14);
+}
+@media (min-width: 720px) {
+  .pt-kit-liste {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.pt-kit-urun {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 16px 20px;
+  background: #f4f1ec;
+}
+.pt-kit-urun img,
+.pt-kit-bos {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+.pt-kit-bos {
+  background: rgba(20, 17, 15, 0.06);
+}
+.pt-kit-ad {
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(20, 17, 15, 0.7);
+}
+.pt-kit-fiyat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.pt-kit-fiyat s {
+  font-size: 12px;
+  color: rgba(20, 17, 15, 0.42);
+}
+.pt-kit-fiyat b {
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 15px;
+  color: var(--lx-ink, #14110f);
+}
+
+/* 3c. Akış */
+.pt-akis {
+  display: grid;
+  gap: 1px;
+  margin-top: clamp(56px, 7vw, 110px);
+  background: rgba(255, 255, 255, 0.12);
+}
+@media (min-width: 720px) {
+  .pt-akis {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.pt-akis-blok {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(22px, 2.4vw, 38px);
+  background: var(--lx-ink, #14110f);
+}
+.pt-akis-no {
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  color: var(--sg-red, #e10701);
+}
+.pt-akis-ad {
+  font-family: var(--font-owners-black), system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #fff;
+}
+.pt-akis-metin {
+  max-width: 28ch;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.pt-cta {
+  margin-top: clamp(40px, 5vw, 72px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pt-yol-foto {
+    transition: none;
+  }
+}
