@@ -23,6 +23,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { ApplicationForm } from "@/components/slick/application-form";
+import { QuickMeeting } from "@/components/slick/quick-meeting";
 import { LxEtiket, LxHata, lxAlanKoyu } from "@/components/slick/auth-form";
 import { DEMO_MUSTERI, demoGirisi } from "@/lib/demo-customer";
 import { useT } from "@/lib/i18n/dil";
@@ -274,6 +275,11 @@ export function WholesalePage() {
           </div>
         </div>
       </section>
+
+      {/* ── 4. Hızlı görüşme ──────────────────────────────────────────
+          Formu doldurmaya hazır olmayan kişi burada sadece numarasını
+          bırakıyor. Girişli ortağa gösterilmiyor: onun zaten hattı var. */}
+      {hydrated && musteri && ortak ? null : <QuickMeeting />}
     </>
   );
 }

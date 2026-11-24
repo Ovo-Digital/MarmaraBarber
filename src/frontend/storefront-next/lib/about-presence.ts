@@ -150,3 +150,39 @@ export function kitayaGore(ulkeler: IhracatUlkesi[]) {
   }
   return [...gruplar.entries()].sort((a, b) => b[1].length - a[1].length);
 }
+
+/**
+ * "Rakamlar" bölümü (Hakkımızda) — Slick Gorilla'daki "The numbers" düzeni.
+ *
+ * ⚠️ Yalnızca DOĞRULANABİLEN rakamlar burada. Berber/müşteri sayısı ve
+ * üretim tesisinin metrekaresi markadan gelecek; gelene kadar o satırlar
+ * `deger: null` duruyor ve ekranda HİÇ ÇIZILMIYOR. Uydurma sayı yok.
+ *
+ * `deger` sayıysa 0'dan o rakama sayarak açılır, metinse olduğu gibi yazılır.
+ * `son` rakamın sonuna eklenir (ör. "+", " m²").
+ */
+export const KURULUS_YILI = 1970;
+
+export type Rakam = { deger: number | string | null; son?: string; etiket: string };
+
+export const RAKAMLAR: Rakam[] = [
+  { deger: new Date().getFullYear() - KURULUS_YILI, son: "+", etiket: "Years in the game" },
+  { deger: 62, son: "+", etiket: "Export countries" },
+  { deger: 6, etiket: "Continents" },
+  /* YER TUTUCU (24 Kas) — Volkan "şimdilik salla" dedi, gerçek sayı
+     markadan gelecek. Canlıya almadan önce DOĞRULANACAK. */
+  { deger: 10000, son: "+", etiket: "Barbers worldwide" },
+];
+
+/**
+ * Üretim tesisi.
+ *
+ * YER TUTUCU (24 Kas): metrekare ve hat sayısı markadan gelmedi, Volkan
+ * geçici değer istedi. Gerçek rakamlar gelince burası güncellenecek —
+ * `deger` null yapılırsa o satır kendiliğinden ekrandan kalkar.
+ */
+export const URETIM_TESISI: Rakam[] = [
+  { deger: 4500, son: " m²", etiket: "Production area" },
+  { deger: 8, etiket: "Production lines" },
+  { deger: "GMP", etiket: "Manufacturing standard" },
+];

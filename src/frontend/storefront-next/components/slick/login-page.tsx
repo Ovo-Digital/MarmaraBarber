@@ -11,6 +11,7 @@ import { useAuthStore } from "@/store/auth-store";
 import { DEMO_MUSTERI, demoGirisi } from "@/lib/demo-customer";
 import { useShopifyCartStore } from "@/store/shopify-cart-store";
 import { useKoyuUstBildir } from "@/lib/use-koyu-ust";
+import { UyelikSecim } from "@/components/slick/uyelik-secim";
 
 /**
  * Giriş sayfası — üstte koyu bant, altta beyaz zeminde tek kolon form.
@@ -64,6 +65,11 @@ export function LoginPage() {
               <p className="mt-3 text-[14px]" style={{ color: "rgba(255,255,255,0.6)" }}>
                 {t("Track your orders and check out faster.")}
               </p>
+            </div>
+
+            {/* Berberin girişi ayrı: kademe fiyatı o hesapta açılıyor */}
+            <div className="mb-8">
+              <UyelikSecim aktif="musteri" giris />
             </div>
 
             <form

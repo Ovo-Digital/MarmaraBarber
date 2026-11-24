@@ -3,8 +3,9 @@
 //   node scripts/i18n-kontrol.mjs
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const kok = new URL("..", import.meta.url).pathname;
+const kok = fileURLToPath(new URL("..", import.meta.url));
 const sozlukKaynak = readFileSync(join(kok, "lib/i18n/tr.ts"), "utf8");
 const esKaynak = readFileSync(join(kok, "lib/i18n/es.ts"), "utf8");
 const esSozluk = new Set([...esKaynak.matchAll(/^\s*("(?:[^"\\\n]|\\.)*")\s*:/gm)].map((m) => JSON.parse(m[1])));

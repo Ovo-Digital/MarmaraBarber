@@ -16,6 +16,8 @@ export interface Product {
   currencyCode: string;
   availableForSale: boolean;
   productType?: string;
+  /** Shopify ürün etiketleri — vegan gibi rozetler buradan geliyor */
+  tags?: string[];
   options?: ProductOption[];
   variants: ProductVariant[];
   rating?: number;
@@ -58,7 +60,11 @@ export interface Cart {
   checkoutUrl: string;
   lines: CartLine[];
   totalAmount: number;
+  /** İndirimler inmeden önceki ara toplam — kademe kazancını göstermek için */
+  subtotalAmount?: number;
   currencyCode: string;
+  /** Sepete uygulanan indirim kodları. `applicable` false ise Shopify kabul etmedi. */
+  discountCodes?: { code: string; applicable: boolean }[];
 }
 
 export interface ApiResponse<T> {

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { BASVURU_ETIKETLERI, dogrulamaYolu } from "@/lib/berber-dogrulama";
 
 /**
  * Berber ve toptan başvuruları.
@@ -13,11 +14,16 @@ import { NextResponse } from "next/server";
  */
 
 const TURLER = {
-  barber: { etiket: "barber", baslik: "Barber / professional application" },
+  /* Berber başvurusu `berber-basvuru` etiketiyle düşüyor: onaylayan kişi
+     Shopify panelinde bu etikete göre süzüyor, onaylarken etiketi kademe
+     etiketiyle değiştiriyor (bkz. lib/berber-dogrulama.ts). */
+  barber: { etiket: BASVURU_ETIKETLERI.alindi, baslik: "Barber / professional application" },
   wholesale: { etiket: "wholesale", baslik: "Wholesale / distributor application" },
   ambassador: { etiket: "ambassador", baslik: "Ambassador / creator application" },
   /* İletişim sayfasındaki form da buradan gidiyor */
   contact: { etiket: "contact", baslik: "Contact form" },
+  /* Partner portalının yanındaki hızlı görüşme talebi */
+  meeting: { etiket: "quick-meeting", baslik: "Quick meeting request" },
 } as const;
 
 type Tur = keyof typeof TURLER;
@@ -39,18 +45,45 @@ export async function POST(request: Request) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
     return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
   }
-  // İletişim formunda tek "ad soyad" alanı var; soyad zorunlu değil
-  if (!ad || (!soyad && tur !== "contact")) {
+  // İletişim ve görüşme formunda tek "ad soyad" alanı var; soyad zorunlu değil
+  if (!ad || (!soyad && tur !== "contact" && tur !== "meeting")) {
     return NextResponse.json({ error: "Please enter your first and last name." }, { status: 400 });
   }
 
   const domain = process.env.SHOPIFY_STORE_URL ?? process.env.NEXT_PUBLIC_SHOPIFY_STORE_URL;
   if (!domain) return NextResponse.json({ error: "Store is not configured." }, { status: 500 });
 
+  /* İşletme doğrulaması artık TEK alan: vergi kimlik numarası (Volkan,
+     23 Kas — "üye için sadece VKN sorgulaması olacak"). Eski üç yollu
+     belge/kod doğrulaması kaldırıldı; `verifyMethod` gelirse not olarak
+     taşınıyor ama hiçbir şey zorunlu kılmıyor.
+
+     Formda da kontrol ediliyor, burada tekrar bakıyoruz çünkü istek
+     doğrudan da atılabilir. VKN 10, TC kimlik 11 hane. */
+  const yol = dogrulamaYolu(govde.verifyMethod);
+  if (tur === "barber" || tur === "wholesale") {
+    const vkn = (govde.taxNumber ?? "").replace(/\D/g, "");
+    if (!vkn) {
+      return NextResponse.json({ error: "Please enter your tax number." }, { status: 400 });
+    }
+    if (vkn.length !== 10 && vkn.length !== 11) {
+      return NextResponse.json(
+        { error: "A tax number is 10 digits; a personal ID number is 11." },
+        { status: 400 },
+      );
+    }
+  }
+
   // Serbest alanlar tek bir nota toplanıyor: Shopify müşteri formunda her alan
   // için ayrı bir yer yok, hepsi mesaj gövdesinde taşınıyor.
   const alanlar: [string, string][] = [
     ["Application", TURLER[tur].baslik],
+    /* Onaylayan kişi doğrulama adresini aramak zorunda kalmasın: hangi yol,
+       hangi kod ve nereden sorgulanacağı notta birlikte duruyor. */
+    ["Verification method", yol ? yol.ad : ""],
+    ["Tax number", govde.taxNumber ?? ""],
+    ["Verification code", govde.verifyCode ?? ""],
+    ["Verify at", yol ? yol.resmiSayfa : ""],
     ["Subject", govde.subject ?? ""],
     ["Program", govde.program ?? ""],
     ["Business", govde.business ?? ""],
@@ -59,6 +92,7 @@ export async function POST(request: Request) {
     ["Country", govde.country ?? ""],
     ["City", govde.city ?? ""],
     ["Phone", govde.phone ?? ""],
+    ["Preferred time", govde.preferredTime ?? ""],
     ["Monthly volume", govde.volume ?? ""],
     ["Audience / following", govde.audience ?? ""],
     ["Content focus", govde.focus ?? ""],

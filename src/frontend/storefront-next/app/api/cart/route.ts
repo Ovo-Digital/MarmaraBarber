@@ -4,10 +4,32 @@ import { apiError, apiSuccess } from "@/lib/api-response";
 import { createShopifyServerClient } from "@/lib/shopify-server";
 import * as cartOps from "@/services/shopify/cart-operations";
 
-async function maybeAttachCustomer(cart: Awaited<ReturnType<typeof cartOps.cartCreate>>, customerToken?: string) {
-  if (!customerToken) return cart;
+/**
+ * Sepeti müşteriye bağlar ve berber kademesinin indirimini uygular.
+ *
+ * İkisi birlikte: önce müşteri bağlanmadan Shopify sepeti kimin olduğunu
+ * bilmiyor, müşteriye özel indirim de değerlendirilemiyor. Kademe etiketi
+ * sunucuda okunuyor, tarayıcının söylediğine güvenilmiyor.
+ *
+ * İndirim adımı başarısız olursa sepet yine de dönüyor: indirim inmemesi
+ * sepeti tamamen çalışmaz hâle getirmemeli.
+ */
+async function maybeAttachCustomer(
+  cart: Awaited<ReturnType<typeof cartOps.cartCreate>>,
+  customerToken?: string,
+) {
   const client = createShopifyServerClient();
-  return cartOps.cartAttachCustomer(client, cart.id, customerToken);
+  let sonuc = cart;
+  if (customerToken) {
+    sonuc = await cartOps.cartAttachCustomer(client, cart.id, customerToken);
+  }
+  try {
+    const indirimli = await cartOps.cartKademeIndirimi(client, cart.id, customerToken);
+    if (indirimli) sonuc = indirimli;
+  } catch {
+    /* indirim uygulanamadı; sepet normal fiyatla devam eder */
+  }
+  return sonuc;
 }
 
 export async function GET(req: NextRequest) {

@@ -31,6 +31,8 @@ export type CartLine = {
 };
 
 type ApiCart = {
+  subtotalAmount?: number;
+  discountCodes?: { code: string; applicable: boolean }[];
   id: string;
   checkoutUrl: string;
   totalAmount: number;
@@ -53,6 +55,10 @@ type CartState = {
   checkoutUrl: string | null;
   currencyCode: string;
   totalAmount: number;
+  /** İndirim inmeden önceki toplam — kademe kazancını göstermek için */
+  subtotalAmount: number;
+  /** Sepete inen indirim kodları (berber kademesi dahil) */
+  discountCodes: { code: string; applicable: boolean }[];
   loading: boolean;
   error: string | null;
 
@@ -96,6 +102,8 @@ export const useShopifyCartStore = create<CartState>()(
       checkoutUrl: null,
       currencyCode: "USD",
       totalAmount: 0,
+      subtotalAmount: 0,
+      discountCodes: [],
       loading: false,
       error: null,
 
@@ -108,7 +116,7 @@ export const useShopifyCartStore = create<CartState>()(
           const json = (await res.json()) as { success: boolean; data?: ApiCart };
           if (!json.success || !json.data) {
             // Sepet Shopify'da yoksa (süresi dolmuş / tamamlanmış) sıfırla
-            set({ cartId: null, lines: [], checkoutUrl: null, totalAmount: 0 });
+            set({ cartId: null, lines: [], checkoutUrl: null, totalAmount: 0, subtotalAmount: 0, discountCodes: [] });
             return;
           }
           const cart = json.data;
@@ -117,6 +125,8 @@ export const useShopifyCartStore = create<CartState>()(
             checkoutUrl: cart.checkoutUrl,
             totalAmount: cart.totalAmount,
             currencyCode: cart.currencyCode,
+            subtotalAmount: cart.subtotalAmount ?? cart.totalAmount,
+            discountCodes: cart.discountCodes ?? [],
           });
         } catch {
           /* bağlantı hatası: mevcut durum korunur */
@@ -146,6 +156,8 @@ export const useShopifyCartStore = create<CartState>()(
             checkoutUrl: cart.checkoutUrl,
             totalAmount: cart.totalAmount,
             currencyCode: cart.currencyCode,
+            subtotalAmount: cart.subtotalAmount ?? cart.totalAmount,
+            discountCodes: cart.discountCodes ?? [],
           });
         } catch (e) {
           set({ error: e instanceof Error ? e.message : "Could not add to cart" });
@@ -167,6 +179,8 @@ export const useShopifyCartStore = create<CartState>()(
             checkoutUrl: cart.checkoutUrl,
             totalAmount: cart.totalAmount,
             currencyCode: cart.currencyCode,
+            subtotalAmount: cart.subtotalAmount ?? cart.totalAmount,
+            discountCodes: cart.discountCodes ?? [],
           });
         } catch (e) {
           set({ error: e instanceof Error ? e.message : "Could not update cart" });
@@ -187,6 +201,8 @@ export const useShopifyCartStore = create<CartState>()(
             checkoutUrl: cart.checkoutUrl,
             totalAmount: cart.totalAmount,
             currencyCode: cart.currencyCode,
+            subtotalAmount: cart.subtotalAmount ?? cart.totalAmount,
+            discountCodes: cart.discountCodes ?? [],
           });
         } catch (e) {
           set({ error: e instanceof Error ? e.message : "Could not remove item" });
@@ -195,7 +211,8 @@ export const useShopifyCartStore = create<CartState>()(
         }
       },
 
-      clear: () => set({ cartId: null, lines: [], checkoutUrl: null, totalAmount: 0 }),
+      clear: () =>
+        set({ cartId: null, lines: [], checkoutUrl: null, totalAmount: 0, subtotalAmount: 0, discountCodes: [] }),
 
       total: () => get().totalAmount,
     }),

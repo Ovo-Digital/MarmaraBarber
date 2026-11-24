@@ -238,3 +238,63 @@ export const INSTAGRAM_HANDLES = [
  * Örnek: "space-wax-100-ml": { video: "/media/space-wax.mp4", poster: "/media/space-wax.jpg" }
  */
 export const HOME_REEL_MEDIA: Record<string, { video?: string; poster?: string }> = {};
+
+/**
+ * Anasayfadaki "Ürün yelpazesi" şeridinde önce hangi ürün tipleri görünsün.
+ *
+ * Shopify'daki `productType` değerleriyle eşleşir; buradaki sıra ekrandaki
+ * sırayı belirler. Listede olmayan tipler sonra, kendi sıralarıyla gelir.
+ * Mağaza devredildiğinde tek yapılacak bu listeyi yeni tiplere çevirmek.
+ */
+export const RANGE_TYPE_PRIORITY = [
+  "Saç Şekillendirici",
+  "Sakal Şekillendirici",
+  "Tıraş Jeli",
+  "Fön Suyu",
+];
+
+/**
+ * "Formülünü bul" akışı.
+ *
+ * Önce alan (saç / sakal), sonra o alana ait tip sorusu, sonra bütçe.
+ * `tipler` Shopify'daki productType değerleriyle, `anahtar` ürün adındaki
+ * kelimelerle eşleşir — ürün handle'ı sabitlenmiyor, mağaza devredildiğinde
+ * sadece bu liste yeni kataloğa çevriliyor.
+ *
+ * Bir seçeneğin anahtarları hiçbir ürünü tutmazsa o alanın tüm ürünleri
+ * gösterilir; akış boş ekranda kalmaz.
+ */
+export type FinderSecenek = { label: string; anahtar: string[] };
+export type FinderAlan = {
+  id: string;
+  label: string;
+  tipler: string[];
+  soru: string;
+  secenekler: FinderSecenek[];
+};
+
+export const FINDER_ALANLAR: FinderAlan[] = [
+  {
+    id: "sac",
+    label: "Saç",
+    tipler: ["Saç Şekillendirici", "Şampuan", "Saç Kremi", "Fön Suyu", "Saç Boyası"],
+    soru: "Saçın nasıl?",
+    secenekler: [
+      { label: "İnce, hacim istiyorum", anahtar: ["matte", "mat", "clay", "powder", "paste", "toz"] },
+      { label: "Normal", anahtar: ["wax", "pomade", "styling", "krem"] },
+      { label: "Kalın ve sert", anahtar: ["gum", "spider", "strong", "extra", "sert", "güçlü"] },
+      { label: "Kıvırcık ya da dalgalı", anahtar: ["aqua", "gel", "jöle", "pomade", "fön", "keratin"] },
+    ],
+  },
+  {
+    id: "sakal",
+    label: "Sakal",
+    tipler: ["Sakal Yağı", "Sakal Şampuanı", "Sakal Bakım", "Sakal Şekillendirici", "Cilt Bakımı"],
+    soru: "Sakalın nasıl?",
+    secenekler: [
+      { label: "Yeni uzatıyorum", anahtar: ["yağ", "oil", "serum", "bakım"] },
+      { label: "Kısa sakal", anahtar: ["wax", "balm", "şekillendirici", "balsam", "krem"] },
+      { label: "Uzun sakal", anahtar: ["şampuan", "shampoo", "yağ", "oil"] },
+    ],
+  },
+];

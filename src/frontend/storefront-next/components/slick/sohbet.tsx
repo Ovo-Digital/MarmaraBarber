@@ -60,7 +60,7 @@ const KONULAR: Konu[] = [
     dugme: "Wholesale & pros",
     kelimeler: /toptan|bayi|distribütör|berber kayd|profesyonel|wholesale|distribut|bulk|trade|stockist/i,
     cevap: "Shops and distributors can apply for wholesale; barbers can register for trade access.",
-    baglantilar: [{ etiket: "Wholesale", href: "/wholesale" }],
+    baglantilar: [{ etiket: "Partner", href: "/wholesale" }],
   },
   {
     id: "insan",
