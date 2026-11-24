@@ -48,7 +48,10 @@ function FooterSutun({ baslik, children }: { baslik: string; children: React.Rea
     <div className="border-b border-white/12 py-4 sm:border-0 sm:py-0">
       <button
         type="button"
-        className="flex w-full items-center justify-between sm:pointer-events-none sm:mb-[13px] sm:block"
+        /* text-left şart: <button> varsayılan olarak yazıyı ortalıyor.
+           Mobilde flex olduğu için fark etmiyordu ama sm ve üstünde
+           `block` olunca başlıklar sütunun ortasına kayıyordu. */
+        className="flex w-full items-center justify-between text-left sm:pointer-events-none sm:mb-[13px] sm:block"
         aria-expanded={acik}
         onClick={() => setAcik((a) => !a)}
       >
