@@ -847,4 +847,17 @@ export const ES: Record<string, string> = {
   "Partner pricing is for registered businesses, so we ask for your tax number and check it against the official record.": "Los precios de socio son para empresas registradas, por eso pedimos tu NIF y lo verificamos en el registro oficial.",
   "10 digits. Sole traders can use their personal ID number instead.": "10 dígitos. Los autónomos pueden usar su número de identidad personal.",
   "We check this number against the official record and keep only the result — no documents are uploaded or stored.": "Verificamos este número en el registro oficial y solo guardamos el resultado — no se sube ni se almacena ningún documento.",
+
+  // ── Stok bildirimi, kullanım videoları ─────────────────────────────
+  "Tell me when it's back": "Avísame cuando vuelva",
+  "You're on the list.": "Estás en la lista.",
+  "We'll email {email} when this one is back.": "Te escribiremos a {email} cuando vuelva.",
+  "One email when it's back in stock — nothing else.": "Un solo correo cuando vuelva a haber stock, nada más.",
+  "We couldn't save your request right now.": "No hemos podido guardar tu solicitud ahora mismo.",
+  "Watch it work": "Míralo en acción",
+  "Product videos are on the way.": "Los vídeos del producto están en camino.",
+  "Coming soon": "Próximamente",
+  "Sound on": "Activar sonido",
+  "Mute": "Silenciar",
+  "Production facilities": "Plantas de producción",
 };

@@ -2623,3 +2623,150 @@ body.rv-acik [data-revize] { cursor: auto; }
   transform: none;
   cursor: default;
 }
+
+/* ── Ürün detayı: açılır bilgi blokları ──────────────────────────────
+   Ölçüler KANAR sunumunun satır listesinden (.ct-steps / .dig-cal)
+   uyarlandı: 56px sıra numarası sütunu, 1px ayırıcı, ortak easing.
+   Katmansız yazıldı ki Tailwind yardımcı sınıfları ezmesin. */
+.lx-blok-liste {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+.lx-blok {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.lx-blok-baslik {
+  display: grid;
+  grid-template-columns: 56px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 22px 2px;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.lx-blok-no {
+  font-family: var(--font-owners);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--sg-red);
+}
+.lx-blok-ad {
+  font-family: var(--font-owners);
+  font-weight: 800;
+  font-size: clamp(20px, 2.4vw, 32px);
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--lx-ink);
+  transition: transform 350ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1));
+}
+/* 44px yuvarlak düğme: açıkken 45° dönüp çarpı oluyor */
+.lx-blok-dugme {
+  justify-self: end;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  transition: transform 350ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1)),
+    background 350ms ease, border-color 350ms ease;
+}
+.lx-blok-dugme::before,
+.lx-blok-dugme::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1.5px;
+  background: var(--lx-ink);
+  transform: translate(-50%, -50%);
+  transition: background 350ms ease;
+}
+.lx-blok-dugme::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.lx-blok--acik .lx-blok-dugme {
+  transform: rotate(45deg);
+  background: #121212;
+  border-color: #121212;
+}
+.lx-blok--acik .lx-blok-dugme::before,
+.lx-blok--acik .lx-blok-dugme::after {
+  background: #ffffff;
+}
+/* Açılma: yükseklik animasyonu yerine grid satırı 0fr → 1fr */
+.lx-blok-govde {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 350ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1));
+}
+.lx-blok--acik .lx-blok-govde {
+  grid-template-rows: 1fr;
+  transition-duration: 500ms;
+}
+.lx-blok-govde > div {
+  overflow: hidden;
+}
+.lx-blok-icerik {
+  padding: 0 2px 26px 56px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 400ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1)) 0ms,
+    transform 400ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1)) 0ms;
+}
+.lx-blok--acik .lx-blok-icerik {
+  opacity: 1;
+  transform: none;
+  transition-delay: 100ms;
+}
+@media (hover: hover) {
+  .lx-blok-baslik:hover .lx-blok-ad {
+    transform: translateX(6px);
+  }
+  .lx-blok-baslik:hover .lx-blok-dugme {
+    border-color: var(--lx-ink);
+  }
+}
+@media (max-width: 640px) {
+  .lx-blok-baslik {
+    grid-template-columns: 34px 1fr 40px;
+    padding: 18px 2px;
+  }
+  .lx-blok-icerik {
+    padding-left: 34px;
+  }
+}
+
+/* ── Ürün detayı: "ne işe yarar" kartları ────────────────────────────
+   KANAR'daki ürün kartı (.pc) hover değerleri: -6px, gölge büyümesi,
+   ikon 1.04 ölçek. Vurgulu kutudan (.dig-split .side) yarıçap ve iç
+   boşluk alındı. */
+.lx-derd-kart {
+  position: relative;
+  padding: 34px 34px 30px;
+  border-radius: 24px;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 60px -44px rgba(0, 0, 0, 0.45);
+  transition: transform 500ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1)),
+    box-shadow 500ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1)),
+    border-color 500ms ease;
+}
+.lx-derd-ikon {
+  display: block;
+  color: var(--sg-red);
+  transition: transform 500ms var(--lx-ease, cubic-bezier(0.2, 0.7, 0.1, 1));
+}
+@media (hover: hover) {
+  .lx-derd-kart:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 44px 80px -44px rgba(0, 0, 0, 0.5);
+    border-color: rgba(225, 6, 0, 0.5);
+  }
+  .lx-derd-kart:hover .lx-derd-ikon {
+    transform: translateY(-4px) scale(1.04);
+  }
+}

@@ -866,4 +866,17 @@ export const TR: Record<string, string> = {
   "Show full description": "Tüm açıklamayı göster",
   "Hide full description": "Açıklamayı gizle",
   "Vegan & cruelty free": "Vegan ve hayvan deneysiz",
+
+  // ── Stok bildirimi, kullanım videoları ─────────────────────────────
+  "Tell me when it's back": "Stoğa gelince haber ver",
+  "You're on the list.": "Listeye eklendin.",
+  "We'll email {email} when this one is back.": "Bu ürün gelince {email} adresine yazacağız.",
+  "One email when it's back in stock — nothing else.": "Stoğa girince tek e-posta, başka bir şey yok.",
+  "We couldn't save your request right now.": "Talebini şu anda kaydedemedik.",
+  "Watch it work": "İş başında izle",
+  "Product videos are on the way.": "Ürün videoları yolda.",
+  "Coming soon": "Yakında",
+  "Sound on": "Sesi aç",
+  "Mute": "Sesi kapat",
+  "Production facilities": "Üretim tesisi",
 };

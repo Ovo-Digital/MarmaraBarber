@@ -136,10 +136,13 @@ export function NeIseYarar({ maddeler, tamAciklama }: { maddeler: string[]; tamA
           {t("What it actually does")}
         </h2>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3">
           {maddeler.map((m, i) => (
-            <div key={m} className="p-6" style={KART}>
-              <span aria-hidden="true" className="mb-5 block" style={{ color: "var(--sg-red)" }}>
+            /* Kart ve hover ölçüleri KANAR'dan: -6px kalkma, gölge büyümesi,
+               kırmızıya dönen çizgi, ikonun 1.04 ölçeklenmesi.
+               Sınıflar globals.css'te `.lx-derd-*` olarak katmansız. */
+            <div key={m} className="lx-derd-kart">
+              <span aria-hidden="true" className="lx-derd-ikon mb-5">
                 <Ikon indeks={i} />
               </span>
               <p style={{ ...KART_BASLIK, textTransform: "none", fontWeight: 500, lineHeight: "26px" }}>{m}</p>

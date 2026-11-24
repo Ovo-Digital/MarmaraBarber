@@ -20,6 +20,9 @@ import { urunAdiParcala } from "@/lib/urun-adi";
 import { SITE_NAME } from "@/lib/slick-theme";
 import { kullanimAdimlari, ozellikMaddeleri } from "@/lib/urun-metni";
 import { NasilKullanilir, NeIseYarar, UrunSSS } from "@/components/slick/product-slick-sections";
+import { UrunBloklari } from "@/components/slick/product-bloklar";
+import { StokBildirim } from "@/components/slick/stok-bildirim";
+import { KullanimVideolari } from "@/components/slick/kullanim-videolari";
 import type { Product, ProductOption, ProductVariant, SellingPlanGroup } from "@/types/commerce";
 
 function isDefaultOnly(options: ProductOption[] | undefined) {
@@ -323,44 +326,6 @@ function productTypeHref(type?: string) {
   return `/products?type=${encodeURIComponent(type)}`;
 }
 
-function Accordion({
-  items,
-}: {
-  items: { id: string; title: string; body: React.ReactNode }[];
-}) {
-  /* Hepsi kapalı başlıyor: ilk bölüm açık gelince uzun açıklama sayfayı
-     yine duvara çeviriyordu. */
-  const [open, setOpen] = useState<string | null>(null);
-
-  return (
-    <div className="divide-y divide-black/10 border-y border-black/10">
-      {items.map((item) => {
-        const isOpen = open === item.id;
-        return (
-          <div key={item.id}>
-            <button
-              type="button"
-              className="flex w-full items-center justify-between py-4 text-left"
-              onClick={() => setOpen(isOpen ? null : item.id)}
-              aria-expanded={isOpen}
-            >
-              <span className="sg-nav text-[12px]">{item.title}</span>
-              <span className="text-lg leading-none">{isOpen ? "−" : "+"}</span>
-            </button>
-            <div
-              className="grid transition-[grid-template-rows] duration-300 ease-out"
-              style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
-            >
-              <div className="overflow-hidden">
-                <div className="sg-body pb-5 text-[14px] leading-[1.62] text-[#444]">{item.body}</div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 function Lightbox({
   src,
@@ -472,25 +437,6 @@ function Gallery({
   );
 }
 
-/**
- * Stokta olmayan ürün için.
- *
- * Önceden burada bir "stok gelince haber ver" formu vardı; e-postayı hiçbir
- * yere göndermiyor, yalnızca "mail atacağız" yazısını gösteriyordu. Shopify
- * Storefront API'de stok bildirimi yok. Söz verip tutamayacağımız bir form
- * yerine iletişim sayfasına yönlendiriyoruz.
- */
-function NotifyForm() {
-  const t = useT();
-  return (
-    <p className="mt-3 text-[13px]" style={{ color: "rgba(20,17,15,0.65)" }}>
-      {t("Out of stock right now.")}{" "}
-      <Link href="/iletisim" className="underline underline-offset-4" style={{ color: "var(--lx-ink)" }}>
-        {t("Ask us about restock")}
-      </Link>
-    </p>
-  );
-}
 
 export function SlickProductDetail({
   product,
@@ -874,14 +820,19 @@ export function SlickProductDetail({
                 t("Sold out")
               )}
             </button>
-            {!inStock ? <NotifyForm /> : null}
+            {!inStock ? (
+              <StokBildirim
+                urunAdi={product.title}
+                urunHandle={product.handle}
+                varyant={variant?.title}
+              />
+            ) : null}
 
             <GuvenSatiri etiketler={product.tags} />
 
             {/* Açıklama artık sayfanın dibinde duvar gibi değil, burada
                 bölüm bölüm açılıyor — referans sayfadaki düzen bu. */}
             <div className="mt-6">
-              <Accordion items={akordeonlar} />
             </div>
           </div>
         </div>
@@ -903,13 +854,18 @@ export function SlickProductDetail({
 
       </div>
 
-      {/* 6. Slick düzenindeki alt bölümler — hepsi açıklamadan okunuyor,
+      {/* 6. Açılır bilgi blokları — Slick'teki gibi tam genişlikte,
+          tasarımı KANAR'ın satır listesinden */}
+      <UrunBloklari bloklar={akordeonlar} />
+
+      {/* 7. Slick düzenindeki alt bölümler — hepsi açıklamadan okunuyor,
           veri yoksa bölüm hiç çizilmiyor */}
       <NasilKullanilir adimlar={slickAdimlar} gorsel={gallery[0]} baslik={product.title} />
       <NeIseYarar maddeler={slickMaddeler} tamAciklama={product.description} />
+      <KullanimVideolari videolar={product.videolar} kapaklar={gallery} urunAdi={product.title} />
       <UrunSSS />
 
-      {/* 7. Related carousel */}
+      {/* 8. Related carousel */}
       {related.length > 0 && (
         <div className="mt-8 bg-[var(--sg-off)]">
           <ProductCarousel
@@ -920,7 +876,7 @@ export function SlickProductDetail({
         </div>
       )}
 
-      {/* 8. Sticky mobile ATC */}
+      {/* 9. Sticky mobile ATC */}
       <AnimatePresence>
         {!ctaVisible && (
           <motion.div

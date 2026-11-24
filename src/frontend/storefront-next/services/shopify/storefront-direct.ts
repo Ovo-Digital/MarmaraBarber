@@ -550,6 +550,11 @@ export async function storefrontGetProductDetail(handle: string): Promise<Produc
         ${PRODUCT_FRAGMENT}
         descriptionHtml
         gallery: images(first: 10) { edges { node { url } } }
+        medya: media(first: 12) { edges { node {
+          mediaContentType
+          ... on Video { sources { url mimeType } previewImage { url } }
+          ... on ExternalVideo { originUrl previewImage { url } }
+        } } }
         sellingPlanGroups(first: 5) { edges { node {
           name
           sellingPlans(first: 10) { edges { node {
@@ -571,6 +576,23 @@ export async function storefrontGetProductDetail(handle: string): Promise<Produc
 
   const node = data.product;
   const galeri = node.gallery.edges.map((e) => e.node.url);
+
+  /* Kullanım videoları Shopify'ın ürün medyasından geliyor — kodda video
+     adresi sabitlenmiyor. Mağazaya video yüklenmediyse dizi boş kalır ve
+     video bölümü ekranda hiç çıkmaz. mp4 tercih ediliyor: tarayıcıların
+     hepsi oynatıyor, HLS için ayrı oynatıcı gerekiyor. */
+  const videolar = (
+    (node.medya as { edges: { node: Record<string, unknown> }[] } | undefined)?.edges ?? []
+  )
+    .filter((e) => e.node.mediaContentType === "VIDEO")
+    .map((e) => {
+      const kaynaklar = (e.node.sources as { url: string; mimeType: string }[] | undefined) ?? [];
+      const mp4 = kaynaklar.find((k) => k.mimeType === "video/mp4") ?? kaynaklar[0];
+      return mp4
+        ? { url: mp4.url, posterUrl: (e.node.previewImage as { url?: string } | null)?.url }
+        : null;
+    })
+    .filter((v): v is { url: string; posterUrl: string | undefined } => Boolean(v));
 
   /* Abonelik planları. Mağazada abonelik uygulaması yoksa bu dizi boş gelir ve
      arayüzde abonelik kutusu hiç çizilmez — boş bir seçenek gösterilmiyor. */
@@ -603,7 +625,7 @@ export async function storefrontGetProductDetail(handle: string): Promise<Produc
   const kapak = (node.featuredImage as { url?: string } | null)?.url;
 
   return {
-    product: mapProduct(node),
+    product: { ...mapProduct(node), videolar },
     // Kapak görseli her zaman ilk sırada olsun, tekrar etmesin
     images: kapak ? [kapak, ...galeri.filter((u) => u !== kapak)] : galeri,
     descriptionHtml: node.descriptionHtml ?? "",

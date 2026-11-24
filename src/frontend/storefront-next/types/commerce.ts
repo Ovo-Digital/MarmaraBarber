@@ -18,6 +18,8 @@ export interface Product {
   productType?: string;
   /** Shopify ürün etiketleri — vegan gibi rozetler buradan geliyor */
   tags?: string[];
+  /** Ürün medyasındaki videolar — kullanım videosu bölümünü besliyor */
+  videolar?: { url: string; posterUrl?: string }[];
   options?: ProductOption[];
   variants: ProductVariant[];
   rating?: number;

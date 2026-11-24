@@ -24,6 +24,8 @@ const TURLER = {
   contact: { etiket: "contact", baslik: "Contact form" },
   /* Partner portalının yanındaki hızlı görüşme talebi */
   meeting: { etiket: "quick-meeting", baslik: "Quick meeting request" },
+  /* "Stoğa gelince haber ver" — ürün sayfasından */
+  restock: { etiket: "stok-bildirim", baslik: "Back-in-stock request" },
 } as const;
 
 type Tur = keyof typeof TURLER;
@@ -46,7 +48,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
   }
   // İletişim ve görüşme formunda tek "ad soyad" alanı var; soyad zorunlu değil
-  if (!ad || (!soyad && tur !== "contact" && tur !== "meeting")) {
+  if (!ad || (!soyad && tur !== "contact" && tur !== "meeting" && tur !== "restock")) {
     return NextResponse.json({ error: "Please enter your first and last name." }, { status: 400 });
   }
 
@@ -93,6 +95,10 @@ export async function POST(request: Request) {
     ["City", govde.city ?? ""],
     ["Phone", govde.phone ?? ""],
     ["Preferred time", govde.preferredTime ?? ""],
+    /* Stok bildiriminde hangi ürünün beklendiği notta yazıyor */
+    ["Product", govde.product ?? ""],
+    ["Product handle", govde.productHandle ?? ""],
+    ["Variant", govde.variant ?? ""],
     ["Monthly volume", govde.volume ?? ""],
     ["Audience / following", govde.audience ?? ""],
     ["Content focus", govde.focus ?? ""],

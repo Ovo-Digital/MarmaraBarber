@@ -17,7 +17,6 @@ import {
   MERKEZLER,
   PAZARLAR,
   RAKAMLAR,
-  URETIM_TESISI,
   kitayaGore,
   type IhracatUlkesi,
   type Rakam,
@@ -58,7 +57,9 @@ function Sayac({ hedef }: { hedef: number }) {
       cancelAnimationFrame(kare);
     };
   }, [hedef]);
-  return <span ref={ref}>{deger}</span>;
+  /* Binlik ayracı: "10000+" okunmuyordu. Ayraç tarayıcının diline göre
+     ("10.000" / "10,000") — kodda nokta sabitlenmiyor. */
+  return <span ref={ref}>{deger.toLocaleString()}</span>;
 }
 
 export function AboutPage() {
@@ -284,16 +285,11 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* ── 3b. Rakamlar ─────────────────────────────────────────────────
-          İki ayrı siyah bölüm sayfanın yarısını yiyordu; marka ve üretim
-          rakamları tek bölümde, ikinci satır daha küçük puntoyla. */}
-      <RakamBolumu
-        eyebrow={t("The numbers")}
-        baslik={t("Built in our own facility, used in 62 countries.")}
-        rakamlar={RAKAMLAR}
-        altEtiket={t("Production")}
-        altRakamlar={URETIM_TESISI}
-      />
+      {/* ── 3b. Rakamlar — tek satır şerit ─────────────────────────────
+          Önce iki ayrı siyah bölümdü, sonra tek bölüm oldu ama hâlâ yüksekti.
+          Volkan 24 Kas: "tek satırda ver". Başlık kaldırıldı, dört metrik
+          tek şeritte. Üretim bilgisi en başta. */}
+      <RakamBolumu eyebrow={t("The numbers")} rakamlar={RAKAMLAR} />
 
       {/* ── 4. Vizyon / Misyon ───────────────────────────────────────── */}
       <section style={{ background: "var(--lx-bone)" }}>
@@ -358,92 +354,49 @@ export function AboutPage() {
  *
  * Değeri `null` olan rakam HİÇ ÇİZİLMEZ — markadan gelmeyen sayı uydurulmaz.
  */
-function RakamBolumu({
-  eyebrow,
-  baslik,
-  rakamlar,
-  altEtiket,
-  altRakamlar,
-}: {
-  eyebrow: string;
-  baslik: string;
-  rakamlar: Rakam[];
-  altEtiket?: string;
-  altRakamlar?: Rakam[];
-}) {
+/**
+ * Rakam şeridi — Slick Gorilla'nın "THE NUMBERS" alanının karşılığı.
+ *
+ * Tek satır: solda küçük kırmızı etiket, sağda dört metrik. Başlık cümlesi
+ * yok; iki denemede de sayfayı şişiren şey oydu.
+ *
+ * Değeri `null` olan rakam HİÇ ÇİZİLMEZ — markadan gelmeyen sayı uydurulmaz.
+ */
+function RakamBolumu({ eyebrow, rakamlar }: { eyebrow: string; rakamlar: Rakam[] }) {
   const dolu = rakamlar.filter((r) => r.deger !== null && r.deger !== undefined);
-  const altDolu = (altRakamlar ?? []).filter((r) => r.deger !== null && r.deger !== undefined);
-  /* Tek rakamla bölüm kurulmuyor: ekranda boş bir alan gibi duruyor. */
+  /* Tek rakamla şerit kurulmuyor: ekranda boş bir alan gibi duruyor. */
   if (dolu.length < 2) return null;
 
   return (
     <section className="bg-black text-white">
       <div
-        className="sg-container text-center"
-        style={{ paddingTop: "clamp(40px,4.2vw,64px)", paddingBottom: "clamp(40px,4.2vw,64px)" }}
+        className="sg-container flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-12"
+        style={{ paddingTop: "clamp(26px,2.6vw,40px)", paddingBottom: "clamp(26px,2.6vw,40px)" }}
       >
-        <p className="lx-eyebrow mb-2">{eyebrow}</p>
-        <h2
-          className="mx-auto max-w-[26ch] uppercase"
-          style={{
-            fontFamily: "var(--font-owners)",
-            fontWeight: 800,
-            fontSize: "clamp(20px, 2.2vw, 28px)",
-            lineHeight: 1.3,
-            color: "#ffffff",
-          }}
-        >
-          {baslik}
-        </h2>
-
+        <p className="lx-eyebrow shrink-0 lg:w-[120px]">{eyebrow}</p>
         <dl
-          className="mx-auto mt-7 grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-4"
-          style={{ maxWidth: 900 }}
+          className="m-0 grid flex-1 grid-cols-2 gap-x-4 gap-y-7 p-0 sm:grid-cols-4"
+          style={{ gridTemplateColumns: `repeat(${Math.min(dolu.length, 4)}, minmax(0,1fr))` }}
         >
           {dolu.map((r) => (
-            <Rakamlar key={r.etiket} rakam={r} boy="buyuk" />
+            <Rakamlar key={r.etiket} rakam={r} />
           ))}
         </dl>
-
-        {altDolu.length >= 2 ? (
-          <div className="mx-auto mt-9 border-t border-white/15 pt-7" style={{ maxWidth: 900 }}>
-            {altEtiket ? (
-              <p
-                className="mb-5 uppercase"
-                style={{
-                  fontFamily: "var(--font-owners)",
-                  fontWeight: 800,
-                  fontSize: "13px",
-                  letterSpacing: "0.14em",
-                  color: "var(--sg-red)",
-                }}
-              >
-                {altEtiket}
-              </p>
-            ) : null}
-            <dl className="grid grid-cols-3 gap-x-4 gap-y-6">
-              {altDolu.map((r) => (
-                <Rakamlar key={r.etiket} rakam={r} boy="kucuk" />
-              ))}
-            </dl>
-          </div>
-        ) : null}
       </div>
     </section>
   );
 }
 
-/** Tek rakam + etiketi. `boy` iki ölçek: marka rakamları ve üretim rakamları. */
-function Rakamlar({ rakam, boy }: { rakam: Rakam; boy: "buyuk" | "kucuk" }) {
+/** Tek rakam + etiketi. */
+function Rakamlar({ rakam }: { rakam: Rakam }) {
   const t = useT();
-  const buyuk = boy === "buyuk";
   return (
-    <div className="px-1">
+    <div>
       <dd
         style={{
           fontFamily: "var(--font-owners-black)",
           fontWeight: 900,
-          fontSize: buyuk ? "clamp(28px, 3vw, 42px)" : "clamp(20px, 2vw, 28px)",
+          fontSize: "clamp(26px, 2.8vw, 40px)",
           lineHeight: 1,
           letterSpacing: "-0.02em",
           color: "var(--sg-red)",
@@ -458,7 +411,7 @@ function Rakamlar({ rakam, boy }: { rakam: Rakam; boy: "buyuk" | "kucuk" }) {
         style={{
           fontFamily: "var(--font-geist)",
           fontWeight: 400,
-          fontSize: buyuk ? "11px" : "10px",
+          fontSize: "11px",
           lineHeight: 1.35,
           letterSpacing: "0.14em",
           color: "rgba(255,255,255,0.6)",

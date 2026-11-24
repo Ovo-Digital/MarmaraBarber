@@ -165,24 +165,21 @@ export const KURULUS_YILI = 1970;
 
 export type Rakam = { deger: number | string | null; son?: string; etiket: string };
 
+/**
+ * Hakkımızda sayfasındaki rakamlar — TEK SATIR, dört metrik.
+ *
+ * Volkan'ın 24 Kas kararı: üretim bilgisi alta ayrı bölüm değil, en başa;
+ * üretim hattı, üretim standardı (GMP) ve kıta sayısı kaldırıldı. Sıra
+ * ekrandaki sırayla aynı.
+ *
+ * `deger` null olan satır hiç çizilmez — markadan gelmeyen sayı uydurulmaz.
+ */
 export const RAKAMLAR: Rakam[] = [
+  /* YER TUTUCU: fabrika sayısı markadan teyit edilmedi. */
+  { deger: 2, etiket: "Production facilities" },
   { deger: new Date().getFullYear() - KURULUS_YILI, son: "+", etiket: "Years in the game" },
   { deger: 62, son: "+", etiket: "Export countries" },
-  { deger: 6, etiket: "Continents" },
   /* YER TUTUCU (24 Kas) — Volkan "şimdilik salla" dedi, gerçek sayı
-     markadan gelecek. Canlıya almadan önce DOĞRULANACAK. */
+     markadan gelecek. DOĞRULANACAK. */
   { deger: 10000, son: "+", etiket: "Barbers worldwide" },
-];
-
-/**
- * Üretim tesisi.
- *
- * YER TUTUCU (24 Kas): metrekare ve hat sayısı markadan gelmedi, Volkan
- * geçici değer istedi. Gerçek rakamlar gelince burası güncellenecek —
- * `deger` null yapılırsa o satır kendiliğinden ekrandan kalkar.
- */
-export const URETIM_TESISI: Rakam[] = [
-  { deger: 4500, son: " m²", etiket: "Production area" },
-  { deger: 8, etiket: "Production lines" },
-  { deger: "GMP", etiket: "Manufacturing standard" },
 ];
